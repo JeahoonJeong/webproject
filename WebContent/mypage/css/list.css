@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+#list {
+	width: 690px;
+	text-align: left;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 10pt;
+	vertical-align: middle;
+}
+
+#list .num {width:40px;}
+#list .resNum {width:100px;}
+#list .movieTitle {width:170px;}
+#list .cinema {width:80px;}
+#list .playDate {width:120px;}
+#list .saleDate {width:120px;}
+#list .cancel {width:60px;}
+
+
+ul {
+	list-style: none;
+}
+
+dt {
+	float:left;
+	line-height:30px;
+	text-align:center;
+	padding-top: 0px;
+	font-weight: bold;
+	color: #666666;
+}
+
+dl {
+	float:left;
+	border-bottom:1px solid #E4E4E4;
+}
+
+dd {
+	width:410px;
+	margin-left:10px;
+	text-align:left;
+}
