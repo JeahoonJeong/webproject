@@ -3,6 +3,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,18 +14,32 @@
 <style type="text/css">
 
 .all{ 
-	margin-top: 80px;
-	margin-left: 30px;
+	padding-top: 65px;
+	padding-left: 40px;
 }
 
 </style>
 </head>
-<body>
-<div class="all">
-	<div>
-		<img src="./image/mission.jpg" width="250px" height="350px"/>
-	</div>
-
+<body marginheight="0" marginwidth="0" class="all">
+<div>
+	<table border="1" width="888px">
+		<tr>
+			<td rowspan="4" height="336px" width="230px">
+			<img src="./image/mission.jpg" width="230px" height="336px"/>
+			</td>
+			<td height="30px">미션 임파서블: 폴아웃</td>
+		</tr>
+		<tr>
+			<td height="30px"></td>
+		</tr>
+		<tr>
+			<td height="80px"></td>
+		</tr>
+		<tr>
+			<td height="30px"></td>
+		</tr>
+	</table>
+		
 </div>
 
 
