@@ -36,6 +36,9 @@ public class MovieServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		Connection conn = DBCPConn.getConnection();
+		MovieDAO dao = new MovieDAO(conn);
+		
+		
 		
 		
 		
