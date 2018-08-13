@@ -34,11 +34,11 @@
 <form action="" name="myForm">
 <table align="center">
 	<tr>
-		<td><input type="text" name="userId" class="boxTX"></td>
+		<td><input type="text" name="userId" class="boxTX" placeholder="아이디"></td>
 		<td rowspan="2"><input type="button" value="로그인" class="btn" onclick="sendIt();"></td>
 	</tr>
 	<tr>
-		<td><input type="password" name="userPw" class="boxTX"></td>
+		<td><input type="password" name="userPw" class="boxTX" placeholder="비밀번호"></td>
 	</tr>
 	<tr>
 		<td colspan="2"><br/>
