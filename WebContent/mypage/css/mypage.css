@@ -1,0 +1,74 @@
+@CHARSET "UTF-8";
+
+#mypage {
+	margin: 30px auto;
+	padding-left: 150px;
+	text-align: left;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 11pt;
+}
+
+table {
+	height: 210px;
+	width: 210px;
+	vertical-align: middle;
+}
+
+td {
+	vertical-align: middle;
+}
+
+.box {
+  display: inline-block;
+  padding: 5px;
+  width: 220px;
+  height: 220px;
+  margin: 1em;
+  border: 1px solid;
+}
+
+.font {
+	color: #351f66;
+	font-weight: bold;
+}
+
+.right{
+	float: right;
+}
+
+.box2 {
+	width: 660px;
+	border: 5px solid;
+	border-color: #7A67AC;
+	vertical-align: middle;
+}
+
+.title{
+	font-weight: bold;
+	font-size: 13pt;
+}
+
+.nav_gnb{margin:0;padding:0;clear: right;}
+.nav_gnb li{margin:0;padding:0 10px;list-style:none;float:left;}
+.nav_gnb li a{text-decoration: none;display:block;overflow: hidden;}        
+.nav_gnb li a img{width:60px;height:60px;padding-right:20px;float:left;}
+.nav_gnb li a span{line-height: 60px;display:inline-block;float:left;}
+
+.btn1 {
+	border-style: none;
+	height: 25px;
+	width: 70px;
+	margin-top: 7px;
+	background-color: #351f66;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.btn2{
+	
+}
+
+a:link {text-decoration: none; color: grey;}
+a:visited {text-decoration: none; color: grey;}
+a:active {text-decoration: none; color: grey;}
+a:hover {text-decoration: underline; color: #351f66;}
