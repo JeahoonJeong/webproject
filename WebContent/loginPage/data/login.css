@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+#login {
+	margin: 30px auto;
+	text-align: center;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 12pt;
+}
+
+#login span{ 
+	font-size: 12pt; 
+	color: #351f66;
+	font-weight: bold;
+}
+
+.boxTX {
+	border: 1px solid;
+	height: 15px;
+	width: 150px;
+	margin-top: 7px;
+	padding: 2px 2px 2px 2px;
+	border-color:#666666;
+	background-color:#ffffff;
+	font-size:10pt;
+	
+}
+
+.btn {
+	border-style: none;
+	height: 60px;
+	width: 60px;
+	margin-top: 7px;
+	background-color: #351f66;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+a:link {text-decoration: none; color: grey;}
+a:visited {text-decoration: none; color: black;}
+a:active {text-decoration: none; color: grey;}
+a:hover {text-decoration: underline; color: #351f66;}
+
