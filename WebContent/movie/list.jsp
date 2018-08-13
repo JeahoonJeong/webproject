@@ -50,7 +50,7 @@
 		<td class="middle">
 		<img src="./image/age15.png" align="middle"/>
 		<font color="#353535" style="font-weight: bold;">
-		<a href=<%=cp%>/movie/movieInfo.jsp>미션임파서블:폴</a>…</td>
+		<a href=<%=cp%>/movie/movie.jsp>미션임파서블:폴</a>…</td>
 		</tr>
 		<tr>
 		<td class="bottom" align="center"> 
@@ -74,8 +74,8 @@
 		</tr>
 		<tr>
 	</c:if>
-	<td width="150px">
-	<img src="${imagePath }/${dto.saveFileName}" width="100%" height="200px"/>
+	<td width="220px" class="top">
+	<img src="${imagePath }/${dto.saveFileName}" width="100%" height="330px"/>
 	</td>
 	</tr>
 	<tr>

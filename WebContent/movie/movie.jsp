@@ -9,22 +9,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+.all{ 
+	margin-top: 80px;
+	margin-left: 30px;
+}
+
+</style>
 </head>
 <body>
+<div class="all">
+	<div>
+		<img src="./image/mission.jpg" width="250px" height="350px"/>
+	</div>
+
+</div>
 
 
 
 
 
-
-
-<br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/>
 </body>
 </html>
