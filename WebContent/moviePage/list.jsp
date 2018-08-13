@@ -9,8 +9,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+.title{
+
+	width: 100%;
+	background-color:  #F2F2F2;
+	height: 50px;
+
+}
+
+</style>
+
 </head>
 <body>
+
+<div class="title">
+	<dd>&nbsp;</dd>
+</div>
+
+
+
 
 
 
