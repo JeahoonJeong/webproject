@@ -11,25 +11,20 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-.title{
-
-	width: 100%;
-	background-color:  #F2F2F2;
-	height: 50px;
-
+.all{ 
+	margin-top: 80px;
+	margin-left: 30px;
 }
 
 </style>
-
 </head>
 <body>
+<div class="all">
+	<div>
+		<img src="./image/mission.jpg" width="250px" height="350px"/>
+	</div>
 
-<div class="title">
-	<dd>&nbsp;</dd>
 </div>
-
-
-
 
 
 
