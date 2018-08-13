@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
- <display-name>study</display-name>
+ <display-name>webproject</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -26,7 +26,7 @@
  	
  	<servlet-mapping>
  		<servlet-name>movieServlet</servlet-name>
- 		<url-pattern>/movie/*</url-pattern>
+ 		<url-pattern>/Movie/*</url-pattern>
  	</servlet-mapping>
  	
  <!-- theater Servlet 매핑 -->
@@ -38,7 +38,7 @@
  	
  	<servlet-mapping>
  		<servlet-name>theaterServlet</servlet-name>
- 		<url-pattern>/theater/*</url-pattern>
+ 		<url-pattern>/Theater/*</url-pattern>
  	</servlet-mapping>
  	
  <!-- timetable Servlet 매핑 -->
@@ -50,7 +50,7 @@
  	
  	<servlet-mapping>
  		<servlet-name>timetableServlet</servlet-name>
- 		<url-pattern>/timetable/*</url-pattern>
+ 		<url-pattern>/Timetable/*</url-pattern>
  	</servlet-mapping>
  <!-- booking Servlet 매핑 -->
  
@@ -61,7 +61,7 @@
  	
  	<servlet-mapping>
  		<servlet-name>bookingServlet</servlet-name>
- 		<url-pattern>/booking/*</url-pattern>
+ 		<url-pattern>/Booking/*</url-pattern>
  	</servlet-mapping>
  	
   <!-- login Servlet 매핑 -->
@@ -73,7 +73,7 @@
  	
  	<servlet-mapping>
  		<servlet-name>loginServlet</servlet-name>
- 		<url-pattern>/login/*</url-pattern>
+ 		<url-pattern>/Login/*</url-pattern>
  	</servlet-mapping>
  	
  <!-- mypage Servlet 매핑 -->
@@ -85,7 +85,7 @@
  	
  	<servlet-mapping>
  		<servlet-name>mypageServlet</servlet-name>
- 		<url-pattern>/mypage/*</url-pattern>
+ 		<url-pattern>/Mypage/*</url-pattern>
  	</servlet-mapping>
  	
 	
