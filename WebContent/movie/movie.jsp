@@ -28,7 +28,7 @@
 	width: 121px;
 	height: 43px;
 	color: white;
-	background-color: #00858C;
+	background-color: #00858c;
 	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: bold;
 	font-size: 12pt;
@@ -68,8 +68,15 @@
 	color: #4C4C4C;
 	font-size: 10pt;
 }
-.content{
+.summary{
 	width: 888px;
+	color: #333333;
+	margin-bottom: 60px;
+}
+.image{
+	height: 676px;
+	margin-bottom: 60px;
+	color: #198591;
 	
 }
 .btn2:hover{background-color: #666666; color: white;}
@@ -77,8 +84,8 @@
 
 </style>
 </head>
-<body marginheight="0" marginwidth="0" class="all">
-<div>
+<body marginheight="0" marginwidth="0">
+<div class="all">
 	<table border="0" width="888px" height="376px" style="margin-bottom: 60px;">
 		<tr>
 			<td rowspan="5" width="230px" valign="top">
@@ -126,13 +133,19 @@
 		</tr>
 	</table>
 	
-	<div class="content">
-		<dt>
-		<h3>줄거리</h3><br><br>
-		
-		</dt>		
+	<div class="summary">
+		<h3>줄거리</h3>
+		<div style="font-size: 14px; color: #666666; font-weight: lighter;">
+		예측 할 수 없는 미션. 피할 수 없는 선택<br>
+		전 세계 최강의 스파이 기관 IMF의 최고 요원 에단 헌트(톰 크루즈)와 그의 팀은 테러조직의 핵무기 소지를 막기 위해 미션에 착수한다.<br>
+		에단 헌트는 작전 수행 중 예상치 못한 결단을 내리게 되고, 중앙정보국 CIA는 그를 견제하기 위해 상급 요원 어거스트 워커(헨리 카빌)를 파견한다.<br>
+		최악의 테러 위기와 라이벌의 출현 속, 팀이 행한 모든 선의의 선택들이 최악의 결과로 돌아오면서 미션은 점점 더 예측할 수 없는 상황으로 치닫게 되는데…<br>
+		사상 가장 불가능한 미션, 피할 수 없다면 끝내야 한다!<br>
+		</div>
 	</div>
-	
+	<div class="image">
+		<h3>스틸컷 <font style="font-size: 14px;">22</font></h3>
+	</div>
 	
 		
 </div>
