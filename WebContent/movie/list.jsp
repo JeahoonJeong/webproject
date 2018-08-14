@@ -3,14 +3,28 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=cp%>/movie/style.css" type="text/css"/>
+<link rel="stylesheet" href="<%=cp%>/movie/css/style.css" type="text/css"/>
+<script type="text/javascript">
 
+	function showPop() {
+		
+		var width = 960;
+		var pwidth = (screen.width-width)/2;
+		
+		window.open("movie.jsp","movieInfo",
+				"top=90px, width=968px, height=500px, left=275.6px", 
+				"toolbar=no", "menubar=no", "status=no","resizable=no",
+				"location=no");	
+	}
+
+</script>
 </head>
 <body>
 
@@ -50,12 +64,12 @@
 		<td class="middle">
 		<img src="./image/age15.png" align="middle"/>
 		<font color="#353535" style="font-weight: bold;">
-		<a href=<%=cp%>/movie/movie.jsp>미션임파서블:폴</a>…</td>
+		<a href="showPop()">미션임파서블:폴</a>…</td>
 		</tr>
 		<tr>
 		<td class="bottom" align="center"> 
 		<input type="button" value="상세정보" class="btn1"
-		onclick="javascipt:location.href='<%=cp%>/movie/movie.jsp'"/>
+		onclick="showPop();"/>
 		&nbsp;<input type="button" value="예매하기" class="btn1"
 		onclick=""/></td>
 		</tr>
