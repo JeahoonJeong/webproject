@@ -24,13 +24,13 @@
 <div>
 	<ul class="nav_gnb">     	
 		<li>
-           <a href="#"><img src="<%=cp%>/mypage/image/res.JPG" alt=""/><span>예매 확인/취소</span></a>
+           <a href="<%=cp%>/Mypage/myBooking.do"><img src="<%=cp%>/mypage/image/res.JPG" alt=""/><span>예매 확인/취소</span></a>
         </li>
         <li>
            <a href="<%=cp%>/Mypage/myMoivestory.do"><img src="<%=cp%>/mypage/image/moviestory.JPG" alt=""/><span>나의 무비스토리</span></a>
         </li>
         <li>
-           <a href="<%=cp%>/Mypage/myInfo.do"><img src="<%=cp%>/mypage/image/update.JPG" alt=""/><span>개인정보수정</span></a>
+           <a href=""><img src="<%=cp%>/mypage/image/update.JPG" alt=""/><span>개인정보수정</span></a>
         </li>
     </ul>
 </div>
@@ -38,18 +38,27 @@
 <div style="clear: both;">
 	<br/>
 <div style="clear: both;">
-	<span class="title2">예매 확인/취소</span> &nbsp;&nbsp;&nbsp; 예매하신 영화 내역과 취소 내역을 확인할 수 있습니다.
+	<span class="title2">개인정보 수정</span> &nbsp;&nbsp;&nbsp; 회원님의 정보를 정확히 입력해주세요.
 	<br/><br/>
 </div>
-
-<div style="clear: both;">
-	<ul>
-		<li class="tab"><a href="<%=cp %>/mypage/list/bookingList.jsp" target="iframe1">예매 내역</a></li>
-		<li class="tab"><a href="<%=cp %>/mypage/list/oldList.jsp" target="iframe1">지난 내역</a></li>
-		<li class="tab"><a href="<%=cp %>/mypage/list/cancelList.jsp" target="iframe1">취소 내역</a></li>
-	</ul>
+<div>
+	<input type="button" value="비밀번호 변경"> 
+	<input type="button" value="회원탈퇴">
 </div>
-	<br/><br/>
+*표시 항목은 필수입력 항목입니다.<br/><br/>
+<div>
+<table>
+	<tr>
+		<td><img alt="" src="<%=cp%>/mypage/image/profile_m.png"></td>
+	</tr>
+	<tr>
+		<td>아이디지롱<br/>
+		<input type="file" value="찾아보기">
+		<input type="button" value="삭제">
+		</td>
+	</tr>
+</table>
+</div>
 
 <div style="clear: both;">
 <iframe  src="<%=cp %>/mypage/list/bookingList.jsp"  name="iframe1" width="720px" height="900px" frameborder="0"></iframe>
