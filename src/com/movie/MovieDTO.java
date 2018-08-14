@@ -2,49 +2,49 @@ package com.movie;
 
 public class MovieDTO {
 	
-	private int num; //영화 순위or고유넘버
-	private String title; //영화 제목
-	private int star; //영화 평점
-	private String relDate; //영화 개봉일
+	private String movie_id; //영화 순위or고유넘버
+	private String movie_name; //영화 제목
+	private int rating; //영화 평점
+	private String release_date; //영화 개봉일
 	private String type; //상영타입 ex)디지털,3D,디지털(자막)..
-	private String direct; //영화 감독
-	private String actor; //영화 출연배우 
+	private String director; //영화 감독
+	private String actors; //영화 출연배우 
 	private String genre; //영화 장르	ex)스릴러
-	private int runtime; // 영화 총상영시간 ex)111분
-	private String story; //영화 줄거리
+	private int showtimes; // 영화 총상영시간 ex)111분
+	private String summary; //영화 줄거리
 	
-	private String userId; //사용자 ID (한줄평에 사용)
-	private String date; //한줄평 작성 날짜
-	private String content; //한줄평 내용
-	private int getThumb; //한줄평 추천수
+	private String user_id; //사용자 ID (한줄평에 사용)
+	private String comment_date; //한줄평 작성 날짜
+	private String comment; //한줄평 내용
+	private int recommend_num; //한줄평 추천수
 	
 	
-	private String saveFileName; // 파일세이브명
+	private String file_name; // 파일세이브명
 
 
-	public int getNum() {
-		return num;
+	public String getMovie_id() {
+		return movie_id;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setMovie_id(String movie_id) {
+		this.movie_id = movie_id;
 	}
-	public String getTitle() {
-		return title;
+	public String getMovie_name() {
+		return movie_name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setMovie_name(String movie_name) {
+		this.movie_name = movie_name;
 	}
-	public int getStar() {
-		return star;
+	public int getRating() {
+		return rating;
 	}
-	public void setStar(int star) {
-		this.star = star;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
-	public String getRelDate() {
-		return relDate;
+	public String getRelease_date() {
+		return release_date;
 	}
-	public void setRelDate(String relDate) {
-		this.relDate = relDate;
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
 	}
 	public String getType() {
 		return type;
@@ -52,17 +52,17 @@ public class MovieDTO {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getDirect() {
-		return direct;
+	public String getDirector() {
+		return director;
 	}
-	public void setDirect(String direct) {
-		this.direct = direct;
+	public void setDirector(String director) {
+		this.director = director;
 	}
-	public String getActor() {
-		return actor;
+	public String getActors() {
+		return actors;
 	}
-	public void setActor(String actor) {
-		this.actor = actor;
+	public void setActors(String actors) {
+		this.actors = actors;
 	}
 	public String getGenre() {
 		return genre;
@@ -70,48 +70,53 @@ public class MovieDTO {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public int getRuntime() {
-		return runtime;
+	public int getShowtimes() {
+		return showtimes;
 	}
-	public void setRuntime(int runtime) {
-		this.runtime = runtime;
+	public void setShowtimes(int showtimes) {
+		this.showtimes = showtimes;
 	}
-	public String getStory() {
-		return story;
+	public String getSummary() {
+		return summary;
 	}
-	public void setStory(String story) {
-		this.story = story;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getDate() {
-		return date;
+	public String getComment_date() {
+		return comment_date;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setComment_date(String comment_date) {
+		this.comment_date = comment_date;
 	}
-	public String getContent() {
-		return content;
+	public String getComment() {
+		return comment;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
-	public int getGetThumb() {
-		return getThumb;
+	public int getRecommend_num() {
+		return recommend_num;
 	}
-	public void setGetThumb(int getThumb) {
-		this.getThumb = getThumb;
+	public void setRecommend_num(int recommend_num) {
+		this.recommend_num = recommend_num;
 	}
-	public String getSaveFileName() {
-		return saveFileName;
+	public String getFile_name() {
+		return file_name;
 	}
-	public void setSaveFileName(String saveFileName) {
-		this.saveFileName = saveFileName;
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
+
+	
+	
+	
+	
 	
 	
 	

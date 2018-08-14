@@ -72,11 +72,11 @@ public class MovieDAO {
 				
 				MovieDTO dto = new MovieDTO();
 				
-				dto.setNum(rs.getInt("num"));
-				dto.setTitle(rs.getString("title"));
-				dto.setStar(rs.getInt("star"));
-				dto.setRelDate(rs.getString("relDate"));
-				dto.setSaveFileName(rs.getString("saveFileName"));
+				dto.setMovie_id(rs.getString("num"));
+				dto.setMovie_name(rs.getString("title"));
+				dto.setRating(rs.getInt("star"));
+				dto.setRelease_date(rs.getString("relDate"));
+				dto.setFile_name(rs.getString("saveFileName"));
 				
 				lst.add(dto);	
 			}
