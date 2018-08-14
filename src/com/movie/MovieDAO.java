@@ -58,7 +58,7 @@ public class MovieDAO {
 		try {
 			
 			sql = "select * from (select rownum rnum, data.* from(";
-			sql+= "select num,title,star,relDate,saveFileName from movie ";
+			sql+= "select movie_id,movie_name,rating,release_date,file_name from movie ";
 			sql+= "order by num desc) data) where rnum>=? and rnum<=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -72,11 +72,11 @@ public class MovieDAO {
 				
 				MovieDTO dto = new MovieDTO();
 				
-				dto.setMovie_id(rs.getString("num"));
-				dto.setMovie_name(rs.getString("title"));
-				dto.setRating(rs.getInt("star"));
-				dto.setRelease_date(rs.getString("relDate"));
-				dto.setFile_name(rs.getString("saveFileName"));
+				dto.setMovie_id(rs.getString("movie_id"));
+				dto.setMovie_name(rs.getString("movie_name"));
+				dto.setRating(rs.getInt("rating"));
+				dto.setRelease_date(rs.getString("release_date"));
+				dto.setFile_name(rs.getString("file_name"));
 				
 				lst.add(dto);	
 			}

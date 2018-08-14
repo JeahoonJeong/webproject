@@ -20,7 +20,7 @@
 				"top=90, width=968, height=500, left="
 				+(screen.width-968)/2+"",
 				"toolbar=no", "menubar=no", "status=no","resizable=no",
-				"location=no");	
+				"location=no","scrollbars=yes");	
 	}
 
 </script>
