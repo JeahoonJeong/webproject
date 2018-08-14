@@ -17,20 +17,20 @@
 
 <div id="mypage">
 
-<div><span class="font" >userName</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
+<div><span class="font" >${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
 <hr size="3" color="#7A67AC" width="800px" style="float: left"></div>
 <br/><br/>
 
 <div>
 	<ul class="nav_gnb">     	
 		<li>
-           <a href="#"><img src="<%=cp%>/mypage/image/res.JPG" alt=""/><span>예매 확인/취소</span></a>
+           <a href="<%=cp%>/Mypage/myBooking.do"><img src="<%=cp%>/mypage/image/res.JPG" alt=""/><span>예매 확인/취소</span></a>
         </li>
         <li>
-           <a href="#"><img src="<%=cp%>/mypage/image/moviestory.JPG" alt=""/><span>나의 무비스토리</span></a>
+           <a href="<%=cp%>/Mypage/myMoivestory.do"><img src="<%=cp%>/mypage/image/moviestory.JPG" alt=""/><span>나의 무비스토리</span></a>
         </li>
         <li>
-           <a href="#"><img src="<%=cp%>/mypage/image/update.JPG" alt=""/><span>개인정보수정</span></a>
+           <a href="<%=cp%>/Mypage/myInfo.do"><img src="<%=cp%>/mypage/image/update.JPG" alt=""/><span>개인정보수정</span></a>
         </li>
     </ul>
 </div>
@@ -39,17 +39,23 @@
 <div class="box" style="background-color: #e1e1e1">
 	<table bgcolor="#e1e1e1">
 		<tr>
-			<td><span class="title">개인정보</span> <span class="right"><input type="button" value="수정하기" class="btn1"></span></td>
+			<td><span class="title">개인정보</span> <span class="right"><input type="button" value="수정하기" class="btn1" onclick="javascript:location.href='<%=cp%>/Mypage/myInfo.do'"></span></td>
 		</tr>
 		<tr>
-			<td>휴대폰  <span class="right">userTel</span></td>
+			<td></td>
 		</tr>
 		<tr>
-			<td>선호 영화관  <span class="right"></span></td>
+			<td>휴대폰  <span class="right">${member.getTel() }</span></td>
 		</tr>
 		<tr>
-			<td>SMS수신여부  <span class="right">거부/수신</span></td>
+			<td>선호 영화관 
+			<span class="right">
+			
+			***
+			
+			</span></td>
 		</tr>
+		
 		<tr>
 			<td>&nbsp;</td>
 		</tr>
@@ -58,8 +64,18 @@
 <div class="box">
 	<table>
 		<tr>
-			<td><span class="title">최근 예매 내역</span>  <span class="right"><input type="button" value="더보기" class="btn1"></span></td>
+			<td><span class="title">최근 예매 내역</span>  <span class="right"><input type="button" value="더보기" class="btn1" onclick="javascript:location.href='<%=cp%>/Mypage/myBooking.do'"></span></td>
 		</tr>
+		<tr>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+		</tr>
+		
+		
 	</table>
 </div>
 <div class="box">
