@@ -4,6 +4,11 @@
 	background-color: #F9F9F9;
 }
 
+td.sample1{
+	border: 1px solid #CFCFCF;
+	
+}
+
 .text {
 	color: #513396;
 	font-size: 17pt;
@@ -24,7 +29,8 @@
 	
 }
 .btn2{
-	width: 22px; 
+	width: 20px; 
+	
 	background-color: rgba( 255, 255, 255, 0.5 );  
 	font-size: 8pt;
 	font-family: sans-serif;
@@ -45,9 +51,12 @@
 	
 }
 
-.table{
-
-	padding-top: 20px;
-	padding-left: 20px;
+.tb2{
+	border-color: #CFCFCF; 
+	border-width: 0.5px; 
+	
+}
+.selection{
+	width: 50px;
 	
 }
