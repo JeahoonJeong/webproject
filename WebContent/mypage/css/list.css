@@ -8,7 +8,7 @@
 	vertical-align: middle;
 }
 
-#list .num {width:40px;}
+#list .num {width:40px; text-align: center;}
 #list .resNum {width:100px;}
 #list .movieTitle {width:170px;}
 #list .cinema {width:80px;}
@@ -16,27 +16,99 @@
 #list .saleDate {width:120px;}
 #list .cancel {width:60px;}
 
-
-ul {
-	list-style: none;
-}
-
-dt {
-	float:left;
+th {
+	background-color: #f2f2f2;
 	line-height:30px;
 	text-align:center;
+	vertical-align: middle;
 	padding-top: 0px;
 	font-weight: bold;
 	color: #666666;
+    border-bottom: 1px solid #dcdcdc;
 }
 
-dl {
-	float:left;
-	border-bottom:1px solid #E4E4E4;
+td {
+	text-align:center;
 }
 
-dd {
-	width:410px;
-	margin-left:10px;
-	text-align:left;
+.btn1 {
+	border-style: none;
+	height: 25px;
+	width: 70px;
+	margin-top: 7px;
+	background-color: #351f66;
+	color: #ffffff;
+	font-weight: bold;
 }
+
+.content{
+	width: 800px;
+	margin-top: 20px;
+	margin-left: 0px;
+	margin-right: 20px;
+	align: center;
+}
+
+.btn2{
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 11pt;
+	font-weight: bold;
+	color: #4C4C4C;
+	background-color: #F2F2F2;
+	width: 100px;
+	height: 50px;
+	border-style: none;
+	cursor: pointer;
+}
+.btn2:hover{
+	font-family: 'Nanum Gothic', sans-serif;
+	background-color: white; 
+	color: #1294AB;
+	border-color: #1294AB;
+	border-style: solid;;
+}
+
+.top{
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+.middle{
+	font-size: 16pt;
+	padding: 10px;
+	padding-bottom: 0px;
+	height: 50px;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+.bottom{
+	font-size: 10pt;
+	padding: 10px;
+	height: 30px;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+
+.title{
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.btn3{
+	border-style: none;
+	border: 1px solid #CCCCCC;
+	height: 25px;
+	width: 90px;
+	margin-top: 2px;
+	background-color: #fff;
+	font-size: 10pt;
+	color: #666;
+}
+
+.wish_movie {
+	border: 1px solid #CCCCCC;
+}
+
+ul,dl,ol,li,h1,h2,h3,h4,h5,h6,p,dd,dt{margin:0;padding:0}
