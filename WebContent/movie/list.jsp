@@ -11,17 +11,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=cp%>/movie/css/style.css" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script type="text/javascript">
 
 	function showPop() {
 		
-		var width = 960;
-		var pwidth = (screen.width-width)/2;
-		
 		window.open("movie.jsp","movieInfo",
-				"top=90px, width=968px, height=500px, left=275.6px", 
+				"top=90, width=968, height=500, left="
+				+(screen.width-968)/2+"",
 				"toolbar=no", "menubar=no", "status=no","resizable=no",
-				"location=no");	
+				"location=no","scrollbars=yes");	
 	}
 
 </script>
@@ -55,16 +54,15 @@
 		<tr>
 		<td width="220px" height="50px" class="bottom">
 		<span style="line-height: 25px;">
-		<font color="grey" style="font-weight: bold;">평점8.3</font></span>
-		<span style="float: right;"><img src="./image/star.png"/><img src="./image/star.png"/><img src="./image/star.png"/><img src="./image/star.png"/><img src="./image/emptystar.png"/>
-		</span>
+		<font color="grey" style="font-weight: bold; font-size: 11pt;">평점8.3</font></span>
+		<span style="float: right;"><img src="./image/bg_allstar1.png"/></span>
 		</td>
 		</tr>
 		<tr>
 		<td class="middle">
 		<img src="./image/age15.png" align="middle"/>
 		<font color="#353535" style="font-weight: bold;">
-		<a href="showPop()">미션임파서블:폴</a>…</td>
+		<a href="javascript:showPop();">미션임파서블:폴</a>…</td>
 		</tr>
 		<tr>
 		<td class="bottom" align="center"> 

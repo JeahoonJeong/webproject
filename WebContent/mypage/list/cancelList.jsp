@@ -15,31 +15,32 @@
 </head>
 <body>
 <div id="list">
-	<div style="border-top: 2pt solid #351f66; ">
-		<dl>
-			<dt class="num">NO</dt>
-			<dt class="resNum">예매번호</dt>
-			<dt class="movieTitle">영화명</dt>
-			<dt class="cinema">영화관</dt>
-			<dt class="playDate">상영일시</dt>
-			<dt class="saleDate">예매일</dt>
-			<dt class="cancel">예매취소</dt>
-		</dl>
-	</div>
-	<div>
-		<dl>
-			<dd>1</dd>
-			<dd>123456-123456</dd>
-			<dd>신과함께-인과 연</dd>
-			<dd>수원 1관</dd>
-			<dd>2018-01-01 13:30~15:53</dd>
-			<dd>2018-01-01</dd>
-			<dd><input type="button" value="예매취소" onclick=""></dd>
-		</dl>
-	</div>
-	
-	
-	
+<table>
+	<tr>
+		<td colspan="7" height="1px" style="border-bottom: 2px solid #503396;"></td>
+	</tr>
+	<tr>
+		<th class="num">NO</th>
+		<th class="resNum">예매번호</th>
+		<th class="movieTitle">영화명</th>
+		<th class="cinema">영화관</th>
+		<th class="playDate">상영일시</th>
+		<th class="saleDate">예매일</th>
+		<th class="saleDate">취소일시</th>
+	</tr>
+	<!-- DB에서 정보 불러서 돌려야함 -->
+	<tr>
+		<td>1</td>
+		<td>123456-123456</td>
+		<td>신과함께-인과 연</td>
+		<td>수원 1관</td>
+		<td>2018-01-01 13:30~15:53</td>
+		<td>2018-01-01</td>
+		<td>2018-01-01 14:00</td>
+	</tr>
+</table>
+
+
 </div>
 </body>
 </html>

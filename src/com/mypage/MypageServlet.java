@@ -1,4 +1,4 @@
-package com.login;
+package com.mypage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.login.MemberDTO;
+
 import util.DBCPConn;
 
-public class LoginServlet extends HttpServlet{
+public class MypageServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -38,55 +40,47 @@ public class LoginServlet extends HttpServlet{
 		
 		Connection conn = DBCPConn.getConnection();
 		
-		MemberDAO dao = new MemberDAO(conn);
-		
 		String url;
 		
 		String uri = req.getRequestURI();
 		
-		
-		if(uri.indexOf("login.do")!=-1){
+		if(uri.indexOf("mypageMain.do")!=-1){
 			
-			url = "/loginPage/login.jsp";
+			HttpSession session = req.getSession();
+			
+			MemberDTO member = (MemberDTO)session.getAttribute("member");
+			
+			
+			
+			
+			
+			
+			
+			
+			url = "/mypage/mypageMain.jsp";
 			forward(req, resp, url);
 			
-		}else if(uri.indexOf("login_ok.do")!=-1){
+		}else if(uri.indexOf("myBooking.do")!=-1){
 			
-			String user_id = req.getParameter("user_id");
-			String user_pwd = req.getParameter("user_pwd");
+			url = "/mypage/myBooking.jsp";
+			forward(req, resp, url);
 			
-			MemberDTO dto = dao.getReadMemberData(user_id);
+		}else if(uri.indexOf("myMoivestory.do")!=-1){
 			
-			if(dto==null || !(dto.getUser_id().equals(user_id))){
-				
-				req.setAttribute("message", "아이디를 다시 확인하세요!");
-				
-				url = "/loginPage/login.jsp";
-				forward(req, resp, url);
-				
-				return;
-				
-			}else if(!(dto.getUser_pwd().equals(user_pwd))){
-				
-				req.setAttribute("message", "비밀번호를 다시 확인하세요!");
-				
-				url = "/loginPage/login.jsp";
-				forward(req, resp, url);
-				
-				return;
-			}
+			url = "/mypage/myMoviestory.jsp";
+			forward(req, resp, url);
 			
-			HttpSession session = req.getSession(true);
+		}else if(uri.indexOf("myInfo.do")!=-1){
 			
-			session.setAttribute("member", dto);
-			
-			url = cp + "/Mypage/mypageMain.do";
-			
-			resp.sendRedirect(url);
-
+			url = "/mypage/myInfo.jsp";
+			forward(req, resp, url);
 			
 		}
 		
+		
+		
 	}
+	
+	
 
 }
