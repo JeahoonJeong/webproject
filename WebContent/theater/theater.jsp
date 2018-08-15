@@ -121,9 +121,9 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 			<div id="topMenu"> 
 			<ul > 
 				<li class="topMenuLi"> 
-					<a class="menuLink">서울</a> 
+					<a class="menuLink" name="city" value="서울">서울</a> 
 					<ul class="submenu"> 
-						<li><a class="submenuLink" name="district">강남</a></li> 
+						<li><a class="submenuLink" name="district" value="강남" href="<%=cp %>/Theater/theaterP2.do">강남</a></li> 
 						<li><a class="submenuLink" name="district">강남대로(씨티)</a></li> 
 						<li><a class="submenuLink" name="district">강동</a></li> 
 						<li><a class="submenuLink" name="district">동대문</a></li> 

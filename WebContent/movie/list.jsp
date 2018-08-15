@@ -3,14 +3,27 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=cp%>/movie/style.css" type="text/css"/>
+<link rel="stylesheet" href="<%=cp%>/movie/css/style.css" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<script type="text/javascript">
 
+	function showPop() {
+		
+		window.open("movie.jsp","movieInfo",
+				"top=90, width=968, height=500, left="
+				+(screen.width-968)/2+"",
+				"toolbar=no", "menubar=no", "status=no","resizable=no",
+				"location=no","scrollbars=yes");	
+	}
+
+</script>
 </head>
 <body>
 
@@ -41,21 +54,20 @@
 		<tr>
 		<td width="220px" height="50px" class="bottom">
 		<span style="line-height: 25px;">
-		<font color="grey" style="font-weight: bold;">평점8.3</font></span>
-		<span style="float: right;"><img src="./image/star.png"/><img src="./image/star.png"/><img src="./image/star.png"/><img src="./image/star.png"/><img src="./image/emptystar.png"/>
-		</span>
+		<font color="grey" style="font-weight: bold; font-size: 11pt;">평점8.3</font></span>
+		<span style="float: right;"><img src="./image/bg_allstar1.png"/></span>
 		</td>
 		</tr>
 		<tr>
 		<td class="middle">
 		<img src="./image/age15.png" align="middle"/>
 		<font color="#353535" style="font-weight: bold;">
-		<a href=<%=cp%>/movie/movie.jsp>미션임파서블:폴</a>…</td>
+		<a href="javascript:showPop();">미션임파서블:폴</a>…</td>
 		</tr>
 		<tr>
 		<td class="bottom" align="center"> 
 		<input type="button" value="상세정보" class="btn1"
-		onclick="javascipt:location.href='<%=cp%>/movie/movie.jsp'"/>
+		onclick="showPop();"/>
 		&nbsp;<input type="button" value="예매하기" class="btn1"
 		onclick=""/></td>
 		</tr>

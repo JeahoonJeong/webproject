@@ -49,7 +49,12 @@ public class TheaterServlet extends HttpServlet {
 		
 		if(uri.indexOf("theater.do") != -1){
 			
-			url = "/Theater/theater.jsp";
+			url = "/theater/theater.jsp";
+			forward(req, resp, url);
+		
+		}else if(uri.indexOf("theaterP2.do") != -1){
+			
+			url = "/theater/theaterP2.jsp";
 			forward(req, resp, url);
 		}
 		
