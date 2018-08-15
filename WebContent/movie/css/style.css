@@ -58,8 +58,7 @@
 .btn1:hover{
 	background-color: white; 
 	color: #1294AB;
-	border-color: #1294AB;
-	border-style: solid;
+	border: 1px solid #1294AB;
 }
 
 .topMenu a:hover {text-decoration: none; color: #503396;}
