@@ -60,8 +60,8 @@ public class MovieDAO {
 			sql = "select * from (select rownum rnum, data.* from(select a.movie_id,movie_name,age_limit, rating, file_name ";
 			sql+= "from movie a,(select rating, file_name, a.movie_id from ";
 			sql+= "(select round(avg(rating)) rating, movie_id from rating group by movie_id) a, ";
-			sql+= "image_files b where a.movie_id = b.movie_id) ";
-			sql+= "b where a.movie_id=b.movie_id order by movie_id desc) data) where rnum>=? and rnum=?";
+			sql+= "(select file_name, movie_id from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) ";
+			sql+= "b where a.movie_id=b.movie_id order by movie_id desc) data) where rnum>=? and rnum<=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -76,8 +76,8 @@ public class MovieDAO {
 				
 				dto.setMovie_id(rs.getString("movie_id"));
 				dto.setMovie_name(rs.getString("movie_name"));
+				dto.setAge_limit(rs.getString("age_limit"));
 				dto.setRating(rs.getInt("rating"));
-				dto.setRelease_date(rs.getString("release_date"));
 				dto.setFile_name(rs.getString("file_name"));
 				
 				lst.add(dto);	

@@ -44,7 +44,7 @@
 </div>
 
 
-<div class="content">
+<!-- <div class="content">
 	<table>
 		<tr>
 			<td width="220px" class="top">
@@ -72,7 +72,7 @@
 		onclick=""/></td>
 		</tr>
 	</table>
-</div>
+</div> -->
 
 
 <div class="content">
@@ -101,7 +101,7 @@
 		<td class="middle">
 		<img src="./image/age15.png" align="middle"/>
 		<font color="#353535" style="font-weight: bold;">
-		<a href="javascript:showPop();">${dto.movie_name }</a>…</td>
+		<a href="javascript:showPop();">${dto.movie_name }</a><!-- … --></td>
 		</tr>
 		<tr>
 		<td class="bottom" align="center"> 
@@ -116,7 +116,7 @@
 </div>
 
 
-<div class="content">
+<%-- <div class="content">
 	<table>
 	<c:set var="i" value="0"/>
 	<c:forEach var="dto" items="${lst }">
@@ -147,7 +147,7 @@
 	</tr>
 	</c:forEach>
 	</table>
-</div>
+</div> --%>
 
 
 
