@@ -1,125 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%
-	//POST 방식에서 한글깨짐을 방지
+<%	//POST 방식에서 한글깨짐을 방지
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-
-<%-- 
-<jsp:include page="../header.jsp" flush="false"/>
-<jsp:include page="../footer.jsp" flush="false"/> --%>
-
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
-#header-wrap {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-}
-
-#header {
-	margin: auto;
-	background-color: white;
-	width: 1000px;
-	height: 50px;
-}
-
-#header img {
-	float: left;
-	width: 200px;
-	height: 50px;
-}
-
-#header ul li {
-	list-style: none;
-	float: left;
-	line-height: 50px;
-	vertical-align: middle;
-	text-align: center;
-	border-style: groove;
-	border-width: 1px;
-	border-color: gray;
-}
-
-#header .menuLink {
-	background-color: white;
-	color: black;
-	text-decoration: none;
-	display: block;
-	width: 100px;
-	font-size: 12px;
-	font-weight: bold;
-}
-
-#header .menuLink:hover {
-	color: #198591;
-}
-
-#header-menu {
-	margin: auto;
-	margin-top: 80px;
-	padding-left: 0px;
-	height: 120px;
-	width: 1000px;
-	height: 120px;
-}
-
-#header-menu-left {
-	padding-left: 0px;
-	margin-left: 0px;
-	float: left;
-	margin-left: 0px;
-}
-
-#header-menu-right {
-	float: right;
-}
-
-#header-menu-left img {
-	width: 80px;
-	height: 40px;
-}
-
-#header-menu-right img {
-	width: 110px;
-	height: 40px;
-}
-
-#header-menu ul li {
-	list-style: none;
-	float: left;
-	line-height: 50px;
-	vertical-align: middle;
-	text-align: center;
-}
-
-#header-menu-left .menu-left {
-	color: black;
-	text-decoration: none;
-	display: block;
-	width: 150px;
-	font-size: 12px;
-	font-weight: bold;
-	text-align: left;
-}
-
-#header-menu-right .menu-right {
-	color: black;
-	text-decoration: none;
-	display: block;
-	width: 150px;
-	font-size: 12px;
-	font-weight: bold;
-	text-align: left;
-}
 
 #footer-wrap {
 	overflow: hidden;
@@ -195,83 +87,15 @@
 	width: 200px;
 	height: 60px;
 }
-
 </style>
 
-<script type="text/javascript">
-	
-	var itv = 1000;
-	
-	var bannerArray = new Array();
-		bannerArray[0] = "./image/banner1.jpg";
-		bannerArray[0] = "./image/banner2.jpg";
-		bannerArray[0] = "./image/banner3.jpg";
-		bannerArray[0] = "./image/banner4.jpg";
-		bannerArray[0] = "./image/banner5.jpg";
-		bannerArray[0] = "./image/banner6.jpg";
-	
-	function bannerRotate(){
-		
-		setTimeout("blendbanner()",itv);
-		
-	}
-	
-	function blendbanner(){
-		
-	}
-		
-</script>
 
 </head>
 <body>
 
-	<!-- HEADER 시작 -->
-	<div id="header-wrap">
-		<div id="header">
-			<ul>
-				<li><img alt="" src="./login/image/magabox.jpg"></li>
-				<li><a class="menuLink" href="<%=cp%>/movie/">영화</a></li>
-				<li><a class="menuLink" href="#">큐레이션</a></li>
-				<li><a class="menuLink" href="<%=cp%>/Theater/theater.do">영화관</a></li>
-				<li><a class="menuLink" href="#">특별관</a></li>
-				<li><a class="menuLink" href="#">스토어</a></li>
-				<li><a class="menuLink" href="#">이벤트</a></li>
-				<li><a class="menuLink" href="<%=cp%>/Login/login.do">로그인</a></li>
-			</ul>
-		</div>
-	</div>
-	<div id="header-menu">
-		<div id="header-menu-left">
-			<ul>
-				<li class="menu-left"><img alt="" src="./login/image/menu.jpg"></li>
-				<li class="menu-left">필름소사이어티</li>
-				<li class="menu-left">클래식 소사이어티</li>
-			</ul>
-		</div>
-
-		<div id="header-menu-right">
-			<ul>
-				<li class="menu-right">고객센터 | 멤버십 | VIP</li>
-				<li class="menu-right"><img alt=""
-					src="./login/image/timetable.jpg"></li>
-				<li class="menu-right"><img alt=""
-					src="./login/image/booking.jpg"></li>
-			</ul>
-		</div>
-	</div>
-	<!-- HEADER 끝 -->
-	
-
-	<div id="topbanner">
-		<div id = "topbanner-warp">
-			<img alt="" src="./image/banner1.jpg">
-		</div>
-	</div>
-
-
-	<!-- FOOTER 시작 -->
-	<div id="footer">
-		<div id="footer-wrap">
+<!-- FOOTER 시작 -->
+	<div id="footer-wrap">
+		<div id="footer">
 			<h4>메가박스 영화관 찾기</h4>
 			<dl class="clearfix">
 				<dt>서울</dt>
@@ -633,7 +457,7 @@
 				책임자 경영지원실 실장 박영진<br /> 사업자등록번호 211-86-59478 | 통신판매업신고번호 제 833호
 			</div>
 			<div class="text2">
-				<img alt="" src="./login/image/footerimage.jpg"><br />
+				<img alt="" src="../image/footerimage.jpg"><br />
 				Copyright 2014 by MegaboxJoongAng, Inc. All rights reserved
 			</div>
 

@@ -10,8 +10,10 @@ public class MovieDTO {
 	private String director; //영화 감독
 	private String actors; //영화 출연배우 
 	private String genre; //영화 장르	ex)스릴러
-	private int showtimes; // 영화 총상영시간 ex)111분
+	private String showtimes; // 영화 총상영시간 ex)111분
 	private String summary; //영화 줄거리
+	private String age_limit;// 영화 관람연령제한
+	private String count; //평가한 총 인원
 	
 	private String user_id; //사용자 ID (한줄평에 사용)
 	private String comment_date; //한줄평 작성 날짜
@@ -70,10 +72,10 @@ public class MovieDTO {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public int getShowtimes() {
+	public String getShowtimes() {
 		return showtimes;
 	}
-	public void setShowtimes(int showtimes) {
+	public void setShowtimes(String showtimes) {
 		this.showtimes = showtimes;
 	}
 	public String getSummary() {
@@ -112,7 +114,18 @@ public class MovieDTO {
 	public void setFile_name(String file_name) {
 		this.file_name = file_name;
 	}
-
+	public String getAge_limit() {
+		return age_limit;
+	}
+	public void setAge_limit(String age_limit) {
+		this.age_limit = age_limit;
+	}
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
 	
 	
 	
