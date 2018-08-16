@@ -1,7 +1,11 @@
 package com.theater;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Connection;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,16 +52,37 @@ public class TheaterServlet extends HttpServlet {
 		String url;
 		
 		if(uri.indexOf("theater.do") != -1){
-			
+
 			url = "/theater/theater.jsp";
 			forward(req, resp, url);
 		
 		}else if(uri.indexOf("theaterP2.do") != -1){
 			
+			//다음페이지 데이터 받기
+			String district = req.getParameter("district");
+			String start_time = req.getParameter("start_time");
+			
+			List<TheaterDTO> lists = dao.getlist(district, start_time);
+			
+			req.setAttribute("lists", lists);
+			req.setAttribute("district", district);
+			req.setAttribute("start_time", start_time);
+	
 			url = "/theater/theaterP2.jsp";
 			forward(req, resp, url);
-		}
+			
+		}else if(uri.indexOf("calendar.do") != -1){
+			
+			url = "/theater/calendar.jsp";
+			forward(req, resp, url);
 		
+		}
+			
+			
+			
+			
+			
+			
 		
 	}
 	

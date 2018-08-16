@@ -99,6 +99,19 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 
 </style>
 
+<script type="text/javascript">
+
+//달력팝업
+function showCalendar() {
+	var date;
+	var f = document.calendarForm;
+	
+	window.open("calendar.do","달력",
+			"location = no, menubar = no, directories=no,left=580, top=150, width=350, height=350, toolbar = no, enubar=no, status=no, scrollbars=no, resizable=no, status = no");
+}
+
+</script>
+
 
 
 </head>
@@ -115,14 +128,14 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 
 <table align="center">
 	<tr>
-		<td height="11" align="center">
+		<td height="0" align="center">
 		</td>
 	</tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0">
 	<tr>
-		<td align="left" style="padding-bottom: 10px;">
-			<h2><b>영화관 이름(하얀색으로)</b></h2>
+		<td align="left" style="padding-bottom: 0px;">
+			<h2 style="font-weight: bold; font-size: 50px; color: white; padding-left: 20px;">${district }</h2>
 		</td>
 	</tr>
 	<tr align="center">
@@ -282,6 +295,7 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 	</tr>
 </table>
 
+<form action="" name="calendarForm">
 <table border="0" align="center" cellspacing="0" cellpadding="0" width="1300px">
 	<tr>
 		<td align="center" style="padding-bottom: 10px; height: 62px">
@@ -300,10 +314,25 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 	</tr>
 	<tr>
 		<td style="height: 62px">
-			달력 (( 8.15 수 ))
+			<a onclick="showCalendar();">달력</a> (( 8.15 수 ))
 		</td>
 	</tr>
 </table>
+</form>
+<%-- 	<form name="myForm">
+		<table align="center" width="210" cellpadding="1" cellspacing="1">
+			<tr>
+				<td align="center">
+					<a href="calendar.do?month=${preMonth }&day=${preDay">◀</a> <b>&nbsp;${nowMonth }
+						월&nbsp;&nbsp;${nowDay }일
+				</b> <a href="calendar.do?month=${nextMonth }&day=${nextDay">▶</a>
+				</td>
+
+			</tr>
+		</table>
+	</form> --%>
+
+
 
 <table border="0" class="scheduleP2">
 
