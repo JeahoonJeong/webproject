@@ -72,7 +72,7 @@ td {
 a:link {text-decoration: none; color: grey;}
 a:visited {text-decoration: none; color: grey;}
 a:active {text-decoration: none; color: grey;}
-a:hover {text-decoration: underline; color: #351f66;}
+a:hover {text-decoration: none; color: #351f66;}
 
 .tab {
 	width: 80px;
@@ -88,4 +88,15 @@ a:hover {text-decoration: underline; color: #351f66;}
 
 .img-circle {
   border-radius: 50%;
+}
+
+.bookedList {
+	font-size: 13px;
+}
+
+.myMovie{
+	font-size: 14px;
+	color: #333;
+	font-weight: bold;
+	line-height: 16px;
 }
