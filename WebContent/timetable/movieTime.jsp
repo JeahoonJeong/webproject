@@ -38,13 +38,6 @@
 		</div>
 	</div>
 	
-
-		
-	
-	
-
-
-	
 	<form name="myForm" method="post" action="">
 	<table width ="100" cellpadding="0" cellspacing="10" align="center" >
 		
@@ -93,7 +86,7 @@
 	<table border="0" class="scheduleP2">
 
 			<c:forEach var="dto" items="${lists }">
-				<c:if test="${!dto.district.equals(district) }">
+				<c:if test="${!dto.district.equals(district)||!dto.screen_num.equals(screen_num) }">
 
 					<tr>
 						<th
@@ -118,6 +111,7 @@
 				</div>
 
 				<c:set var="district" value="${dto.district }" />
+				<c:set var="screen_num" value="${dto.screen_num}"/>
 			</c:forEach>
 		</table>
 	
