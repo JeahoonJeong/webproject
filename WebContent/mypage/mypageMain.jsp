@@ -3,6 +3,7 @@
 <% 
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	String path = cp + "/mv/imageFile";
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,8 +18,11 @@
 
 <div id="mypage">
 
+<div>
+<a href="<%=cp%>/Mypage/mypageMain.do"><span class="font">나의 메가박스</span></a><br/><br/>
+<hr size="3" color="#7A67AC" width="800px" style="float: left;"><br/><br/></div>
 <div><span class="font" >${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
-<hr size="3" color="#7A67AC" width="800px" style="float: left"></div>
+<hr size="1" color="#7A67AC" width="800px" style="float: left"></div>
 <br/><br/>
 
 <div>
@@ -34,8 +38,9 @@
         </li>
     </ul>
 </div>
-
 <br/><br/><br/><br/><br/>
+<div>
+
 <div class="box" style="background-color: #e1e1e1">
 	<table bgcolor="#e1e1e1">
 		<tr>
@@ -50,9 +55,10 @@
 		<tr>
 			<td>선호 영화관 
 			<span class="right">
-			
-			***
-			
+			<c:if test="${empty preferredTheater}">
+				없음
+			</c:if>
+			${preferredTheater }		
 			</span></td>
 		</tr>
 		
@@ -64,18 +70,24 @@
 <div class="box">
 	<table>
 		<tr>
-			<td><span class="title">최근 예매 내역</span>  <span class="right"><input type="button" value="더보기" class="btn1" onclick="javascript:location.href='<%=cp%>/Mypage/myBooking.do'"></span></td>
+			<td colspan="2"><span class="title">최근 예매 내역</span>  <span class="right"><input type="button" value="더보기" class="btn1" onclick="javascript:location.href='<%=cp%>/Mypage/myBooking.do'"></span></td>
 		</tr>
-		<tr>
-			<td>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			</td>
-		</tr>
-		
-		
+		<c:if test="${empty recentBookedList}">
+			<tr>
+				<td colspan="2" rowspan="3" height="140px" style="text-align: center;"> <font color="#666">최근 예매 내역이 없습니다</font>
+				</td>
+			</tr>
+		</c:if>
+		<c:forEach items="${recentBookedList }" var="dto" begin="0" end="1">
+			<tr>
+				<td class="bookedList"><img src="<%=path %>/${dto.getFile_name()}" alt="포스터" height="72px" width="52px">
+				</td>
+				<td class="bookedList">
+				<b>${dto.getMovie_name() }</b><br/>${dto.getDistrict() }<br/>${dto.getStart_time() }
+				</td>
+			</tr>	
+		</c:forEach>
+			
 	</table>
 </div>
 <div class="box">
@@ -84,20 +96,18 @@
 			<td><span class="title">나의 무비스토리</span></td>
 		</tr>
 		<tr>
-			<td>보고싶어</td>
+			<td><img alt="" src="<%=cp%>/mypage/image/main_icon1.png"><span class="myMovie">&nbsp;&nbsp;&nbsp;보고싶어</span><span class="right">${wishMovieCount }</span></td>
 		</tr>
 		<tr>
-			<td>본영화</td>
+			<td><img alt="" src="<%=cp%>/mypage/image/main_icon2.png"><span class="myMovie">&nbsp;&nbsp;&nbsp;본영화</span><span class="right">${seenMovieCount }</span></td>
 		</tr>
 		<tr>
-			<td>나의 한줄평</td>
+			<td><img alt="" src="<%=cp%>/mypage/image/main_icon4.png"><span class="myMovie">&nbsp;&nbsp;&nbsp;나의 한줄평</span><span class="right">${commentCount }</span></td>
 		</tr>
 	</table>
 </div>
 
-
-
-
+</div>
 
 </div>
 
