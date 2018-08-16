@@ -27,7 +27,7 @@
 			<td rowspan="5" width="10px;"></td>
 			<td height="3%" class="title">
 			<img src="./image/age15big.png"/>
-			<span style="color: #353535; font-size: 22pt; vertical-align: top;">미션 임파서블: 폴아웃</span>
+			<span style="color: #353535; font-size: 22pt; vertical-align: top;">${dto.movie_name }</span>
 			<p style="color: #747474; font-size: 9pt; font-family: 맑은고딕;">
 			Mission:Impossible- Fallout ,</p></td>
 		</tr>
@@ -35,9 +35,9 @@
 			<td height="42px" style="padding-top: 5px;">
 			<div style="float: left;">
 			<img src="./image/allstar.png" align="bottom"/><br>
-			<font style="font-size: 9pt; color: #747474; vertical-align: top;">0001명 참여</font></div>
+			<font style="font-size: 9pt; color: #747474; vertical-align: top;">${dto.count }명 참여</font></div>
 			<span style="float: left; margin-left: 10px;">
-			<strong style="font-size: 20pt; font-weight: bold; color: #353535; vertical-align: top;">8.0</strong>
+			<strong style="font-size: 20pt; font-weight: bold; color: #353535; vertical-align: top;">${dto.rating }</strong>
 			</span>
 			
 			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
@@ -47,11 +47,11 @@
 		</tr>
 		<tr>
 			<td height=100px class="middle">
-			<p><font style="font-weight: bold;">타입</font> : 디지털(자막)</p>
-			<p><font style="font-weight: bold;">개봉일</font> : 2018.07.25</p>
-			<p><font style="font-weight: bold;">감독</font> : 크리스토퍼 맥쿼리</p>
-			<p><font style="font-weight: bold;">출연진</font> : 톰 크루즈</p>
-			<p><font style="font-weight: bold;">장르</font> : 스릴러, 액션 / 147 분</p>			
+			<p><font style="font-weight: bold;">타입</font> : ${dto.type }</p>
+			<p><font style="font-weight: bold;">개봉일</font> : ${dto.release_date }</p>
+			<p><font style="font-weight: bold;">감독</font> : ${dto.director }</p>
+			<p><font style="font-weight: bold;">출연진</font> : ${dto.actors }</p>
+			<p><font style="font-weight: bold;">장르</font> : ${dto.genre } / ${dto.showtimes } 분</p>			
 			</td>
 		</tr>
 		<tr>
@@ -70,11 +70,7 @@
 	<div class="summary">
 		<h3>줄거리</h3>
 		<div style="font-size: 14px; color: #666666; font-weight: lighter;">
-		예측 할 수 없는 미션. 피할 수 없는 선택<br>
-		전 세계 최강의 스파이 기관 IMF의 최고 요원 에단 헌트(톰 크루즈)와 그의 팀은 테러조직의 핵무기 소지를 막기 위해 미션에 착수한다.<br>
-		에단 헌트는 작전 수행 중 예상치 못한 결단을 내리게 되고, 중앙정보국 CIA는 그를 견제하기 위해 상급 요원 어거스트 워커(헨리 카빌)를 파견한다.<br>
-		최악의 테러 위기와 라이벌의 출현 속, 팀이 행한 모든 선의의 선택들이 최악의 결과로 돌아오면서 미션은 점점 더 예측할 수 없는 상황으로 치닫게 되는데…<br>
-		사상 가장 불가능한 미션, 피할 수 없다면 끝내야 한다!<br>
+		${dto.summary }
 		</div>
 	</div>
 	<div id="image">

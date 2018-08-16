@@ -98,6 +98,24 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 
 </style>
 
+
+<script type="text/javascript">
+    function listValue(lst){
+        var li1 = document.getElementsByTagName("li");
+        for(i=0; i<li1.length; i++){
+                if(lst == li1[i].getAttribute("name")){
+                alert(li1[i].getAttribute("value"));
+            }
+        }
+
+    }
+</script>
+
+<!-- 출처: http://hyun0412.tistory.com/entry/li-태그-예제 -->
+
+
+
+
 </head>
 <body>
 <div class="tmain_container" align="center">
@@ -119,20 +137,20 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 	<tr align="center">
 		<td>
 			<div id="topMenu"> 
-			<ul > 
+			<ul> 
 				<li class="topMenuLi"> 
-					<a class="menuLink" name="city" value="서울">서울</a> 
+					<a class="menuLink">서울</a> 
 					<ul class="submenu"> 
-						<li><a class="submenuLink" name="district" value="강남" href="<%=cp %>/Theater/theaterP2.do">강남</a></li> 
-						<li><a class="submenuLink" name="district">강남대로(씨티)</a></li> 
-						<li><a class="submenuLink" name="district">강동</a></li> 
-						<li><a class="submenuLink" name="district">동대문</a></li> 
-						<li><a class="submenuLink" name="district">마곡</a></li> 
-						<li><a class="submenuLink" name="district">목동</a></li> 
-						<li><a class="submenuLink" name="district">상봉</a></li> 
-						<li><a class="submenuLink" name="district">상암월드컵경기장</a></li> 
-						<li><a class="submenuLink" name="district">센트럴</a></li> 
-						<li><a class="submenuLink" name="district">송파파크하비오</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=강남">강남</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=강남대로(씨티)">강남대로(씨티)</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=강동">강동</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=동대문">동대문</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=마곡">마곡</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=목동">목동</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=상봉">상봉</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=상암월드컵경기장">상암월드컵경기장</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=센트럴">센트럴</a></li> 
+						<li><a class="submenuLink" name="district" href="<%=cp %>/Theater/theaterP2.do?district=송파파크하비오">송파파크하비오</a></li> 
 					</ul> 
 				</li> 
 				<li>|</li>
@@ -241,7 +259,7 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 
 
 
-
+<input type="hidden" value="start_time"/>
 </div>
 </body>
 </html>

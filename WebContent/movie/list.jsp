@@ -14,19 +14,31 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script type="text/javascript">
 
-	function showPop() {
+	/* function showPop() {
+		
+		var f = document.mvForm;
 		
 		window.open("movie.do","movieInfo",
 				"top=90, width=968, height=650, left="
 				+(screen.width-968)/2+"",
 				"toolbar=no", "menubar=no", "status=no", "resizable=no",
 				"location=no","scrollbars=yes");
-		}
+		} */
 
+		function showPop() {
+			
+			var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+
+			window.open('','popUp',setting);
+			
+			document.getElementById('mvForm').submit();
+		
+		}
+		
 </script>
 </head>
 <body>
-
+<form action="movie.do" method="post" id="mvForm" target="popUp">
 <div id="title">
 	<table width="1000px" height="50px" align="center" style="vertical-align: middle;" class="topMenu">
 		<tr>
@@ -37,10 +49,9 @@
 			<a href="<%=cp %>/movie/wishMov.jsp">♥ 보고싶어</a></span>
 			<span style="float: right;">
 			<font size="2pt">
-			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리</a></font></span></td>
+			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리 ></a></font></span></td>
 		</tr>
 	</table>
-	
 </div>
 
 
@@ -76,9 +87,9 @@
 
 
 <div class="content">
-	<table>
 		<c:set var="i" value="0"/>
 		<c:forEach var="dto" items="${lst }">
+		 <table style="float: left; margin: 7px;">
 		<c:if test="${i==0 }">
 			<tr>
 		</c:if>
@@ -105,14 +116,16 @@
 		</tr>
 		<tr>
 		<td class="bottom" align="center"> 
+		${dto.movie_id }
+		<input type="hidden" name="movie_id1" value="${dto.movie_id }"/>
 		<input type="button" value="상세정보" class="btn1"
 		onclick="showPop();"/>
-		<input type="hidden" name="movie_id" value="${dto.movie_id }"/>
 		&nbsp;<input type="button" value="예매하기" class="btn1"
 		onclick=""/></td>
 		</tr>
+		</table>
 	</c:forEach>	
-	</table>
+	</form>
 </div>
 
 
