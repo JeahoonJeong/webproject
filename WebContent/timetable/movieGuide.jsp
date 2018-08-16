@@ -33,7 +33,7 @@
 	
 	<table width ="800" cellpadding="0" cellspacing="10" align="center" >
 		<tr>
-			<td><a href=""><img src="image/예몌3.png" width="200" height="50" border="2" align="middle"></a></td>
+			<td><a href=""><img src="image/예몌3.PNG" width="200" height="50" border="2" align="middle"></a></td>
 		</tr>
 		<tr>
 			<td><img src="image/예매.png" width="800" height="600" border="2"></td>
