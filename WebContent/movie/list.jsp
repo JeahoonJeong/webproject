@@ -37,7 +37,7 @@
 			<a href="<%=cp %>/movie/wishMov.jsp">♥ 보고싶어</a></span>
 			<span style="float: right;">
 			<font size="2pt">
-			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리</a></font></span></td>
+			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리 ></a></font></span></td>
 		</tr>
 	</table>
 	
@@ -76,9 +76,10 @@
 
 
 <div class="content">
-	<table>
+
 		<c:set var="i" value="0"/>
 		<c:forEach var="dto" items="${lst }">
+		 <table style="float: left; margin: 7px;">
 		<c:if test="${i==0 }">
 			<tr>
 		</c:if>
@@ -111,8 +112,9 @@
 		&nbsp;<input type="button" value="예매하기" class="btn1"
 		onclick=""/></td>
 		</tr>
+		</table>
 	</c:forEach>	
-	</table>
+	
 </div>
 
 
