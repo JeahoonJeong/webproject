@@ -2,6 +2,7 @@ package com.movie;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.util.List;
 
@@ -95,11 +96,21 @@ public class MovieServlet extends HttpServlet{
 			
 		}else if(uri.indexOf("movie.do")!=-1){
 			
+			MovieDTO dto = new MovieDTO();
 			
-			url = "/movie/movie.jsp";
+			String movie_id = req.getParameter("movie_id1");
+			System.out.println(movie_id);
+			
+			dto = dao.getOneData(movie_id);
+			
+			req.setAttribute("dto", dto);
+	
+			
+			url = "/movie/movie.jsp?movie_id=" + movie_id;
 			forward(req, resp, url);
 			
 		}
+			
 		
 		
 		
