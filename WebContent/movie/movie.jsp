@@ -10,83 +10,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="<%=cp%>/movie/css/movie.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <title>Movie Info</title>
-<style type="text/css">
-
-.all{ 
-	padding-top: 65px;
-	padding-left: 40px;
-	padding-right: 40px;
-	font-family: 'Nanum Gothic', sans-serif;
-}
-.title{
-	padding: 0px;
-	border-bottom: 1px solid #CCCCCC;
-}
-.btn1{
-	width: 121px;
-	height: 43px;
-	color: white;
-	background-color: #00858c;
-	font-family: 'Nanum Gothic', sans-serif;
-	font-weight: bold;
-	font-size: 12pt;
-	border-style: none;
-	cursor: pointer;
-}
-
-.btn2{
-	width: 100px;
-	height: 39px;
-	background-color: white;
-	color: #666666;
-	border-style: none;
-	border: 1px solid #A6A6A6;
-	font-weight: bold;
-	font-size: 10pt;
-	font-family: 'Nanum Gothic', sans-serif;
-	cursor: pointer;
-}
-.btn3{
-	width: 100px;
-	height: 39px;
-	background-color: white;
-	color: #00858C;
-	border-style: none;
-	border: 1px solid #A6A6A6;
-	font-weight: bold;
-	font-size: 10pt;
-	font-family: 'Nanum Gothic', sans-serif;
-	cursor: pointer;
-}
-
-.middle{
-	padding: 0px;
-	vertical-align: top;
-	border-bottom: 1px solid #CCCCCC;
-	color: #4C4C4C;
-	font-size: 10pt;
-}
-.summary{
-	width: 888px;
-	color: #333333;
-	margin-bottom: 60px;
-}
-.image{
-	height: 676px;
-	margin-bottom: 60px;
-	color: #198591;
-	
-}
-.btn2:hover{background-color: #666666; color: white;}
-.btn3:hover{border: 1px solid #00858C;}
-
-</style>
+<script type="text/javascript">
+</script>
 </head>
-<body marginheight="0" marginwidth="0">
+<body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
 <div class="all">
-	<table border="0" width="888px" height="376px" style="margin-bottom: 60px;">
+	<table border="0" width="888px" height="376px" style="margin-bottom: 40px;">
 		<tr>
 			<td rowspan="5" width="230px" valign="top">
 			<span>
@@ -101,13 +33,16 @@
 		</tr>
 		<tr>
 			<td height="42px" style="padding-top: 5px;">
-			<span style="float: left;">
+			<div style="float: left;">
 			<img src="./image/allstar.png" align="bottom"/><br>
-			<font style="font-size: 9pt; color: #747474; vertical-align: top;">0001명 참여</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<strong style="font-size: 20pt; font-weight: bold; color: #353535;">8.0</strong></span>
+			<font style="font-size: 9pt; color: #747474; vertical-align: top;">0001명 참여</font></div>
+			<span style="float: left; margin-left: 10px;">
+			<strong style="font-size: 20pt; font-weight: bold; color: #353535; vertical-align: top;">8.0</strong>
+			</span>
 			
 			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
-			onclick="<%=cp%>/booking/booking.jsp"/></span>
+			onclick="<%=cp%>/booking/booking.jsp"/>
+			</span>
 			</td>		
 		</tr>
 		<tr>
@@ -132,7 +67,6 @@
 			</td>
 		</tr>
 	</table>
-	
 	<div class="summary">
 		<h3>줄거리</h3>
 		<div style="font-size: 14px; color: #666666; font-weight: lighter;">
@@ -143,9 +77,67 @@
 		사상 가장 불가능한 미션, 피할 수 없다면 끝내야 한다!<br>
 		</div>
 	</div>
-	<div class="image">
+	<div id="image">
 		<h3>스틸컷 <font style="font-size: 14px;">22</font></h3>
+		<div id="image_top">						
+			<div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
+			<img src="./image/left_btnn.png"/></a></div>
+			<span style="float: left;"><img src="./mvImage/mission1.jpg" height="110px"/></span>
+			<span style="float: left;"><img src="./mvImage/mission2.jpg" height="110px"/></span>
+			<span style="float: left;"><img src="./mvImage/mission3.jpg" height="110px"/></span>
+		
+		<div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
+			<img src="./image/right_btnn.png"/></a></div>		
 	</div>
+		<div id="image_content">
+			<div class="lbtn"><a href="javascript:void(0);">
+			<img src="./image/left_btnbig.png"/></a></div>
+			<img src="./mvImage/mission1.jpg" height="500px">
+			<div class="rbtn"><a href="javascript:void(0);">
+			<img src="./image/right_btnbig.png"/></a></div>
+		</div>
+	</div>
+	<div id="comment">
+		<div id="comment_head">
+		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(20)</span></h3>
+		</div>
+		<div style="width: 888px; height: 128px;">
+			<span style="padding-top: 58px; float: left;">
+			<img width="56px" height="56px" src="./image/profile.png"></span>
+			<table id="comment_input">
+				<tr>
+					<td class="star"></td>
+					<td class="text">
+					<textarea title="댓글쓰기" name="comment" maxlength="100"
+					class="textarea"></textarea>
+					</td>
+					<td width="84px" height="84px">
+					<input type="button" value="등록" class="btn"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="comment_view">
+			<div class="cell">
+				<div style="width: 80px; float: left;">
+					<img src="./image/profile.png" height="54px" width="54px"/>
+				</div>
+				<div class="text">
+				<div class="id"><strong>knr12**</strong></div>
+				<div class="date"><span>18.08.16</span></div>
+				<div><img src="./image/smallstar.png"/></div>
+				<p><span class="content">재밌는 영화
+				</span></p>
+				<div class="bottom">
+				<a href="javascript:thumb();">
+				<img src="./image/thumb.png" style="vertical-align: middle;" /> 추천 
+				<font style="font-weight: bold;">5</font></a></div>		
+				</div>
+			</div>	
+			
+		</div>
+	</div>
+	
 	
 		
 </div>

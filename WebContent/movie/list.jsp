@@ -16,12 +16,12 @@
 
 	function showPop() {
 		
-		window.open("movie.jsp","movieInfo",
-				"top=90, width=968, height=500, left="
+		window.open("movie.do","movieInfo",
+				"top=90, width=968, height=650, left="
 				+(screen.width-968)/2+"",
-				"toolbar=no", "menubar=no", "status=no","resizable=no",
-				"location=no","scrollbars=yes");	
-	}
+				"toolbar=no", "menubar=no", "status=no", "resizable=no",
+				"location=no","scrollbars=yes");
+		}
 
 </script>
 </head>
