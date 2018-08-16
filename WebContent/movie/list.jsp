@@ -77,6 +77,47 @@
 
 <div class="content">
 	<table>
+		<c:set var="i" value="0"/>
+		<c:forEach var="dto" items="${lst }">
+		<c:if test="${i==0 }">
+			<tr>
+		</c:if>
+		<c:if test="${i!=0&&i%7==0 }">
+			</tr>
+			<tr>
+		</c:if>
+			<td width="220px" class="top">
+			<img src="${imagePath }/${dto.file_name}" width="100%" height="330px"/>
+			</td>
+		</tr>
+		<tr>
+		<td width="220px" height="50px" class="bottom">
+		<span style="line-height: 25px;">
+		<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
+		<span style="float: right;"><img src="./image/bg_allstar1.png"/></span>
+		</td>
+		</tr>
+		<tr>
+		<td class="middle">
+		<img src="./image/age15.png" align="middle"/>
+		<font color="#353535" style="font-weight: bold;">
+		<a href="javascript:showPop();">${dto.movie_name }</a>…</td>
+		</tr>
+		<tr>
+		<td class="bottom" align="center"> 
+		<input type="button" value="상세정보" class="btn1"
+		onclick="showPop();"/>
+		<input type="hidden" name="movie_id" value="${dto.movie_id }"/>
+		&nbsp;<input type="button" value="예매하기" class="btn1"
+		onclick=""/></td>
+		</tr>
+	</c:forEach>	
+	</table>
+</div>
+
+
+<div class="content">
+	<table>
 	<c:set var="i" value="0"/>
 	<c:forEach var="dto" items="${lst }">
 	<c:if test="${i==0 }">

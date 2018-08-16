@@ -57,9 +57,11 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select * from (select rownum rnum, data.* from(";
-			sql+= "select movie_id,movie_name,rating,release_date,file_name from movie ";
-			sql+= "order by num desc) data) where rnum>=? and rnum<=?";
+			sql = "select * from (select rownum rnum, data.* from(select a.movie_id,movie_name,age_limit, rating, file_name ";
+			sql+= "from movie a,(select rating, file_name, a.movie_id from ";
+			sql+= "(select round(avg(rating)) rating, movie_id from rating group by movie_id) a, ";
+			sql+= "image_files b where a.movie_id = b.movie_id) ";
+			sql+= "b where a.movie_id=b.movie_id order by movie_id desc) data) where rnum>=? and rnum=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
