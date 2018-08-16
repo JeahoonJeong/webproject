@@ -11,14 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/timetable/style.css" type="text/css"/>
+<link rel="stylesheet" href="<%=cp%>/timetable/dd.css" type="text/css" />
 <title>Insert title here</title>
-
-<script type="text/javascript">
-
-	
-
-
-</script>
 
 
 </head>
@@ -44,20 +38,7 @@
 		</div>
 	</div>
 	
-<!--  	<table width ="100%" height="80" cellpadding="1" cellspacing="0" align ="center" bgcolor="#e6e6e6" >		
-		
-		<tr>
-			<td width="20%"></td>
-			<td width="20%" align="center"><a href=""><b>예매 안내</b></a></td>
-			<td width="20%" align="center"><a href="<%=cp%>/image/movieTime.do"><b>영화별 상영시간표</b></a></td>
-			<td width="20%" align="center"><a href=""><b>영화관별 상영시간표</b></a></td>	
-			<td width="20%"></td>
-			
-			</tr>
-			
-			
-	</table>
-	-->
+
 		
 	
 	
@@ -88,7 +69,7 @@
 	<br/><br/>
 	
 	
-	<table width="1000" cellpadding="0" cellspacing="0" align="center" border="0">	
+	<%-- <table width="1000" cellpadding="0" cellspacing="0" align="center" border="0">	
 		
 		<c:forEach var="dto" items="${lists }">		
 		
@@ -108,7 +89,37 @@
 		<c:set var="district" value="${dto.district }"/>
 		</c:forEach>	
 	
-	</table> 
+	</table>  --%>
+	<table border="0" class="scheduleP2">
+
+			<c:forEach var="dto" items="${lists }">
+				<c:if test="${!dto.district.equals(district) }">
+
+					<tr>
+						<th
+							style="width: 50px; font-size: 14px; text-align: right; padding-right: 15px; padding-left: 10px;"><div>${dto.city}</div>
+							<small>${dto.district}</small></th>
+						<th
+							style="width: 110px; padding-left: 15px; padding-right: 10px; border-right: 1px solid #e5e5e5;"><div>${dto.movie_name}</div>
+							<small>${dto.age_limit}세 관람가</small></th>
+						<th
+							style="width: 100px; font-size: 14px; text-align: right; padding-right: 15px; padding-left: 10px;"><div>${dto.screen_num}관</div>
+							<small>${dto.type}</small></th>
+						<td>
+				</c:if>
+
+				<div class="movie_time">
+					<p class="mtime_info">
+						<span class="time">${dto.start_time }~${dto.end_time }</span> <span
+							class="seat"> ${dto.seatedseat}/${dto.seatnumber}</span> <br>
+						<br>
+						<a href="">예매</a>
+					</p>
+				</div>
+
+				<c:set var="district" value="${dto.district }" />
+			</c:forEach>
+		</table>
 	
 	
 	<br/><br/><br/><br/><br/>
