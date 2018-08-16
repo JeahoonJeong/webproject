@@ -16,7 +16,7 @@ public class TheaterDAO {
 	}
 	
 	//모든데이터 가져오기
-	public List<TheaterDTO> getlist(String district, String date){
+	public List<TheaterDTO> getlist(String district, String start_time){
 		
 		List<TheaterDTO> lists = new ArrayList<TheaterDTO>();
 		
@@ -34,7 +34,7 @@ public class TheaterDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, district);
-			pstmt.setString(2, date);
+			pstmt.setString(2, start_time);
 			
 			rs = pstmt.executeQuery();
 			
