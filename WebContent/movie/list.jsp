@@ -16,7 +16,7 @@
 
 	function showPop() {
 		
-		window.open("movie.jsp","movieInfo",
+		window.open("movie.do","movieInfo",
 				"top=90, width=968, height=650, left="
 				+(screen.width-968)/2+"",
 				"toolbar=no", "menubar=no", "status=no", "resizable=no",

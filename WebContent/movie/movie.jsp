@@ -16,7 +16,7 @@
 <script type="text/javascript">
 </script>
 </head>
-<body marginheight="0" marginwidth="0">
+<body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
 <div class="all">
 	<table border="0" width="888px" height="376px" style="margin-bottom: 40px;">
 		<tr>
