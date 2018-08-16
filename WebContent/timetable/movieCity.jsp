@@ -28,6 +28,37 @@
 			</ul>
 		</div>
 	</div>
+	<br/><br/><br/><br/><br/>
+	
+	<table width="1000" cellpadding="0" cellspacing="0" align="center" border="1">
+		<tr height="100">
+			<td width ="100"align="center"><a href="">서울</a></td>
+			<td width="100" align="center">강남</td>
+			<td rowspan="6">
+		</tr>
+		<tr height="100">
+			<td align="center"><a href="">경기</a></td>
+			<td align="center">동대문</td>
+		</tr>
+		<tr height="100">
+			<td align="center"><a href="">인천</a></td>
+			<td align="center">마곡</td>
+		</tr>
+		<tr height="100">
+			<td align="center"><a href="">대전</a></td>
+			<td align="center">이수</td>
+		</tr>
+		<tr height="100">
+			<td align="center"><a href="">부산</a></td>
+			<td align="center">상암</td>
+		</tr>
+		<tr height="100">
+			<td align="center"><a href="">광주</a></td>
+			
+		</tr>
+			
+	
+	</table>
 	
 	
 	
