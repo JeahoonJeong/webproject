@@ -49,6 +49,8 @@ function login() {
 </head>
 <body>
 
+<!-- header 추가 -->
+<jsp:include page="../header.jsp" flush="false"/>
 
 <div id="login">
 
@@ -87,6 +89,8 @@ function login() {
 </form>
 
 </div>
+
+<!-- footer추가 -->
 <jsp:include page="../footer.jsp" flush="false"/>
 
 </body>
