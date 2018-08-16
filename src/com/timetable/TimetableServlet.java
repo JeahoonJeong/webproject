@@ -72,6 +72,7 @@ public class TimetableServlet extends HttpServlet {
 			String movie_id=null;
 			req.setAttribute("movie_id", movie_id);
 
+
 			List<TimetableDTO> lists1 = dao.getMovie();
 			req.setAttribute("lists1", lists1);		
 			
