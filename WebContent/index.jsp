@@ -5,6 +5,7 @@
 	//POST 방식에서 한글깨짐을 방지
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
 %>
 
 <%-- 
@@ -20,15 +21,16 @@
 <style type="text/css">
 #header-wrap {
 	position: fixed;
-	top: 0px;
+	top: -20px;
 	left: 0px;
 	width: 100%;
+	background-color: white;
 }
 
 #header {
-	margin: auto;
 	background-color: white;
 	width: 1000px;
+	margin: auto;
 	height: 50px;
 }
 
@@ -122,13 +124,13 @@
 }
 
 #footer-wrap {
-	overflow: hidden;
-	background-color: #333333;
+	margin: 0 auto;
+	width: 1000px;
 }
 
 #footer {
-	margin: 0 auto;
-	width: 1000px;
+	overflow: hidden;
+	background-color: #333333;
 }
 
 #footer h4 {
@@ -196,30 +198,68 @@
 	height: 60px;
 }
 
+#topbanner-wrap{
+	display:table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#topbanner-wrap img{
+	width: 1400px;
+}
+
+
+#middle-box{
+	background-color: gray;
+	overflow: hidden;
+
+}
+
+#middle-box-wrap{
+	display: table; 
+	margin-left: auto; 
+	margin-right: auto;
+	height: 500px;
+}
+
+#middle-list ul li{
+	list-style: none;
+	float: left;
+	line-height: 50px;
+	vertical-align: middle;
+	text-align: center;
+}
+#middle-list a{
+	background-color: white;
+	color: black;
+	text-decoration: none;
+	display: block;
+	width: 100px;
+	font-size: 12px;
+	font-weight: bold;
+}
 </style>
 
 <script type="text/javascript">
-	
 	var itv = 1000;
-	
+
 	var bannerArray = new Array();
-		bannerArray[0] = "./image/banner1.jpg";
-		bannerArray[0] = "./image/banner2.jpg";
-		bannerArray[0] = "./image/banner3.jpg";
-		bannerArray[0] = "./image/banner4.jpg";
-		bannerArray[0] = "./image/banner5.jpg";
-		bannerArray[0] = "./image/banner6.jpg";
-	
-	function bannerRotate(){
-		
-		setTimeout("blendbanner()",itv);
-		
+	bannerArray[0] = "./image/banner1.jpg";
+	bannerArray[0] = "./image/banner2.jpg";
+	bannerArray[0] = "./image/banner3.jpg";
+	bannerArray[0] = "./image/banner4.jpg";
+	bannerArray[0] = "./image/banner5.jpg";
+	bannerArray[0] = "./image/banner6.jpg";
+
+	function bannerRotate() {
+
+		setTimeout("blendbanner()", itv);
+
 	}
-	
-	function blendbanner(){
-		
+
+	function blendbanner() {
+
 	}
-		
 </script>
 
 </head>
@@ -229,8 +269,8 @@
 	<div id="header-wrap">
 		<div id="header">
 			<ul>
-				<li><img alt="" src="./login/image/magabox.jpg"></li>
-				<li><a class="menuLink" href="<%=cp%>/movie/">영화</a></li>
+				<li><a href="<%=cp%>"><img alt="" src="./login/image/magabox.jpg"></a></li>
+				<li><a class="menuLink" href="<%=cp%>/Movie/list.do">영화</a></li>
 				<li><a class="menuLink" href="#">큐레이션</a></li>
 				<li><a class="menuLink" href="<%=cp%>/Theater/theater.do">영화관</a></li>
 				<li><a class="menuLink" href="#">특별관</a></li>
@@ -248,23 +288,53 @@
 				<li class="menu-left">클래식 소사이어티</li>
 			</ul>
 		</div>
-
+		
+		<%
+		  String str;
+		  String strUrl;
+		  
+		  strUrl = cp+"/Booking/booking.do";
+		  str    = "window.open('" + strUrl + "', 'Think', ";
+		  str    = str + "'left=100, ";
+		  str    = str + "top=20, ";
+		  str    = str + "width=1000, ";
+		  str    = str + "height=600, ";
+		  str    = str + "toolbar=no, ";
+		  str    = str + "menubar=no, ";
+		  str    = str + "status=no, ";
+		  str    = str + "scrollbars=no, ";
+		  str    = str + "resizable=no')";
+		%>
+		
 		<div id="header-menu-right">
 			<ul>
 				<li class="menu-right">고객센터 | 멤버십 | VIP</li>
+				<li class="menu-right"><a href="<%=cp %>/Timetable/movieTime.do"><img alt=""
+					src="./login/image/timetable.jpg"></a></li>
 				<li class="menu-right"><img alt=""
-					src="./login/image/timetable.jpg"></li>
-				<li class="menu-right"><img alt=""
-					src="./login/image/booking.jpg"></li>
+					src="./login/image/booking.jpg" onclick="<%=str %>"></li>
 			</ul>
 		</div>
 	</div>
 	<!-- HEADER 끝 -->
-	
+
 
 	<div id="topbanner">
-		<div id = "topbanner-warp">
-			<img alt="" src="./image/banner1.jpg">
+		<div id="topbanner-wrap">
+			<img alt="" src="./image/banner3.jpg">
+		</div>
+	</div>
+
+	<div id="middle-box">
+		<div id="middle-box-wrap">
+				<div	id="middle-list">
+					<ul>
+						<li><a href="">박스오피스</a></li>
+						<li><a href="">최신개봉작</a></li>
+						<li><a href="">상영예정작</a></li>
+						<li><a href="">큐레이션</a></li>
+					</ul>
+				</div>
 		</div>
 	</div>
 
@@ -284,12 +354,9 @@
 				<dd>
 					<a href="">강동</a>
 				</dd>
-
-
 				<dd>
 					<a href="">동대문</a>
 				</dd>
-
 				<dd>
 					<a href="">마곡</a>
 				</dd>

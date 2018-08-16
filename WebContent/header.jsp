@@ -16,15 +16,16 @@
 <style type="text/css">
 #header-wrap {
 	position: fixed;
-	top: 0px;
+	top: -20px;
 	left: 0px;
 	width: 100%;
+	background-color: white;
 }
 
 #header {
-	margin: auto;
 	background-color: white;
 	width: 1000px;
+	margin: auto;
 	height: 50px;
 }
 
