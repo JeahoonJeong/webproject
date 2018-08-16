@@ -150,7 +150,7 @@ public class MovieDAO {
 		
 	}
 	
-	public List<MovieDTO> getStillcut(String movie_id){//movie.do¿¡ »Ñ¸± ¿µÈ­ ½ºÆ¿ÄÆÀ» °¡Á®¿È
+	/*public List<MovieDTO> getStillcut(String movie_id){//movie.do¿¡ »Ñ¸± ¿µÈ­ ½ºÆ¿ÄÆÀ» °¡Á®¿È
 		
 		
 	}
@@ -158,7 +158,7 @@ public class MovieDAO {
 	public List<MovieDTO> getAllComment(String movie_id){//moive.do¿¡ »Ñ¸± ¿µÈ­ ÄÚ¸àÆ®¸¦ °¡Á®¿È
 		
 	}
-	
+	*/
 	
 	
 	
