@@ -107,6 +107,11 @@ public class MypageServlet extends HttpServlet{
 			forward(req, resp, url);
 			
 
+		}else if(uri.indexOf("bookingList_ok.do")!=-1){
+			
+			
+			
+			
 		}else if(uri.indexOf("myMoivestory.do")!=-1){
 
 			url = "/mypage/myMoviestory.jsp";
