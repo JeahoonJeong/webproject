@@ -56,6 +56,7 @@ public class TimetableServlet extends HttpServlet {
 			//city, district, movie_name, screen_num, start_time, end_time, seatedseat, seatnumber, type, age_limt, movie_id
 
 			// ������ ��������(list)
+
 			Calendar cal = Calendar.getInstance();
 			//���ó�¥
 			
