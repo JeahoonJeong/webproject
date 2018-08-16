@@ -83,6 +83,14 @@
 		</c:forEach>	
 	
 	</table>  --%>
+		<c:if test="${movie_id==null }">
+	
+		<p align="center"><img src="${imagePath}/nullmovie.PNG" width="1000" height="400" border="2" align="middle"></p>
+	
+	</c:if>
+	
+	
+	<c:if test="${movie_id!=null }">
 	<table border="0" class="scheduleP2">
 
 			<c:forEach var="dto" items="${lists }">
@@ -114,7 +122,7 @@
 				<c:set var="screen_num" value="${dto.screen_num}"/>
 			</c:forEach>
 		</table>
-	
+	</c:if>
 	
 	<br/><br/><br/><br/><br/>
 	
