@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.imageTest.TimetableDTO;
+
 
 import util.DBCPConn;
 
@@ -48,7 +48,7 @@ public class TimetableServlet extends HttpServlet {
 		String uri = req.getRequestURI();
 
 		if (uri.indexOf("movieTime.do") != -1) {
-			String imagePath = cp +"/pds/imageFile";
+			String imagePath = cp +"/timetable/image";
 			
 		
 			req.setAttribute("imagePath", imagePath);
@@ -66,7 +66,7 @@ public class TimetableServlet extends HttpServlet {
 			date = y+"/";
 			date = date.substring(2,4);	
 			date = date+"/0"+m+"/"+d+"%";
-			
+			System.out.println(date);
 			
 			String movie_id=null;
 			req.setAttribute("movie_id", movie_id);
@@ -74,10 +74,11 @@ public class TimetableServlet extends HttpServlet {
 			List<TimetableDTO> lists1 = dao.getMovie();
 			req.setAttribute("lists1", lists1);		
 			
-			url="/movie/movieTime.jsp";
-			forward(req, resp, url);			
+			url="/timetable/movieTime.jsp";
+			forward(req, resp, url);	
+			
 		}else if (uri.indexOf("movieTime_ok.do") != -1) {
-			String imagePath = cp +"/pds/imageFile";
+			String imagePath = cp +"/timetable/image";
 			String movie_id = req.getParameter("movie_id");
 			req.setAttribute("movie_id", movie_id);
 			
@@ -91,7 +92,7 @@ public class TimetableServlet extends HttpServlet {
 			date = year+"/";
 			date = date.substring(2,4);	
 			date = date+"/0"+month+"/"+day+"%";
-			
+			System.out.println(date);
 			}else{
 			
 			Calendar cal = Calendar.getInstance();
@@ -103,6 +104,7 @@ public class TimetableServlet extends HttpServlet {
 			date = y+"/";
 			date = date.substring(2,4);	
 			date = date+"/0"+m+"/"+d+"%";
+			System.out.println(date);
 			
 			
 			}
@@ -119,7 +121,7 @@ public class TimetableServlet extends HttpServlet {
 			List<TimetableDTO> lists1 = dao.getMovie();
 			req.setAttribute("lists1", lists1);	
 			
-			url="/movie/movieTime.jsp?movie_id="+movie_id;
+			url="/timetable/movieTime.jsp?movie_id="+movie_id;
 			forward(req, resp, url);
 
 		}
