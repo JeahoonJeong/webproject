@@ -62,18 +62,19 @@
 
 #header-menu {
 	margin: auto;
-	margin-top: 80px;
+	margin-top: 60px;
 	padding-left: 0px;
-	height: 120px;
+	height: 80px;
 	width: 1000px;
-	height: 120px;
+	border-bottom-style: solid;
+	border-bottom-width: 5px;
+	border-bottom-color: #352669;
 }
 
 #header-menu-left {
 	padding-left: 0px;
 	margin-left: 0px;
 	float: left;
-	margin-left: 0px;
 }
 
 #header-menu-right {
