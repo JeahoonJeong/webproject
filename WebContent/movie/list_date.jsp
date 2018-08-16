@@ -16,7 +16,7 @@
 <div id="title">
 	<table width="1000px" height="50px" align="center" style="vertical-align: middle;" class="topMenu">
 		<tr>
-			<td><a href=<%=cp %>/movie/list.jsp>박스오피스</a></td>
+			<td><a href=<%=cp %>/Movie/list.do>박스오피스</a></td>
 			<td><a href=<%=cp %>/movie/list_date.jsp><font color="#503396">최신개봉작</font></a></td>
 			<td><a href=<%=cp %>/movie/list_pre.jsp>상영예정작</a></td>
 			<td><span style="float: left;">♥ 보고싶어</span>

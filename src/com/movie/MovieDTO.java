@@ -12,6 +12,7 @@ public class MovieDTO {
 	private String genre; //영화 장르	ex)스릴러
 	private int showtimes; // 영화 총상영시간 ex)111분
 	private String summary; //영화 줄거리
+	private String age_limit;
 	
 	private String user_id; //사용자 ID (한줄평에 사용)
 	private String comment_date; //한줄평 작성 날짜
@@ -111,6 +112,12 @@ public class MovieDTO {
 	}
 	public void setFile_name(String file_name) {
 		this.file_name = file_name;
+	}
+	public String getAge_limit() {
+		return age_limit;
+	}
+	public void setAge_limit(String age_limit) {
+		this.age_limit = age_limit;
 	}
 
 	

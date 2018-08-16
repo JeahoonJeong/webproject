@@ -3,6 +3,7 @@ package com.movie;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,6 +54,41 @@ public class MovieServlet extends HttpServlet{
 			f.mkdirs();
 		
 		if(uri.indexOf("list.do")!=-1){
+			
+			String pageNum = req.getParameter("pageNum");
+			
+			int currentPage = 1;
+			
+			if(pageNum!=null)
+				currentPage = Integer.parseInt(pageNum);
+			
+			//전체 데이터 갯수
+			int numPerPage = 21;
+			int dataCount = dao.getDataCount();
+			
+			int totalPage = myUtil.getPageCount(numPerPage, dataCount);
+			
+			if(currentPage>totalPage)
+				currentPage=totalPage;
+			
+			//데이터 시작과 끝
+			int start = (currentPage-1)*numPerPage+1;
+			int end = currentPage*numPerPage;
+			
+			List<MovieDTO> lst = dao.getAllMV(start, end);
+			
+			String listUrl = cp + "/movie/list.do";
+			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
+			
+			String imagePath = cp + "/mv/imageFile";
+			
+			req.setAttribute("lst", lst);
+			req.setAttribute("pageIndexList", pageIndexList);
+			req.setAttribute("dataCount", dataCount);
+			req.setAttribute("pageNum", currentPage);
+			req.setAttribute("totalPage", totalPage);
+			req.setAttribute("imagePath", imagePath);
+				
 			
 			url = "/movie/list.jsp";
 			forward(req, resp, url);
