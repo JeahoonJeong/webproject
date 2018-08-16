@@ -49,6 +49,7 @@ function login() {
 </head>
 <body>
 
+
 <div id="login">
 
 <div style="clear: both;">
@@ -86,6 +87,7 @@ function login() {
 </form>
 
 </div>
+<jsp:include page="../footer.jsp" flush="false"/>
 
 </body>
 </html>
