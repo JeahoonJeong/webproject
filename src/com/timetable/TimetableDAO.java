@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.imageTest.TimetableDTO;
+
 
 
 public class TimetableDAO {
@@ -29,7 +29,7 @@ public class TimetableDAO {
 		
 		try {
 			//city, district, movie_name, screen_num, start_time, end_time, seatedseat, seatnumber, type, age_limt, movie_id	
-			sql ="select movie_id, movie_name, age_limt from timetable group by movie_name,movie_id";
+			sql ="select movie_id, movie_name, age_limit from timetable group by movie_name,movie_id,age_limit";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();	
@@ -40,7 +40,7 @@ public class TimetableDAO {
 				
 				dto.setMovie_id(rs.getString("movie_id"));
 				dto.setMovie_name(rs.getString("movie_name"));
-				dto.setAge_limit(rs.getString("age_limt"));
+				dto.setAge_limit(rs.getString("age_limit"));
 				
 				lists.add(dto);
 			}
