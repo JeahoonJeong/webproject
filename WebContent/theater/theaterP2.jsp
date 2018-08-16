@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
@@ -7,6 +8,75 @@
 	String cp = request.getContextPath();
 %>
 
+<%
+Calendar cal = Calendar.getInstance();
+
+
+//오늘날짜
+int nowYear = cal.get(Calendar.YEAR);
+int nowMonth = cal.get(Calendar.MONTH) + 1;
+int nowDay = cal.get(Calendar.DAY_OF_MONTH);
+
+
+
+//클라이언트에서 넘어온 데이터
+
+String strYear = request.getParameter("year"); //사용자에게 년,월 값을 받아옴
+String strMonth = request.getParameter("month");
+String strDay = request.getParameter("day");
+
+//표시할 달력의 년,월
+int year = nowYear; //오늘날짜로 초기화
+int month = nowMonth;
+int day = nowDay;
+
+if (strYear != null) { //사용자가 입력한 값이 null이 아니면
+	year = Integer.parseInt(strYear); //사용자가 선택한 년도	
+}
+if (strMonth != null) {
+	month = Integer.parseInt(strMonth); //사용자가 선택한 월
+}
+if(strDay !=null){
+	day = Integer.parseInt(strDay);
+}
+
+int preYear = year;
+int preMonth = month;
+int preDay = day-1;
+
+if(preDay <1){
+	preYear = year;
+	preMonth = month-1;
+	cal.set(preYear, preMonth, 1);
+	preDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+	
+}
+
+if (preMonth < 1) { //월이 0보다 작으면
+	preYear = year - 1; //-1년 
+	preMonth = 12; // 월 = 12
+}
+
+int nextYear = year;
+int nextMonth = month;
+int nextDay = day+1;
+
+
+if(nextDay > cal.getActualMaximum(Calendar.DAY_OF_MONTH)){
+	nextDay = 1;
+	nextMonth = month+1;
+	nextYear = year;
+}
+
+
+if (nextMonth > 12) { //월이 12보다 크면
+	nextYear = year + 1; //+1년
+	nextMonth = 1; //월 = 1
+}
+
+//표시할 달력 셋팅
+cal.set(year, month - 1, day); //년 월 일
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,87 +87,8 @@
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/theater/css/menubarP2.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/theater/css/scheduleP2.css" type="text/css"/>
+<link rel="stylesheet" href="<%=cp%>/theater/css/theaterP2_menutab.css" type="text/css"/>
 
-<style type="text/css">
-
-.bgimg {
-    border: 0;
-    padding: 0; 
-    max-height: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    max-width: 100%;
-}
-
-#topMenu {
- height: 30px; /* 메인 메뉴의 높이 */ 
-width: 1300px /* 메인 메뉴의 넓이 */ 
-} 
-#topMenu ul { /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */ 
-list-style-type: none; /* 메인 메뉴 안의 ul 내부의 목록 표시를 없애줌 */ 
-margin: 0px; /* 메인 메뉴 안의 ul의 margin을 없앰 */ 
-padding: 0px; /* 메인 메뉴 안의 ul의 padding을 없앰 */ 
-} 
-#topMenu ul li { /* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */ 
-color: white; /* 글씨 색을 흰색으로 설정 */ 
-background-color: #2d2d2d; /* 배경 색을 RGB(2D2D2D)로 설정 */ 
-float: left; /* 왼쪽으로 나열되도록 설정 */ 
-line-height: 30px; /* 텍스트 한 줄의 높이를 30px로 설정 */ 
-vertical-align: middle; /* 세로 정렬을 가운데로 설정 */ 
-text-align: center; /* 텍스트를 가운데로 정렬 */ 
-position: relative; /* 해당 li 태그 내부의 top/left 포지션 초기화 */ 
-} 
-.menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */ 
-text-decoration:none; /* a 태그의 꾸밈 효과 제거 */ 
-display: block; /* a 태그의 클릭 범위를 넓힘 */ 
-width: 158px; /* 기본 넓이를 150px로 설정 */ 
-font-size: 12px; /* 폰트 사이즈를 12px로 설정 */ 
-font-weight: bold; /* 폰트를 굵게 설정 */ 
-font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대로 설정 */ 
-} 
-.menuLink { /* 상위 메뉴의 글씨색을 흰색으로 설정 */ 
-color: white; 
-} 
-.topMenuLi:hover .menuLink { 
-/* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */ 
-color: #368AFF; /* 글씨 색 빨간색 */ 
-background-color: #4d4d4d; /* 배경색을 밝은 회색으로 설정 */ 
-} 
-.submenuLink { /* 하위 메뉴의 a 태그 스타일 설정 */ 
-color: #000000; /* 글씨 색을 RGB(2D2D2D)로 설정 */ 
-background-color: white; /* 배경색을 흰색으로 설정 */ 
-border: solid 1px black; /* 테두리를 설정 */ 
-margin-top: -1px; /* 위 칸의 하단 테두리와 아래칸의 상단 테두리가 겹쳐지도록 설덩 */ 
-} 
-.longLink { /* 좀 더 긴 메뉴 스타일 설정 */ 
-width: 190px; /* 넓이는 190px로 설정 */ 
-} 
-.submenu { 
-/* 하위 메뉴 스타일 설정 */ 
-position: absolute; /* html의 flow에 영향을 미치지 않게 absolute 설정 */ 
-height: 0px; /* 초기 높이는 0px로 설정 */ 
-overflow: hidden; /* 실 내용이 높이보다 커지면 해당 내용 감춤 */ 
-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(기본) */ 
--webkit-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 크롬/사파라ㅣ) */ 
--moz-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 파폭) */ 
--o-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 오페라) */ } 
-.topMenuLi:hover .submenu { /* 상위 메뉴에 마우스 모버한 경우 그 안의 하위 메뉴 스타일 설정 */ 
-height: 310px; /* 높이를 31px / 메뉴 설정 */ 
-} 
-.submenuLink:hover { /* 하위 메뉴의 a 태그의 마우스 오버 스타일 설정 */ 
-color: #368AFF; /* 글씨색을 빨간색으로 설정 */ 
-background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */ 
-}
-
-.tmain_container>.no1 {
-    position: relative;
-    height: 585px;
-    padding: 0;
-    background: url(http://image2.megabox.co.kr/mop/home/theater/bg.jpg) 50% 0 no-repeat;
-    background-size: cover;
-
-</style>
 
 <script type="text/javascript">
 
@@ -298,39 +289,46 @@ function showCalendar() {
 <form action="" name="calendarForm">
 <table border="0" align="center" cellspacing="0" cellpadding="0" width="1300px">
 	<tr>
-		<td align="center" style="padding-bottom: 10px; height: 62px">
+		<td colspan="5" align="center" style="padding-bottom: 10px; height: 62px">
 			<h1>그림 넣기</h1>
 		</td>
 	</tr>
 	
 	<tr>
-		<td style="padding-bottom: 3px">
+		<td colspan="5" style="padding-bottom: 3px">
 			<h3>상영시간표</h3>
 		</td>
 	</tr>
 	<tr>
-		<td height="2" style="background-color: #BDBDBD; padding-bottom: 3px">
+		<td colspan="5" height="2" style="background-color: #BDBDBD; padding-bottom: 3px">
 		</td>
 	</tr>
 	<tr>
-		<td style="height: 62px">
-			<a onclick="showCalendar();">달력</a> (( 8.15 수 ))
+		<td style="height: 62px; width: 100px;" align="center" >
+		
+			<a onclick="showCalendar();">달력</a> 
+		
+		</td>
+		<td style="width: 50px;" align="center">			
+			<!--  <a href="calender.jsp?year=< %= nowYear %>&month=< %= nowMonth%>"><img src="./image/today.jpg" align="left"></a> -->
+			<a href="<%=cp %>/Theater/theaterP2.do?district=${district}&year=<%=preYear %>&month=<%=preMonth%>&day=<%=preDay%>">
+			<img src="../theater/image/화살표1.png" width="30" height="30" border="2" align="middle">
+			</a> 
+		</td>
+		<td style="width: 200px; padding: 0px;" align="center">	
+			<font style="font-size: 30px;"><b>&nbsp;<%=month %>월&nbsp;&nbsp;<%=day %>일</b>&nbsp;</font>
+		</td>
+		<td style="width: 50px;" align="center">	
+			<a href="<%=cp %>/Theater/theaterP2.do?district=${district}&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>">
+			<img src="../theater/image/화살표2.png" width="30" height="30" border="2" align="middle">
+			</a>	
+		</td>
+		<td>
 		</td>
 	</tr>
 </table>
 </form>
-<%-- 	<form name="myForm">
-		<table align="center" width="210" cellpadding="1" cellspacing="1">
-			<tr>
-				<td align="center">
-					<a href="calendar.do?month=${preMonth }&day=${preDay">◀</a> <b>&nbsp;${nowMonth }
-						월&nbsp;&nbsp;${nowDay }일
-				</b> <a href="calendar.do?month=${nextMonth }&day=${nextDay">▶</a>
-				</td>
 
-			</tr>
-		</table>
-	</form> --%>
 
 
 
@@ -484,7 +482,7 @@ function showCalendar() {
 
 <div id="theaterpay">
 <div class="content_wrap narrow" style="width: 1300px">
-<h3 class="theater_pay">관람료</h3>
+<h3 style="color: white; padding-left: 10px; font-size: 25px;" class="theater_pay">관람료</h3>
 
 <h4>1. 영화관람료</h4>
 
