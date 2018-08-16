@@ -2,6 +2,7 @@ package com.timetable;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.imageTest.TimetableDTO;
 
 import util.DBCPConn;
 
@@ -44,9 +47,8 @@ public class TimetableServlet extends HttpServlet {
 		String url;
 		String uri = req.getRequestURI();
 
-		
 		if (uri.indexOf("movieTime.do") != -1) {
-			String imagePath = cp +"/timetable/image";
+			String imagePath = cp +"/pds/imageFile";
 			
 		
 			req.setAttribute("imagePath", imagePath);
@@ -54,34 +56,73 @@ public class TimetableServlet extends HttpServlet {
 			//city, district, movie_name, screen_num, start_time, end_time, seatedseat, seatnumber, type, age_limt, movie_id
 
 			// 데이터 가져오기(list)
+			Calendar cal = Calendar.getInstance();
+			//오늘날짜
+			
+			int y = cal.get(Calendar.YEAR);
+			int m = cal.get(Calendar.MONTH) + 1;
+			int d = cal.get(Calendar.DAY_OF_MONTH);
+			String date;			
+			date = y+"/";
+			date = date.substring(2,4);	
+			date = date+"/0"+m+"/"+d+"%";
+			
+			
+			String movie_id=null;
+			req.setAttribute("movie_id", movie_id);
 
 			List<TimetableDTO> lists1 = dao.getMovie();
 			req.setAttribute("lists1", lists1);		
 			
-			url="/timetable/movieTime.jsp";
+			url="/movie/movieTime.jsp";
 			forward(req, resp, url);			
 		}else if (uri.indexOf("movieTime_ok.do") != -1) {
-			String imagePath = cp +"/timetable/image";
+			String imagePath = cp +"/pds/imageFile";
 			String movie_id = req.getParameter("movie_id");
-			req.setAttribute("movie_id", movie_id);		
+			req.setAttribute("movie_id", movie_id);
+			
+			
+			String year = req.getParameter("year");
+			String month = req.getParameter("month");
+			String day = req.getParameter("day");
+			String date;
+			if(year!=null){			
+			
+			date = year+"/";
+			date = date.substring(2,4);	
+			date = date+"/0"+month+"/"+day+"%";
+			
+			}else{
+			
+			Calendar cal = Calendar.getInstance();
+			//오늘날짜
+			
+			int y = cal.get(Calendar.YEAR);
+			int m = cal.get(Calendar.MONTH) + 1;
+			int d = cal.get(Calendar.DAY_OF_MONTH);
+			date = y+"/";
+			date = date.substring(2,4);	
+			date = date+"/0"+m+"/"+d+"%";
+			
+			
+			}
+			
+		
 
 			
 			req.setAttribute("imagePath", imagePath);
 			
-			
-			List<TimetableDTO> lists = dao.getList(movie_id);
-			
+			//List<TimetableDTO> lists = dao1.getList(movie_id,date);
+			List<TimetableDTO> lists = dao.getList(movie_id,date);
 			req.setAttribute("lists", lists);	
 			
 			List<TimetableDTO> lists1 = dao.getMovie();
 			req.setAttribute("lists1", lists1);	
 			
-			
-			url="/timetable/movieTime.jsp?movie_id="+movie_id;
+			url="/movie/movieTime.jsp?movie_id="+movie_id;
 			forward(req, resp, url);
 
 		}
-		
 
 	}
 

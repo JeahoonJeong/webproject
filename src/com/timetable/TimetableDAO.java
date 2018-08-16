@@ -56,7 +56,7 @@ public class TimetableDAO {
 		}
 		
 		//특정영화의 데이터 가져오기
-		public List<TimetableDTO> getList(String movie_id){
+		public List<TimetableDTO> getList(String movie_id,String date){
 			List<TimetableDTO> lists = new ArrayList<TimetableDTO>();
 			
 			PreparedStatement pstmt = null;
@@ -67,11 +67,17 @@ public class TimetableDAO {
 			try {
 				//city, district, movie_name, screen_num, start_time, end_time, seatedseat, seatnumber, type, age_limt, movie_id	
 				//sql ="select city, district, movie_name, screen_num, start_time,, end_time, seatedseat, seatnumber, type, age_limit, movie_id from timetable where movie_id=?";
-				sql ="select city, district, movie_name, screen_num, to_char(start_time,'hh24:mi') start_time, to_char(end_time,'hh24:mi') end_time, ";
+				
+				
+				/*sql ="select city, district, movie_name, screen_num, to_char(start_time,'hh24:mi') start_time, to_char(end_time,'hh24:mi') end_time, ";
 				sql+="seatedseat, seatnumber, type, age_limit, movie_id from timetable where movie_id=? order by district,screen_num,start_time";
+				*/
+				sql ="select city, district, movie_name, screen_num, to_char(start_time,'hh24:mi') start_time, to_char(end_time,'hh24:mi') end_time, ";
+				sql+="seatedseat, seatnumber, type, age_limit, movie_id from timetable where movie_id=? and start_time like ? order by district,screen_num,start_time";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, movie_id);
+				pstmt.setString(2, date);
 				rs = pstmt.executeQuery();	
 				
 				while(rs.next()){
@@ -102,6 +108,7 @@ public class TimetableDAO {
 			
 			
 		}
+}
 	
 /*	//데이터 전체 갯수
 	public int getDataCount(){
@@ -133,7 +140,3 @@ public class TimetableDAO {
 	}*/
 	
 	
-	
-	
-
-}
