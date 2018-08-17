@@ -24,7 +24,7 @@ public class TimetableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		doPost(req, resp);
+		doPost(req, resp); 
 	}
 
 	protected void forward(HttpServletRequest req, HttpServletResponse resp,
@@ -48,9 +48,7 @@ public class TimetableServlet extends HttpServlet {
 		String uri = req.getRequestURI();
 		
 		if (uri.indexOf("movieTime.do") != -1) {
-			String imagePath = cp +"/timetable/image";
-			
-		
+			String imagePath = cp +"/timetable/image";		
 			req.setAttribute("imagePath", imagePath);
 			
 			//city, district, movie_name, screen_num, start_time, end_time, seatedseat, seatnumber, type, age_limt, movie_id
@@ -110,10 +108,6 @@ public class TimetableServlet extends HttpServlet {
 			
 			
 			}
-			
-		
-
-			
 			req.setAttribute("imagePath", imagePath);
 			
 			//List<TimetableDTO> lists = dao1.getList(movie_id,date);
@@ -126,8 +120,13 @@ public class TimetableServlet extends HttpServlet {
 			url="/timetable/movieTime.jsp?movie_id="+movie_id;
 			forward(req, resp, url);
 
+		}else if (uri.indexOf("movieGuide.do") != -1) {
+			
+			String imagePath = cp +"/timetable/image";
+			req.setAttribute("imagePath", imagePath);
+			url="/timetable/movieGuide.jsp";
+			forward(req, resp, url);
 		}
-		
 
 	}
 

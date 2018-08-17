@@ -13,12 +13,13 @@ public class MovieDTO {
 	private String showtimes; // 영화 총상영시간 ex)111분
 	private String summary; //영화 줄거리
 	private String age_limit;// 영화 관람연령제한
-	private String count; //평가한 총 인원
+	private String countRate; //평가한 총 인원
 	
 	private String user_id; //사용자 ID (한줄평에 사용)
 	private String comment_date; //한줄평 작성 날짜
-	private String comment; //한줄평 내용
+	private String comments; //한줄평 내용
 	private int recommend_num; //한줄평 추천수
+	private int commCount; // 해당영화 총 코멘트 갯수
 	
 	
 	private String file_name; // 파일세이브명
@@ -96,11 +97,11 @@ public class MovieDTO {
 	public void setComment_date(String comment_date) {
 		this.comment_date = comment_date;
 	}
-	public String getComment() {
-		return comment;
+	public String getComments() {
+		return comments;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	public int getRecommend_num() {
 		return recommend_num;
@@ -120,11 +121,17 @@ public class MovieDTO {
 	public void setAge_limit(String age_limit) {
 		this.age_limit = age_limit;
 	}
-	public String getCount() {
-		return count;
+	public String getCountRate() {
+		return countRate;
 	}
-	public void setCount(String count) {
-		this.count = count;
+	public void setCountRate(String countRate) {
+		this.countRate = countRate;
+	}
+	public int getCommCount() {
+		return commCount;
+	}
+	public void setCommCount(int commCount) {
+		this.commCount = commCount;
 	}
 	
 	

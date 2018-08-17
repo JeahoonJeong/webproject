@@ -107,16 +107,23 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select (b.movie_id) movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
+			/*sql = "select (b.movie_id) movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
 			sql+= "age_limit,file_name,countRate from movie a, (select rating, countRate, file_name, a.movie_id from ";
-			sql+= "(select count(rating) countRate,avg(rating) rating,movie_id from rating group by movie_id having movie_id='3') a";
+			sql+= "(select count(rating) countRate,round(avg(rating)) rating,movie_id from rating group by movie_id having movie_id=?) a";
 			sql+= ", (select * from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) b ";
 			sql+= "where a.movie_id=b.movie_id";
+			*/
 			
+			sql = "select * from (select (b.movie_id) movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
+			sql+= "age_limit,file_name,countRate from movie a, (select rating, countRate, file_name, a.movie_id from ";
+			sql+= "(select count(rating) countRate,round(avg(rating)) rating,movie_id from rating group by movie_id having movie_id=?) a";
+			sql+= ", (select * from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) b ";
+			sql+= "where a.movie_id=b.movie_id)a, (select count(comments) commCount from comments where movie_id=?) b";
 			
 			pstmt = conn.prepareStatement(sql);
-			/*System.out.println(movie_id);*/
-			/*pstmt.setString(1, movie_id);*/
+
+			pstmt.setString(1, movie_id);
+			pstmt.setString(2, movie_id);
 			rs = pstmt.executeQuery();
 			
 			
@@ -136,7 +143,8 @@ public class MovieDAO {
 				dto.setSummary(rs.getString("summary"));
 				dto.setAge_limit(rs.getString("age_limit"));
 				dto.setFile_name(rs.getString("file_name"));
-				dto.setCount(rs.getString("countRate"));
+				dto.setCountRate(rs.getString("countRate"));
+				dto.setCommCount(rs.getInt("commCount"));
 				
 			}
 			
@@ -150,15 +158,85 @@ public class MovieDAO {
 		
 	}
 	
-	/*public List<MovieDTO> getStillcut(String movie_id){//movie.do¿¡ »Ñ¸± ¿µÈ­ ½ºÆ¿ÄÆÀ» °¡Á®¿È
+	public List<MovieDTO> getStillcut(String movie_id){//movie.do¿¡ »Ñ¸± ¿µÈ­ ½ºÆ¿ÄÆÀ» °¡Á®¿È
 		
+		List<MovieDTO> lst = new ArrayList<MovieDTO>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			
+			sql = "select file_name from image_files where movie_id=? and file_name like '%Still%'";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, movie_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				MovieDTO dto = new MovieDTO();
+				
+				dto.setFile_name(rs.getString("file_name"));
+				
+				lst.add(dto);	
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return lst;
 		
 	}
 	
+	
 	public List<MovieDTO> getAllComment(String movie_id){//moive.do¿¡ »Ñ¸± ¿µÈ­ ÄÚ¸àÆ®¸¦ °¡Á®¿È
 		
+		List<MovieDTO> lst = new ArrayList<MovieDTO>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		
+		try {
+			
+			sql = "select movie_id,user_id,comment_date,comments,recommend_num from comments where movie_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, movie_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				MovieDTO dto = new MovieDTO();
+				
+				dto.setMovie_id(rs.getString("movie_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setComment_date(rs.getString("comment_date"));
+				dto.setRecommend_num(rs.getInt("recommend_num"));
+				
+				lst.add(dto);	
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return lst;
+		
 	}
-	*/
+	
 	
 	
 	

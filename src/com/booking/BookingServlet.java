@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import com.timetable.TimetableDAO;
 import com.timetable.TimetableDTO;
 
@@ -109,12 +110,24 @@ public class BookingServlet extends HttpServlet {
 				selectedTheaterId2 = strTheaterId;
 			}
 
-			String movieInfoMessage = "ok"; // 무비가 선택되면 ok 메시지 전달 
-
+			String checkPara = "0";
+			String strPara = req.getParameter("checking");
+			if(strPara != null){
+				checkPara = strPara;
+			}
+			
+			if(checkPara.equals("1")){
+				List<MovieDTO> lists2 = dao.getMovieData();
+				req.setAttribute("lists2", lists2);
+			}
 			
 			
 			// 세션에 올리기
 
+
+			String imagePath2 = cp + "/movie/image"; // timetable 이미지 경로
+			req.setAttribute("imagePath2", imagePath2);
+			
 			req.setAttribute("nowDay", nowDay);
 			req.setAttribute("hour", hour);
 			req.setAttribute("day", day);
@@ -122,7 +135,6 @@ public class BookingServlet extends HttpServlet {
 			req.setAttribute("selectedHour", selectedHour2);
 			req.setAttribute("selectedMovieId", selectedMoviedId2);
 			req.setAttribute("theaterId", selectedTheaterId2);
-			req.setAttribute("movieInfoMessage", movieInfoMessage);
 
 			url = "/booking/booking.jsp";
 			forward(req, resp, url);
@@ -132,6 +144,16 @@ public class BookingServlet extends HttpServlet {
 			forward(req, resp, url);
 
 		} else if (uri.indexOf("seatSelect.do") != -1) {
+			String screen_id = req.getParameter("screen_id");
+			String age_limit = req.getParameter("age_limit");
+			String movie_name = req.getParameter("movie_name");
+			String screen_num = req.getParameter("screen_num");
+			String start_time = req.getParameter("start_time");
+			String type = req.getParameter("type");
+			String district = req.getParameter("district");
+			
+			System.out.print(screen_id);
+			
 			String value1 = req.getParameter("value1"); // 성인
 			String value2 = req.getParameter("value2"); // 청소년
 			String value3 = req.getParameter("value3"); // 어린이
@@ -149,8 +171,26 @@ public class BookingServlet extends HttpServlet {
 			req.setAttribute("value2", value2);
 			req.setAttribute("value3", value3);
 			req.setAttribute("value4", value4);
-
+			
+			//------------------------------------------------------------------
+			req.setAttribute("age_limit", age_limit);
+			req.setAttribute("movie_name", movie_name);
+			req.setAttribute("screen_num", screen_num);
+			req.setAttribute("start_time", start_time);
+			req.setAttribute("type",type);
+			req.setAttribute("district", district);
+			
+			//------------------------------------------------------------------
 			req.setAttribute("priceMessage", price); // 선택인원에 따른 값 반환
+
+			
+			//------------------------------------------------------------------
+			String imagePath = cp + "/timetable/image"; // timetable 이미지 경로
+			req.setAttribute("imagePath", imagePath);
+			
+			String imagePath2 = cp + "/movie/image"; // timetable 이미지 경로
+			req.setAttribute("imagePath2", imagePath2);
+
 
 			url = "/booking/seatSelect.jsp";
 			forward(req, resp, url);
@@ -251,6 +291,13 @@ public class BookingServlet extends HttpServlet {
 
 			url = "/booking/movieSelect.jsp";
 			forward(req, resp, url);
+		} else if (uri.indexOf("insertDB.do") != -1) {
+			
+			
+//			dao.insertData();
+			
+			
+			
 		}
 
 	}

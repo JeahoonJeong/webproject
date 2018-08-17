@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet{
 			
 			if(dto==null || !(dto.getUser_id().equals(user_id))){
 				
-				req.setAttribute("message", "¾ÆÀÌµð¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä!");
+				req.setAttribute("message", "ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½!");
 				
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet{
 				
 			}else if(!(dto.getUser_pwd().equals(user_pwd))){
 				
-				req.setAttribute("message", "ºñ¹Ð¹øÈ£¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä!");
+				req.setAttribute("message", "ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½!");
 				
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
@@ -85,6 +85,11 @@ public class LoginServlet extends HttpServlet{
 			
 			resp.sendRedirect(url);
 
+			
+		}else if(uri.indexOf("register.do")!=-1){
+			
+			url = "/login/register.jsp";
+			forward(req,resp,url);
 			
 		}
 		

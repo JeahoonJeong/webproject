@@ -44,8 +44,24 @@
 	function cntCheck(){
 		var f = document.seatSelectForm;
 		
-		var cntCheck = 0 ; 
+		var maxCheck ; // 최대 인원수 
+		maxCheck = value1 + value2 + value3+ value4; // 총인원수 
 		
+		var cntCheck = 0 ; // 사용자가 체크한 체크박스 개수
+		var arr_Check = document.getElementsByName("seatCheckBox[]");
+		for(var i = 0 ; i < arr_Check.length ; i++){
+			if(arr_Check[i].checked == true){
+				cntCheck++; // 체크 되어있다면 1증가
+			}
+		}
+		
+		if(cntCheck > maxCheck){
+			alert("선택하신 좌석 개수 확인해주세요 ! ");
+			return ;
+		}
+		
+		f.action = "<%=cp %>/Booking/insertDB.do";
+		f.submit();
 		
 		
 		
@@ -134,22 +150,17 @@
 			
 
 <%-- 조조 			<c:when test=""></c:when>	 --%> 
-<!-- 				조조 성인  -->
+<!-- 				조조 -->
 				
-<!-- 				조조 청소년  -->
-<!-- 	
+	
 <!-- 				우대 -->
-<!-- 	
-				
+		
 
 <%-- 심야			<c:when test=""></c:when>	 --%>
 
-<!-- 				심야성인  -->
+<!-- 				심야  -->
 			
-<!-- 				심야청소년  -->
-		
-<!-- 				어린이  -->
-				
+
 <!-- 				우대 -->
 					
 				
@@ -165,20 +176,42 @@
 				<table border="0" width="220"  cellpadding="0" cellspacing="0">
 					<tr height="250" >
 					<td style="background-color: #555555 ">
-					<img alt="IMG" src="" width="220" height="235"> <!-- 영화정보 이미지 불러오기 -->					
+					<img alt="IMG" src="${imagePath}/${movie_name}.PNG" width="220" height="235"> <!-- 영화정보 이미지 불러오기 -->					
 					</td>
 					</tr>
 					<tr height="50" >
 						<td style="background-color: #555555 ">
-							
+							<table cellpadding="0" cellspacing="0">
+								<tr>
+									<td rowspan="2" style="background-color: #555555 ">
+									<c:if test="${dto.age_limit=='all' }"><img src="${imagePath2 }/ageallbig.png"></c:if>
+									<c:if test="${dto.age_limit=='12' }"><img src="${imagePath2 }/age12big.png"></c:if>
+									<c:if test="${dto.age_limit=='15' }"><img src="${imagePath2 }/age15big.png"></c:if>
+									<c:if test="${dto.age_limit=='18' }"><img src="${imagePath2 }/age18big.png"></c:if>
+									</td>
+									<td style="background-color: #555555 ">
+										<span style="color: white" > ${movie_name } </span>
+									</td>
+								</tr>
+								<tr>
+									<td style="background-color: #555555 ">
+										<span style="font-size: 8pt; background-color: #555555 "> ${type }</span>
+									</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 					
 					<tr >
 					<td style="background-color: #555555 ">
 						<ul style="background-color: #555555 ">
-							<li style="background-color: #555555 "></li>
-							<li style="background-color: #555555 "></li>
+							<li style="background-color: #555555 ">
+								${district }<br/>
+								${screen_num }관
+							</li>
+							<li style="background-color: #555555 ">
+								${start_time }
+							</li>
 							<c:if test="${!empty Message }">
 							<li style="background-color: #555555 ">${Message }</li>
 							</c:if>
@@ -251,6 +284,7 @@
 												${j -9}												
 												</c:if>
 												<c:if test="${j>=19 && i <28}">
+												
 													<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
 												${j -18}
 												</c:if>
@@ -294,7 +328,9 @@
 												<c:if test="${k==29}">
 													<span style="font-weight: bold;">D&nbsp;</span>
 												</c:if>
+												
 												<input type="checkbox" value = "i" name = "seatCheckBox"/>
+												
 												<c:if test="${j>=1 && i <10}">
 												${j }
 												</c:if>

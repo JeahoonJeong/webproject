@@ -1,0 +1,113 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../header.jsp" flush="false" />
+<%
+	//POST 방식에서 한글깨짐을 방지
+	request.setCharacterEncoding("UTF-8");
+	String cp = request.getContextPath();
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="<%=cp%>/login/css/register.css"
+	type="text/css" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="title">회원가입</div>
+
+
+
+
+	<div id="register">
+
+		<div style="clear: both;">
+			<br />
+			<div style="clear: both;">
+				<span class="title2">회원가입</span> &nbsp;&nbsp;&nbsp; 회원님의 정보를 정확히
+				입력해주세요. <br /> <br />
+			</div>
+			<font color="#666">*표시 항목은 필수입력 항목입니다.</font> <br /> <br />
+			<div>
+				<table height="80px">
+					<tr>
+						<td rowspan="2"><img alt=""
+							src="<%=cp%>/mypage/image/profile_m.png" align="middle"></td>
+						<td style="text-align: center;"><br /> <br /></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<table class="info">
+					<tr>
+						<th colspan="2"><b>기본정보 (필수입력)</b></th>
+					</tr>
+					<tr>
+						<td>* 아이디</td>
+						<td><input type="text" value="" name="id"
+							style="width: 150px"></td>
+					</tr>
+					<tr>
+						<td width="150px">* 비밀번호</td>
+						<td><input type="password" name="pwd" style="width: 150px"></td>
+					</tr>
+					<tr>
+						<td>* 이름</td>
+						<td><input type="text" value="" name="name"
+							style="width: 150px"></td>
+					</tr>
+					<tr>
+						<td>* 생년월일</td>
+						<td><input type="text" style="width: 50px" maxlength="4"
+							name="birth1" value="">년&nbsp;&nbsp; <input type="text"
+							style="width: 40px" maxlength="2" name="birth2" value="">월&nbsp;&nbsp;
+							<input type="text" style="width: 40px" maxlength="2"
+							name="birth3" value="">일</td>
+					</tr>
+					<tr>
+						<td>* 휴대폰</td>
+						<td><input type="text" style="width: 50px" maxlength="3"
+							name="tel1" value="">&nbsp;-&nbsp; <input type="text"
+							style="width: 50px" maxlength="4" name="tel2" value="">&nbsp;-&nbsp;
+							<input type="text" style="width: 50px" maxlength="4" name="tel3"
+							value=""></td>
+					</tr>
+					<tr>
+						<td>* 이메일</td>
+						<td><input type="text" value="" name="email"
+							style="width: 180px"></td>
+					</tr>
+				</table>
+
+
+				<table class="info">
+					<tr>
+						<th colspan="2">부가정보 (선택입력)</th>
+					</tr>
+					<tr>
+						<td width="150px">주소</td>
+						<td><input type="text" name="addr"></td>
+					</tr>
+					<tr>
+						<td>선호영화관</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div align="center" style="margin-top: 50px">
+				<input type="submit" value="확인" class="btn1">
+				<input type="submit" value="취소" class="btn1">
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
+<jsp:include page="../footer.jsp" flush="false" />
+</html>
