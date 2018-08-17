@@ -109,14 +109,14 @@ public class MovieDAO {
 			
 			sql = "select (b.movie_id) movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
 			sql+= "age_limit,file_name,countRate from movie a, (select rating, countRate, file_name, a.movie_id from ";
-			sql+= "(select count(rating) countRate,avg(rating) rating,movie_id from rating group by movie_id having movie_id='?') a";
+			sql+= "(select count(rating) countRate,avg(rating) rating,movie_id from rating group by movie_id having movie_id='3') a";
 			sql+= ", (select * from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) b ";
 			sql+= "where a.movie_id=b.movie_id";
 			
 			
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(movie_id);
-			pstmt.setString(1, movie_id);
+			/*System.out.println(movie_id);*/
+			/*pstmt.setString(1, movie_id);*/
 			rs = pstmt.executeQuery();
 			
 			
@@ -136,7 +136,7 @@ public class MovieDAO {
 				dto.setSummary(rs.getString("summary"));
 				dto.setAge_limit(rs.getString("age_limit"));
 				dto.setFile_name(rs.getString("file_name"));
-				dto.setCount(rs.getString("count"));
+				dto.setCount(rs.getString("countRate"));
 				
 			}
 			

@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=cp%>/movie/css/style.css" type="text/css"/>
+<link rel="stylesheet" href="<%=cp%>/movie/css/list.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script type="text/javascript">
 
@@ -30,7 +30,7 @@
 
 			var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 			
-			var windowObj = window.open("movie.do?movie_id='${dto.movie_id}'","movieInfo",setting);
+			var windowObj = window.open("movie.do","movieInfo",setting);
 			
 			windowObj.document.getElementById("movie_id").value = document.getElementById("movie_id").value;
 		
@@ -39,7 +39,7 @@
 </script>
 </head>
 <body>
-<form action="movie.do" method="post" id="mvForm" target="movieInfo">
+<form action="" method="post" id="mvForm">
 <div id="title">
 	<table width="1000px" height="50px" align="center" style="vertical-align: middle;" class="topMenu">
 		<tr>
@@ -55,113 +55,56 @@
 	</table>
 </div>
 
-
-<!-- <div class="content">
-	<table>
-		<tr>
-			<td width="220px" class="top">
-			<img src="./image/mission.jpg" width="100%" height="330px"/>
-			</td>
-		</tr>
-		<tr>
-		<td width="220px" height="50px" class="bottom">
-		<span style="line-height: 25px;">
-		<font color="grey" style="font-weight: bold; font-size: 11pt;">평점8.3</font></span>
-		<span style="float: right;"><img src="./image/bg_allstar1.png"/></span>
-		</td>
-		</tr>
-		<tr>
-		<td class="middle">
-		<img src="./image/age15.png" align="middle"/>
-		<font color="#353535" style="font-weight: bold;">
-		<a href="javascript:showPop();">미션임파서블:폴</a>…</td>
-		</tr>
-		<tr>
-		<td class="bottom" align="center"> 
-		<input type="button" value="상세정보" class="btn1"
-		onclick="showPop();"/>
-		&nbsp;<input type="button" value="예매하기" class="btn1"
-		onclick=""/></td>
-		</tr>
-	</table>
-</div> -->
-
-
 <div id="content">
-		<c:set var="i" value="0"/>
-		<c:forEach var="dto" items="${lst }">
-		 <table style="float: left; margin: 7px;">
-		<c:if test="${i==0 }">
-			<tr>
-		</c:if>
-		<c:if test="${i!=0&&i%7==0 }">
-			</tr>
-			<tr>
-		</c:if>
-			<td width="220px" class="top">
-			<img src="${imagePath }/${dto.file_name}" width="100%" height="330px"/>
-			</td>
-		</tr>
+	<table width="1722px">
 		<tr>
-		<td width="220px" height="50px" class="bottom">
-		<span style="line-height: 25px;">
-		<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
-		<span style="float: right;"><img src="./image/bg_allstar1.png"/></span>
-		</td>
-		</tr>
-		<tr>
-		<td class="middle">
-		<img src="./image/age15.png" align="middle"/>
-		<font color="#353535" style="font-weight: bold;">
-		<a href="javascript:showPop();">${dto.movie_name }</a><!-- … --></td>
-		</tr>
-		<tr>
-		<td class="bottom" align="center"> 
-		${dto.movie_id }
-		<input type="hidden" name="movie_id1" value="${dto.movie_id }"/>
-		<input type="button" value="상세정보" class="btn1"
-		onclick="showPop();"/>
-		&nbsp;<input type="button" value="예매하기" class="btn1"
-		onclick=""/></td>
-		</tr>
-		</table>
-	</c:forEach>	
-	</form>
-</div>
+		<td height="50px" colspan="7"></td>
 
-
-<%-- <div class="content">
-	<table>
+		</tr>
 	<c:set var="i" value="0"/>
 	<c:forEach var="dto" items="${lst }">
 	<c:if test="${i==0 }">
 		<tr>
 	</c:if>
-	<c:if test="${i!=0&&i%3==0 }">
+	<c:if test="${i!=0&&i%7==0 }">
 		</tr>
 		<tr>
 	</c:if>
-	<td width="220px" class="top">
-	<img src="${imagePath }/${dto.saveFileName}" width="100%" height="330px"/>
-	</td>
-	</tr>
-	<tr>
-	<c:if test="${dto.relDate<sysdate }">
-	<td width="150px" height="30px">평점${dto.star }</td></c:if>
-	<c:if test="${dto.relDate>sysdate }">
-	<td width="150px" height="30px" >${dto.relDate }
-	<table cellspacing="5" bgcolor="#503396"><tr><td></td></tr></table></td>
-	</c:if>
-	</tr>
-	<tr>
-	<td><img src="${imagePath }/${dto.saveFileName}"/>&nbsp;${dto.title }</td>
-	</tr>
-	<tr>
-	<td>상세정보&nbsp;예매하기</td>
-	</tr>
-	</c:forEach>
+		<td width="242px" height="517px">
+		<table width="230px" height="503px" style="margin: 3px;">
+			<tr>
+				<td class="top">
+				<img src="${imagePath }/${dto.file_name}" width="230px" height="330px"/>
+				</td>
+			</tr>
+			<tr>
+				<td width="230px" height="50px" class="bottom">
+				<span style="line-height: 25px;">
+				<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
+				<span style="float: right;"><img src="./image/bg_allstar1.png"/></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="middle">
+				<img src="./image/age15.png" align="middle"/>
+				<font color="#353535" style="font-weight: bold;">
+				<a href="javascript:showPop();">${dto.movie_name }</a></font><!-- … --></td>
+			</tr>
+			<tr>
+				<td class="bottom" align="center"> 
+				<input type="hidden" name="movie_id1" value="${dto.movie_id }"/>
+				<input type="button" value="상세정보" class="btn1"
+				onclick="showPop();"/>
+				&nbsp;<input type="button" value="예매하기" class="btn1"
+				onclick=""/></td>
+				<c:set var="i" value="${i+1 }" />
+			</tr>
 	</table>
-</div> --%>
+	</td>
+	</c:forEach>	
+	</table>
+</div>
+
 
 
 
