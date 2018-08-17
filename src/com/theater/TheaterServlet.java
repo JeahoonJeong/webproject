@@ -52,11 +52,15 @@ public class TheaterServlet extends HttpServlet {
 		String url;
 		 
 		if(uri.indexOf("theater.do") != -1){
+			String imagePath = cp +"/timetable/image";		
+			req.setAttribute("imagePath", imagePath);
 
 			url = "/theater/theater.jsp";
 			forward(req, resp, url);
 		
 		}else if(uri.indexOf("theaterP2.do") != -1){
+			String imagePath = cp +"/timetable/image";		
+			req.setAttribute("imagePath", imagePath);
 			
 			Calendar cal = Calendar.getInstance();
 			int y = cal.get(Calendar.YEAR);
@@ -78,6 +82,8 @@ public class TheaterServlet extends HttpServlet {
 			forward(req, resp, url);
 			
 		}else if (uri.indexOf("theaterP2_ok.do") != -1) {
+			String imagePath = cp +"/timetable/image";		
+			req.setAttribute("imagePath", imagePath);
 			
 			String theater_id = req.getParameter("theater_id");
 			req.setAttribute("theater_id", theater_id);
