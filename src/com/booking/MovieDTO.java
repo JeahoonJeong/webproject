@@ -11,6 +11,17 @@ public class MovieDTO {
 	private String screen_num; // 상영관 번호 6관
 	private String seatedSeat; // 선택된 좌석
 	private String seatNumber; // 전체 좌석수
+	private String screen_id; // 상영관 아이디 
+	
+	
+	
+	public String getScreen_id() {
+		return screen_id;
+	}
+
+	public void setScreen_id(String screen_id) {
+		this.screen_id = screen_id;
+	}
 
 	public String getStart_time() {
 		return start_time;

@@ -10,13 +10,13 @@ public class BookingDAO {
 
 	private Connection conn;
 	
-	// DI (ÀÇÁ¸¼ºÁÖÀÔ)
+	// DI (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	public BookingDAO(Connection conn) {
 		this.conn = conn;
 		
 	}
 	
-	// 1. ¿µÈ­°ü Á¤º¸ °¡Á®¿À±â (Select)
+	// 1. ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Select)
 	public List<TheaterDTO> getReadData(){
 		List<TheaterDTO> lists_theater = new ArrayList<TheaterDTO>();
 		
@@ -25,7 +25,7 @@ public class BookingDAO {
 		String sql ;
 		
 		try {
-			sql = "select theater_id ,city, district from theater "; // »ó¿µ°ü Á¤º¸ °¡Á®¿À´Â sql¹®
+			sql = "select theater_id ,city, district from theater "; // ï¿½ó¿µ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ sqlï¿½ï¿½
 					
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -51,7 +51,7 @@ public class BookingDAO {
 	}
 	
 	
-	// 2. ¿µÈ­¿Í ³¯Â¥ ½Ã°£¿¡ µû¸¥ Á¤º¸ °¡Á®¿À±â (Select) .v2
+	// 2. ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½Â¥ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Select) .v2
 //	 public List<MovieDTO> getMovieData(String movieName,String date){
 //		List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
 //		
@@ -62,7 +62,7 @@ public class BookingDAO {
 //		try {
 //			sql = "SELECT to_char(start_time,'HH24:MI'), to_char(end_time,'HH24:MI'), "
 //					+ "age_limit , movie_name, type , city, district"
-//					+ "FROM TIMETABLE;"; // »ó¿µ°ü Á¤º¸ °¡Á®¿À´Â sql¹®
+//					+ "FROM TIMETABLE;"; // ï¿½ó¿µ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ sqlï¿½ï¿½
 //					
 //			pstmt = conn.prepareStatement(sql);
 //			pstmt.setString(1, );
@@ -92,7 +92,7 @@ public class BookingDAO {
 //		return lists2;	
 //		
 //	}
-	// 2. ¿µÈ­¿Í ³¯Â¥ ½Ã°£¿¡ µû¸¥ Á¤º¸ °¡Á®¿À±â (Select) .v1
+	// 2. ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½Â¥ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Select) .v1
 	 public List<MovieDTO> getMovieData(){
 			List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
 			
@@ -101,9 +101,9 @@ public class BookingDAO {
 			String sql ;
 			
 			try {
-				sql = "SELECT to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
+				sql = "SELECT screen_id ,to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
 						+ "age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber "
-						+ "FROM TIMETABLE"; // »ó¿µ°ü Á¤º¸ °¡Á®¿À´Â sql¹®
+						+ "FROM TIMETABLE"; // ï¿½ó¿µ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ sqlï¿½ï¿½
 						
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
@@ -120,6 +120,7 @@ public class BookingDAO {
 					dto.setScreen_num(rs.getString("screen_num"));
 					dto.setSeatedSeat(rs.getString("seatedseat"));
 					dto.setSeatNumber(rs.getString("seatnumber"));
+					dto.setScreen_id(rs.getString("screen_id"));
 					
 					lists2.add(dto);
 				}
@@ -135,7 +136,7 @@ public class BookingDAO {
 
 		}
 	
-	// 3. ¿µÈ­ÀÇ ¿¹¸ÅµÈ ÁÂ¼® ÀÎ¿øÁ¤º¸ °¡Á®¿À±â (Select)
+	// 3. ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½Åµï¿½ ï¿½Â¼ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Select)
 //	public List<E> getSelectedSeatData(){
 //		List<E> lists = new ArrayList<E>();
 //		
@@ -164,35 +165,119 @@ public class BookingDAO {
 //	}
 //	
 	
-	// 4. ÁÂ¼® ¼±ÅÃ (Insert)
+	// 4. ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ (Insert)
+	 public int insertData(String userId, String movie_id, String screen_id){
+		 int result = 0 ; 
+		 
+		 
+		 
+		 
+		 
+		 
+		 return result;
+		 
+	 }
+	 
+	 
+	 public List<BookingDTO> getSeatInfo(String screenId){
+			List<BookingDTO> lists = new ArrayList<BookingDTO>();
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql ;
+			
+			try {
+				
+				sql = "select screen_id, row_num, seat_num, status "
+						+ " from seat where screen_id = ?";
+						
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, screenId);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					BookingDTO dto = new BookingDTO();
+					
+					dto.setScreen_id(rs.getString("screen_id"));
+					dto.setRow_num(rs.getString("row_num"));
+					dto.setSeat_num(rs.getInt("seat_num"));
+					dto.setStatus(rs.getInt("status"));
+					
+					lists.add(dto);
+				}
+				
+				rs.close();
+				pstmt.close();
+				
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+
+			return lists;
+
+		}
+	 
+	 public void insertBookedSeats(List<bookedSeatDTO> lists, int booked_id){
+		 
+		 PreparedStatement pstmt = null;
+		 String sql;
+		 
+		 sql = "insert into booked_seats(screen_id, row_num, seat_num, booked_id, user_id"
+					+ ", reservation_date, type, cancel_date) values(?,?,?,?,?,sysdate,?,null)";
+		 
+		 
+		 try {
+			 
+			pstmt = conn.prepareStatement(sql);
+			
+			for(bookedSeatDTO dto : lists){
+				pstmt.setString(1, dto.getScreen_id());
+				pstmt.setString(2, dto.getRow_num());
+				pstmt.setInt(3,dto.getSeat_num());
+				pstmt.setInt(4,booked_id);
+				pstmt.setString(5, dto.getUser_id());
+				pstmt.setString(6,dto.getType());
+				
+				pstmt.addBatch();
+			}
+			
+			pstmt.executeBatch();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		 
+	 }
+	 
+	 
+	 public int getBookedNum(){
+			
+			int maxNum = 0;
+			
+			PreparedStatement pstmt = null;
+			String sql= "";
+			ResultSet rs = null;
+			
+			try {
+				sql = "select nvl(max(booked_id),0) from booked_seats";
+				pstmt = conn.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()){
+					
+					maxNum = rs.getInt(1);
+					
+				}
+				rs.close();
+				pstmt.close();
+				
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+			return maxNum;
+		}
+	 
 	
-	// 6. ¿µÈ­ÀÇ ¿¹¸ÅµÈ ÁÂ¼® °³¼ö °¡Á®¿À±â (Select)
-//	public int getSelectedSeatDataCount(){
-//		int dataCount = 0 ; 
-//		
-//		PreparedStatement pstmt = null;
-//		
-//		ResultSet rs = null;
-//		
-//		String sql;
-//		
-//		try {
-//			sql = "select nvl(count(*),0) from ";
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()){
-//				dataCount = rs.getInt(1);
-//				
-//			}
-//			rs.close();
-//			pstmt.close();
-//		} catch (Exception e) {
-//			e.toString();
-//		}
-//		
-//		return dataCount ;	
-//	}
-//	
+
 	
 }

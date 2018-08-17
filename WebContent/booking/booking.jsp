@@ -27,6 +27,16 @@
 <script type="text/javascript">
 	var windowObj; // 자식창 window 객체를 저장할 변수
 
+	// 영화 선택해서 다음 좌석선택으로 넘어가기
+	function goNextPage(){
+		var f= document.bookingForm;
+		
+		f.action ="<%=cp%>/Booking/seatSelect.do" ;
+		f.submit();
+		
+	}
+	
+	
 	// 달력 팝업
 	function showCalendar() {
 		var date;
@@ -472,7 +482,9 @@
 					<table style="display: block;" height="460" border="0" class ="scrooltbody" align="center" cellpadding="0" cellspacing="0">
 					<tbody>
 						<c:forEach var ="dto2" items="${lists2 }" >
-							<tr style="border-bottom: 1">							
+						
+							<tr style="border-bottom: 1">		
+								
 								
 								<td width="130" style="text-align: center;">
 									<span style="font-size: 15pt; font-weight: bold;"> ${dto2.start_time }</span> ~ ${dto2.end_time }
@@ -480,9 +492,24 @@
 									<span style="font-size : 25pt;">|</span>
 											</td>										
 								<td width="290" style="text-align: left;">
-									&nbsp;&nbsp;${dto2.age_limit } | ${dto2.movie_name }
+								
+									<input type="hidden" name = "screen_id" value = "${dto2.screen_id}">
+									<input type="hidden" name = "age_limit" value = "${dto2.age_limit}">
+									<input type="hidden" name = "movie_name" value = "${dto2.movie_name}">
+									<input type="hidden" name = "screen_num" value = "${dto2.screen_num}">
+									<input type="hidden" name = "start_time" value = "${dto2.start_time}">
+									<input type="hidden" name = "district" value = "${dto2.district}">
+									
+									<input type="hidden" name ="type" value ="${dto2.type }">
+									
+									&nbsp;&nbsp;<a onclick="goNextPage();"> 
+									<c:if test="${dto2.age_limit=='all' }"><img width="20" height="20" src="${imagePath2 }/ageallbig.png"></c:if>
+									<c:if test="${dto2.age_limit=='12' }"><img width="20" height="20" src="${imagePath2 }/age12big.png"></c:if>
+									<c:if test="${dto2.age_limit=='15' }"><img width="20" height="20" src="${imagePath2 }/age15big.png"></c:if>
+									<c:if test="${dto2.age_limit=='18' }"><img width="20" height="20" src="${imagePath2 }/age18big.png"></c:if>
+									${dto2.movie_name }</a>
 								<br/>
-									&nbsp;&nbsp;${dto2.type }
+									&nbsp;&nbsp;<span style="font-size: 9pt;">${dto2.type }</span>
 								</td>										
 								<td>
 								<span style="font-size : 25pt;">|</span>
@@ -495,9 +522,10 @@
 								<br/>
 									${dto2.seatNumber - dto2.seatedSeat} / ${dto2.seatNumber }
 								</td>										
-								
+							
 							</tr>
 							<tr>
+						
 								<td colspan="4">
 									<hr>
 								</td>
