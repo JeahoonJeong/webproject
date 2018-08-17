@@ -14,7 +14,7 @@ public class TheaterDAO {
 	public TheaterDAO(Connection conn){
 		this.conn = conn;
 	}
-	
+	 
 	//모든데이터 가져오기
 	public List<TheaterDTO> getlist(String district, String start_time){
 		

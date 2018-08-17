@@ -13,7 +13,7 @@ public class TheaterDTO {
 	private int seatNumber; // 217
 	private String type; // µğÁöÅĞ
 	private int age_limit; // 12¼¼
-
+ 
 	public String getCity() {
 		return city;
 	}

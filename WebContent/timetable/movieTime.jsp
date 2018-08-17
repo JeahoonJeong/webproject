@@ -47,7 +47,7 @@
 	if (preMonth < 1) { //월이 0보다 작으면
 		preYear = year - 1; //-1년 
 		preMonth = 12; // 월 = 12
-	}
+	} 
 
 	int nextYear = year;
 	int nextMonth = month;

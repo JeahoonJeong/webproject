@@ -50,7 +50,7 @@ public class TheaterServlet extends HttpServlet {
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
 		String url;
-		
+		 
 		if(uri.indexOf("theater.do") != -1){
 
 			url = "/theater/theater.jsp";
