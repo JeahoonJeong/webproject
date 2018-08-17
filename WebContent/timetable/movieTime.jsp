@@ -136,36 +136,15 @@
 			<!--  <a href="calender.jsp?year=<%=nowYear %>&month=<%=nowMonth%>"><img src="./image/today.jpg" align="left"></a>-->
 			
 			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id}&year=<%=preYear%>&month=<%=preMonth%>&day=<%=preDay%>">
-			<img src="${imagePath}/화살표1.png" width="30" height="30" border="2" align="middle"></a> 
+			<img src="${imagePath}/화살표1.png" width="30" height="30" border="0" align="middle"></a> 
 			
 			<b>&nbsp; <%=month %>월&nbsp;&nbsp; <%=day %>일</b>
-			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id }&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="2" align="middle"></a>			
+			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id }&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="0" align="middle"></a>			
 			</td>
 		</tr>
-	</table>
+	</table>	
 	
-	
-	<%-- <table width="1000" cellpadding="0" cellspacing="0" align="center" border="0">	
-		
-		<c:forEach var="dto" items="${lists }">		
-		
-		<c:if test="${!dto.district.equals(district) }">
-		<tr height="50">
-		<td align="center" bgcolor="#e6e6e6" width="100">${dto.city}<br/>(${dto.district})</td>		
-		<td align="center" bgcolor="#e6e6e6" width="100">${dto.movie_name }<br/>(${dto.age_limit })</td>
-		<td align="center" bgcolor="#e6e6e6" width="150">${dto.screen_num }<br/>(${dto.type })</td>	
-		
-		</c:if>
-		<td align="center" bgcolor="#ffffff" width="60">		
-			${dto.start_time }~    ${dto.end_time }         ${dto.seatedseat}/${dto.seatnumber }    <a href="">예매</a></td>
-			
-	
-	
-	
-		<c:set var="district" value="${dto.district }"/>
-		</c:forEach>	
-	
-	</table>  --%>
+
 	<c:if test="${movie_id==null }">
 	
 		<p align="center"><img src="${imagePath}/nullmovie.PNG" width="1000" height="400" border="2" align="middle"></p>
@@ -209,7 +188,7 @@
 	
 	
 	<br/><br/><br/><br/><br/>
-	
+	<jsp:include page="../footer.jsp" flush="false"/>
 	
 	
 	
