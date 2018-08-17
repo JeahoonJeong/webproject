@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <jsp:include page="../header.jsp" flush="false"/>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -99,10 +101,9 @@
 				<c:if test="${dto.age_limit=='18' }"><img src="${imagePath }/age18big.png"></c:if>
 				<font color="#353535" style="font-weight: bold; vertical-align: top;">
 				<a href="javascript:showPop();">
-				
 				<c:choose>
-					<c:when test="${dto.movie_name.length>10 }">
-						<c:out value="${dto.movie_name.substring(dto.movie_id,0,10) }"/>…
+					<c:when test="${fn:length(dto.movie_name)>10 }">
+						<c:out value="${fn:substring(dto.movie_name,0,9) }"/>…
 					</c:when>
 					<c:otherwise>
 						<c:out value="${dto.movie_name }"></c:out>
