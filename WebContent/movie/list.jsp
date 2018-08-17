@@ -82,19 +82,35 @@
 				<span style="line-height: 25px;">
 				<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
 				<span style="float: right;">
-				<c:if test="${0<dto.rating&&dto.rating<3 }"><img src="${imagePath }/rate1.png"></c:if>
-				<c:if test="${2<dot.rating&&dto.rating<5 }"><img src="${imagePath }/rate2.png"></c:if>
-				<c:if test="${4<dot.rating&&dto.rating<7 }"><img src="${imagePath }/rate3.png"></c:if>
-				<c:if test="${6<dot.rating&&dto.rating<9 }"><img src="${imagePath }/rate4.png"></c:if>
-				<c:if test="${8<dot.rating&&dto.rating<11 }"><img src="${imagePath }/rate5.png"></c:if>
+				<c:if test="${dto.rating==0 }"><img src="${imagePath }/rate0.png"></c:if>
+				<c:if test="${dto.rating<3&&0<dto.rating}"><img src="${imagePath }/rate1.png"></c:if>
+				<c:if test="${2<dto.rating&&dto.rating<5}"><img src="${imagePath }/rate2.png"></c:if>
+				<c:if test="${4<dto.rating&&dto.rating<7 }"><img src="${imagePath }/rate3.png"></c:if>
+				<c:if test="${6<dto.rating&&dto.rating<9 }"><img src="${imagePath }/rate4.png"></c:if>
+				<c:if test="${8<dto.rating&&dto.rating<11 }"><img src="${imagePath }/rate5.png"></c:if>
 				</span>
 				</td>
 			</tr>
 			<tr>
 				<td class="middle">
-				<img src="./image/age15.png" align="middle"/>
-				<font color="#353535" style="font-weight: bold;">
-				<a href="javascript:showPop();">${dto.movie_name }</a></font><!-- … --></td>
+				<c:if test="${dto.age_limit=='all' }"><img src="${imagePath }/ageallbig.png"></c:if>
+				<c:if test="${dto.age_limit=='12' }"><img src="${imagePath }/age12big.png"></c:if>
+				<c:if test="${dto.age_limit=='15' }"><img src="${imagePath }/age15big.png"></c:if>
+				<c:if test="${dto.age_limit=='18' }"><img src="${imagePath }/age18big.png"></c:if>
+				<font color="#353535" style="font-weight: bold; vertical-align: top;">
+				<a href="javascript:showPop();">
+				
+				<c:choose>
+					<c:when test="${dto.movie_name.length>10 }">
+						<c:out value="${dto.movie_name.substring(dto.movie_id,0,10) }"/>…
+					</c:when>
+					<c:otherwise>
+						<c:out value="${dto.movie_name }"></c:out>
+					</c:otherwise>
+				</c:choose>
+				</a>
+				</font>
+				</td>
 			</tr>
 			<tr>
 				<td class="bottom" align="center"> 
