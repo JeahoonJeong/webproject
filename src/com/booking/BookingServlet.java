@@ -124,6 +124,10 @@ public class BookingServlet extends HttpServlet {
 			
 			// 세션에 올리기
 
+
+			String imagePath2 = cp + "/movie/image"; // timetable 이미지 경로
+			req.setAttribute("imagePath2", imagePath2);
+			
 			req.setAttribute("nowDay", nowDay);
 			req.setAttribute("hour", hour);
 			req.setAttribute("day", day);
@@ -140,15 +144,15 @@ public class BookingServlet extends HttpServlet {
 			forward(req, resp, url);
 
 		} else if (uri.indexOf("seatSelect.do") != -1) {
-			String start_time = req.getParameter("start_time");
+			String screen_id = req.getParameter("screen_id");
+			String age_limit = req.getParameter("age_limit");
 			String movie_name = req.getParameter("movie_name");
 			String screen_num = req.getParameter("screen_num");
+			String start_time = req.getParameter("start_time");
+			String type = req.getParameter("type");
 			String district = req.getParameter("district");
 			
-			System.out.print(start_time);
-			System.out.print(movie_name);
-			System.out.print(screen_num);
-			System.out.print(district);
+			System.out.print(screen_id);
 			
 			String value1 = req.getParameter("value1"); // 성인
 			String value2 = req.getParameter("value2"); // 청소년
@@ -167,8 +171,26 @@ public class BookingServlet extends HttpServlet {
 			req.setAttribute("value2", value2);
 			req.setAttribute("value3", value3);
 			req.setAttribute("value4", value4);
-
+			
+			//------------------------------------------------------------------
+			req.setAttribute("age_limit", age_limit);
+			req.setAttribute("movie_name", movie_name);
+			req.setAttribute("screen_num", screen_num);
+			req.setAttribute("start_time", start_time);
+			req.setAttribute("type",type);
+			req.setAttribute("district", district);
+			
+			//------------------------------------------------------------------
 			req.setAttribute("priceMessage", price); // 선택인원에 따른 값 반환
+
+			
+			//------------------------------------------------------------------
+			String imagePath = cp + "/timetable/image"; // timetable 이미지 경로
+			req.setAttribute("imagePath", imagePath);
+			
+			String imagePath2 = cp + "/movie/image"; // timetable 이미지 경로
+			req.setAttribute("imagePath2", imagePath2);
+
 
 			url = "/booking/seatSelect.jsp";
 			forward(req, resp, url);
