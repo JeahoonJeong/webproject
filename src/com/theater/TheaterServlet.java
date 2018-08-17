@@ -66,7 +66,7 @@ public class TheaterServlet extends HttpServlet {
 			date = y+"/";
 			date = date.substring(2,4);	
 			date = date+"/0"+m+"/"+d+"%";
-			System.out.println(date);
+
 			
 			
 			//다음페이지 데이터 받기
