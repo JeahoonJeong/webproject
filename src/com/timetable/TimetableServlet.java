@@ -110,10 +110,6 @@ public class TimetableServlet extends HttpServlet {
 			
 			
 			}
-			
-		
-
-			
 			req.setAttribute("imagePath", imagePath);
 			
 			//List<TimetableDTO> lists = dao1.getList(movie_id,date);
@@ -126,8 +122,13 @@ public class TimetableServlet extends HttpServlet {
 			url="/timetable/movieTime.jsp?movie_id="+movie_id;
 			forward(req, resp, url);
 
+		}else if (uri.indexOf("movieGuide.do") != -1) {
+			
+			String imagePath = cp +"/timetable/image";
+			req.setAttribute("imagePath", imagePath);
+			url="/timetable/movieGuide.jsp";
+			forward(req, resp, url);
 		}
-		
 
 	}
 

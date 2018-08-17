@@ -85,21 +85,21 @@
 
 </head>
 <body>
+<jsp:include page="../header.jsp" flush="false"/>
 
-	<br/><br/><br/><br/><br/>
 	
 	
 	 <div class="sub_navi ">
 		<div class="sub_navi_wrap">
 			<ul class="clearfix">
 				<li>
-					<a class="timetable i0 " href="<%=cp%>/timetable/movieGuide.jsp"  title="예매안내 바로가기">예매안내</a>
+					<a class="timetable i0 " href="<%=cp%>/Timetable/movieGuide.do"  title="예매안내 바로가기">예매안내</a>
 				</li>
 				<li>
 					<a class="timetable i1 " href="<%=cp%>/Timetable/movieTime.do"  title="영화별 상영시간표 바로가기">영화별 상영시간표</a>
 				</li>
 				<li>
-					<a class="timetable i2 " href="<%=cp%>/timetable/movieCity.jsp"  title="영화관별 상영시간표 바로가기">영화관별 상영시간표</a>
+					<a class="timetable i2 " href="<%=cp%>/Theater/theaterP2.do"  title="영화관별 상영시간표 바로가기">영화관별 상영시간표</a>
 				</li>
 				
 			</ul>
@@ -173,9 +173,8 @@
 	</c:if>
 	
 	
-	
 	<table border="0" class="scheduleP2">
-
+			
 			<c:forEach var="dto" items="${lists }">
 				<c:if test="${!dto.district.equals(district)||!dto.screen_num.equals(screen_num) }">
 
@@ -203,7 +202,9 @@
 
 				<c:set var="district" value="${dto.district }" />
 				<c:set var="screen_num" value="${dto.screen_num}"/>
+				
 			</c:forEach>
+			
 		</table>
 	
 	

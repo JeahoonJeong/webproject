@@ -113,6 +113,22 @@
 <body>
 <jsp:include page="../header.jsp" flush="false"/>
 
+	 <div class="sub_navi ">
+		<div class="sub_navi_wrap">
+			<ul class="clearfix">
+				<li>
+					<a class="timetable i0 " href="<%=cp%>/Timetable/movieGuide.do"  title="예매안내 바로가기">예매안내</a>
+				</li>
+				<li>
+					<a class="timetable i1 " href="<%=cp%>/Timetable/movieTime.do"  title="영화별 상영시간표 바로가기">영화별 상영시간표</a>
+				</li>
+				<li>
+					<a class="timetable i2 " href="<%=cp%>/Theater/theaterP2.do"  title="영화관별 상영시간표 바로가기">영화관별 상영시간표</a>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
 <!-- 처음 이미지 -->
 <div
 	style="background-image: url(http://image2.megabox.co.kr/mop/cinema/2018/57/703AF3-6E8B-4149-ABA3-E270FD395135.jpg); background-repeat: no-repeat; height: 580px; border: 1px solid black">
@@ -337,6 +353,7 @@
 						<span class="type"></span>
 						<span class="time">${dto.start_time }~${dto.end_time }</span> 
 						<span class="seat"> ${dto.seatedseat}/${dto.seatnumber}</span> <br>
+						
 					</p>
 				</div>
 		
