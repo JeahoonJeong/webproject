@@ -50,7 +50,7 @@ public class TheaterServlet extends HttpServlet {
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
 		String url;
-		
+		 
 		if(uri.indexOf("theater.do") != -1){
 
 			url = "/theater/theater.jsp";
@@ -58,20 +58,67 @@ public class TheaterServlet extends HttpServlet {
 		
 		}else if(uri.indexOf("theaterP2.do") != -1){
 			
+			Calendar cal = Calendar.getInstance();
+			int y = cal.get(Calendar.YEAR);
+			int m = cal.get(Calendar.MONTH) + 1;
+			int d = cal.get(Calendar.DAY_OF_MONTH);
+			String date;			
+			date = y+"/";
+			date = date.substring(2,4);	
+			date = date+"/0"+m+"/"+d+"%";
+			System.out.println(date);
+			
+			
 			//´ÙÀ½ÆäÀÌÁö µ¥ÀÌÅÍ ¹Ş±â
 			String district = req.getParameter("district");
-			String start_time = req.getParameter("start_time");
+			String start_time = req.getParameter("start_time");					
 			
-			List<TheaterDTO> lists = dao.getlist(district, start_time);
-			
-			req.setAttribute("lists", lists);
 			req.setAttribute("district", district);
 			req.setAttribute("start_time", start_time);
 	
 			url = "/theater/theaterP2.jsp";
 			forward(req, resp, url);
 			
-		}else if(uri.indexOf("calendar.do") != -1){
+		}else if (uri.indexOf("theaterP2_ok.do") != -1) {
+			String theater_id = req.getParameter("theater_id");
+			req.setAttribute("theater_id", theater_id);
+			System.out.println(theater_id);
+			
+			String year = req.getParameter("year");
+			String month = req.getParameter("month");
+			String day = req.getParameter("day");
+			String date;
+			if (year != null) {
+
+				date = year + "/";
+				date = date.substring(2, 4);
+				date = date + "/0" + month + "/" + day + "%";
+				System.out.println(date);
+			} else {
+
+				Calendar cal = Calendar.getInstance();
+				// ï¿½ï¿½ï¿½Ã³ï¿½Â¥
+
+				int y = cal.get(Calendar.YEAR);
+				int m = cal.get(Calendar.MONTH) + 1;
+				int d = cal.get(Calendar.DAY_OF_MONTH);
+				date = y + "/";
+				date = date.substring(2, 4);
+				date = date + "/0" + m + "/" + d + "%";
+				System.out.println(date);
+
+			}
+			
+			
+			
+			List<TheaterDTO> lists = dao.getlist(theater_id,date);			
+			req.setAttribute("lists", lists);
+			
+			url = "/theater/theaterP2.jsp?theater_id="+theater_id;
+			forward(req, resp, url);
+		}
+		
+		else if(uri.indexOf("calendar.do") != -1){
 			
 			url = "/theater/calendar.jsp";
 			forward(req, resp, url);

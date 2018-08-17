@@ -47,7 +47,7 @@
 	if (preMonth < 1) { //월이 0보다 작으면
 		preYear = year - 1; //-1년 
 		preMonth = 12; // 월 = 12
-	}
+	} 
 
 	int nextYear = year;
 	int nextMonth = month;
@@ -139,7 +139,7 @@
 			<img src="${imagePath}/화살표1.png" width="30" height="30" border="2" align="middle"></a> 
 			
 			<b>&nbsp; <%=month %>월&nbsp;&nbsp; <%=day %>일</b>
-			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id}&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="2" align="middle"></a>			
+			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id }&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="2" align="middle"></a>			
 			</td>
 		</tr>
 	</table>

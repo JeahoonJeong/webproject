@@ -14,9 +14,12 @@ public class TheaterDAO {
 	public TheaterDAO(Connection conn){
 		this.conn = conn;
 	}
-	
+	 
 	//모든데이터 가져오기
-	public List<TheaterDTO> getlist(String district, String start_time){
+
+	public List<TheaterDTO> getlist(String theater_id,String date){
+
+
 		
 		List<TheaterDTO> lists = new ArrayList<TheaterDTO>();
 		
@@ -26,33 +29,33 @@ public class TheaterDAO {
 		
 		try {
 			
-			district = "%" + district + "%";
-			
-			sql ="select * from timetable ";
-			sql +="where district like '?' and to_char(start_time, 'YYYY-MM-DD') = '?'";
 
-			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, district);
-			pstmt.setString(2, start_time);
-			
+			sql ="select movie_id, city, district, movie_name, screen_num, to_char(start_time,'hh24:mi') start_time, to_char(end_time,'hh24:mi') end_time, ";
+			sql+="seatedSeat, seatNumber, type, age_limit from timetable where theater_id=? and start_time like ? order by screen_num,start_time";
+
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setString(1, theater_id);	
+			pstmt.setString(2, date);		
+
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				
+
 				TheaterDTO dto = new TheaterDTO();
 				
 				dto.setMovie_id(rs.getString("movie_id"));
-				dto.setCity(rs.getString("city"));
-				dto.setDistrict(rs.getString("district"));
+
+				dto.setCity(rs.getString("city"));				
+				dto.setDistrict(rs.getString("district"));				
 				dto.setMovie_name(rs.getString("movie_name"));
-				dto.setScree_num(rs.getString("screen_num"));
+				dto.setScreen_num(rs.getString("screen_num"));
 				dto.setStart_time(rs.getString("start_time"));
 				dto.setEnd_time(rs.getString("end_time"));
-				dto.setSeatedSeat(rs.getInt("seatedSeat"));
-				dto.setSeatNumber(rs.getInt("seatNumber"));
+				dto.setSeatedseat(rs.getInt("seatedseat"));
+				dto.setSeatnumber(rs.getInt("seatnumber"));
 				dto.setType(rs.getString("type"));
-				dto.setAge_limit(rs.getInt("age_limit"));
+				dto.setAge_limit(rs.getString("age_limit"));	
 				
 				lists.add(dto);
 			}
