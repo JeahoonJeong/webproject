@@ -96,20 +96,38 @@ public class MovieServlet extends HttpServlet{
 			
 		}else if(uri.indexOf("movie.do")!=-1){
 			
+			
+			String pageNum = req.getParameter("pageNum");
+			
 			MovieDTO dto = new MovieDTO();
 			
-			String movie_id = req.getParameter("movie_id1");
-			System.out.println(movie_id);
+			String movie_id = req.getParameter("movie_id");
 			
 			dto = dao.getOneData(movie_id);
+			List<MovieDTO> still = dao.getStillcut(movie_id);
+					
+			dto.setSummary(dto.getSummary().replaceAll("/", "<br>"));
 			
+			String imagePath = cp + "/mv/imageFile";
+			
+			req.setAttribute("imagePath", imagePath);
 			req.setAttribute("dto", dto);
+			req.setAttribute("still", still);
 	
-			
 			url = "/movie/movie.jsp?movie_id=" + movie_id;
 			forward(req, resp, url);
 			
+		}else if(uri.indexOf("movieTime_ok.do")!=-1){
+			
+			String movie_id = req.getParameter("movie_id");
+			
+			
+			url = "/timetable/movieTime_ok.jsp?movie_id=" + movie_id;
+			forward(req, resp, url);
+			
 		}
+			
+		
 			
 		
 		

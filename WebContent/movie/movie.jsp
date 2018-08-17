@@ -13,7 +13,20 @@
 <link rel="stylesheet" href="<%=cp%>/movie/css/movie.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <title>Movie Info</title>
+<style type="text/css">
+
+select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);   }
+
+</style>
 <script type="text/javascript">
+
+	function goToP() {
+		
+		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}"
+		
+		
+	}
+
 </script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
@@ -22,22 +35,30 @@
 		<tr>
 			<td rowspan="5" width="230px" valign="top">
 			<span>
-			<img src="./image/mission.jpg" width="230px" height="336px"/></span>
+			<img src="${imagePath }/${dto.file_name}" width="230px" height="336px"/></span>
 			</td>
 			<td rowspan="5" width="10px;"></td>
 			<td height="3%" class="title">
-			<img src="./image/age15big.png"/>
-			<span style="color: #353535; font-size: 22pt; vertical-align: top;">${dto.movie_name }</span>
+			<span style="vertical-align: bottom;">
+			<img src="${imagePath }/age${dto.age_limit}big.png"/></span>
+			<span style="color: #353535; font-size: 22pt; vertical-align: top; font-weight: bold;">
+			${dto.movie_name }</span>
 			<p style="color: #747474; font-size: 9pt; font-family: 맑은고딕;">
 			Mission:Impossible- Fallout ,</p></td>
 		</tr>
 		<tr>
 			<td height="42px" style="padding-top: 5px;">
 			<div style="float: left;">
-			<img src="./image/allstar.png" align="bottom"/><br>
-			<font style="font-size: 9pt; color: #747474; vertical-align: top;">${dto.count }명 참여</font></div>
+			<c:if test="${dto.rating==0 }"><img src="${imagePath }/mvrate0.png"></c:if>
+			<c:if test="${dto.rating<3&&0<dto.rating}"><img src="${imagePath }/mvrate1.png"></c:if>
+			<c:if test="${2<dto.rating&&dto.rating<5}"><img src="${imagePath }/mvrate2.png"></c:if>
+			<c:if test="${4<dto.rating&&dto.rating<7 }"><img src="${imagePath }/mvrate3.png"></c:if>
+			<c:if test="${6<dto.rating&&dto.rating<9 }"><img src="${imagePath }/mvrate4.png"></c:if>
+			<c:if test="${8<dto.rating&&dto.rating<11 }"><img src="${imagePath }/mvrate5.png"></c:if>
+			<br>
+			<font style="font-size: 9pt; color: #747474; vertical-align: top;">${dto.countRate }명 참여</font></div>
 			<span style="float: left; margin-left: 10px;">
-			<strong style="font-size: 20pt; font-weight: bold; color: #353535; vertical-align: top;">${dto.rating }</strong>
+			<strong style="font-size: 20pt; font-weight: bold; color: #353535; vertical-align: top;">${dto.rating } 점</strong>
 			</span>
 			
 			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
@@ -57,11 +78,16 @@
 		<tr>
 			<td height="50px" rowspan="2" style="padding: 0px;">
 			<span style="float: left;">
-			<font size="2pt;" color="#4C4C4C">내 평점</font> <img src="./image/bg_allstar1.png" align="middle"/> 
+			<font size="2pt;" color="#4C4C4C">내 평점</font> 
+			
+			<select id="rate" style="width: 119px; height: 20px;">
+			<option value="0"></option>
+			</select>
+			
 			<font size="1pt;" color="#4C4C4C">너무 멋진 영화였어요!</font></span>
 			<span style="float: right;">
 			<input type="button" value="♥보고싶어" name="wishMovie" onclick="" class="btn2"/>
-			<input type="button" value="상영시간표" name="booking" onclick="" class="btn3"/>
+			<input type="button" value="상영시간표" name="booking" onclick="goToP();" class="btn3"/>
 			
 			</span>
 			</td>
@@ -77,29 +103,29 @@
 		<h3>스틸컷 <font style="font-size: 14px;">22</font></h3>
 		<div id="image_top">						
 			<div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
-			<img src="./image/left_btnn.png"/></a></div>
-			<span style="float: left;"><img src="./mvImage/mission1.jpg" height="110px"/></span>
-			<span style="float: left;"><img src="./mvImage/mission2.jpg" height="110px"/></span>
-			<span style="float: left;"><img src="./mvImage/mission3.jpg" height="110px"/></span>
+			<img src="${imagePath }/left_btnn.png"/></a></div>
+			<c:forEach var="still" items="${still }">
+			<span style="float: left;"><img src="${imagePath }/${still.file_name}" height="110px"/></span>
+			</c:forEach>
 		
 		<div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
-			<img src="./image/right_btnn.png"/></a></div>		
+			<img src="${imagePath }/right_btnn.png"/></a></div>		
 	</div>
 		<div id="image_content">
 			<div class="lbtn"><a href="javascript:void(0);">
-			<img src="./image/left_btnbig.png"/></a></div>
-			<img src="./mvImage/mission1.jpg" height="500px">
+			<img src="${imagePath }/left_btnbig.png"/></a></div>
+			<img src="${imagePath }/godStill1.jpg" height="500px">
 			<div class="rbtn"><a href="javascript:void(0);">
-			<img src="./image/right_btnbig.png"/></a></div>
+			<img src="${imagePath }/right_btnbig.png"/></a></div>
 		</div>
 	</div>
 	<div id="comment">
 		<div id="comment_head">
-		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(20)</span></h3>
+		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(${dto.commCount })</span></h3>
 		</div>
 		<div style="width: 888px; height: 128px;">
 			<span style="padding-top: 58px; float: left;">
-			<img width="56px" height="56px" src="./image/profile.png"></span>
+			<img width="56px" height="56px" src="${imagePath }/profile.png"></span>
 			<table id="comment_input">
 				<tr>
 					<td class="star"></td>
