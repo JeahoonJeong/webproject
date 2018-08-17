@@ -42,6 +42,9 @@
 		</tr>
 	</table>
 	
+	
+		<br/><br/><br/><br/><br/>
+	<jsp:include page="../footer.jsp" flush="false"/>
 
 </body>
 </html>

@@ -59,6 +59,16 @@
 	border: 1px solid #1294AB;
 }
 
+.overflow{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 234px;
+	height: 60px;
+}
+
+
+
 .topMenu a:hover {text-decoration: none; color: #503396;}
 
 a:visited{text-decoration: none; color: #4C4C4C;}
