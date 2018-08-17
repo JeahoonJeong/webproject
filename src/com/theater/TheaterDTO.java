@@ -3,6 +3,8 @@ package com.theater;
 public class TheaterDTO {
 
 	private String movie_id;
+	private String theater_id;
+	private String screen_id;
 	private String city; // 서울
 	private String district; // 상암
 	private String movie_name; // 공작
@@ -100,6 +102,22 @@ public class TheaterDTO {
 
 	public void setAge_limit(int age_limit) {
 		this.age_limit = age_limit;
+	}
+
+	public String getTheater_id() {
+		return theater_id;
+	}
+
+	public void setTheater_id(String theater_id) {
+		this.theater_id = theater_id;
+	}
+
+	public String getScreen_id() {
+		return screen_id;
+	}
+
+	public void setScreen_id(String screen_id) {
+		this.screen_id = screen_id;
 	}
 
 }
