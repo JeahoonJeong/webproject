@@ -26,12 +26,12 @@
 		} */
 
 		function showPop() {
-			
-			var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 
-			window.open('','popUp',setting);
+			var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 			
-			document.getElementById('mvForm').submit();
+			var windowObj = window.open("movie.do?movie_id='${dto.movie_id}'","movieInfo",setting);
+			
+			windowObj.document.getElementById("movie_id").value = document.getElementById("movie_id").value;
 		
 		}
 		
@@ -55,7 +55,7 @@
 </div>
 
 
-<!-- <div class="content">
+<div class="content">
 	<table>
 		<tr>
 			<td width="220px" class="top">
@@ -83,10 +83,10 @@
 		onclick=""/></td>
 		</tr>
 	</table>
-</div> -->
+</div>
 
 
-<div class="content">
+<%-- <div class="content">
 		<c:set var="i" value="0"/>
 		<c:forEach var="dto" items="${lst }">
 		 <table style="float: left; margin: 7px;">
@@ -126,7 +126,7 @@
 		</table>
 	</c:forEach>	
 	</form>
-</div>
+</div> --%>
 
 
 <%-- <div class="content">

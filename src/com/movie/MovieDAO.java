@@ -107,16 +107,18 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,count,";
-			sql+= "age_limit,rating,file_name from movie a, (select rating, file_name, a.movie_id from ";
-			sql+= "(select count(rating) count,avg(rating) rating,movie_id from rating group by movie_id having movie_id='?') a";
+			sql = "select (b.movie_id) movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
+			sql+= "age_limit,file_name,countRate from movie a, (select rating, countRate, file_name, a.movie_id from ";
+			sql+= "(select count(rating) countRate,avg(rating) rating,movie_id from rating group by movie_id having movie_id='?') a";
 			sql+= ", (select * from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) b ";
 			sql+= "where a.movie_id=b.movie_id";
 			
-			pstmt = conn.prepareStatement(sql);
 			
+			pstmt = conn.prepareStatement(sql);
+			System.out.println(movie_id);
 			pstmt.setString(1, movie_id);
 			rs = pstmt.executeQuery();
+			
 			
 			if(rs.next()){
 				
@@ -148,7 +150,7 @@ public class MovieDAO {
 		
 	}
 	
-	public List<MovieDTO> getStillcut(String movie_id){//movie.do¿¡ »Ñ¸± ¿µÈ­ ½ºÆ¿ÄÆÀ» °¡Á®¿È
+	/*public List<MovieDTO> getStillcut(String movie_id){//movie.do¿¡ »Ñ¸± ¿µÈ­ ½ºÆ¿ÄÆÀ» °¡Á®¿È
 		
 		
 	}
@@ -156,7 +158,7 @@ public class MovieDAO {
 	public List<MovieDTO> getAllComment(String movie_id){//moive.do¿¡ »Ñ¸± ¿µÈ­ ÄÚ¸àÆ®¸¦ °¡Á®¿È
 		
 	}
-	
+	*/
 	
 	
 	

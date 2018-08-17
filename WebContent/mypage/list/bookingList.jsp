@@ -13,9 +13,30 @@
 <title>예매 내역</title>
 <link rel="stylesheet" href="<%=cp%>/mypage/css/list.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<script type="text/javascript">
+	
+	function cancel(booked_id) {
+		
+		var f = document.bookingListForm
+	
+		if(confirm("예매를 취소하시겠습니까?") == true){
+			
+			f.action = "<%=cp%>/Mypage/list/bookingList_ok.do?booked_id='"+booked_id+"'";
+				
+			f.submit();
+
+		}else{
+			return;
+		}
+	}
+
+</script>
+
+
 </head>
 <body>
 <div id="list">
+<form action="" name="bookingListForm" method="post">
 <table>
 	<tr>
 		<td colspan="7" height="1px" style="border-bottom: 2px solid #503396;"></td>
@@ -42,26 +63,11 @@
 		<td><c:out value="${fn:substring(dto.getStart_time(),0,fn:length(dto.getStart_time())-6) }"></c:out>
 		<br/><c:out value="${fn:substring(dto.getStart_time(),fn:length(dto.getStart_time())-6,fn:length(dto.getStart_time())) }"></c:out>~${dto.getEnd_time() } </td>
 		<td>${dto.getReservation_date() }</td>
-		<td><input type="button" value="예매취소" onclick="" class="btn1"></td>
+		<td><input type="button" value="예매취소" onclick="cancel(${dto.getBookded_id() });" class="btn1"></td>
 	</tr>
 	</c:forEach>
 </table>
-
-<c:forEach items="${bookedList }" var="dto">
-${dto.getReservation_date() }
-${dto.getCancel_date() }
-${dto.getMovie_name() }
-${dto.getAge_limit() }
-${dto.getDistrict() }
-${dto.getScreen_num() }
-${dto.getRow_num() }
-${dto.getSeat_num() }
-${dto.getStart_time() }
-${dto.getEnd_time() }
-
-
-</c:forEach>
-
+</form>
 
 
 </div>

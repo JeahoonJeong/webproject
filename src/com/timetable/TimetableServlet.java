@@ -46,7 +46,7 @@ public class TimetableServlet extends HttpServlet {
 		String cp = req.getContextPath();
 		String url;
 		String uri = req.getRequestURI();
-
+		
 		if (uri.indexOf("movieTime.do") != -1) {
 			String imagePath = cp +"/timetable/image";
 			
@@ -55,9 +55,10 @@ public class TimetableServlet extends HttpServlet {
 			
 			//city, district, movie_name, screen_num, start_time, end_time, seatedseat, seatnumber, type, age_limt, movie_id
 
-			// µ¥ÀÌÅÍ °¡Á®¿À±â(list)
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(list)
+
 			Calendar cal = Calendar.getInstance();
-			//¿À´Ã³¯Â¥
+			//ï¿½ï¿½ï¿½Ã³ï¿½Â¥
 			
 			int y = cal.get(Calendar.YEAR);
 			int m = cal.get(Calendar.MONTH) + 1;
@@ -70,6 +71,7 @@ public class TimetableServlet extends HttpServlet {
 			
 			String movie_id=null;
 			req.setAttribute("movie_id", movie_id);
+
 
 			List<TimetableDTO> lists1 = dao.getMovie();
 			req.setAttribute("lists1", lists1);		
@@ -96,7 +98,7 @@ public class TimetableServlet extends HttpServlet {
 			}else{
 			
 			Calendar cal = Calendar.getInstance();
-			//¿À´Ã³¯Â¥
+			//ï¿½ï¿½ï¿½Ã³ï¿½Â¥
 			
 			int y = cal.get(Calendar.YEAR);
 			int m = cal.get(Calendar.MONTH) + 1;
@@ -125,6 +127,7 @@ public class TimetableServlet extends HttpServlet {
 			forward(req, resp, url);
 
 		}
+		
 
 	}
 

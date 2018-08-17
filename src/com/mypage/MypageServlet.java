@@ -51,7 +51,7 @@ public class MypageServlet extends HttpServlet{
 
 		if(uri.indexOf("mypageMain.do")!=-1){
 			
-			//ÃÖ±Ù ¿¹¸Å ³»¿ª(ÃÖ±Ù ÇÑ´Þ ±âÁØ) ºÒ·¯¿À±â ½ÃÀÛ
+			//ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Ö±ï¿½ ï¿½Ñ´ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			List<String> idList = new ArrayList<String>();
 
 			HttpSession session = req.getSession();
@@ -65,9 +65,9 @@ public class MypageServlet extends HttpServlet{
 			recentBookedList = dao.getRecentBookedList(idList);
 			
 			req.setAttribute("recentBookedList", recentBookedList);
-			//ÃÖ±Ù ¿¹¸Å ³»¿ª(ÃÖ±Ù ÇÑ´Þ ±âÁØ) ºÒ·¯¿À±â ¿Ï·á
+			//ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Ö±ï¿½ ï¿½Ñ´ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
 			
-			//³ªÀÇ ¹«ºñ½ºÅä¸® Ä«¿îÆ® ºÒ·¯¿À±â ½ÃÀÛ
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ä¸® Ä«ï¿½ï¿½Æ® ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			int wishMovieCount = dao.getWishMovieCount(member.getUser_id());
 			int seenMovieCount = dao.getSeenMovieCount(member.getUser_id());
 			int commentCount = dao.getCommentCount(member.getUser_id());
@@ -75,9 +75,9 @@ public class MypageServlet extends HttpServlet{
 			req.setAttribute("wishMovieCount", wishMovieCount);
 			req.setAttribute("seenMovieCount", seenMovieCount);
 			req.setAttribute("commentCount", commentCount);
-			//³ªÀÇ ¹«ºñ½ºÅä¸® Ä«¿îÆ® ºÒ·¯¿À±â ¿Ï·á
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ä¸® Ä«ï¿½ï¿½Æ® ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
 			
-			//¼±È£ ¿µÈ­°ü ºÒ·¯¿À±â
+			//ï¿½ï¿½È£ ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 			String preferredTheater = dao.getPreferredTheater(member.getUser_id());
 			req.setAttribute("preferredTheater", preferredTheater);
 
@@ -87,7 +87,7 @@ public class MypageServlet extends HttpServlet{
 
 		}else if(uri.indexOf("myBooking.do")!=-1){
 			
-			//¿¹¸Å ³»¿ª ºÒ·¯¿À±â ½ÃÀÛ
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			List<String> idList = new ArrayList<String>();
 
 			HttpSession session = req.getSession();
@@ -101,12 +101,39 @@ public class MypageServlet extends HttpServlet{
 			bookingList = dao.getBookingList(idList);
 			
 			session.setAttribute("bookingList", bookingList);
-			//¿¹¸Å ³»¿ª ºÒ·¯¿À±â ¿Ï·á
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
+			
+			List<MyBookingDTO> seenMovieList = new ArrayList<MyBookingDTO>();
+			seenMovieList = dao.getSeenMoiveList(idList);
+			
+			session.setAttribute("seenMovieList", seenMovieList);
 
+			/////////////////////////////////////
+			
+			List<MyBookingDTO> canceledList = new ArrayList<MyBookingDTO>();
+			
+			canceledList = dao.getCanceledBooking(idList);
+			
+			session.setAttribute("canceledList", canceledList);
+			
+			////////////////////////////////////////////////
+			
 			url = "/mypage/myBooking.jsp";
 			forward(req, resp, url);
 			
 
+		}else if(uri.indexOf("bookingList_ok.do")!=-1){
+			
+			//update
+			
+			String booked_id = req.getParameter("booked_id");
+			
+			dao.cancelReservation(booked_id);
+			
+			url = "/mypage/myBooking.jsp";
+			
+			resp.sendRedirect(url);
+			
 		}else if(uri.indexOf("myMoivestory.do")!=-1){
 
 			url = "/mypage/myMoviestory.jsp";
