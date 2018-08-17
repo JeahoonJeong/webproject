@@ -19,6 +19,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영화 예매</title>
 
+
+
 <link rel="stylesheet" href="<%=cp%>/booking/css/bookingstyle.css"
 	type="text/css" />
 <script type="text/javascript" src="<%=cp%>/booking/js/util.js"></script>
@@ -30,7 +32,7 @@
 		var date;
 		var f = document.bookingForm;
 		
-		window.open("calendar.do","달력",
+		window.open("<%=cp%>/Booking/calendar.do","달력",
 				"location = no, menubar = no, directories=no,left=580, top=150, width=350, height=350, toolbar = no, enubar=no, status=no, scrollbars=no, resizable=no, status = no");
 	}
 	
@@ -370,20 +372,20 @@
 						onclick="showCalendar()" style="width: 30px; height: 30px; margin-top:5px; margin-right: 10px; margin-bottom: 10px;">
 					</div>
 					<br/>
-					<div align="center" >
+					<div align="center" style="padding-top: 20px; ">
 					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px;" type="button" value="◀" class = "btn2" onclick="changeDay1();"/> <!-- 현재 날짜 --> 
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day}일" class = "btn1" onclick="selectDate1();" name = "dateButton1"/> <!-- 현재 날짜 --> 
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+1 }일" class = "btn1" onclick="selectDate2();" name = "dateButton2"/> <!-- 현재 날짜 +1 -->
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+2 }일" class = "btn1" onclick="selectDate3();" name = "dateButton3"/>
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+3 }일" class = "btn1" onclick="selectDate4();" name = "dateButton4"/>
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+4 }일" class = "btn1" onclick="selectDate5();" name = "dateButton5"/>
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day}" class = "btn1" onclick="selectDate1();" name = "dateButton1"/> <!-- 현재 날짜 --> 
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+1 }" class = "btn1" onclick="selectDate2();" name = "dateButton2"/> <!-- 현재 날짜 +1 -->
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+2 }" class = "btn1" onclick="selectDate3();" name = "dateButton3"/>
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+3 }" class = "btn1" onclick="selectDate4();" name = "dateButton4"/>
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+4 }" class = "btn1" onclick="selectDate5();" name = "dateButton5"/>
 					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px; "type="button" value="▶" class = "btn2" onclick="changeDay2();"/> <!-- 현재 날짜 --> 
 					</div>
 				</td>
 
 				<td width="470" ><span class="text" style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px;">시간</span>
 				<br/><br/>
-				<div align="center">
+				<div align="center" style="padding-top: 16px;">
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px;" type="button" value="◀" class = "btn2" onclick="changeTime1();" /> <!-- 현재 시간 --> 
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+1 }" class ="btn3" onclick="selectTime1()" name = "timeButton1"/>
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+2 }" class ="btn3" onclick="selectTime2();" name = "timeButton2"/>
@@ -405,7 +407,7 @@
 				<br/><br/>
 				
 				
-				<table border="0" class ="table" align="center" style="border-color: #CFCFCF; border-width: 1px; margin-top: 20px" cellpadding="0" cellspacing="0" >
+				<table border="1" class ="table" align="center" style="border-color: #CFCFCF; border-width: 1px; margin-top: 20px" cellpadding="0" cellspacing="0" >
 						
 					
 <!-- 					<tr height="60px"> -->
@@ -461,29 +463,56 @@
 				
 				</td>
 				
-				<td rowspan="2" width="450" style="background-color: #ffffff" >
-				<c:if test="${! movieInfoMessage.equals('ok')}">
+				<td rowspan="2" width="450" height="460" style="background-color: #ffffff; " >
+				<c:if test="${empty lists2 }">
 						<img alt="" src="<%=cp %>/booking/image/noMovie.PNG" width="440" height="460">
 				</c:if>	
-				<c:if test="${movieInfoMessage.equals('ok')}">
-					<table border="1">
+				<c:if test="${! empty lists2}">
+					<div style="height: 460; overflow: auto" >
+					<table style="display: block;" height="460" border="0" class ="scrooltbody" align="center" cellpadding="0" cellspacing="0">
+					<tbody>
 						<c:forEach var ="dto2" items="${lists2 }" >
-							<tr>							
-								<td>
+							<tr style="border-bottom: 1">							
 								
+								<td width="130" style="text-align: center;">
+									<span style="font-size: 15pt; font-weight: bold;"> ${dto2.start_time }</span> ~ ${dto2.end_time }
+									
+									<span style="font-size : 25pt;">|</span>
+											</td>										
+								<td width="290" style="text-align: left;">
+									&nbsp;&nbsp;${dto2.age_limit } | ${dto2.movie_name }
+								<br/>
+									&nbsp;&nbsp;${dto2.type }
+								</td>										
+								<td>
+								<span style="font-size : 25pt;">|</span>
+								</td>
+								<td width="50" style="text-align: center;">
+								
+									${dto2.district }
+								<br/>
+									${dto2.screen_num }관
+								<br/>
+									${dto2.seatNumber - dto2.seatedSeat} / ${dto2.seatNumber }
+								</td>										
+								
+							</tr>
+							<tr>
+								<td colspan="4">
+									<hr>
 								</td>
 							</tr>
 						</c:forEach>
+					</tbody>
 					</table>
-
-
+					</div>
 				</c:if>
 				</td>
 			</tr>
 			<tr height="230" >
 				<td><span class="text"  style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px;">영화</span>
 				<br/><br/>
-					<table style="border-color: #CFCFCF; border-width: 1px;  "align="center" border="2" width="350px;" cellpadding="0" cellspacing="0">
+					<table style="padding-top :20px; border-color: #CFCFCF; border-width: 1px;  "align="center" border="2" width="350px;" cellpadding="0" cellspacing="0">
 					<tr height="80px;">
 						<td align="center" style="font-size: 25px; color: black; font-weight: bold; margin-bottom: 10px;">모든영화</td>
 					</tr>

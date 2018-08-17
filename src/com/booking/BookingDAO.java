@@ -51,54 +51,89 @@ public class BookingDAO {
 	}
 	
 	
-	// 2. 영화와 날짜 시간에 따른 정보 가져오기 (Select)
-	 public List<MovieDTO> getMovieData(String movieName,String date){
-		List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql ;
-		
-		try {
-			sql = "SELECT to_char(start_time,'HH24:MI'), to_char(end_time,'HH24:MI'), "
-					+ "age_limit , movie_name, type , city, district"
-					+ "FROM TIMETABLE;"; // 상영관 정보 가져오는 sql문
-					
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+	// 2. 영화와 날짜 시간에 따른 정보 가져오기 (Select) .v2
+//	 public List<MovieDTO> getMovieData(String movieName,String date){
+//		List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		String sql ;
+//		
+//		try {
+//			sql = "SELECT to_char(start_time,'HH24:MI'), to_char(end_time,'HH24:MI'), "
+//					+ "age_limit , movie_name, type , city, district"
+//					+ "FROM TIMETABLE;"; // 상영관 정보 가져오는 sql문
+//					
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, );
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			
+//			
+//			while(rs.next()){
+//				MovieDTO dto = new MovieDTO();
+//				
+//				
+//				
+//				
+//				
+//				lists2.add(dto);
+//			}
+//			
+//			rs.close();
+//			pstmt.close();
+//			
+//		} catch (Exception e) {
+//			System.out.println(e.toString());
+//		}
+//		
+//		
+//		return lists2;	
+//		
+//	}
+	// 2. 영화와 날짜 시간에 따른 정보 가져오기 (Select) .v1
+	 public List<MovieDTO> getMovieData(){
+			List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
 			
-			while(rs.next()){
-				TheaterDTO dto = new TheaterDTO();
-				dto.setTheater_id(rs.getString("theater_id"));
-				dto.setCity(rs.getString("city"));
-				dto.setDistrict(rs.getString("district"));
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql ;
+			
+			try {
+				sql = "SELECT to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
+						+ "age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber "
+						+ "FROM TIMETABLE"; // 상영관 정보 가져오는 sql문
+						
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
 				
-				lists2.add(dto);
+				while(rs.next()){
+					MovieDTO dto = new MovieDTO();
+					
+					dto.setStart_time(rs.getString("start_time"));
+					dto.setEnd_time(rs.getString("end_time"));
+					dto.setAge_limit(rs.getString("age_limit"));
+					dto.setMovie_name(rs.getString("movie_name"));
+					dto.setType(rs.getString("type"));
+					dto.setDistrict(rs.getString("district"));
+					dto.setScreen_num(rs.getString("screen_num"));
+					dto.setSeatedSeat(rs.getString("seatedseat"));
+					dto.setSeatNumber(rs.getString("seatnumber"));
+					
+					lists2.add(dto);
+				}
+				
+				rs.close();
+				pstmt.close();
+				
+			} catch (Exception e) {
+				System.out.println(e.toString());
 			}
-			
-			rs.close();
-			pstmt.close();
-			
-		} catch (Exception e) {
-			System.out.println(e.toString());
+
+			return lists2;
+
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return lists2;
-		
-		
-		
-	}
 	
 	// 3. 영화의 예매된 좌석 인원정보 가져오기 (Select)
 //	public List<E> getSelectedSeatData(){

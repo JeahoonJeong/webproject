@@ -109,8 +109,16 @@ public class BookingServlet extends HttpServlet {
 				selectedTheaterId2 = strTheaterId;
 			}
 
-			String movieInfoMessage = "ok"; // 무비가 선택되면 ok 메시지 전달 
-
+			String checkPara = "0";
+			String strPara = req.getParameter("checking");
+			if(strPara != null){
+				checkPara = strPara;
+			}
+			
+			if(checkPara.equals("1")){
+				List<MovieDTO> lists2 = dao.getMovieData();
+				req.setAttribute("lists2", lists2);
+			}
 			
 			
 			// 세션에 올리기
@@ -122,7 +130,6 @@ public class BookingServlet extends HttpServlet {
 			req.setAttribute("selectedHour", selectedHour2);
 			req.setAttribute("selectedMovieId", selectedMoviedId2);
 			req.setAttribute("theaterId", selectedTheaterId2);
-			req.setAttribute("movieInfoMessage", movieInfoMessage);
 
 			url = "/booking/booking.jsp";
 			forward(req, resp, url);

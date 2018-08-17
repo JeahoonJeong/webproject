@@ -33,9 +33,15 @@
 		//
 		theaterId = ${theaterId };
 		
+	
+		if(!movieId){
+			alert("영화를 선택해주세요!");		
+			return;
+		}
+		// 영화가 선택되었으면 checking에 1을 함께 보냄
 		f.action= "<%=cp %>/Booking/booking.do/?selectedMoviedId=" + movieId 
 				+ "&nowHour=" + changedTime + "&nowDay=" +changedDate
-				+ "&seletedDate="+date+"&seletedHour="+ hour + "&theaterId="+theaterId;
+				+ "&seletedDate="+date+"&seletedHour="+ hour + "&theaterId="+theaterId+"&checking=1";
 		f.submit();
 		
 	}
