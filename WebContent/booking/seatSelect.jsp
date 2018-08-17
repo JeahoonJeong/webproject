@@ -40,6 +40,16 @@
 		f.action = "<%=cp%>/Booking/seatSelect.do?value1="+value1+"&value2="+value2+"&value3="+value3+"&value4="+value4;
 		f.submit();
 	}
+	
+	function cntCheck(){
+		var f = document.seatSelectForm;
+		
+		var cntCheck = 0 ; 
+		
+		
+		
+		
+	}
 
 </script>
 </head>
@@ -194,18 +204,119 @@
 		
 		<tr>
 			<td>
-				<table style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" >
-					<tr >
+				<table border="1"  style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" >
+					<tr height="50">
 						<td width="600">
+						<img alt="" src="<%=cp %>/booking/image/screen.PNG">
+						</td> 
 						
-						
-						
-						
-						
-						
-						</td> <!-- 좌석표시 -->
+						<td rowspan="3">
+							<img alt="" src="<%=cp %>/booking/image/infoSeatPic.PNG" width="" height=""> <!-- 좌석안내 이미지 -->
+						</td>
+					</tr>
+					<tr height="150">
 						<td>
-							<img align="right" alt="" src="<%=cp %>/booking/image/infoSeatPic.PNG" width="" height=""> <!-- 좌석안내 이미지 -->
+						
+							<c:set var = "i" value ="1"></c:set>
+							<c:set var = "k" value ="1"></c:set>
+								<div align="center">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<c:forEach var = "j" begin = "1" end = "36" step = "1">
+										<c:if test="${i % 9 == 1 }">
+											<tr >
+										</c:if>
+											<td align="center" width="77">
+
+												<c:if test="${k==1 }">
+													<span style="font-weight: bold;">A&nbsp;</span>
+												</c:if>
+												<c:if test="${k==11 }">
+													<span style="font-weight: bold;">B&nbsp;</span>
+												</c:if>
+												<c:if test="${k==20 }">
+													<span style="font-weight: bold;">C&nbsp;</span>
+												</c:if>
+												<c:if test="${k==29}">
+													<span style="font-weight: bold;">D&nbsp;</span>
+												</c:if>
+												<c:if test="${j>=1 && i <10}">
+<%-- 													<c:if test=""> --%>
+													<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
+<%-- 													</c:if> --%>
+												
+												${j }
+												</c:if>
+												<c:if test="${j>=10 && j < 19}">
+													<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
+												${j -9}												
+												</c:if>
+												<c:if test="${j>=19 && i <28}">
+													<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
+												${j -18}
+												</c:if>
+												<c:if test="${j>=28 && i <=36}">
+													<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
+												${j -27}
+												</c:if>
+											</td>
+										<c:if test="${i % 9 == 0 }">
+											</tr>
+										</c:if>
+									<c:set var = "i" value ="${i+1 }"></c:set>
+									<c:set var = "k" value ="${i+1 }"></c:set>
+									</c:forEach>
+								</table>
+								</div>
+						</td>
+					</tr>
+					<tr height="150">
+						<td>
+						
+							<c:set var = "i" value ="1"></c:set>
+							<c:set var = "k" value ="1"></c:set>
+								<div align="center">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<c:forEach var = "j" begin = "1" end = "36" step = "1">
+										<c:if test="${i % 9 == 1 }">
+											<tr >
+										</c:if>
+											<td align="center" width="77" style="font-size: 13pt;">
+
+												<c:if test="${k==1 }">
+													<span style="font-weight: bold;">A&nbsp;</span>
+												</c:if>
+												<c:if test="${k==11 }">
+													<span style="font-weight: bold;">B&nbsp;</span>
+												</c:if>
+												<c:if test="${k==20 }">
+													<span style="font-weight: bold;">C&nbsp;</span>
+												</c:if>
+												<c:if test="${k==29}">
+													<span style="font-weight: bold;">D&nbsp;</span>
+												</c:if>
+												<input type="checkbox" value = "i" name = "seatCheckBox"/>
+												<c:if test="${j>=1 && i <10}">
+												${j }
+												</c:if>
+												<c:if test="${j>=10 && j < 19}">
+												${j -9}												
+												</c:if>
+												<c:if test="${j>=19 && i <28}">
+												${j -18}
+												</c:if>
+												<c:if test="${j>=28 && i <=36}">
+												${j -27}
+												</c:if>
+												
+											</td>
+										<c:if test="${i % 9 == 0 }">
+											</tr>
+										</c:if>
+									<c:set var = "i" value ="${i+1 }"></c:set>
+									<c:set var = "k" value ="${i+1 }"></c:set>
+									</c:forEach>
+								</table>
+								</div>
 						</td>
 					</tr>
 				</table>

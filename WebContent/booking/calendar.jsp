@@ -62,7 +62,7 @@
 <script type="text/javascript">
  	function gotoToday(){
  		var f = document.myForm;
- 		f.action = "calendar.jsp?year=nowYear&month=nowMonth";
+ 		f.action = "<%=cp%>/calendar.do?year=nowYear&month=nowMonth";
 		f.submit();
 
 	}
@@ -83,9 +83,9 @@ td {
 		<table align="center" width="210" cellpadding="1" cellspacing="1">
 			<tr>
 				<td align="center">
-					<a href="calendar.jsp?year=<%=preYear%>&month=<%=preMonth%>">◀</a> <b>&nbsp;<%=year%>
+					<a href="<%=cp %>/Booking/calendar.do?year=<%=preYear%>&month=<%=preMonth%>">◀</a> <b>&nbsp;<%=year%>
 						년&nbsp;&nbsp;<%=month%>월
-				</b> <a href="calendar.jsp?year=<%=nextYear%>&month=<%=nextMonth%>">▶</a>
+				</b> <a href="<%=cp %>/Booking/calendar.do?year=<%=nextYear%>&month=<%=nextMonth%>">▶</a>
 				</td>
 
 			</tr>

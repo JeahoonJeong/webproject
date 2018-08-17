@@ -15,23 +15,24 @@
 	function sendIt() {
 		var f = document.myForm;
 		
-		var id = f.theater.value;
+// 		var id = f.ff.value;
 		
-// 		opener.document.getElementById("theater1").value
+// 		var id2 = document.getElementById("theater").value;
+		opener.document.getElementById("theater1").value = document.getElementById("ff").value;
 		
-// 		window.close();
+// 		opener.parent.location.reload();
+		window.close(); // 창 닫음
 	}
 </script>
 
 </head>
 <body>
-	<form name="myForm">
+<!-- 	<form name="myForm" target = "main"> -->
 		<c:forEach var="dto" items="${lists }">
 			<dl>
 				<dd
 					style="font-size: 14pt; font-family: sans-serif; font-weight: bold;">
-					${dto.city } | ${dto.district } 영화관 <input type="checkbox"
-						name="${dto.district }" value="${dto.theater_id } " id = "theater1" />
+					${dto.city } | ${dto.district } 영화관 <input type="radio" id = "ff" value="${dto.district } "  />
 						
 				</dd>
 			</dl>
@@ -44,6 +45,6 @@
 			<input type="button" value = "다음" onclick="sendIt();" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #513396; color: #ffffff; border: 0"/>
 			</dd>
 		</dl>
-	</form>
+<!-- 	</form> -->
 </body>
 </html>

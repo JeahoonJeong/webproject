@@ -35,11 +35,65 @@
 	}
 	
 	// 영화관 선택목록 팝업
-	function showTheaterList(){
+// 	function showTheaterList(){
+		
+// 		window.name="main";
+		
+// 		var f = document.bookingForm;
+// 		windowObj = window.open("theaterSelect.do","영화관 목록",
+// 				"location = no, menubar = no, directories=no, left=700, top=300, width=600, height=600, toolbar = no, enubar=no, status=no, scrollbars=auto, resizable=no, status = no");
+// 	}
+	
+	// 영화관 선택(Radio 버튼)
+	function selectTheater(){
+		
 		var f = document.bookingForm;
-		windowObj = window.open("theaterSelect.do","영화관 목록",
-				"location = no, menubar = no, directories=no, left=700, top=300, width=600, height=600, toolbar = no, enubar=no, status=no, scrollbars=auto, resizable=no, status = no");
+		
+		var theaterRb = document.getElementsByName("theater");
+		var theaterId ; 
+		
+		for(var j = 0 ; j < theaterRb.length ; j++){
+			if(theaterRb[j].checked == true){
+				theaterId = theaterRb[j].value;
+			}
+		}
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate };
+		hour = ${selectedHour };
+		//
+		movieId = ${selectedMovieId };
+		
+		
+		
+		f.action= "<%=cp %>/Booking/booking.do?selectedMoviedId=" + movieId 
+		+ "&nowHour=" + changedTime + "&nowDay=" +changedDate
+		+ "&selectedDate="+date+"&selectedHour="+hour+"&theaterId="+theaterId;
+		f.submit();
+		
 	}
+	
+	
+	// 영화 선택 
+	function selectMovie(){
+		var f = document.bookingForm;
+		
+		var changedDate = ${day };
+		var changedTime = ${hour };
+		var date = ${selectedDate };
+		var hour = ${selectedHour };
+		//
+		movieId = ${selectedMovieId };
+		theaterId = ${theaterId };
+		
+		f.action = "<%=cp%>/Booking/movieSelect.do?selectedMoviedId=" + movieId +"&nowHour="+changedTime+"&nowDay="+changedDate
+				+"&selectedDate="+date+"&selectedHour="+hour+"&theaterId="+theaterId;
+		f.submit();
+		
+	}
+	
+	
 	
 	// 날짜 앞으로 이동
 	function changeDay1(){
@@ -101,27 +155,28 @@
 		date = f.dateButton1.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&seletedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
 		f.submit();		
 	}
 	
-	function selectDate1(){
+	function selectDate1(){ 
 		var f = document.bookingForm;
 		
-		date = f.dateButton1.value; // 선택된 날짜 
+		var date = f.dateButton1.value; // 선택된 날짜 
+	
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&seletedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
 		f.submit();		
 	}
 	
 	function selectDate2(){
 		var f = document.bookingForm;
 		
-		date = f.dateButton2.value; // 선택된 날짜 
+		var date = f.dateButton2.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&seletedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
 		f.submit();		
 	}
 	
@@ -131,7 +186,7 @@
 		date = f.dateButton3.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&seletedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
 		f.submit();		
 	}
 	
@@ -141,7 +196,7 @@
 		date = f.dateButton4.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&seletedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
 		f.submit();		
 	}
 	
@@ -151,7 +206,145 @@
 		date = f.dateButton5.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&seletedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
+		f.submit();		
+	}
+	
+	function selectTime1(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton1.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	function selectTime2(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton2.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime3(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton3.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime4(){
+		var f = document.bookingForm;
+		
+		var hour  = f.timeButton4.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime5(){
+		var f = document.bookingForm;
+		
+		var hour  = f.timeButton5.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime6(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton6.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime7(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton7.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime8(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton8.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime9(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton9.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.submit();		
+	}
+	
+	
+	function selectTime10(){
+		var f = document.bookingForm;
+		
+		var hour = f.timeButton10.value-1 ; // 선택된 시간
+		
+		changedDate = ${day };
+		changedTime = ${hour };
+		date = ${selectedDate }; // 선택된 날짜 받아오기 
+		
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
 		f.submit();		
 	}
 	
@@ -192,54 +385,99 @@
 				<br/><br/>
 				<div align="center">
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px;" type="button" value="◀" class = "btn2" onclick="changeTime1();" /> <!-- 현재 시간 --> 
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+1 }" class ="btn3" onclick="selectTime2()" name = "timeButton1"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+1 }" class ="btn3" onclick="selectTime1()" name = "timeButton1"/>
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+2 }" class ="btn3" onclick="selectTime2();" name = "timeButton2"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+3 }" class ="btn3" onclick="selectTime2();" name = "timeButton3"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+4 }" class ="btn3" onclick="selectTime2();" name = "timeButton4"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+5 }" class ="btn3" onclick="selectTime2();" name = "timeButton5"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+6 }" class ="btn3" onclick="selectTime2();" name = "timeButton6" />
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+7 }" class ="btn3" onclick="selectTime2();" name = "timeButton7"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+8 }" class ="btn3" onclick="selectTime2();" name = "timeButton8"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+9 }" class ="btn3" onclick="selectTime2();" name = "timeButton9"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+10 }" class ="btn3" onclick="selectTime2();" name = "timeButton10" />
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+3 }" class ="btn3" onclick="selectTime3();" name = "timeButton3"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+4 }" class ="btn3" onclick="selectTime4();" name = "timeButton4"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+5 }" class ="btn3" onclick="selectTime5();" name = "timeButton5"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+6 }" class ="btn3" onclick="selectTime6();" name = "timeButton6" />
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+7 }" class ="btn3" onclick="selectTime7();" name = "timeButton7"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+8 }" class ="btn3" onclick="selectTime8();" name = "timeButton8"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+9 }" class ="btn3" onclick="selectTime9();" name = "timeButton9"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+10 }" class ="btn3" onclick="selectTime10();" name = "timeButton10" />
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px; " type="button" value="▶" class = "btn2" onclick="changeTime2();"/> <!-- 현재 날짜 -->
 				</div>
 				
 				</td>
 			</tr>
 			<tr height="230">
-				<td width="430"><span class="text" style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px;">극장</span>
+				<td width="430"><span class="text" style="margin-left: 20px; margin-top: 10px; margin-bottom: 20px;">극장</span>
 				<br/><br/>
 				
-				<table border="0" class ="table" align="center" style="border-color: #CFCFCF; border-width: 1px; " cellpadding="0" cellspacing="0">
-					<tr height="60px">
-<%-- 						<c:if test=""></c:if> --%>
-						<td class="sample1" width="160px" style="text-align: center;" ><a onclick="showTheaterList();" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a></td>
-						<td width="10px" style="border: 0"></td>
-						<td class="sample1" width="160px" style="text-align: center;"><a onclick="showTheaterList();" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a></td>
-					</tr>
-					<tr height="10px"></tr>
-					<tr height="60px">
-						<td class="sample1" width="160px" style="text-align: center;"><a onclick="showTheaterList();" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a></td>
-						<td width="10px;" style="border: 0"></td>
-						<td class="sample1" width="160px" style="text-align: center;"><a onclick="showTheaterList();" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a></td>
-					</tr>
+				
+				<table border="0" class ="table" align="center" style="border-color: #CFCFCF; border-width: 1px; margin-top: 20px" cellpadding="0" cellspacing="0" >
+						
+					
+<!-- 					<tr height="60px"> -->
+<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
+						
+<!-- 					<a onclick="showTheaterList();" id ="theater2" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> --> 
+							
+						
+<!-- 						</td> -->
+						
+<!-- 						<td width="10px" style="border: 0"></td> -->
+						
+<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
+						
+<!-- 						<a onclick="showTheaterList();" id ="theater2" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> -->
+						
+<!-- 						</td> -->
+							
+<!-- 					</tr> -->
+					
+<!-- 					<tr height="10px"></tr> -->
+					
+<!-- 					<tr height="60px"> -->
+<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
+						
+<!-- 						<a onclick="showTheaterList();" id ="theater3" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> -->
+						
+<!-- 						</td> -->
+						
+<!-- 						<td width="10px;" style="border: 0"></td> -->
+						
+<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
+						
+<!-- 						<a onclick="showTheaterList();" id ="theater4" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+						<c:forEach var="dto" items="${lists }">
+							<tr height="40px">
+								<td class="sample1" width="320px" style="text-align: center;">
+									${dto.city } | ${dto.district } 영화관 <input type="radio" id = "ff" value="${dto.theater_id } " name = "theater"  
+									onclick = "selectTheater();"
+									/>
+									<br/>
+								</td>
+							</tr>
+							<tr height="10px">
+								<td style="border: 0"></td>
+							</tr>
+						</c:forEach>
+				
 				</table>
 				
 				</td>
 				
 				<td rowspan="2" width="450" style="background-color: #ffffff" >
-<%-- <c:if test=""> --%>
+				<c:if test="${! movieInfoMessage.equals('ok')}">
 						<img alt="" src="<%=cp %>/booking/image/noMovie.PNG" width="440" height="460">
-<%-- 				</c:if>	 --%>
-					
-					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+				</c:if>	
+				<c:if test="${movieInfoMessage.equals('ok')}">
+					<table border="1">
+						<c:forEach var ="dto2" items="${lists2 }" >
+							<tr>							
+								<td>
+								
+								</td>
+							</tr>
+						</c:forEach>
 					</table>
+
+
+				</c:if>
 				</td>
 			</tr>
 			<tr height="230" >
@@ -251,7 +489,7 @@
 					</tr>
 					<tr>
 						<td height="60px;" align="center">
-						<a style = "text-decoration:none; color: #53A4AD ; font-weight: bold; font-family: sans-serif;" href = "javascript:location.href='<%=cp%>'">영화선택 ▷</a>
+						<a style = "text-decoration:none; color: #53A4AD ; font-weight: bold; font-family: sans-serif;" onclick = "selectMovie();">영화선택 ▷</a>
 						</td>
 					</tr>
 					</table>

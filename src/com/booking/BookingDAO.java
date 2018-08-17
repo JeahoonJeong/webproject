@@ -52,12 +52,53 @@ public class BookingDAO {
 	
 	
 	// 2. 영화와 날짜 시간에 따른 정보 가져오기 (Select)
-//	public List<E> getMovieData(String movieName,String date){
-//		
-//		
-//		
-//		
-//	}
+	 public List<MovieDTO> getMovieData(String movieName,String date){
+		List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ;
+		
+		try {
+			sql = "SELECT to_char(start_time,'HH24:MI'), to_char(end_time,'HH24:MI'), "
+					+ "age_limit , movie_name, type , city, district"
+					+ "FROM TIMETABLE;"; // 상영관 정보 가져오는 sql문
+					
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				TheaterDTO dto = new TheaterDTO();
+				dto.setTheater_id(rs.getString("theater_id"));
+				dto.setCity(rs.getString("city"));
+				dto.setDistrict(rs.getString("district"));
+				
+				lists2.add(dto);
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return lists2;
+		
+		
+		
+	}
 	
 	// 3. 영화의 예매된 좌석 인원정보 가져오기 (Select)
 //	public List<E> getSelectedSeatData(){
