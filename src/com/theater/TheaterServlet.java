@@ -67,8 +67,6 @@ public class TheaterServlet extends HttpServlet {
 			date = date.substring(2,4);	
 			date = date+"/0"+m+"/"+d+"%";
 
-			
-			
 			//´ÙÀ½ÆäÀÌÁö µ¥ÀÌÅÍ ¹Ş±â
 			String district = req.getParameter("district");
 			String start_time = req.getParameter("start_time");					
@@ -80,6 +78,7 @@ public class TheaterServlet extends HttpServlet {
 			forward(req, resp, url);
 			
 		}else if (uri.indexOf("theaterP2_ok.do") != -1) {
+			
 			String theater_id = req.getParameter("theater_id");
 			req.setAttribute("theater_id", theater_id);
 			System.out.println(theater_id);
@@ -97,7 +96,6 @@ public class TheaterServlet extends HttpServlet {
 			} else {
 
 				Calendar cal = Calendar.getInstance();
-				// ï¿½ï¿½ï¿½Ã³ï¿½Â¥
 
 				int y = cal.get(Calendar.YEAR);
 				int m = cal.get(Calendar.MONTH) + 1;
@@ -116,9 +114,8 @@ public class TheaterServlet extends HttpServlet {
 			
 			url = "/theater/theaterP2.jsp?theater_id="+theater_id;
 			forward(req, resp, url);
-		}
-		
-		else if(uri.indexOf("calendar.do") != -1){
+			
+		}else if(uri.indexOf("calendar.do") != -1){
 			
 			url = "/theater/calendar.jsp";
 			forward(req, resp, url);
