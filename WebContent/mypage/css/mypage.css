@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
 
 #mypage {
-	margin: 100px auto;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
-	width: 1200px;
+	margin:0 auto;
+	margin-top:30px;
+	margin-bottom: 50px;
+	width: 1000px;
 	text-align: left;
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 11pt;
@@ -73,6 +73,16 @@ td {
 	font-weight: bold;
 }
 
+.btn2 {
+	border-style: none;
+	height: 25px;
+	width: 110	px;
+	margin-top: 0px;
+	background-color: #351f66;
+	color: #ffffff;
+	font-weight: bold;
+}
+
 a:link {text-decoration: none; color: grey;}
 a:visited {text-decoration: none; color: grey;}
 a:active {text-decoration: none; color: grey;}
@@ -103,4 +113,23 @@ a:hover {text-decoration: none; color: #351f66;}
 	color: #333;
 	font-weight: bold;
 	line-height: 16px;
+}
+
+.info{
+	width: 1000px;
+	vertical-align: middle;
+	font-size: 13px;
+}
+.info td {
+	height:35px ;
+	text-align:left;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.info th {
+	line-height:35px;
+	text-align:left;
+	vertical-align: middle;
+	font-weight: bold;
+    border-bottom: 2px solid #351f66;
 }
