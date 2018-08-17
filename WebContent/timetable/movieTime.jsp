@@ -163,7 +163,10 @@
 							<small>${dto.district}</small></th>
 						<th
 							style="width: 110px; padding-left: 15px; padding-right: 10px; border-right: 1px solid #e5e5e5;"><div>${dto.movie_name}</div>
-							<small>${dto.age_limit}세 관람가</small></th>
+							<small><c:if test="${dto.age_limit eq 'all'}">
+							전체관람가</c:if>
+							<c:if test="${dto.age_limit ne 'all'}">	${dto.age_limit}세 관람가</c:if>
+							</small></th>
 						<th
 							style="width: 100px; font-size: 14px; text-align: right; padding-right: 15px; padding-left: 10px;"><div>${dto.screen_num}관</div>
 							<small>${dto.type}</small></th>
@@ -172,10 +175,10 @@
 
 				<div class="movie_time">
 					<p class="mtime_info">
-						<span class="time">${dto.start_time }~${dto.end_time }</span> <span
-							class="seat"> ${dto.seatedseat}/${dto.seatnumber}</span> <br>
+						<span class="time">${dto.start_time }~${dto.end_time }</span> 
+						<span class="seat"> ${dto.seatedseat}/${dto.seatnumber}</span> <br>
 						<br>
-						<a href="">예매</a>
+						<a href="<%=cp%>/">예매</a>
 					</p>
 				</div>
 
