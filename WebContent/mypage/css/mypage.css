@@ -127,9 +127,79 @@ a:hover {text-decoration: none; color: #351f66;}
 }
 
 .info th {
-	line-height:35px;
+	height:30px ;
 	text-align:left;
 	vertical-align: middle;
 	font-weight: bold;
     border-bottom: 2px solid #351f66;
 }
+
+.btn3{
+	border-style: none;
+	border: 1px solid #351f66;
+	height: 50px;
+	width: 80px;
+	margin-top: 0px;
+	background-color: #fff;
+	color: #351f66;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.btn4{
+	border-style: none;
+	border: 1px solid #351f66;
+	height: 50px;
+	width: 80px;
+	margin-top: 0px;
+	background-color: #351f66;
+	color: #fff;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.radius {
+	border: 1px solid #666; 
+	border-radius: 70px; 
+	-moz-border-radius: 70px; 
+	-khtml-border-radius: 70px; 
+	-webkit-border-radius: 70px;
+}
+
+.btn5{
+	border-style: none;
+	border: 1px solid #CCCCCC;
+	height: 25px;
+	width: 90px;
+	margin-top: 2px;
+	background-color: #fff;
+	font-size: 10pt;
+	color: #666;
+}
+
+.filebox label { 
+	display: inline-block; 
+	height: 25px;
+	width: 90px; 
+	color: #999; 
+	font-size: 10pt; 
+	color: #666;
+	vertical-align: middle; 
+	line-height:20px ;
+	background-color: #fdfdfd; 
+	cursor: pointer; 
+	border: 1px solid #CCCCCC;
+} 
+
+.filebox input[type="file"] 
+{ /* 파일 필드 숨기기 */ 
+	position: absolute;
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); 
+	border: 0; 
+}
+
