@@ -1,12 +1,16 @@
 @CHARSET "UTF-8";
 
 #mypage {
-	margin: 30px auto;
-	padding-left: 150px;
+	margin: 100px auto;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
+	width: 1200px;
 	text-align: left;
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 11pt;
 }
+
+
 
 table {
 	height: 210px;

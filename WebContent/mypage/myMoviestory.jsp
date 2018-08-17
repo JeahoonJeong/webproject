@@ -14,7 +14,7 @@
 <title>나의 메가박스</title>
 </head>
 <body>
-
+<jsp:include page="../header.jsp" flush="false"/>
 <div id="mypage">
 
 <div>
@@ -63,6 +63,6 @@
 
 
 </div>
-
+<jsp:include page="../footer.jsp" flush="false"/>
 </body>
 </html>
