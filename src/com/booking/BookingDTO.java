@@ -2,10 +2,20 @@ package com.booking;
 
 public class BookingDTO {
 
+	private String rnum;
+	
 	private String screen_id; 
-	private int status ; 
+	private int status; 
 	private String row_num; 
 	private int seat_num;
+	
+	
+	public String getRnum() {
+		return rnum;
+	}
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
+	}
 	public String getScreen_id() {
 		return screen_id;
 	}

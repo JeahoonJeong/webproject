@@ -24,7 +24,11 @@ public class MemberDAO {
 		
 		try {
 			
-			sql = "select user_id,user_pwd,user_name,to_char(birth,'YYYY-MM-DD') birth,tel,email,addr from member where user_id=?";
+			sql = "select user_id,user_pwd,user_name, birth,tel,email,addr, file_name, theater_id from "
+					+ "(select c.user_id,user_pwd,user_name, birth,tel,email,addr, file_name, theater_id from "
+					+ "(select a.user_id,user_pwd,user_name,to_char(birth,'YYYY-MM-DD') birth,"
+					+ "tel,email,addr, file_name from member a left join member_image b on a.user_id=b.user_id) c "
+					+ "left join preferred_theater d on c.user_id=d.user_id) where user_id=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -43,6 +47,8 @@ public class MemberDAO {
 				dto.setTel(rs.getString("tel"));
 				dto.setEmail(rs.getString("email"));
 				dto.setAddr(rs.getString("addr"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setTheater_id(rs.getString("theater_id"));
 				
 			}
 			
@@ -56,7 +62,5 @@ public class MemberDAO {
 		return dto;
 		
 	}
-	
-	
 	
 }

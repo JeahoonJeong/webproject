@@ -6,6 +6,7 @@
 	String cp = request.getContextPath();
 	
 	
+	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,55 +19,62 @@
 	type="text/css" />
 	
 <script type="text/javascript">
+	
 	function selectNum(){
 		var f = document.seatSelectForm;
 		
 		var cvalue1 = f.type1.selectedIndex;
-		
-		var value1 = f.type1.options[cvalue1].value;
-		
+		value1 = f.type1.options[cvalue1].value;
 		var cvalue2 = f.type2.selectedIndex;
 		
-		var value2 = f.type2.options[cvalue2].value;
+		value2 = f.type2.options[cvalue2].value;
 		
-		var cvalue3 = f.type3.selectedIndex;
+		cvalue3 = f.type3.selectedIndex;
 		
-		var value3 = f.type3.options[cvalue3].value;
+		value3 = f.type3.options[cvalue3].value;
 		
 		var cvalue4 = f.type4.selectedIndex;
 		
-		var value4 = f.type4.options[cvalue4].value;
+		value4 = f.type4.options[cvalue4].value;
 		
 		f.action = "<%=cp%>/Booking/seatSelect.do?value1="+value1+"&value2="+value2+"&value3="+value3+"&value4="+value4;
 		f.submit();
 	}
 	
 	function cntCheck(){
+		var maxCheck = 0; // 최대 인원수 
+		var cntCheck = 0 ; // 사용자가 체크한 체크박스 개수
 		var f = document.seatSelectForm;
 		
-		var maxCheck ; // 최대 인원수 
-		maxCheck = value1 + value2 + value3+ value4; // 총인원수 
+		var value1 = ${value1};
+		var value2 = ${value2};
+		var value3 = ${value3};
+		var value4 = ${value4};
+	
 		
-		var cntCheck = 0 ; // 사용자가 체크한 체크박스 개수
-		var arr_Check = document.getElementsByName("seatCheckBox[]");
+		maxCheck = value1 + value2 + value3 + value4; // 총인원수 
+		alert("최대 선택 가능한 좌석 수 :" + maxCheck);
+	
+		
+		var arr_Check = document.getElementsByName("seatCheckBox");
+		
 		for(var i = 0 ; i < arr_Check.length ; i++){
 			if(arr_Check[i].checked == true){
 				cntCheck++; // 체크 되어있다면 1증가
 			}
 		}
+		alert("선택한 조ㅏ석수 : "  + cntCheck);
 		
 		if(cntCheck > maxCheck){
 			alert("선택하신 좌석 개수 확인해주세요 ! ");
 			return ;
 		}
 		
-		f.action = "<%=cp %>/Booking/insertDB.do";
+		f.action = "<%=cp%>/Booking/seatSelect_ok.do?";
 		f.submit();
 		
-		
-		
 	}
-
+	
 </script>
 </head>
 <body>
@@ -190,7 +198,7 @@
 									<c:if test="${dto.age_limit=='18' }"><img src="${imagePath2 }/age18big.png"></c:if>
 									</td>
 									<td style="background-color: #555555 ">
-										<span style="color: white" > ${movie_name } </span>
+										<span style="color: white; " > ${movie_name } </span>
 									</td>
 								</tr>
 								<tr>
@@ -249,55 +257,86 @@
 					</tr>
 					<tr height="150">
 						<td>
-						
-							<c:set var = "i" value ="1"></c:set>
-							<c:set var = "k" value ="1"></c:set>
+								<c:set var = "k" value ="1"></c:set>
 								<div align="center">
 								<table border="0" cellpadding="0" cellspacing="0">
-									<c:forEach var = "j" begin = "1" end = "36" step = "1">
-										<c:if test="${i % 9 == 1 }">
+									<c:forEach var = "dto3" items="${lists_seat }" >
+										<c:if test="${dto3.rnum % 9 == 1 }">
 											<tr >
 										</c:if>
 											<td align="center" width="77">
-
+												
 												<c:if test="${k==1 }">
 													<span style="font-weight: bold;">A&nbsp;</span>
 												</c:if>
-												<c:if test="${k==11 }">
+												<c:if test="${k==10 }">
 													<span style="font-weight: bold;">B&nbsp;</span>
 												</c:if>
-												<c:if test="${k==20 }">
+												<c:if test="${k==19 }">
 													<span style="font-weight: bold;">C&nbsp;</span>
 												</c:if>
-												<c:if test="${k==29}">
+												<c:if test="${k==28}">
 													<span style="font-weight: bold;">D&nbsp;</span>
 												</c:if>
-												<c:if test="${j>=1 && i <10}">
-<%-- 													<c:if test=""> --%>
-													<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
-<%-- 													</c:if> --%>
 												
-												${j }
-												</c:if>
-												<c:if test="${j>=10 && j < 19}">
-													<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
-												${j -9}												
-												</c:if>
-												<c:if test="${j>=19 && i <28}">
+												<c:if test="${dto3.rnum>=1 && dto3.rnum <10}">
+													
+													<c:choose>
+														<c:when test="${dto3.status eq 1 }">
+															<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
+														</c:when>	
+														<c:otherwise>
+															<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
+														</c:otherwise>	
+													</c:choose>
 												
-													<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
-												${j -18}
+													${dto3.rnum }
 												</c:if>
-												<c:if test="${j>=28 && i <=36}">
-													<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
-												${j -27}
+												<c:if test="${dto3.rnum>=10 && dto3.rnum < 19}">
+													
+													<c:choose>
+														<c:when test="${dto3.status eq 1 }">
+															<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
+														</c:when>	
+														<c:otherwise>
+															<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
+														</c:otherwise>	
+													</c:choose>
+													
+													${dto3.rnum -9}												
+												</c:if>
+												<c:if test="${dto3.rnum>=19 && dto3.rnum <28}">
+												
+													<c:choose>
+														<c:when test="${dto3.status eq 1 }">
+															<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
+														</c:when>	
+														<c:otherwise>
+															<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
+														</c:otherwise>	
+													</c:choose>
+													
+													${dto3.rnum -18}
+												</c:if>
+												<c:if test="${dto3.rnum>=28 && dto3.rnum <=36}">
+													
+													<c:choose>
+														<c:when test="${dto3.status eq 1 }">
+															<img alt="" src="<%=cp%>/booking/image/noSeat.PNG">
+														</c:when>	
+														<c:otherwise>
+															<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
+														</c:otherwise>	
+													</c:choose>
+													
+													${dto3.rnum -27}
 												</c:if>
 											</td>
-										<c:if test="${i % 9 == 0 }">
+										<c:if test="${dto3.rnum % 9 == 0 }">
 											</tr>
 										</c:if>
-									<c:set var = "i" value ="${i+1 }"></c:set>
-									<c:set var = "k" value ="${i+1 }"></c:set>
+									
+									<c:set var = "k" value ="${k+1 }"></c:set>
 									</c:forEach>
 								</table>
 								</div>
@@ -383,7 +422,7 @@
 					</td>	
 					<td style= "background-color:#555555; width: 20px;" > </td>
 					<td>					
-						<input type="button" value = "다음" onclick="javascript:location.href='<%=cp %>'" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #513396; color: #ffffff; border: 0"/>
+						<input type="button" value = "다음" onclick="cntCheck();" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #513396; color: #ffffff; border: 0"/>
 					</td>
 				</tr>
 			</table>

@@ -2,7 +2,9 @@ package com.booking;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -143,6 +145,7 @@ public class BookingServlet extends HttpServlet {
 			url = "/booking/calendar.jsp";
 			forward(req, resp, url);
 
+			
 		} else if (uri.indexOf("seatSelect.do") != -1) {
 			String screen_id = req.getParameter("screen_id");
 			String age_limit = req.getParameter("age_limit");
@@ -152,12 +155,47 @@ public class BookingServlet extends HttpServlet {
 			String type = req.getParameter("type");
 			String district = req.getParameter("district");
 			
-			System.out.print(screen_id);
+			List<BookingDTO> lists_seat = dao.getSeatInfo(screen_id); // 예약된 좌석 정보 가져오기
 			
-			String value1 = req.getParameter("value1"); // 성인
-			String value2 = req.getParameter("value2"); // 청소년
-			String value3 = req.getParameter("value3"); // 어린이
-			String value4 = req.getParameter("value4"); // 우대
+			Iterator<BookingDTO> it = lists_seat.iterator();
+			while(it.hasNext()){
+				BookingDTO dto = it.next();
+				dto.getRnum();
+				dto.getStatus();
+				System.out.print(dto.getScreen_id());
+				System.out.print(dto.getRnum());
+				System.out.print(dto.getRow_num());
+				System.out.print(dto.getSeat_num());
+				System.out.print(dto.getStatus());
+				System.out.print("\n");
+			}
+			
+			
+			String value11 = req.getParameter("value1"); // 성인
+			String value22 = req.getParameter("value2"); // 청소년
+			String value33 = req.getParameter("value3"); // 어린이
+			String value44 = req.getParameter("value4"); // 우대
+			
+			String value1 = "0";
+			String value2 = "0";
+			String value3 = "0";
+			String value4 = "0";
+			
+			if(value11 != null){
+				value1 =value11;
+			}
+			if(value22 != null){
+				value2 =value22;
+			}
+			
+			if(value33 != null){
+				value3 =value33;
+			}
+			if(value44 != null){
+				value4 =value44;
+			}
+			
+			
 			int price = 0;
 
 			if (value1 != null) {
@@ -191,6 +229,9 @@ public class BookingServlet extends HttpServlet {
 			String imagePath2 = cp + "/movie/image"; // timetable 이미지 경로
 			req.setAttribute("imagePath2", imagePath2);
 
+			//------------------------------------------------------------------
+			
+			req.setAttribute("lists_seat", lists_seat);
 
 			url = "/booking/seatSelect.jsp";
 			forward(req, resp, url);
@@ -228,8 +269,11 @@ public class BookingServlet extends HttpServlet {
 
 		} else if (uri.indexOf("movieSelect.do") != -1) {
 
+			
+			
+			
 			Calendar cal = Calendar.getInstance();
-
+			
 			// 오늘날짜
 
 			int nowDay = cal.get(Calendar.DAY_OF_MONTH); // 현재 요일
@@ -291,7 +335,10 @@ public class BookingServlet extends HttpServlet {
 
 			url = "/booking/movieSelect.jsp";
 			forward(req, resp, url);
-		} else if (uri.indexOf("insertDB.do") != -1) {
+			
+			
+			
+		} else if (uri.indexOf("seatSelect_ok.do") != -1) {
 			
 			
 //			dao.insertData();

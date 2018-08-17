@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.login.MemberDTO;
+
 public class MypageDAO {
 
 	private Connection conn;
@@ -15,9 +17,9 @@ public class MypageDAO {
 
 		this.conn = conn;
 	}
-	
-	//get booked_id from booked_seats 
-	//return List => use for bookedList method;
+
+	//���Ź�ȣ �ҷ�����
+	//(booked_seats���̺��� user_id�� �������� booked_id�� ����Ʈ�� �޾Ƴ�)
 	public List<String> getBookedId(String user_id){
 
 		List<String> lists = new ArrayList<String>();
@@ -55,8 +57,8 @@ public class MypageDAO {
 
 	}
 
-	//getBookedId = idList
-	//RecentBookedList : not cancel, within a month(30days)
+	//�ֱ� ���� ���� �ҷ����� (���� ���� O, ��ҵ� ���� X / �ֱ� 1�� ����)
+	//getBookedId�޼ҵ忡�� ������ ����Ʈ�� �Ű������� �޾� ���� �� ������ ����Ʈ�� �޾Ƴ�
 	public List<MyBookingDTO> getRecentBookedList(List<String> idList){
 
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
@@ -79,6 +81,7 @@ public class MypageDAO {
 						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'YYYY-MM-DD HH24:MI') end_time"
 						+ " from booked_list where booked_id=? and cancel_date is null and start_time>(select sysdate -30 from dual) order by start_time desc";
 
+				
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, booked_id);
@@ -121,8 +124,8 @@ public class MypageDAO {
 
 	}
 
-	//getBookedId = idList
-	//now booking list - not cancel / start_time>sysdate
+	//���� ���� �ҷ����� (���� ���� X, ��ҵ� ���� X)
+	//getBookedId�޼ҵ忡�� ������ ����Ʈ�� �Ű������� �޾� ���� �� ������ ����Ʈ�� �޾Ƴ�
 	public List<MyBookingDTO> getBookingList(List<String> idList){
 
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
@@ -145,6 +148,7 @@ public class MypageDAO {
 						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time"
 						+ " from booked_list where booked_id=? and cancel_date is null and start_time>sysdate order by start_time desc";
 
+
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, booked_id);
@@ -186,16 +190,15 @@ public class MypageDAO {
 		return lists;
 
 	}
-	
-	//getBookedId = idList
-	//getSeenMovieList - not cancel, start_time<sysdate
+
+	//getSeenMovieList
 	public List<MyBookingDTO> getSeenMoiveList(List<String> idList){
-		
+
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
 
 		String sql;
 		String booked_id;
-		
+
 
 		try {
 
@@ -208,10 +211,11 @@ public class MypageDAO {
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 
-				sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date, movie_id, file_name, movie_name, age_limit, "
-						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time "
-						+ "from booked_list where booked_id=? and cancel_date is null and start_time<sysdate order by start_time desc";
+				sql = "select rownum rnum, booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
+						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time"
+						+ " from booked_list where booked_id=? and cancel_date is null and start_time<sysdate order by start_time desc";
 
+		
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, booked_id);
@@ -251,77 +255,78 @@ public class MypageDAO {
 		}
 
 		return lists;
-		
+
 	}
-	
+
 	//canceled Movie List
-		public List<MyBookingDTO> getCanceledBooking(List<String> idList){
-			
-			List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
+	public List<MyBookingDTO> getCanceledBooking(List<String> idList){
 
-			String sql;
-			String booked_id;
-			
+		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
 
-			try {
+		String sql;
+		String booked_id;
 
-				Iterator<String> it = idList.iterator();
 
-				while(it.hasNext()){
+		try {
 
-					booked_id = it.next();
+			Iterator<String> it = idList.iterator();
 
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
+			while(it.hasNext()){
 
-					sql = "select rownum rnum, booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
-							+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time"
-							+ " from booked_list where booked_id=? and cancel_date is not null order by start_time desc";
+				booked_id = it.next();
 
-					pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
 
-					pstmt.setString(1, booked_id);
+				sql = "select rownum rnum, booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
+						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time"
+						+ " from booked_list where booked_id=? and cancel_date is not null order by start_time desc";
 
-					rs = pstmt.executeQuery();
+		
+				pstmt = conn.prepareStatement(sql);
 
-					while(rs.next()){
+				pstmt.setString(1, booked_id);
 
-						MyBookingDTO dto = new MyBookingDTO();
+				rs = pstmt.executeQuery();
 
-						dto.setBookded_id(rs.getString("booked_id"));
-						dto.setUser_id(rs.getString("user_id"));
-						dto.setReservation_date(rs.getString("reservation_date"));
-						dto.setCancel_date(rs.getString("cancel_date"));
-						dto.setMovie_id(rs.getString("movie_id"));
-						dto.setFile_name(rs.getString("file_name"));
-						dto.setMovie_name(rs.getString("movie_name"));
-						dto.setAge_limit(rs.getString("age_limit"));
-						dto.setDistrict(rs.getString("district"));
-						dto.setScreen_num(rs.getString("screen_num"));
-						dto.setRow_num(rs.getString("row_num"));
-						dto.setSeat_num(rs.getInt("seat_num"));
-						dto.setStart_time(rs.getString("start_time"));
-						dto.setEnd_time(rs.getString("end_time"));
+				while(rs.next()){
 
-						lists.add(dto);
+					MyBookingDTO dto = new MyBookingDTO();
 
-					}
+					dto.setBookded_id(rs.getString("booked_id"));
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setReservation_date(rs.getString("reservation_date"));
+					dto.setCancel_date(rs.getString("cancel_date"));
+					dto.setMovie_id(rs.getString("movie_id"));
+					dto.setFile_name(rs.getString("file_name"));
+					dto.setMovie_name(rs.getString("movie_name"));
+					dto.setAge_limit(rs.getString("age_limit"));
+					dto.setDistrict(rs.getString("district"));
+					dto.setScreen_num(rs.getString("screen_num"));
+					dto.setRow_num(rs.getString("row_num"));
+					dto.setSeat_num(rs.getInt("seat_num"));
+					dto.setStart_time(rs.getString("start_time"));
+					dto.setEnd_time(rs.getString("end_time"));
 
-					rs.close();
-					pstmt.close();
+					lists.add(dto);
 
-				} 
+				}
 
-			}catch (Exception e) {
-				System.out.println(e.toString());
-			}
+				rs.close();
+				pstmt.close();
 
-			return lists;
-			
+			} 
+
+		}catch (Exception e) {
+			System.out.println(e.toString());
 		}
 
+		return lists;
 
-	//占쏙옙占쏙옙占쏙옙占� 占쏙옙화 count
+	}
+
+
+	//������� ��ȭ count
 	public int getWishMovieCount(String user_id){
 
 		PreparedStatement pstmt = null;
@@ -354,7 +359,7 @@ public class MypageDAO {
 		return count;
 	}
 
-	//占쏙옙 占쏙옙화 count
+	//�� ��ȭ count
 	public int getSeenMovieCount(String user_id){
 
 		PreparedStatement pstmt = null;
@@ -387,7 +392,7 @@ public class MypageDAO {
 		return count;
 	}
 
-	//占쏙옙占쏙옙占쏙옙 count
+	//������ count
 	public int getCommentCount(String user_id){
 
 		PreparedStatement pstmt = null;
@@ -420,7 +425,7 @@ public class MypageDAO {
 		return count;
 	}
 
-	//占쏙옙호占싹댐옙 占쏙옙화占쏙옙 占쌀뤄옙占쏙옙占쏙옙(city, district占쏙옙 占쌀뤄옙占쏙옙)
+	//��ȣ�ϴ� ��ȭ�� �ҷ�����(city, district�� �ҷ���)
 	public String getPreferredTheater(String user_id){
 
 		PreparedStatement pstmt = null;
@@ -455,6 +460,7 @@ public class MypageDAO {
 		return preferredTheater;
 
 	}
+	
 
 	//booked_seats Table update for cancel of reservation
 
@@ -536,12 +542,226 @@ public class MypageDAO {
 		return lists;
 
 	}
+
+
+	//회원정보 수정
+	//update member
+	public int updateMember(String user_id, MemberDTO dto){
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		String sql;
+
+		try {
+			
+			sql = "update member set birth=?, tel=?, email=?, addr=? where user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getBirth());
+			pstmt.setString(2, dto.getTel());
+			pstmt.setString(3, dto.getEmail());
+			pstmt.setString(4, dto.getAddr());
+			pstmt.setString(5, user_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+
+	}
+
+	//회원 프로필 사진 테이블 검색
+	public String getMemberImage(String user_id){
+
+		PreparedStatement pstmt = null;
+		String sql;
+		ResultSet rs = null;
+		String file_name = null;
+
+		try {
+
+			sql = "select file_name from member_image where user_id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, user_id);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()){
+
+				file_name = rs.getString("file_name");
+			}
+
+			rs.close();
+			pstmt.close();
+
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return file_name;
+
+	}
+
+
+	//회원 프로필 사진 수정-프로필 사진이 없는 경우
+	//insert member_image
+	public int insertMemberImage(String user_id, String file_name){
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		String sql;
+
+		try {
+
+			sql = "insert into member_image values(?,?)";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, file_name);
+
+			result = pstmt.executeUpdate();
+
+			pstmt.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return result;
+
+	}
+
+
+	//회원 프로필 사진 수정-이미 프로필 사진이 있는 경우
+	//update member_image
+	public int updateMemberImage(String user_id, String file_name){
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		String sql;
+
+		try {
+
+			sql = "update member_image set file_name=? where user_id=?";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, file_name);
+			pstmt.setString(2, user_id);
+
+			result = pstmt.executeUpdate();
+
+			pstmt.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return result;
+	}
 	
-	//wish
+	//theater_id 찾기
+	public String getTheaterId(String city, String district){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+		String sql;
+		String theater_id = null;
+	
+		try {
+			
+			sql = "select theater_id from theater where city=? and district=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, city);
+			pstmt.setString(2, district);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				theater_id = rs.getString("theater_id");
+				
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return theater_id;
+	}
+	
+	
+	
+	//회원 선호 영화관 insert
+	public int insertPreferredTheater(String user_id, String theater_id){
+		
+		int result = 0;
 
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "insert into preferred_theater values(?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, theater_id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+	
+	//회원 선호 영화관 update
+	public int updatePreferredTheater(String user_id, String theater_id){
+		
+		int result = 0;
 
-
-
-
-
+		PreparedStatement pstmt = null;
+		String sql;
+		
+	try {
+			
+			sql = "update preferred_theater set theater_id=? where user_id=? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, theater_id);
+			pstmt.setString(2, user_id);
+	
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+	
 }

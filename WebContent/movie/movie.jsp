@@ -22,9 +22,9 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 
 	function goToP() {
 		
-		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}"
+		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
 		
-		
+		window.close();
 	}
 
 </script>
