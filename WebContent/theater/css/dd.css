@@ -68,7 +68,7 @@ div {
     width: 128px;
     height: 60px;
     position: relative;
-    cursor: pointer;
+    
 }
 
 .scheduleP2 .movie_time a {
@@ -174,18 +174,19 @@ p {
     font-size: 11px;
     color: #503396;
 }
+
+.scheduleP2 td .movie_time .mtime_info a{
+    
+    color: #808000;
+    
+}
 .scheduleP2 td .movie_time .mtime_info>span {
     display: block;
     position: absolute;
     width: 100%;
 }
 
-.scheduleP2 td .movie_time .mtime_info .ico_box {
-    display: block;
-    position: absolute;
-    top: 35px;
-    left: 92px;
-}
+
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, strong, label {
     font-weight: 700;
@@ -195,88 +196,3 @@ b, strong {
     font-weight: bold;
 }
 
-.floorinfo {
-    margin-bottom: 100px;
-}
-
-.floorinfo h3 {
-	text-align: left;
-    width: 100%;
-    height: 34px;
-    margin: 0 0 30px 0;
-    font-size: 20px;
-    overflow: hidden;
-    border-bottom: 1px solid #e1e1e1;
-}
-
-.floorP2 {
-    height: 40px;
-    padding: 1px 20px;
-    border: 1px solid #e5e5e5;
-    border-left-width: 5px;
-    overflow: hidden;
-}
-
-.floorP2 strong {
-    float: left;
-    width: 100px;
-    display: block;
-    font-size: 24px;
-    height: 100%;
-    line-height: 38px;
-}
-
-.floorP2 p {
-    font-size: 13px;
-    float: left;
-    height: 100%;
-    line-height: 38px;
-    font-weight: 700;
-}
-
-.mapInfo {
-    height: 40px;
-    padding: 1px 20px;
-    border: 1px solid #e5e5e5;
-    border-left-width: 5px;
-    overflow: hidden;
-}
-
-
-.mapInfo p {
-    font-size: 13px;
-    float: left;
-    height: 100%;
-    line-height: 38px;
-    font-weight: 700;
-}
-
-.trafficInfo {
-    margin-bottom: 100px;
-}
-
-.trafficInfo h3 {
-	text-align: left;
-    width: 100%;
-    height: 34px;
-    margin: 0 0 30px 0;
-    font-size: 20px;
-    border-bottom: 1px solid #e1e1e1;
-}
-
-.traInfo {
-	text-align: left; 
-	padding-left: 10px;
-}
-
-.traInfo ul {
-    padding: 6px 0 6px 60px;
-    border: 6px solid #f2f2f2;
-    width: 800px;
-    margin-bottom: 10px;
-}
-
-.traInfo li {
-    font-size: 13px;
-    line-height: 24px;
-}

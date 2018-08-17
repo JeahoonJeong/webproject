@@ -45,6 +45,8 @@
 	<br/><br/>
 </div>
 
+
+
 <div style="clear: both;">
 	<ul>
 		<li class="tab"><a href="<%=cp %>/mypage/list/bookingList.jsp" target="iframe1">예매 내역</a></li>
@@ -55,7 +57,7 @@
 	<br/><br/>
 
 <div style="clear: both;">
-<iframe  src="<%=cp %>/mypage/list/bookingList.jsp"  name="iframe1" width="720px" height="900px" frameborder="0"></iframe>
+<iframe  src="<%=cp %>/mypage/list/bookingList.jsp"  name="iframe1" width="1000px" height="700px" frameborder="0"></iframe>
 </div>
 
 

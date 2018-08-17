@@ -28,14 +28,17 @@
 		<th class="saleDate">예매일</th>
 	</tr>
 	<!-- DB에서 정보 불러서 돌려야함 -->
+	<c:set var="i" value="1"/>
+	<c:forEach items="${seenMovieList }" var="dto">
 	<tr>
-		<td>1</td>
-		<td>123456-123456</td>
-		<td>신과함께-인과 연</td>
-		<td>수원 1관</td>
-		<td>2018-01-01 13:30~15:53</td>
-		<td>2018-01-01</td>
+		<td>${i }<c:set var="i" value="${i+1 }"/></td>
+		<td>${dto.getBookded_id() }</td>
+		<td>${dto.getMovie_name() }</td>
+		<td>${dto.getDistrict() } ${dto.getScreen_num()}관</td>
+		<td>${dto.getStart_time()}</td>
+		<td>${dto.getReservation_date() }</td>
 	</tr>
+	</c:forEach>
 </table>
 
 

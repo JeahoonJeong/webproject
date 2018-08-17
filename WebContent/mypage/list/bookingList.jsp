@@ -21,7 +21,7 @@
 	
 		if(confirm("예매를 취소하시겠습니까?") == true){
 			
-			f.action = "<%=cp%>/Mypage/list/bookingList_ok.do?booked_id='"+booked_id+"'";
+			f.action = "<%=cp%>/Mypage/list/cancel_ok.do?booked_id=" + booked_id;
 				
 			f.submit();
 

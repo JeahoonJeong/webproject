@@ -85,21 +85,21 @@
 
 </head>
 <body>
+<jsp:include page="../header.jsp" flush="false"/>
 
-	<br/><br/><br/><br/><br/>
 	
 	
 	 <div class="sub_navi ">
 		<div class="sub_navi_wrap">
 			<ul class="clearfix">
 				<li>
-					<a class="timetable i0 " href="<%=cp%>/timetable/movieGuide.jsp"  title="예매안내 바로가기">예매안내</a>
+					<a class="timetable i0 " href="<%=cp%>/Timetable/movieGuide.do"  title="예매안내 바로가기">예매안내</a>
 				</li>
 				<li>
 					<a class="timetable i1 " href="<%=cp%>/Timetable/movieTime.do"  title="영화별 상영시간표 바로가기">영화별 상영시간표</a>
 				</li>
 				<li>
-					<a class="timetable i2 " href="<%=cp%>/timetable/movieCity.jsp"  title="영화관별 상영시간표 바로가기">영화관별 상영시간표</a>
+					<a class="timetable i2 " href="<%=cp%>/Theater/theaterP2.do"  title="영화관별 상영시간표 바로가기">영화관별 상영시간표</a>
 				</li>
 				
 			</ul>
@@ -135,11 +135,11 @@
 			<td align="center" style="font-size:20pt;">			
 			<!--  <a href="calender.jsp?year=<%=nowYear %>&month=<%=nowMonth%>"><img src="./image/today.jpg" align="left"></a>-->
 			
-			<a href="<%=cp %>/Theater/theaterP2.do?district=${district}&year=<%=preYear%>&month=<%=preMonth%>&day=<%=preDay%>">
+			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id}&year=<%=preYear%>&month=<%=preMonth%>&day=<%=preDay%>">
 			<img src="${imagePath}/화살표1.png" width="30" height="30" border="2" align="middle"></a> 
 			
 			<b>&nbsp; <%=month %>월&nbsp;&nbsp; <%=day %>일</b>
-			<a href="<%=cp %>/Theater/theaterP2.do?district=${district}&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="2" align="middle"></a>			
+			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id }&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="2" align="middle"></a>			
 			</td>
 		</tr>
 	</table>
@@ -173,9 +173,8 @@
 	</c:if>
 	
 	
-	
 	<table border="0" class="scheduleP2">
-
+			
 			<c:forEach var="dto" items="${lists }">
 				<c:if test="${!dto.district.equals(district)||!dto.screen_num.equals(screen_num) }">
 
@@ -203,7 +202,9 @@
 
 				<c:set var="district" value="${dto.district }" />
 				<c:set var="screen_num" value="${dto.screen_num}"/>
+				
 			</c:forEach>
+			
 		</table>
 	
 	
