@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../header.jsp" flush="false"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -38,13 +39,13 @@
 </script>
 </head>
 <body>
-<form action="movie.do" method="post" id="mvForm" target="popUp">
+<form action="movie.do" method="post" id="mvForm" target="movieInfo">
 <div id="title">
 	<table width="1000px" height="50px" align="center" style="vertical-align: middle;" class="topMenu">
 		<tr>
-			<td><a href=<%=cp %>/movie/list.jsp><font color="#503396">박스오피스</font></a></td>
-			<td><a href=<%=cp %>/movie/list_date.jsp>최신개봉작</a></td>
-			<td><a href=<%=cp %>/movie/list_pre.jsp>상영예정작</a></td>
+			<td><a href=<%=cp %>/Movie/list.do><font color="#503396">박스오피스</font></a></td>
+			<td><a href=<%=cp %>/Movie/list_date.do>최신개봉작</a></td>
+			<td><a href=<%=cp %>/Movie/list_pre.do>상영예정작</a></td>
 			<td><span style="float: left;">
 			<a href="<%=cp %>/movie/wishMov.jsp">♥ 보고싶어</a></span>
 			<span style="float: right;">
@@ -55,7 +56,7 @@
 </div>
 
 
-<div class="content">
+<!-- <div class="content">
 	<table>
 		<tr>
 			<td width="220px" class="top">
@@ -83,10 +84,10 @@
 		onclick=""/></td>
 		</tr>
 	</table>
-</div>
+</div> -->
 
 
-<%-- <div class="content">
+<div id="content">
 		<c:set var="i" value="0"/>
 		<c:forEach var="dto" items="${lst }">
 		 <table style="float: left; margin: 7px;">
@@ -126,7 +127,7 @@
 		</table>
 	</c:forEach>	
 	</form>
-</div> --%>
+</div>
 
 
 <%-- <div class="content">
@@ -164,7 +165,8 @@
 
 
 
-
-
+<div style="clear: both;">
+<jsp:include page="../footer.jsp" flush="false"/>
+</div>
 </body>
 </html>

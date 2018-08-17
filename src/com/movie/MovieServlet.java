@@ -78,7 +78,7 @@ public class MovieServlet extends HttpServlet{
 			
 			List<MovieDTO> lst = dao.getAllMV(start, end);
 			
-			String listUrl = cp + "/movie/list.do";
+			String listUrl = cp + "/Movie/list.do";
 			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
 			
 			String imagePath = cp + "/mv/imageFile";

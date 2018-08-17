@@ -1,24 +1,23 @@
 @CHARSET "UTF-8";
 
 #title{
-
 	width: 100%;
 	background-color:  #F2F2F2;
 	border-bottom: 3px solid #503396;
 	height: 50px;
-	margin-top: 140px;
+	margin-top: 25px;
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 12pt;
 	font-weight: bold;
 	color: #4C4C4C;
 }
 
-.content{
-	
+#content{
 	font-family: 'Nanum Gothic', sans-serif;
 	margin-top: 50px;
 	margin-left: 70px;
 	margin-right: 70px;
+	margin-bottom: 100px;
 	align: center;
 }
 
