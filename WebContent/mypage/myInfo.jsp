@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=cp%>/mypage/css/mypage.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/register/css/mypage.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <title>나의 메가박스</title>
 </head>

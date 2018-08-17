@@ -27,7 +27,7 @@
 					<a class="timetable i2 " href="<%=cp%>/Theater/theaterP2.do"  title="영화관별 상영시간표 바로가기">영화관별 상영시간표</a>
 				</li>
 				
-			</ul>
+			</ul> 
 		</div>
 	</div>
 	
