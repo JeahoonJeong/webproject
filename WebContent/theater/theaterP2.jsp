@@ -342,7 +342,7 @@
 			<th
 				style="width: 100px; font-size: 14px; text-align: right; padding-right: 15px; padding-left: 10px;"><div>${dto.screen_num}관</div>
 				<small>${dto.type}</small></th>
-			<td>				
+		</tr>				
 		</c:if>	
 				<div class="movie_time">
 					<a>

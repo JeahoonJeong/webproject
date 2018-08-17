@@ -284,7 +284,7 @@
 	<div id="header-menu">
 		<div id="header-menu-left">
 			<ul>
-				<li class="menu-left"><img alt="" src="./login/image/menu.jpg"></li>
+				<li class="menu-left"><img alt="" src="<%=cp %>/login/image/menu.jpg"></li>
 				<li class="menu-left">필름소사이어티</li>
 				<li class="menu-left">클래식 소사이어티</li>
 			</ul>
