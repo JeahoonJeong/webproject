@@ -15,8 +15,6 @@
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css" type="text/css"/>
 
-<script type="text/javascript" src="./js/Calendar.js" ></script> 
-
 <style type="text/css">
 
 .bgimg {
@@ -30,8 +28,9 @@
 }
 
 #topMenu {
- height: 30px; /* 메인 메뉴의 높이 */ 
-width: 1000px /* 메인 메뉴의 넓이 */ 
+height: 30px; /* 메인 메뉴의 높이 */ 
+width: 1000px; /* 메인 메뉴의 넓이 */ 
+position: absolute;
 } 
 #topMenu ul { /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */ 
 list-style-type: none; /* 메인 메뉴 안의 ul 내부의 목록 표시를 없애줌 */ 
@@ -100,31 +99,21 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
     padding: 0;
     background: url(http://image2.megabox.co.kr/mop/home/theater/bg.jpg) 50% 0 no-repeat;
     background-size: cover;
+}
+
 
 </style>
 
-
 <script type="text/javascript">
-    function listValue(lst){
-        var li1 = document.getElementsByTagName("li");
-        for(i=0; i<li1.length; i++){
-                if(lst == li1[i].getAttribute("name")){
-                alert(li1[i].getAttribute("value"));
-            }
-        }
-
-    }
+  $(window).resize(function(){resizeYoutube();});
+  $(function(){resizeYoutube();});
+  function resizeYoutube(){ $("iframe").each(function(){ if( /^https?:\/\/www.youtube.com\/embed\//g.test($(this).attr("src")) ){ $(this).css("width","100%"); $(this).css("height",Math.ceil( parseInt($(this).css("width")) * 480 / 854 ) + "px");} }); }
 </script>
 
-<!-- 출처: http://hyun0412.tistory.com/entry/li-태그-예제 -->
-
-
-
-
 </head>
+
 <body>
 <jsp:include page="../header.jsp" flush="false"/>
-
 
 <div class="tmain_container" align="center">
 	<div class="section no1">
@@ -259,11 +248,22 @@ background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
 		</td>
 	</tr>
 	<tr>
-		<td style="height: 500px;">
-			<img alt="" src="./image/cinefore.jpg" height="500px" width="984px">
+		<td>
+			<img height="500px" width="984px"
+				style="background: url(D:\Java\work\webproject\WebContent\theater\image\cinefore.jpg);
+						background-size: cover;">
 		</td>
+	
 	</tr>
 </table>
+
+
+
+<div class="countsort" style="padding-right: 16px; padding-top: 16px">
+<iframe width="984" height="562" src="https://www.youtube.com/embed/O-I0k8FLJVU?rel=0&autoplay=1" frameborder="0" class="video" allowfullscreen></iframe>
+</div><p><br /></p>
+
+
 
 
 
