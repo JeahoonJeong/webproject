@@ -217,17 +217,23 @@ public class MovieDAO {
 			
 			while(rs.next()){
 				
+				MovieDTO dto = new MovieDTO();
 				
+				dto.setMovie_id(rs.getString("movie_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setComment_date(rs.getString("comment_date"));
+				dto.setRecommend_num(rs.getInt("recommend_num"));
+				
+				lst.add(dto);	
 			}
 			
+			rs.close();
+			pstmt.close();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.toString());
 		}
-		
-		
-		
-		
+		return lst;
 		
 	}
 	
