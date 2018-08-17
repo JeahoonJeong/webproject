@@ -81,7 +81,13 @@
 				<td width="230px" height="50px" class="bottom">
 				<span style="line-height: 25px;">
 				<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
-				<span style="float: right;"><img src="./image/bg_allstar1.png"/></span>
+				<span style="float: right;">
+				<c:if test="${0<dto.rating&&dto.rating<3 }"><img src="${imagePath }/rate1.png"></c:if>
+				<c:if test="${2<dot.rating&&dto.rating<5 }"><img src="${imagePath }/rate2.png"></c:if>
+				<c:if test="${4<dot.rating&&dto.rating<7 }"><img src="${imagePath }/rate3.png"></c:if>
+				<c:if test="${6<dot.rating&&dto.rating<9 }"><img src="${imagePath }/rate4.png"></c:if>
+				<c:if test="${8<dot.rating&&dto.rating<11 }"><img src="${imagePath }/rate5.png"></c:if>
+				</span>
 				</td>
 			</tr>
 			<tr>
