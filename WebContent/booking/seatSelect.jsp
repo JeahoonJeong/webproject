@@ -44,8 +44,24 @@
 	function cntCheck(){
 		var f = document.seatSelectForm;
 		
-		var cntCheck = 0 ; 
+		var maxCheck ; // 최대 인원수 
+		maxCheck = value1 + value2 + value3+ value4; // 총인원수 
 		
+		var cntCheck = 0 ; // 사용자가 체크한 체크박스 개수
+		var arr_Check = document.getElementsByName("seatCheckBox[]");
+		for(var i = 0 ; i < arr_Check.length ; i++){
+			if(arr_Check[i].checked == true){
+				cntCheck++; // 체크 되어있다면 1증가
+			}
+		}
+		
+		if(cntCheck > maxCheck){
+			alert("선택하신 좌석 개수 확인해주세요 ! ");
+			return ;
+		}
+		
+		f.action = "<%=cp %>/Booking/insertDB.do";
+		f.submit();
 		
 		
 		
@@ -294,7 +310,9 @@
 												<c:if test="${k==29}">
 													<span style="font-weight: bold;">D&nbsp;</span>
 												</c:if>
+												
 												<input type="checkbox" value = "i" name = "seatCheckBox"/>
+												
 												<c:if test="${j>=1 && i <10}">
 												${j }
 												</c:if>

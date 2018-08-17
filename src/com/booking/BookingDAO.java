@@ -165,34 +165,18 @@ public class BookingDAO {
 //	
 	
 	// 4. 좌석 선택 (Insert)
+	 public int insertData(String userId, String movie_id, String screen_id){
+		 int result = 0 ; 
+		 
+		 
+		 
+		 
+		 
+		 
+		 return result;
+		 
+	 }
 	
-	// 6. 영화의 예매된 좌석 개수 가져오기 (Select)
-//	public int getSelectedSeatDataCount(){
-//		int dataCount = 0 ; 
-//		
-//		PreparedStatement pstmt = null;
-//		
-//		ResultSet rs = null;
-//		
-//		String sql;
-//		
-//		try {
-//			sql = "select nvl(count(*),0) from ";
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()){
-//				dataCount = rs.getInt(1);
-//				
-//			}
-//			rs.close();
-//			pstmt.close();
-//		} catch (Exception e) {
-//			e.toString();
-//		}
-//		
-//		return dataCount ;	
-//	}
-//	
+
 	
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import com.timetable.TimetableDAO;
 import com.timetable.TimetableDTO;
 
@@ -139,6 +140,16 @@ public class BookingServlet extends HttpServlet {
 			forward(req, resp, url);
 
 		} else if (uri.indexOf("seatSelect.do") != -1) {
+			String start_time = req.getParameter("start_time");
+			String movie_name = req.getParameter("movie_name");
+			String screen_num = req.getParameter("screen_num");
+			String district = req.getParameter("district");
+			
+			System.out.print(start_time);
+			System.out.print(movie_name);
+			System.out.print(screen_num);
+			System.out.print(district);
+			
 			String value1 = req.getParameter("value1"); // 성인
 			String value2 = req.getParameter("value2"); // 청소년
 			String value3 = req.getParameter("value3"); // 어린이
@@ -258,6 +269,13 @@ public class BookingServlet extends HttpServlet {
 
 			url = "/booking/movieSelect.jsp";
 			forward(req, resp, url);
+		} else if (uri.indexOf("insertDB.do") != -1) {
+			
+			
+//			dao.insertData();
+			
+			
+			
 		}
 
 	}
