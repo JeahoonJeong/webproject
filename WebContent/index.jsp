@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="util.MyUtil"%>
 <%@page import="com.movie.MovieDAO"%>
 <%@page import="util.DBCPConn"%>
@@ -11,10 +12,21 @@
 <%
 	//POST 방식에서 한글깨짐을 방지
 	request.setCharacterEncoding("UTF-8");
-	String cp = request.getContextPath();
 	
 	Connection conn = DBCPConn.getConnection();
 	MovieDAO dao = new MovieDAO(conn);
+	MyUtil myUtil = new MyUtil();
+	
+	String cp = request.getContextPath();
+	String uri = request.getRequestURI();
+	String url;
+	
+	String root = getServletContext().getRealPath("/");
+	String path = root + File.separator + "mv" + File.separator + "imageFile";
+	
+	File f = new File(path);
+	if(!f.exists())
+		f.mkdirs();
 	
 	String pageNum = request.getParameter("pageNum");
 	
@@ -26,8 +38,6 @@
 	//��ü ������ ����
 	int numPerPage = 21;
 	int dataCount = dao.getDataCount();
-	
-	MyUtil myUtil = new MyUtil();
 	
 	int totalPage = myUtil.getPageCount(numPerPage, dataCount);
 	
@@ -44,6 +54,13 @@
 	String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
 	
 	String imagePath = cp + "/mv/imageFile";
+	
+	request.setAttribute("lst", lst);
+	request.setAttribute("pageIndexList", pageIndexList);
+	request.setAttribute("dataCount", dataCount);
+	request.setAttribute("pageNum", currentPage);
+	request.setAttribute("totalPage", totalPage);
+	request.setAttribute("imagePath", imagePath);
 	
 	
 	
@@ -262,7 +279,8 @@
 	height: 500px;
 }
 
-#middle-list ul li {
+#middle-list li {
+	
 	list-style: none;
 	float: left;
 	line-height: 50px;
@@ -279,6 +297,8 @@
 	font-size: 12px;
 	font-weight: bold;
 }
+
+
 </style>
 
 <script type="text/javascript">
@@ -370,9 +390,10 @@
 	</div>
 
 	<div id="middle-box">
-		<div id="middle-box-wrap">
-			<div id="middle-list">
-				<ul>
+		<div id="middle-box-wrap" style="width: 1000px; margin: 0 auto;">
+		
+			<div id="middle-list" style=" width: 1000px; margin: 0 auto;">
+				<ul style="overflow: hidden; margin: 250px; margin-top: 60px; margin-bottom: 0px;">
 					<li><a href="">박스오피스</a></li>
 					<li><a href="">최신개봉작</a></li>
 					<li><a href="">상영예정작</a></li>
@@ -382,8 +403,8 @@
 
 			<!-- 메인 영화정보 -->
 
-			<div id="content">
-				<table width="1722px">
+			<div id="content" style="margin: 0 auto;">
+				<table width="1000px" >
 					<tr>
 						<td height="50px" colspan="7"></td>
 
@@ -393,7 +414,7 @@
 						<c:if test="${i==0 }">
 							<tr>
 						</c:if>
-						<c:if test="${i!=0&&i%7==0 }">
+						<c:if test="${i!=0&&i%4==0 }">
 							</tr>
 							<tr>
 						</c:if>
@@ -401,7 +422,8 @@
 							<table width="230px" height="503px" style="margin: 3px;">
 								<tr>
 									<td class="top"><img src="${imagePath }/${dto.file_name}"
-										width="230px" height="330px" /></td>
+										width="230px" height="330px" />
+									</td>
 								</tr>
 								<tr>
 									<td width="230px" height="50px" class="bottom"><span
