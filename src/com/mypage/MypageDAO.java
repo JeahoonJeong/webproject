@@ -15,9 +15,9 @@ public class MypageDAO {
 
 		this.conn = conn;
 	}
-
-	//���Ź�ȣ �ҷ�����
-	//(booked_seats���̺��� user_id�� �������� booked_id�� ����Ʈ�� �޾Ƴ�)
+	
+	//get booked_id from booked_seats 
+	//return List => use for bookedList method;
 	public List<String> getBookedId(String user_id){
 
 		List<String> lists = new ArrayList<String>();
@@ -55,8 +55,8 @@ public class MypageDAO {
 
 	}
 
-	//�ֱ� ���� ���� �ҷ����� (���� ���� O, ��ҵ� ���� X / �ֱ� 1�� ����)
-	//getBookedId�޼ҵ忡�� ������ ����Ʈ�� �Ű������� �޾� ���� �� ������ ����Ʈ�� �޾Ƴ�
+	//getBookedId = idList
+	//RecentBookedList : not cancel, within a month(30days)
 	public List<MyBookingDTO> getRecentBookedList(List<String> idList){
 
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
@@ -79,7 +79,6 @@ public class MypageDAO {
 						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'YYYY-MM-DD HH24:MI') end_time"
 						+ " from booked_list where booked_id=? and cancel_date is null and start_time>(select sysdate -30 from dual) order by start_time desc";
 
-				System.out.println(sql);
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, booked_id);
@@ -122,8 +121,8 @@ public class MypageDAO {
 
 	}
 
-	//���� ���� �ҷ����� (���� ���� X, ��ҵ� ���� X)
-	//getBookedId�޼ҵ忡�� ������ ����Ʈ�� �Ű������� �޾� ���� �� ������ ����Ʈ�� �޾Ƴ�
+	//getBookedId = idList
+	//now booking list - not cancel / start_time>sysdate
 	public List<MyBookingDTO> getBookingList(List<String> idList){
 
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
@@ -146,7 +145,6 @@ public class MypageDAO {
 						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time"
 						+ " from booked_list where booked_id=? and cancel_date is null and start_time>sysdate order by start_time desc";
 
-				System.out.println(sql);
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, booked_id);
@@ -188,8 +186,9 @@ public class MypageDAO {
 		return lists;
 
 	}
-
-	//getSeenMovieList
+	
+	//getBookedId = idList
+	//getSeenMovieList - not cancel, start_time<sysdate
 	public List<MyBookingDTO> getSeenMoiveList(List<String> idList){
 		
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
@@ -209,11 +208,10 @@ public class MypageDAO {
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 
-				sql = "select rownum rnum, booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
-						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time"
-						+ " from booked_list where booked_id=? and cancel_date is null and start_time<sysdate order by start_time desc";
+				sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date, movie_id, file_name, movie_name, age_limit, "
+						+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time "
+						+ "from booked_list where booked_id=? and cancel_date is null and start_time<sysdate order by start_time desc";
 
-				System.out.println(sql);
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, booked_id);
@@ -280,7 +278,6 @@ public class MypageDAO {
 							+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time"
 							+ " from booked_list where booked_id=? and cancel_date is not null order by start_time desc";
 
-					System.out.println(sql);
 					pstmt = conn.prepareStatement(sql);
 
 					pstmt.setString(1, booked_id);
@@ -324,7 +321,7 @@ public class MypageDAO {
 		}
 
 
-	//������� ��ȭ count
+	//占쏙옙占쏙옙占쏙옙占� 占쏙옙화 count
 	public int getWishMovieCount(String user_id){
 
 		PreparedStatement pstmt = null;
@@ -357,7 +354,7 @@ public class MypageDAO {
 		return count;
 	}
 
-	//�� ��ȭ count
+	//占쏙옙 占쏙옙화 count
 	public int getSeenMovieCount(String user_id){
 
 		PreparedStatement pstmt = null;
@@ -390,7 +387,7 @@ public class MypageDAO {
 		return count;
 	}
 
-	//������ count
+	//占쏙옙占쏙옙占쏙옙 count
 	public int getCommentCount(String user_id){
 
 		PreparedStatement pstmt = null;
@@ -423,7 +420,7 @@ public class MypageDAO {
 		return count;
 	}
 
-	//��ȣ�ϴ� ��ȭ�� �ҷ�����(city, district�� �ҷ���)
+	//占쏙옙호占싹댐옙 占쏙옙화占쏙옙 占쌀뤄옙占쏙옙占쏙옙(city, district占쏙옙 占쌀뤄옙占쏙옙)
 	public String getPreferredTheater(String user_id){
 
 		PreparedStatement pstmt = null;
