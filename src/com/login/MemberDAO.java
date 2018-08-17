@@ -24,7 +24,7 @@ public class MemberDAO {
 		
 		try {
 			
-			sql = "select user_id,user_pwd,user_name,birth,tel,email,addr from member where user_id=?";
+			sql = "select user_id,user_pwd,user_name,to_char(birth,'YYYY-MM-DD') birth,tel,email,addr from member where user_id=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			

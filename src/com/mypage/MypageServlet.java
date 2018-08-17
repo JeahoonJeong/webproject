@@ -95,7 +95,7 @@ public class MypageServlet extends HttpServlet{
 			MemberDTO member = (MemberDTO)session.getAttribute("member");
 
 			idList = dao.getBookedId(member.getUser_id());
-
+				
 			List<MyBookingDTO> bookingList = new ArrayList<MyBookingDTO>();
 
 			bookingList = dao.getBookingList(idList);
@@ -103,12 +103,17 @@ public class MypageServlet extends HttpServlet{
 			session.setAttribute("bookingList", bookingList);
 			//���� ���� �ҷ����� �Ϸ�
 			
+			
+			
+			
 			List<MyBookingDTO> seenMovieList = new ArrayList<MyBookingDTO>();
 			seenMovieList = dao.getSeenMoiveList(idList);
 			
 			session.setAttribute("seenMovieList", seenMovieList);
 
-			/////////////////////////////////////
+
+			
+			
 			
 			List<MyBookingDTO> canceledList = new ArrayList<MyBookingDTO>();
 			
@@ -116,21 +121,21 @@ public class MypageServlet extends HttpServlet{
 			
 			session.setAttribute("canceledList", canceledList);
 			
-			////////////////////////////////////////////////
+
 			
 			url = "/mypage/myBooking.jsp";
 			forward(req, resp, url);
 			
 
-		}else if(uri.indexOf("bookingList_ok.do")!=-1){
+		}else if(uri.indexOf("cancel_ok.do")!=-1){
 			
-			//update
+			//update cancel_date
 			
 			String booked_id = req.getParameter("booked_id");
 			
 			dao.cancelReservation(booked_id);
 			
-			url = "/mypage/myBooking.jsp";
+			url = "/mypage/list/bookingList.jsp";
 			
 			resp.sendRedirect(url);
 			

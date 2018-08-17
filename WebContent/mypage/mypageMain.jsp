@@ -21,9 +21,9 @@
 
 <div>
 <a href="<%=cp%>/Mypage/mypageMain.do"><span class="font">나의 메가박스</span></a><br/><br/>
-<hr size="3" color="#7A67AC" width="800px" style="float: left;"><br/><br/></div>
+<hr size="3" color="#352669" width="1000px" style="float: left;"><br/><br/></div>
 <div><span class="font" >${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
-<hr size="1" color="#7A67AC" width="800px" style="float: left"></div>
+<hr size="1" color="#352669" width="1000px" style="float: left"></div>
 <br/><br/>
 
 <div>
