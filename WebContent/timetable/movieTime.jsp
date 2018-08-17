@@ -135,11 +135,11 @@
 			<td align="center" style="font-size:20pt;">			
 			<!--  <a href="calender.jsp?year=<%=nowYear %>&month=<%=nowMonth%>"><img src="./image/today.jpg" align="left"></a>-->
 			
-			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id}&year=<%=preYear%>&month=<%=preMonth%>&day=<%=preDay%>">
+			<a href="<%=cp %>/Theater/theaterP2.do?district=${district}&year=<%=preYear%>&month=<%=preMonth%>&day=<%=preDay%>">
 			<img src="${imagePath}/화살표1.png" width="30" height="30" border="2" align="middle"></a> 
 			
 			<b>&nbsp; <%=month %>월&nbsp;&nbsp; <%=day %>일</b>
-			<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id}&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="2" align="middle"></a>			
+			<a href="<%=cp %>/Theater/theaterP2.do?district=${district}&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>"><img src="${imagePath}/화살표2.png" width="30" height="30" border="2" align="middle"></a>			
 			</td>
 		</tr>
 	</table>

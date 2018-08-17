@@ -89,6 +89,9 @@ cal.set(year, month - 1, day); //년 월 일
 <link rel="stylesheet" href="<%=cp%>/theater/css/scheduleP2.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/theater/css/theaterP2_menutab.css" type="text/css"/>
 
+<script type="text/javascript" src="./js/Calendar.js" ></script> 
+
+
 
 <script type="text/javascript">
 
@@ -107,6 +110,10 @@ function showCalendar() {
 
 </head>
 <body>
+<jsp:include page="../header.jsp" flush="false"/>
+
+
+
 <!-- 처음 이미지 -->
 <div style="background-image: 
 	url(http://image2.megabox.co.kr/mop/cinema/2018/57/703AF3-6E8B-4149-ABA3-E270FD395135.jpg); 
@@ -942,6 +949,8 @@ function showCalendar() {
 <br/><br/><br/><br/><br/>
 </div>
 </div>	
+
+<jsp:include page="../footer.jsp" flush="false"/>
 </body>
 </html>
 

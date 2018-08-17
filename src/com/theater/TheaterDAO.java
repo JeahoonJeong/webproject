@@ -16,7 +16,7 @@ public class TheaterDAO {
 	}
 	 
 	//모든데이터 가져오기
-	public List<TheaterDTO> getlist(String district, String start_time){
+	public List<TheaterDTO> getlist(int theater_id, String start_time){
 		
 		List<TheaterDTO> lists = new ArrayList<TheaterDTO>();
 		
@@ -26,23 +26,23 @@ public class TheaterDAO {
 		
 		try {
 			
-			district = "%" + district + "%";
-			
 			sql ="select * from timetable ";
-			sql +="where district like '?' and to_char(start_time, 'YYYY-MM-DD') = '?'";
+			sql +="where theater_id like '?' and to_char(start_time, 'YYYY-MM-DD') = '?'";
 
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, district);
+			pstmt.setInt(1, theater_id);
 			pstmt.setString(2, start_time);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				
+
 				TheaterDTO dto = new TheaterDTO();
 				
 				dto.setMovie_id(rs.getString("movie_id"));
+				dto.setTheater_id(rs.getString("theater_id"));
+				dto.setScree_num(rs.getString("screen_id"));
 				dto.setCity(rs.getString("city"));
 				dto.setDistrict(rs.getString("district"));
 				dto.setMovie_name(rs.getString("movie_name"));
