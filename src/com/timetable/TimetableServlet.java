@@ -24,7 +24,7 @@ public class TimetableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		doPost(req, resp);
+		doPost(req, resp); 
 	}
 
 	protected void forward(HttpServletRequest req, HttpServletResponse resp,
@@ -48,9 +48,7 @@ public class TimetableServlet extends HttpServlet {
 		String uri = req.getRequestURI();
 		
 		if (uri.indexOf("movieTime.do") != -1) {
-			String imagePath = cp +"/timetable/image";
-			
-		
+			String imagePath = cp +"/timetable/image";		
 			req.setAttribute("imagePath", imagePath);
 			
 			//city, district, movie_name, screen_num, start_time, end_time, seatedseat, seatnumber, type, age_limt, movie_id

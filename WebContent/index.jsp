@@ -1,10 +1,51 @@
+<%@page import="util.MyUtil"%>
+<%@page import="com.movie.MovieDAO"%>
+<%@page import="util.DBCPConn"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.movie.MovieDTO"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 	//POST 방식에서 한글깨짐을 방지
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
+	Connection conn = DBCPConn.getConnection();
+	MovieDAO dao = new MovieDAO(conn);
+	
+	String pageNum = request.getParameter("pageNum");
+	
+	int currentPage = 1;
+	
+	if(pageNum!=null)
+		currentPage = Integer.parseInt(pageNum);
+	
+	//��ü ������ ����
+	int numPerPage = 21;
+	int dataCount = dao.getDataCount();
+	
+	MyUtil myUtil = new MyUtil();
+	
+	int totalPage = myUtil.getPageCount(numPerPage, dataCount);
+	
+	if(currentPage>totalPage)
+		currentPage=totalPage;
+	
+	//������ ���۰� ��
+	int start = (currentPage-1)*numPerPage+1;
+	int end = currentPage*numPerPage;
+	
+	List<MovieDTO> lst = dao.getAllMV(start, end);
+	
+	String listUrl = cp + "/Movie/list.do";
+	String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
+	
+	String imagePath = cp + "/mv/imageFile";
+	
+	
 	
 %>
 
@@ -199,38 +240,37 @@
 	height: 60px;
 }
 
-#topbanner-wrap{
-	display:table;
+#topbanner-wrap {
+	display: table;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#topbanner-wrap img{
+#topbanner-wrap img {
 	width: 1400px;
 }
 
-
-#middle-box{
+#middle-box {
 	background-color: gray;
 	overflow: hidden;
-
 }
 
-#middle-box-wrap{
-	display: table; 
-	margin-left: auto; 
+#middle-box-wrap {
+	display: table;
+	margin-left: auto;
 	margin-right: auto;
 	height: 500px;
 }
 
-#middle-list ul li{
+#middle-list ul li {
 	list-style: none;
 	float: left;
 	line-height: 50px;
 	vertical-align: middle;
 	text-align: center;
 }
-#middle-list a{
+
+#middle-list a {
 	background-color: white;
 	color: black;
 	text-decoration: none;
@@ -270,7 +310,8 @@
 	<div id="header-wrap">
 		<div id="header">
 			<ul>
-				<li><a href="<%=cp%>"><img alt="" src="./login/image/magabox.jpg"></a></li>
+				<li><a href="<%=cp%>"><img alt=""
+						src="./login/image/magabox.jpg"></a></li>
 				<li><a class="menuLink" href="<%=cp%>/Movie/list.do">영화</a></li>
 				<li><a class="menuLink" href="#">큐레이션</a></li>
 				<li><a class="menuLink" href="<%=cp%>/Theater/theater.do">영화관</a></li>
@@ -284,36 +325,38 @@
 	<div id="header-menu">
 		<div id="header-menu-left">
 			<ul>
-				<li class="menu-left"><img alt="" src="<%=cp %>/login/image/menu.jpg"></li>
+				<li class="menu-left"><img alt=""
+					src="<%=cp%>/login/image/menu.jpg"></li>
 				<li class="menu-left">필름소사이어티</li>
 				<li class="menu-left">클래식 소사이어티</li>
 			</ul>
 		</div>
-		
+
 		<%
-		  String str;
-		  String strUrl;
-		  
-		  strUrl = cp+"/Booking/booking.do";
-		  str    = "window.open('" + strUrl + "', 'Think', ";
-		  str    = str + "'left=100, ";
-		  str    = str + "top=20, ";
-		  str    = str + "width=1000, ";
-		  str    = str + "height=600, ";
-		  str    = str + "toolbar=no, ";
-		  str    = str + "menubar=no, ";
-		  str    = str + "status=no, ";
-		  str    = str + "scrollbars=no, ";
-		  str    = str + "resizable=no')";
+			String str;
+			String strUrl;
+
+			strUrl = cp + "/Booking/booking.do";
+			str = "window.open('" + strUrl + "', 'Think', ";
+			str = str + "'left=100, ";
+			str = str + "top=20, ";
+			str = str + "width=1000, ";
+			str = str + "height=600, ";
+			str = str + "toolbar=no, ";
+			str = str + "menubar=no, ";
+			str = str + "status=no, ";
+			str = str + "scrollbars=no, ";
+			str = str + "resizable=no')";
 		%>
-		
+
 		<div id="header-menu-right">
 			<ul>
 				<li class="menu-right">고객센터 | 멤버십 | VIP</li>
-				<li class="menu-right"><a href="<%=cp %>/Timetable/movieTime.do"><img alt=""
-					src="./login/image/timetable.jpg"></a></li>
-				<li class="menu-right"><img alt=""
-					src="./login/image/booking.jpg" onclick="<%=str %>"></li>
+				<li class="menu-right"><a
+					href="<%=cp%>/Timetable/movieTime.do"><img alt=""
+						src="./login/image/timetable.jpg"></a></li>
+				<li class="menu-right">
+				<img alt="" src="./login/image/booking.jpg" onclick="<%=str%>"></li>
 			</ul>
 		</div>
 	</div>
@@ -328,14 +371,96 @@
 
 	<div id="middle-box">
 		<div id="middle-box-wrap">
-				<div	id="middle-list">
-					<ul>
-						<li><a href="">박스오피스</a></li>
-						<li><a href="">최신개봉작</a></li>
-						<li><a href="">상영예정작</a></li>
-						<li><a href="">큐레이션</a></li>
-					</ul>
-				</div>
+			<div id="middle-list">
+				<ul>
+					<li><a href="">박스오피스</a></li>
+					<li><a href="">최신개봉작</a></li>
+					<li><a href="">상영예정작</a></li>
+					<li><a href="">큐레이션</a></li>
+				</ul>
+			</div>
+
+			<!-- 메인 영화정보 -->
+
+			<div id="content">
+				<table width="1722px">
+					<tr>
+						<td height="50px" colspan="7"></td>
+
+					</tr>
+					<c:set var="i" value="0" />
+					<c:forEach var="dto" items="${lst }">
+						<c:if test="${i==0 }">
+							<tr>
+						</c:if>
+						<c:if test="${i!=0&&i%7==0 }">
+							</tr>
+							<tr>
+						</c:if>
+						<td width="242px" height="517px">
+							<table width="230px" height="503px" style="margin: 3px;">
+								<tr>
+									<td class="top"><img src="${imagePath }/${dto.file_name}"
+										width="230px" height="330px" /></td>
+								</tr>
+								<tr>
+									<td width="230px" height="50px" class="bottom"><span
+										style="line-height: 25px;"> <font color="grey"
+											style="font-weight: bold; font-size: 11pt;">평점
+												${dto.rating }</font></span> <span style="float: right;"> <c:if
+												test="${dto.rating==0 }">
+												<img src="${imagePath }/rate0.png">
+											</c:if> <c:if test="${dto.rating<3&&0<dto.rating}">
+												<img src="${imagePath }/rate1.png">
+											</c:if> <c:if test="${2<dto.rating&&dto.rating<5}">
+												<img src="${imagePath }/rate2.png">
+											</c:if> <c:if test="${4<dto.rating&&dto.rating<7 }">
+												<img src="${imagePath }/rate3.png">
+											</c:if> <c:if test="${6<dto.rating&&dto.rating<9 }">
+												<img src="${imagePath }/rate4.png">
+											</c:if> <c:if test="${8<dto.rating&&dto.rating<11 }">
+												<img src="${imagePath }/rate5.png">
+											</c:if>
+									</span></td>
+								</tr>
+								<tr>
+									<td class="middle"><c:if test="${dto.age_limit=='all' }">
+											<img src="${imagePath }/ageallbig.png">
+										</c:if> <c:if test="${dto.age_limit=='12' }">
+											<img src="${imagePath }/age12big.png">
+										</c:if> <c:if test="${dto.age_limit=='15' }">
+											<img src="${imagePath }/age15big.png">
+										</c:if> <c:if test="${dto.age_limit=='18' }">
+											<img src="${imagePath }/age18big.png">
+										</c:if> <font color="#353535"
+										style="font-weight: bold; vertical-align: top;"> <a
+											href="javascript:showPop();"> <c:choose>
+													<c:when test="${fn:length(dto.movie_name)>10 }">
+														<c:out value="${fn:substring(dto.movie_name,0,9) }" />…
+													</c:when>
+													<c:otherwise>
+														<c:out value="${dto.movie_name }"></c:out>
+													</c:otherwise>
+												</c:choose>
+										</a>
+									</font></td>
+								</tr>
+								<tr>
+									<td class="bottom" align="center"><input type="hidden"
+										name="movie_id1" value="${dto.movie_id }" /> <input
+										type="button" value="상세정보" class="btn1" onclick="showPop();" />
+										&nbsp;<input type="button" value="예매하기" class="btn1"
+										onclick="" /></td>
+									<c:set var="i" value="${i+1 }" />
+								</tr>
+							</table>
+						</td>
+					</c:forEach>
+				</table>
+			</div>
+			<!-- 메인 영화정보 끝 -->
+
+
 		</div>
 	</div>
 

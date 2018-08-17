@@ -12,8 +12,7 @@ public class BookingDAO {
 	
 	// DI (����������)
 	public BookingDAO(Connection conn) {
-		this.conn = conn;
-		
+		this.conn = conn;		
 	}
 	
 	// 1. ��ȭ�� ���� �������� (Select)
@@ -179,6 +178,9 @@ public class BookingDAO {
 	 }
 	 
 	 
+	 
+	 //------------------------------------------------------
+	 
 	 public List<BookingDTO> getSeatInfo(String screenId){
 			List<BookingDTO> lists = new ArrayList<BookingDTO>();
 			
@@ -261,7 +263,7 @@ public class BookingDAO {
 			ResultSet rs = null;
 			
 			try {
-				sql = "select nvl(max(booked_id),0) from booked_seats";
+				sql = "select max(to_number(booked_id)) from booked_seats;";
 				pstmt = conn.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 				
@@ -278,6 +280,9 @@ public class BookingDAO {
 			}
 			return maxNum;
 		}
+	 
+	 //---타입을 받아온다.
+	
 	 
 	
 

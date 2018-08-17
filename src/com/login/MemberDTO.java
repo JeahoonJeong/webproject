@@ -9,6 +9,8 @@ public class MemberDTO {
 	private String tel;
 	private String email;
 	private String addr;
+	private String file_name;
+	private String theater_id;
 	
 	public String getUser_id() {
 		return user_id;
@@ -52,5 +54,16 @@ public class MemberDTO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public String getTheater_id() {
+		return theater_id;
+	}
+	public void setTheater_id(String theater_id) {
+		this.theater_id = theater_id;
+	}
 }

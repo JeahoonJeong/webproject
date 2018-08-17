@@ -518,7 +518,7 @@
           });
           // 마크 클릭시 인포윈도우 오픈
           var infowindow = new naver.maps.InfoWindow({
-              content: '<h4> [메가박스 강남]</h4>'
+              content: '<h4> [메가박스 강남]</h4><a href="https://developers.naver.com" target="_blank"><img src="../theater/image/mega_pic.jpg"></a>'
           });
       });
       </script>

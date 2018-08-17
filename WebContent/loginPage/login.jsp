@@ -80,7 +80,7 @@ function login() {
 	</tr>
 	<tr>
 		<td colspan="2"><br/>
-		<a href="#">회원가입</a>&nbsp;&nbsp;&nbsp; 
+		<a href="<%=cp %>/Login/register.do">회원가입</a>&nbsp;&nbsp;&nbsp; 
 		<a href="#">ID/PW찾기</a>
 		</td>
 	</tr>
