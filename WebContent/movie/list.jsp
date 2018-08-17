@@ -17,26 +17,18 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script type="text/javascript">
 
-	/* function showPop() {
-		
-		var f = document.mvForm;
-		
-		window.open("movie.do","movieInfo",
-				"top=90, width=968, height=650, left="
-				+(screen.width-968)/2+"",
-				"toolbar=no", "menubar=no", "status=no", "resizable=no",
-				"location=no","scrollbars=yes");
-		} */
 
-		function showPop() {
+		 function showPop(movie_id) {
+			
+			
+			var url = "movie.do?movie_id=" + movie_id;
 
 			var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 			
-			var windowObj = window.open("movie.do","movieInfo",setting);
-			
-			windowObj.document.getElementById("movie_id").value = document.getElementById("movie_id").value;
+			window.open(url,"movieInfo",setting);
 		
-		}
+		
+		} 
 		
 </script>
 </head>
@@ -95,15 +87,12 @@
 			</tr>
 			<tr>
 				<td class="middle">
-				<c:if test="${dto.age_limit=='all' }"><img src="${imagePath }/ageallbig.png"></c:if>
-				<c:if test="${dto.age_limit=='12' }"><img src="${imagePath }/age12big.png"></c:if>
-				<c:if test="${dto.age_limit=='15' }"><img src="${imagePath }/age15big.png"></c:if>
-				<c:if test="${dto.age_limit=='18' }"><img src="${imagePath }/age18big.png"></c:if>
+				<img src="${imagePath }/age${dto.age_limit }big.png">
 				<font color="#353535" style="font-weight: bold; vertical-align: top;">
-				<a href="javascript:showPop();">
+				<a href="javascript:showPop(${dto.movie_id});">
 				<c:choose>
 					<c:when test="${fn:length(dto.movie_name)>10 }">
-						<c:out value="${fn:substring(dto.movie_name,0,9) }"/>…
+						<c:out value="${fn:substring(dto.movie_name,0,8) }"/>…
 					</c:when>
 					<c:otherwise>
 						<c:out value="${dto.movie_name }"></c:out>
@@ -115,9 +104,9 @@
 			</tr>
 			<tr>
 				<td class="bottom" align="center"> 
-				<input type="hidden" name="movie_id1" value="${dto.movie_id }"/>
+				<input type="hidden" id="movieid" value="${dto.movie_id }"/>
 				<input type="button" value="상세정보" class="btn1"
-				onclick="showPop();"/>
+				onclick="showPop(${dto.movie_id});"/>
 				&nbsp;<input type="button" value="예매하기" class="btn1"
 				onclick=""/></td>
 				<c:set var="i" value="${i+1 }" />
@@ -126,6 +115,7 @@
 	</td>
 	</c:forEach>	
 	</table>
+</form>	
 </div>
 
 

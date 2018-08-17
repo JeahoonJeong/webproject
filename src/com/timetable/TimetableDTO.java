@@ -11,7 +11,7 @@ public class TimetableDTO {
 	private String end_time; //16:27
 	private int seatedseat; //163
 	private int seatnumber; //217
-	private String type; //µğÁöÅĞ
+	private String type; //µğÁöÅĞ 
 	private String age_limit; //12¼¼
 	
 	public String getMovie_id() {
