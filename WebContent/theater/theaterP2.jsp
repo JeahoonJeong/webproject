@@ -136,7 +136,7 @@ function showCalendar() {
 				<li class="topMenuLi"> 
 					<a class="menuLink">서울</a> 
 					<ul class="submenu"> 
-						<li><a class="submenuLink">강남</a></li> 
+						<li><a class="submenuLink" href="">강남</a></li> 
 						<li><a class="submenuLink">강남대로(씨티)</a></li> 
 						<li><a class="submenuLink">강동</a></li> 
 						<li><a class="submenuLink">동대문</a></li> 
