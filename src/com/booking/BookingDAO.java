@@ -188,16 +188,18 @@ public class BookingDAO {
 			
 			try {
 				
-				sql = "select screen_id, row_num, seat_num, status "
-						+ " from seat where screen_id = ?";
+				sql = "select rnum, screen_id, row_num, seat_num, status from "
+						+ " (select rownum rnum, data.* "
+						+ " from (select screen_id, row_num, seat_num, status from seat "
+						+ " where screen_id = 1 order by row_num,seat_num) data)";
 						
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, screenId);
+//				pstmt.setString(1, "1");
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()){
 					BookingDTO dto = new BookingDTO();
-					
+					dto.setRnum(rs.getString("rnum"));
 					dto.setScreen_id(rs.getString("screen_id"));
 					dto.setRow_num(rs.getString("row_num"));
 					dto.setSeat_num(rs.getInt("seat_num"));
