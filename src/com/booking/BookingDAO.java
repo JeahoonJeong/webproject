@@ -101,7 +101,7 @@ public class BookingDAO {
 			String sql ;
 			
 			try {
-				sql = "SELECT to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
+				sql = "SELECT screen_id ,to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
 						+ "age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber "
 						+ "FROM TIMETABLE"; // 상영관 정보 가져오는 sql문
 						
@@ -120,6 +120,7 @@ public class BookingDAO {
 					dto.setScreen_num(rs.getString("screen_num"));
 					dto.setSeatedSeat(rs.getString("seatedseat"));
 					dto.setSeatNumber(rs.getString("seatnumber"));
+					dto.setScreen_id(rs.getString("screen_id"));
 					
 					lists2.add(dto);
 				}

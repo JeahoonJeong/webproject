@@ -493,11 +493,9 @@
 											</td>										
 								<td width="290" style="text-align: left;">
 								
-									<input type="hidden" name = "start_time" value = "${dto2.start_time }">
-									<input type="hidden" name = "movie_name" value = "${dto2.movie_name }">									
-									<input type="hidden" name = "screen_num" value = "${dto2.screen_num }">
-									<input type="hidden" name = "district" value = "${dto2.district }">
-								
+									<input type="hidden" name = "start_time" value = "${dto2.screen_id}">
+									
+									
 									&nbsp;&nbsp;<a onclick="goNextPage();"> ${dto2.age_limit } | ${dto2.movie_name }</a>
 								<br/>
 									&nbsp;&nbsp;<span style="font-size: 9pt;">${dto2.type }</span>
