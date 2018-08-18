@@ -1,21 +1,26 @@
 package com.mypage;
 
-public class MyBookingDTO {
-	
-	private String bookded_id;	//예매번호
-	private String user_id;		//사용자 id
-	private String reservation_date;	//예매일
-	private String cancel_date;	//취소일시
-	private String movie_id;	//영화 id
-	private String file_name;	//포스터 파일 이름
-	private String movie_name;	//영화이름
-	private String age_limit;	//연령제한
-	private String district;	//영화관
-	private String screen_num;	//상영관 번호
-	private String row_num;		//열
-	private int seat_num;		//좌석번호
-	private String start_time;	//상영 시작 시간
-	private String end_time;	//상영 종료 시간
+import java.io.Serializable;
+
+public class MyBookingDTO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
+	private String bookded_id;
+	private String user_id;		
+	private String reservation_date;	
+	private String cancel_date;
+	private String movie_id;	
+	private String file_name;	
+	private String movie_name;	
+	private int rating;			
+	private String age_limit;	
+	private String district;	
+	private String screen_num;	
+	private String row_num;		
+	private int seat_num;		
+	private String start_time;	
+	private String end_time;	
 	
 
 	public String getBookded_id() {
@@ -101,6 +106,13 @@ public class MyBookingDTO {
 	}
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
+	}
+	
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 }

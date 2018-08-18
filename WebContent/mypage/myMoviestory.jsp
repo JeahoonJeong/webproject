@@ -4,6 +4,8 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 	
+	String linkpage  = request.getParameter("linkpage");
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -55,7 +57,7 @@
 	<br/><br/>
 
 <div style="clear: both;">
-<iframe  src="<%=cp %>/mypage/list/interestingList.jsp"  name="iframe1" width="900px" height="900px" frameborder="0"></iframe>
+<iframe  src="<%=cp %>/mypage/list/<%=linkpage %>.jsp"  name="iframe1" width="900px" height="900px" frameborder="0"></iframe>
 </div>
 
 
