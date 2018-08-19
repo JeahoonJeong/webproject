@@ -90,14 +90,14 @@ a:active {text-decoration: none; color: grey;}
 a:hover {text-decoration: none; color: #351f66;}
 
 .tab {
-	width: 80px;
-	height: 35px;
+	width: 110px;
+	height: 40px;
 	list-style: none;
 	line-height: 35px;
 	text-align: center;
 	display: block;
     border: 1px solid #e1e1e1;
-    padding: 0 25px;
+    padding: 0 15px;
     float: left;
 }
 
@@ -207,6 +207,41 @@ a:hover {text-decoration: none; color: #351f66;}
 	overflow: hidden; 
 	clip:rect(0,0,0,0); 
 	border: 0; 
+}
+
+.detail{
+	width: 500px;
+	vertical-align: middle;
+	font-size: 13px;
+}
+.detail td {
+	height:35px ;
+	text-align:left;
+	border-bottom: 1px solid #dcdcdc;
+	padding-left: 20px;
+}
+
+.detail td span {
+	line-height: 30px; 
+	vertical-align: middle;
+}
+
+.detail th {
+	height:30px ;
+	text-align:left;
+	vertical-align: middle;
+	font-weight: bold;
+    border-bottom: 2px solid #351f66;
+}
+
+#detailPage {
+	margin: 0 auto;
+	padding: 0;
+	margin-bottom: 20px;
+	width: 750px;
+	text-align: left;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 11pt;
 }
 
 

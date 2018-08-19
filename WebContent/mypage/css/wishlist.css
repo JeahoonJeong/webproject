@@ -27,7 +27,7 @@
 	border-right: 1px solid #CCCCCC;
 }
 .middle{
-	font-size: 16pt;
+	font-size: 14pt;
 	padding: 10px;
 	padding-bottom: 0px;
 	height: 50px;
@@ -67,6 +67,16 @@
 	height: 60px;
 }
 
+
+body {
+scrollbar-face-color:#FFFFFF;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-3dlight-color: #FFFFFF;
+scrollbar-shadow-color: #FFFFFF;
+scrollbar-darkshadow-color: #FFFFFF;
+scrollbar-track-color: #FFFFFF;
+scrollbar-arrow-color: #FFFFFF
+}
 
 
 .topMenu a:hover {text-decoration: none; color: #503396;}

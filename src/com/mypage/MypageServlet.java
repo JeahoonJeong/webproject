@@ -140,12 +140,24 @@ public class MypageServlet extends HttpServlet{
 		}else if(uri.indexOf("cancel_ok.do")!=-1){
 
 			//update cancel_date
+			
+			HttpSession session = req.getSession();
+
+			MemberDTO member = (MemberDTO)session.getAttribute("member");
+
+			String user_id = member.getUser_id();
 
 			String booked_id = req.getParameter("booked_id");
 
 			dao.cancelReservation(booked_id);
+			
+			List<MyBookingDTO> bookingList = new ArrayList<MyBookingDTO>();
 
-			url = "/mypage/list/bookingList.jsp";
+			bookingList = dao.getBookingList(user_id);
+
+			session.setAttribute("bookingList", bookingList);
+
+			url = cp+ "/mypage/list/bookingList.jsp";
 
 			resp.sendRedirect(url);
 
@@ -405,6 +417,27 @@ public class MypageServlet extends HttpServlet{
 			String user_pwd = req.getParameter("user_pwd");
 			
 			//탈퇴 쿼리 보류 
+			
+		}else if(uri.indexOf("bookingDetail.do")!=-1){
+			
+			String booked_id = req.getParameter("booked_id");
+			
+			MyBookingDTO detailDTO = new MyBookingDTO();
+			
+			detailDTO = dao.getDetailBooking(booked_id);
+			
+			List<String> seats = new ArrayList<String>();
+			
+			seats = dao.getDetailSeats(booked_id);
+			
+			String price = dao.getDetailPrice(booked_id);
+			
+			req.setAttribute("detailDTO", detailDTO);
+			req.setAttribute("seats", seats);
+			req.setAttribute("price", price);
+			
+			url = "/mypage/bookingDetail.jsp";
+			forward(req, resp, url);
 			
 		}
 		
