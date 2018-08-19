@@ -29,11 +29,12 @@
 		<th class="saleDate">예매일</th>
 	</tr>
 	<!-- DB에서 정보 불러서 돌려야함 -->
+	<c:if test="${!empty canceledList }">
 	<c:set var="i" value="1"/>
 	<c:forEach items="${seenMovieList }" var="dto">
 	<tr>
 		<td>${i }<c:set var="i" value="${i+1 }"/></td>
-		<td>${dto.getBookded_id() }</td>
+		<td>${dto.getBooked_id() }</td>
 		<td>${dto.getMovie_name() }</td>
 		<td>${dto.getDistrict() } ${dto.getScreen_num()}관</td>
 		<td>${dto.getStart_time()}</td>
@@ -41,6 +42,13 @@
 		
 	</tr>
 	</c:forEach>
+	</c:if>
+	<c:if test="">
+		<tr>
+			<td colspan="6"> 지난 예매 내역이 없습니다.
+			</td>
+		</tr>
+	</c:if>
 </table>
 
 

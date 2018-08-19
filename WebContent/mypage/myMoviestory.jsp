@@ -28,9 +28,24 @@ function calcHeight(){
  document.getElementById('iframe1').height=
  the_height;
 
- //document.getElementById('the_iframe').scrolling = "no";
+ document.getElementById('iframe1').scrolling = "atuo";
  document.getElementById('iframe1').style.overflow = "hidden";
 }
+
+function autoResize(id){
+    var newheight;
+    var newwidth;
+
+    if(document.getElementById){
+        newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
+        newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
+    }
+
+    document.getElementById(id).height= (newheight) + "px";
+    document.getElementById(id).width= (newwidth) + "px";
+}
+
+
 
 </script>
 
@@ -69,15 +84,15 @@ function calcHeight(){
 
 <div style="clear: both;">
 	<ul>
-		<li class="tab"><a href="<%=cp %>/mypage/list/interestingList.jsp" target="iframe1">보고싶어</a></li>
-		<li class="tab"><a href="<%=cp %>/mypage/list/seenList.jsp" target="iframe1">본 영화</a></li>
-		<li class="tab"><a href="<%=cp %>/mypage/list/myCommentList.jsp" target="iframe1">나의 한줄평</a></li>
+		<li class="tab"><a href="<%=cp %>/mypage/list/interestingList.jsp" target="iframe1">보고싶어 (${wishList.size() })</a></li>
+		<li class="tab"><a href="<%=cp %>/mypage/list/seenList.jsp" target="iframe1">본 영화 (${seenMovieList.size()})</a></li>
+		<li class="tab"><a href="<%=cp %>/mypage/list/myCommentList.jsp" target="iframe1">나의 한줄평 (${commentsList.size() })</a></li>
 	</ul>
 </div>
 	<br/><br/>
 
 <div style="clear: both;">
-<iframe onload="calcHeight();" src="<%=cp %>/mypage/list/<%=linkpage %>.jsp" id="iframe1" name="iframe1" width="100%" frameborder="0" scrolling="no" style="overflow-x:hidden; width:100%; min-height:500px; overflow: hidden;">
+<iframe onload="autoResize('iframe1')" src="<%=cp %>/mypage/list/<%=linkpage %>.jsp" id="iframe1" name="iframe1" frameborder="0" style="overflow-x:hidden; width:100%; min-height:700px; height:100%;">
 </iframe>
 </div>
 
@@ -89,3 +104,7 @@ function calcHeight(){
 <jsp:include page="../footer.jsp" flush="false"/>
 </body>
 </html>
+
+
+
+

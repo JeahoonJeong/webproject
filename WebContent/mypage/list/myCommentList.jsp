@@ -20,6 +20,17 @@
 .g_book-box dd{width:100%; height:130px; padding:10px; font-size:10pt; border-top:1px solid #ddd; background:#fff;border-bottom:1px solid #ddd;}
 .right{float:right; font-size:9pt; font-weight: normal; cursor: pointer;}
 
+
+body {
+scrollbar-face-color:#FFFFFF;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-3dlight-color: #FFFFFF;
+scrollbar-shadow-color: #FFFFFF;
+scrollbar-darkshadow-color: #FFFFFF;
+scrollbar-track-color: #FFFFFF;
+scrollbar-arrow-color: #FFFFFF
+}
+
 </style>
 <script type="text/javascript">
 
@@ -112,7 +123,7 @@ function close_field(movie_id) {
                 <dd>
 					<img alt="포스터" src="<%=path %>/${dto.getFile_name()}"  style="float: left;" height="120px" width="70px">
 					<div style="float: left; text-align: center; height: 120px; width: 280px;"><br/>
-					<img src="<%=cp%>/mypage/image/age15.JPG" height="25px" width="25px"> 
+					<img src="<%=path %>/age${dto.age_limit }.png" height="25px" width="25px" alt="나이"> 
 					<font size="2" style="font-weight: bold; line-height: 25px">${dto.getMovie_name() }</font>
 					<br/><br/>
 					 <c:if test="${empty dto.getRating()}">등록된 평점이 없습니다.</c:if>

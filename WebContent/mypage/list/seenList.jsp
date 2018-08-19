@@ -16,6 +16,15 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <style type="text/css">
 
+body {
+scrollbar-face-color:#FFFFFF;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-3dlight-color: #FFFFFF;
+scrollbar-shadow-color: #FFFFFF;
+scrollbar-darkshadow-color: #FFFFFF;
+scrollbar-track-color: #FFFFFF;
+scrollbar-arrow-color: #FFFFFF
+}
 .guest_book{width:100%;padding:0px; color: #363636; margin: 0px;margin-bottom: 0px;}
 .g_book-box{width:100%;}
 .g_book-box dd{width:100%; height:160px; padding:10px; font-size:10pt; border-top:1px solid #ddd; background:#fff;border-bottom:1px solid #ddd;}
@@ -49,12 +58,12 @@
             <dl class="g_book-box">
                 <dd>
 					<img alt="포스터" src="<%=path %>/${dto.getFile_name()}" style="float: left;" height="160px" width="100px">
-                	<img src="<%=cp%>/mypage/image/age15.JPG" height="30px" width="30px" style="float: left;">
-                
+                	<img alt="나이" src="<%=path %>/age${dto.age_limit }big.png" height="30px" width="30px" style="float: left;">
+                		
                       <font size="4" style="font-weight: bold;">${dto.getMovie_name() }</font>
                       <!-- 한줄평 삭제 -->
                       
-                      <a href="<%=cp%>/Mypage/seen_delete.do?booked_id=${dto.getBookded_id() }"><span><img src="<%=cp%>/mypage/image/del.JPG"></span></a>
+                      <a href="<%=cp%>/Mypage/seen_delete.do?booked_id=${dto.getBooked_id() }"><span><img src="<%=cp%>/mypage/image/del.JPG"></span></a>
                      <br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      <!-- 상영시간 -->
                      <c:out value="${fn:substring(dto.getStart_time(),0,fn:length(dto.getStart_time())-6) }"></c:out>

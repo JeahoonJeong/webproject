@@ -6,28 +6,30 @@ public class MyBookingDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String bookded_id;
+	private String booked_id;
 	private String user_id;		
 	private String reservation_date;	
 	private String cancel_date;
 	private String movie_id;	
 	private String file_name;	
 	private String movie_name;	
+	private String screen_type;
 	private int rating;			
 	private String age_limit;	
 	private String district;	
-	private String screen_num;	
-	private String row_num;		
-	private int seat_num;		
+	private String screen_num;
+	private String row_num;
+	private int seat_num;
 	private String start_time;	
-	private String end_time;	
-	
+	private String end_time;
+	private int price;
 
-	public String getBookded_id() {
-		return bookded_id;
+
+	public String getBooked_id() {
+		return booked_id;
 	}
-	public void setBookded_id(String bookded_id) {
-		this.bookded_id = bookded_id;
+	public void setBooked_id(String booked_id) {
+		this.booked_id = booked_id;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -61,6 +63,12 @@ public class MyBookingDTO implements Serializable{
 	}
 	public String getMovie_name() {
 		return movie_name;
+	}
+	public String getScreen_type() {
+		return screen_type;
+	}
+	public void setScreen_type(String screen_type) {
+		this.screen_type = screen_type;
 	}
 	public void setMovie_name(String movie_name) {
 		this.movie_name = movie_name;
@@ -107,14 +115,18 @@ public class MyBookingDTO implements Serializable{
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
 	}
-	
 	public int getRating() {
 		return rating;
 	}
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 }
 
 

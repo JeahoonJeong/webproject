@@ -3,8 +3,8 @@ package com.mypage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.login.MemberDTO;
@@ -43,7 +43,7 @@ public class MypageDAO {
 
 				MyBookingDTO dto = new MyBookingDTO();
 
-				dto.setBookded_id(rs.getString("booked_id"));
+				dto.setBooked_id(rs.getString("booked_id"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setReservation_date(rs.getString("reservation_date"));
 				dto.setCancel_date(rs.getString("cancel_date"));
@@ -53,8 +53,6 @@ public class MypageDAO {
 				dto.setAge_limit(rs.getString("age_limit"));
 				dto.setDistrict(rs.getString("district"));
 				dto.setScreen_num(rs.getString("screen_num"));
-				dto.setRow_num(rs.getString("row_num"));
-				dto.setSeat_num(rs.getInt("seat_num"));
 				dto.setStart_time(rs.getString("start_time"));
 				dto.setEnd_time(rs.getString("end_time"));
 				dto.setRating(rs.getInt("rating"));
@@ -89,7 +87,7 @@ public class MypageDAO {
 
 		try {
 			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
-					+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
+					+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
 					+ " from booked_list where user_id=? and cancel_date is null and start_time>sysdate order by start_time desc";
 
 
@@ -103,7 +101,7 @@ public class MypageDAO {
 
 				MyBookingDTO dto = new MyBookingDTO();
 
-				dto.setBookded_id(rs.getString("booked_id"));
+				dto.setBooked_id(rs.getString("booked_id"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setReservation_date(rs.getString("reservation_date"));
 				dto.setCancel_date(rs.getString("cancel_date"));
@@ -113,8 +111,6 @@ public class MypageDAO {
 				dto.setAge_limit(rs.getString("age_limit"));
 				dto.setDistrict(rs.getString("district"));
 				dto.setScreen_num(rs.getString("screen_num"));
-				dto.setRow_num(rs.getString("row_num"));
-				dto.setSeat_num(rs.getInt("seat_num"));
 				dto.setStart_time(rs.getString("start_time"));
 				dto.setEnd_time(rs.getString("end_time"));
 				dto.setRating(rs.getInt("rating"));
@@ -150,7 +146,7 @@ public class MypageDAO {
 		try {
 
 			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit, rating, " 
-			+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time " + 
+			+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time " + 
 					"from booked_list where user_id=? and cancel_date is null and start_time<sysdate order by start_time desc";
 
 			pstmt = conn.prepareStatement(sql);
@@ -163,7 +159,7 @@ public class MypageDAO {
 
 				MyBookingDTO dto = new MyBookingDTO();
 
-				dto.setBookded_id(rs.getString("booked_id"));
+				dto.setBooked_id(rs.getString("booked_id"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setReservation_date(rs.getString("reservation_date"));
 				dto.setCancel_date(rs.getString("cancel_date"));
@@ -174,8 +170,6 @@ public class MypageDAO {
 				dto.setAge_limit(rs.getString("age_limit"));
 				dto.setDistrict(rs.getString("district"));
 				dto.setScreen_num(rs.getString("screen_num"));
-				dto.setRow_num(rs.getString("row_num"));
-				dto.setSeat_num(rs.getInt("seat_num"));
 				dto.setStart_time(rs.getString("start_time"));
 				dto.setEnd_time(rs.getString("end_time"));
 				
@@ -210,7 +204,7 @@ public class MypageDAO {
 		try {
 
 			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
-					+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
+					+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
 					+ " from booked_list where user_id=? and cancel_date is not null order by start_time desc";
 
 
@@ -224,7 +218,7 @@ public class MypageDAO {
 
 				MyBookingDTO dto = new MyBookingDTO();
 
-				dto.setBookded_id(rs.getString("booked_id"));
+				dto.setBooked_id(rs.getString("booked_id"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setReservation_date(rs.getString("reservation_date"));
 				dto.setCancel_date(rs.getString("cancel_date"));
@@ -234,8 +228,6 @@ public class MypageDAO {
 				dto.setAge_limit(rs.getString("age_limit"));
 				dto.setDistrict(rs.getString("district"));
 				dto.setScreen_num(rs.getString("screen_num"));
-				dto.setRow_num(rs.getString("row_num"));
-				dto.setSeat_num(rs.getInt("seat_num"));
 				dto.setStart_time(rs.getString("start_time"));
 				dto.setEnd_time(rs.getString("end_time"));
 				dto.setRating(rs.getInt("rating"));
@@ -882,6 +874,131 @@ public class MypageDAO {
 		return result;
 		
 	}
+	
+	//예약 상세정보 가져오기 - 단일정보
+	public MyBookingDTO getDetailBooking(String booked_id){
+		
+		MyBookingDTO dto = new MyBookingDTO();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			
+			sql = "select distinct booked_id, user_id, reservation_date, movie_id, screen_type, file_name, movie_name, district, screen_num, start_time "
+					+ "from detail_booked_list where booked_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, booked_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+
+				dto.setBooked_id(rs.getString("booked_id"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setReservation_date(rs.getString("reservation_date"));
+				dto.setMovie_id(rs.getString("movie_id"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setMovie_name(rs.getString("movie_name"));
+				dto.setScreen_type(rs.getString("screen_type"));
+				dto.setDistrict(rs.getString("district"));
+				dto.setScreen_num(rs.getString("screen_num"));
+				dto.setStart_time(rs.getString("start_time"));
+			
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return dto;
+		
+	}
+	
+	//예약 상세정보 가져오기 - 좌석 번호(값이 몇개나 될지 모르므로 리스트로 받음)
+	public List<String> getDetailSeats(String booked_id){
+		
+		List<String> detailSeats = new ArrayList<String>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		String row;
+		String num;
+		String seats;
+		
+		try {
+			
+			sql = "select row_num, seat_num from detail_booked_list where booked_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, booked_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				row = rs.getString("row_num");
+				num = rs.getString("seat_num");
+				seats = row + "열 " + num + "번 ";
+				
+				detailSeats.add(seats);
+				
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return detailSeats;
+		
+	}
+	
+	//예약 상세정보 가져오기 - 가격
+	public String getDetailPrice(String booked_id) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		int sum = 0;
+		DecimalFormat df = new DecimalFormat("#,##0");
+		
+		try {
+			
+			sql = "select sum(price) sumPrice from detail_booked_list where booked_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, booked_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				sum = rs.getInt("sumPrice");
+
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return df.format(sum);
+	}
+	
 	
 	//회원탈퇴 cancelMember_ok.do 시작
 	//보류

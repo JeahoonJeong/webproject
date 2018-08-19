@@ -29,6 +29,17 @@
 			return;
 		}
 	}
+	
+	function showPop(booked_id) {
+		
+		var url = "<%=cp%>/Mypage/bookingDetail.do?booked_id=" + booked_id;
+
+		var setting = 'scrollbars=no, toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=770, height=770, left='+(screen.width-968)/2+'';
+		
+		window.open(url,"movieInfo",setting);
+
+
+	} 
 
 </script>
 
@@ -51,21 +62,29 @@
 		<th class="cancel">예매취소</th>
 	</tr>
 	<!-- DB에서 정보 불러서 돌려야함 -->
+	<c:if test="${!empty bookingList }">
 	<c:set var="i" value="1"/>
 	<c:forEach items="${bookingList }" var="dto">
 	<tr>
 		<td>${i }
 		<c:set var="i" value="${i+1 }"/>
 		</td>
-		<td>${dto.getBookded_id() }</td>
-		<td>${dto.getMovie_name() }</td>
+		<td>${dto.getBooked_id() }</td>
+		<td><a href="javascript:showPop(${dto.getBooked_id() });">${dto.getMovie_name() }</a></td>
 		<td>${dto.getDistrict() } ${dto.getScreen_num()}관</td>
 		<td><c:out value="${fn:substring(dto.getStart_time(),0,fn:length(dto.getStart_time())-6) }"></c:out>
 		<br/><c:out value="${fn:substring(dto.getStart_time(),fn:length(dto.getStart_time())-6,fn:length(dto.getStart_time())) }"></c:out>~${dto.getEnd_time() } </td>
 		<td>${dto.getReservation_date() }</td>
-		<td><input type="button" value="예매취소" onclick="cancel(${dto.getBookded_id() });" class="btn1"></td>
+		<td><input type="button" value="예매취소" onclick="cancel(${dto.getBooked_id() });" class="btn1"></td>
 	</tr>
 	</c:forEach>
+	</c:if>
+	<c:if test="${empty bookingList }">
+	<tr>
+		<td colspan="7">최근 예매 내역이 없습니다.
+		</td>
+	</tr>
+	</c:if>
 </table>
 </form>
 

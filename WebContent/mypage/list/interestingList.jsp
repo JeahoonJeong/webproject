@@ -4,6 +4,7 @@
 <% 
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	String path = cp + "/mv/imageFile";
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,11 +20,11 @@
 
 function showPop(movie_id) {
 	
-	var url = "movie.do?movie_id=" + movie_id;
+	var url = "<%=cp%>/Movie/movie.do?movie_id=" + movie_id;
 
 	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 	
-	window.open(url,"movieInfo",setting);
+	window.open(url,"예약상세내역",setting);
 
 
 } 
@@ -50,8 +51,6 @@ function load(id, cnt, btn) {
 
 </script>
 
-
-
 </head>
 <body>
 <div id="list">
@@ -68,27 +67,17 @@ function load(id, cnt, btn) {
 </div>
 </c:if>
 
-<div id="js-load">
 
 <div id="content">
-	<table width="1000px">
-		<tr>
-		<td height="50px" colspan="7"></td>
-		</tr>
-	<c:set var="i" value="0"/>
-	<c:forEach var="dto" items="${wishList }">
-	<c:if test="${i==0 }">
-		<tr>
-	</c:if>
-	<c:if test="${i!=0&&i%4==0 }">
-		</tr>
-		<tr>
-	</c:if>
-		<td width="242px" height="517px">
-		<table width="230px" height="503px" style="margin: 3px;">
+<div id="js-load" class="main" style="width: 1000px">
+<ul class="lists">
+<c:forEach var="dto" items="${wishList }">
+<li class="lists__item js-load" style="float: left; width: 230px">
+	
+		<table width="235px" height="503px" style="margin: 3px;">
 			<tr>
 				<td class="top">
-				<img src="${imagePath }/${dto.file_name}" width="230px" height="330px" alt="포스터"/>
+				<img src="<%=path %>/${dto.file_name}" width="230px" height="330px" alt="포스터"/>
 				</td>
 			</tr>
 			<tr>
@@ -107,7 +96,7 @@ function load(id, cnt, btn) {
 			</tr>
 			<tr>
 				<td class="middle">
-				<img src="${imagePath }/age${dto.age_limit }big.png" alt="나이">
+				<img src="<%=path %>/age${dto.age_limit }big.png" alt="나이">
 				<font color="#353535" style="font-weight: bold; vertical-align: top;">
 				<a href="javascript:showPop(${dto.movie_id});">
 				<c:choose>
@@ -129,16 +118,14 @@ function load(id, cnt, btn) {
 				onclick="showPop(${dto.movie_id});"/>
 				&nbsp;<input type="button" value="예매하기" class="btn1"
 				onclick=""/></td>
-				<c:set var="i" value="${i+1 }" />
 			</tr>
 	</table>
-	</td>
-	</c:forEach>	
-	</table>
-</form>	
+	</li>
+		</c:forEach>	
+</ul>
 	
 </div>
-<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
+<div id="js-btn-wrap" class="btn-wrap" style="clear: both;"> <a href="javascript:;" class="button">더보기 + </a> </div>
 
 </div>
 
