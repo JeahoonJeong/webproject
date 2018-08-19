@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet{
 			
 			if(dto==null || !(dto.getUser_id().equals(user_id))){
 				
-				req.setAttribute("message", "���̵� �ٽ� Ȯ���ϼ���!");
+				req.setAttribute("message", "占쏙옙占싱듸옙 占쌕쏙옙 확占쏙옙占싹쇽옙占쏙옙!");
 				
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet{
 				
 			}else if(!(dto.getUser_pwd().equals(user_pwd))){
 				
-				req.setAttribute("message", "��й�ȣ�� �ٽ� Ȯ���ϼ���!");
+				req.setAttribute("message", "占쏙옙橘占싫ｏ옙占� 占쌕쏙옙 확占쏙옙占싹쇽옙占쏙옙!");
 				
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
@@ -89,12 +89,29 @@ public class LoginServlet extends HttpServlet{
 			url = "/login/register.jsp";
 			forward(req,resp,url);
 			
+		}else if(uri.indexOf("register_ok.do")!=-1){
+			
+			MemberDTO dto = new MemberDTO();
+			
+			dto.setUser_id(req.getParameter("id"));
+			dto.setUser_id(req.getParameter("pwd"));
+			dto.setUser_id(req.getParameter("name"));
+			dto.setUser_id(req.getParameter("birth"));
+			dto.setUser_id(req.getParameter("tel"));
+			dto.setUser_id(req.getParameter("email"));
+			dto.setUser_id(req.getParameter("addr"));
+			
+			dao.insertData(dto);
+			
+			url = cp+"/Mypage/mypageMain.do";
+			resp.sendRedirect(url);
+			
 		}else if(uri.indexOf("log_out.do")!=-1){
 			
 			HttpSession session = req.getSession();
 			
-			session.removeAttribute("member"); //세션 data삭제
-			session.invalidate();	//세션 변수 삭제
+			session.removeAttribute("member"); //�꽭�뀡 data�궘�젣
+			session.invalidate();	//�꽭�뀡 蹂��닔 �궘�젣
 			
 			resp.sendRedirect(cp);
 			

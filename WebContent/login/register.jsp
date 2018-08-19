@@ -19,10 +19,8 @@
 	<div id="title">회원가입</div>
 
 
-
-
+<form action="" method="post" name="myForm">
 	<div id="register">
-
 		<div style="clear: both;">
 			<br />
 			<div style="clear: both;">
@@ -30,15 +28,7 @@
 				입력해주세요. <br /> <br />
 			</div>
 			<font color="#666">*표시 항목은 필수입력 항목입니다.</font> <br /> <br />
-			<div>
-				<table height="80px">
-					<tr>
-						<td rowspan="2"><img alt=""
-							src="<%=cp%>/mypage/image/profile_m.png" align="middle"></td>
-						<td style="text-align: center;"><br /> <br /></td>
-					</tr>
-				</table>
-			</div>
+			
 			<div>
 				<table class="info">
 					<tr>
@@ -97,17 +87,93 @@
 				</table>
 			</div>
 			<div align="center" style="margin-top: 50px">
-				<input type="submit" value="확인" class="btn1">
-				<input type="submit" value="취소" class="btn1">
+				<input type="hidden" value="" name="birth">
+				<input type="hidden" value="" name="tel">
+				<input type="submit" value="확인" class="btn1" onclick="sendIt()">
+				<input type="button" value="취소" class="btn1" onclick="javascipt:location.href='<%=cp %>/Login/login.do'">
 			</div>
 		</div>
 
 	</div>
-
-
-
-
-
+</form>
 </body>
+
+<script type="text/javascript">
+
+function sendIt() {
+	
+	f = document.myForm;
+	
+	if(!f.id.value){
+		alert("아이디를 입력하세요!");
+		f.id.focus();
+		return;
+	}
+	
+	if(!f.pwd.value){
+		alert("비밀번호를 입력하세요!");
+		f.pwd.focus();
+		return;
+	}
+	
+	if(!f.name.value){
+		alert("이름을 입력하세요!");
+		f.name.foucs();
+		return;	
+	}
+	
+	if(!f.year.value){
+		alert("생년월일을 입력하세요!");
+		f.year.foucs();
+		return;	
+	}
+	
+	if(!f.month.value){
+		alert("생년월일을 입력하세요!");
+		f.month.foucs();
+		return;	
+	}
+	
+	if(!f.day.value){
+		alert("생년월일을 입력하세요!");
+		f.day.foucs();
+		return;	
+	}
+	
+	if(!f.tel1.value){
+		alert("휴대폰 번호를 입력하세요!");
+		f.tel1.foucs();
+		return;	
+	}
+	
+	if(!f.tel2.value){
+		alert("휴대폰 번호를 입력하세요!");
+		f.tel2.foucs();
+		return;	
+	}
+	
+	if(!f.tel3.value){
+		alert("휴대폰 번호를 입력하세요!");
+		f.tel3.foucs();
+		return;	
+	}
+	
+	if(!f.email.value){
+		alert("이메일을 입력하세요!");
+		f.email.foucs();
+		return;	
+	}
+	
+	f.birth.value = f.year.value + "-" + f.month.value + "-" + f.day.value;
+	f.tel.value = f.tel1.value + "-" + f.tel2.value + "-" + f.tel3.value
+
+	f.action = "<%=cp%>/Login/register_ok.do";
+	f.submit();
+	
+}
+
+</script>
+
+
 <jsp:include page="../footer.jsp" flush="false" />
 </html>
