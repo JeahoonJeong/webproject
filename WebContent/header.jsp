@@ -135,7 +135,14 @@
 				<li><a class="menuLink" href="#">특별관</a></li>
 				<li><a class="menuLink" href="#">스토어</a></li>
 				<li><a class="menuLink" href="#">이벤트</a></li>
-				<li><a class="menuLink" href="<%=cp%>/Login/login.do">로그인</a></li>
+				<li>
+					<c:if test="${empty member.getUser_id() }">
+						<a class="menuLink" href="<%=cp%>/Login/login.do">로그인</a>
+					</c:if>
+					<c:if test="${!empty member.getUser_id() }">
+						<a class="menuLink" href="<%=cp%>/Login/log_out.do">로그아웃</a>
+					</c:if>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -159,7 +166,7 @@
 		</div>
 	</div>
 	<!-- HEADER 끝 -->
-	
+
 
 </body>
 </html>

@@ -76,11 +76,9 @@ public class LoginServlet extends HttpServlet{
 				return;
 			}
 			
-			HttpSession session = req.getSession(true);
+			HttpSession session = req.getSession();
 			session.setAttribute("member", dto);
-			
-			
-			
+
 			url = cp + "/Mypage/mypageMain.do";
 			
 			resp.sendRedirect(url);
@@ -91,7 +89,19 @@ public class LoginServlet extends HttpServlet{
 			url = "/login/register.jsp";
 			forward(req,resp,url);
 			
+		}else if(uri.indexOf("log_out.do")!=-1){
+			
+			HttpSession session = req.getSession();
+			
+			session.removeAttribute("member"); //세션 data삭제
+			session.invalidate();	//세션 변수 삭제
+			
+			resp.sendRedirect(cp);
+			
 		}
+		
+		
+		
 		
 	}
 
