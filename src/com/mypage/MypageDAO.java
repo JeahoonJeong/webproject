@@ -88,7 +88,7 @@ public class MypageDAO {
 
 
 		try {
-			sql = "select rownum rnum, booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
+			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
 					+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
 					+ " from booked_list where user_id=? and cancel_date is null and start_time>sysdate order by start_time desc";
 
@@ -209,7 +209,7 @@ public class MypageDAO {
 
 		try {
 
-			sql = "select rownum rnum, booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
+			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
 					+ "district, screen_num, row_num, seat_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
 					+ " from booked_list where user_id=? and cancel_date is not null order by start_time desc";
 
@@ -551,6 +551,32 @@ public class MypageDAO {
 
 		return result;
 	}
+	
+	public int deleteMemberImage(String user_id){
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		String sql;
+
+		try {
+
+			sql = "delete member_image where user_id=?";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, user_id);
+
+			result = pstmt.executeUpdate();
+
+			pstmt.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return result;
+	}
 
 	//theater_id 찾기
 	public String getTheaterId(String city, String district){
@@ -670,8 +696,6 @@ public class MypageDAO {
 
 	}
 
-	//보고싶어 interestingList 가져오기
-
 	//나의 한줄평 myCommentList 가져오기
 	public List<CommentDTO> getCommentList(String user_id){
 
@@ -706,7 +730,7 @@ public class MypageDAO {
 				dto.setFile_name(rs.getString("file_name"));
 				dto.setRating(rs.getInt("rating"));
 				dto.setAge_limit(rs.getString("age_limit"));
-				dto.setComments(rs.getString("comments"));
+				dto.setComments(rs.getString("comments").replace("\n", "<br/>"));
 				dto.setComment_date(rs.getString("comment_date"));
 				dto.setRecommend_num(rs.getInt("recommend_num"));
 
@@ -829,5 +853,38 @@ public class MypageDAO {
 		return lst;
 		
 	}
+	
+	//비밀번호 수정
+	public int updateUserPwd(String user_pwd, String user_id) {
+		
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "update member set user_pwd=? where user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_pwd);
+			pstmt.setString(2, user_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+		
+	}
+	
+	//회원탈퇴 cancelMember_ok.do 시작
+	//보류
+	
 
 }
