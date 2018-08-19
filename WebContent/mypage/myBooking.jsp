@@ -16,13 +16,11 @@
 <body>
 <jsp:include page="../header.jsp" flush="false"/>
 <div id="mypage">
-
-<div>
-<a href="<%=cp%>/Mypage/mypageMain.do"><span class="font">나의 메가박스</span></a><br/><br/>
-<hr size="3" color="#7A67AC" width="800px" style="float: left;"><br/><br/></div>
-<div><span class="font" >${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
-<hr size="1" color="#7A67AC" width="800px" style="float: left"></div>
+<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px;"><a href="<%=cp%>/Mypage/mypageMain.do"><span class="font"><br/>나의 메가박스<br/>&nbsp;<br/></span></a></div>
+<br/>
+<div><span class="font" style="padding-left: 20px;">${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
 <br/><br/>
+</div>
 
 <div>
 	<ul class="nav_gnb">     	

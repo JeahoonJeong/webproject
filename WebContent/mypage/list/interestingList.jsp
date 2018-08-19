@@ -10,37 +10,77 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>interestingList</title>
 <link rel="stylesheet" href="<%=cp%>/mypage/css/list.css" type="text/css">
-<link rel="stylesheet" href="<%=cp%>/movie/css/list.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/mypage/css/wishlist.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+
+function showPop(movie_id) {
+	
+	var url = "movie.do?movie_id=" + movie_id;
+
+	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+	
+	window.open(url,"movieInfo",setting);
+
+
+} 
+
+$(window).on('load', function () {
+    load('#js-load', '4');
+    $("#js-btn-wrap .button").on("click", function () {
+        load('#js-load', '4', '#js-btn-wrap');
+    })
+});
+ 
+function load(id, cnt, btn) {
+    var girls_list = id + " .js-load:not(.active)";
+    var girls_length = $(girls_list).length;
+    var girls_total_cnt;
+    if (cnt < girls_length) {
+        girls_total_cnt = cnt;
+    } else {
+        girls_total_cnt = girls_length;
+        $('.button').hide()
+    }
+    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+}
+
+</script>
+
+
+
 </head>
 <body>
 <div id="list">
 <div>
 
-<c:if test="">
+<c:if test="${empty wishList }">
 <div id="content">
-
-		<img alt="" src="<%=cp%>/mypage/image/wishmovie.JPG">
-
+	<table style="float: left;" class="wish_movie" width="235px" height="515px">
+		<tr>
+			<td style="border-bottom: none;"><img alt="" src="<%=cp%>/mypage/image/wishmovie.JPG">
+			</td>
+		</tr>
+	</table>
 </div>
 </c:if>
 
-
+<div id="js-load">
 
 <div id="content">
-	<table width="1722px">
+	<table width="1000px">
 		<tr>
 		<td height="50px" colspan="7"></td>
-
 		</tr>
 	<c:set var="i" value="0"/>
 	<c:forEach var="dto" items="${wishList }">
 	<c:if test="${i==0 }">
 		<tr>
 	</c:if>
-	<c:if test="${i!=0&&i%7==0 }">
+	<c:if test="${i!=0&&i%4==0 }">
 		</tr>
 		<tr>
 	</c:if>
@@ -56,7 +96,7 @@
 				<span style="line-height: 25px;">
 				<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
 				<span style="float: right;">
-				<c:if test="${dto.rating==0 }"><img src="${imagePath }/rate0.png"></c:if>
+				<c:if test="${dto.rating==0 }"><img src="<%=cp %>/movie/image/rate0.png"></c:if>
 				<c:if test="${dto.rating<3&&0<dto.rating}"><img src="<%=cp %>/movie/image/rate1.png"></c:if>
 				<c:if test="${2<dto.rating&&dto.rating<5}"><img src="<%=cp %>/movie/image/rate2.png"></c:if>
 				<c:if test="${4<dto.rating&&dto.rating<7 }"><img src="<%=cp %>/movie/image/rate3.png"></c:if>
@@ -96,90 +136,15 @@
 	</c:forEach>	
 	</table>
 </form>	
+	
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="content">
-	<table style="float: left;">
-		<tr>
-			<td width="220px" class="top">
-			<img src="<%=cp%>/movie/image/mission.jpg" width="100%" height="330px"/>
-			</td>
-		</tr>
-		<tr>
-		<td width="220px" height="50px" class="bottom">
-		<span style="line-height: 25px;">
-		<font color="grey" style="font-weight: bold;">평점8.3</font></span>
-		<span style="float: right;"><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/emptystar.png"/>
-		</span>
-		</td>
-		</tr>
-		<tr>
-		<td class="middle">
-		<img src="<%=cp%>/movie/image/age15.png" align="middle"/>
-		<font color="#353535" style="font-weight: bold;">
-		<a href="<%=cp%>/movie/movie.jsp">미션임파서블:폴</a>…</font></td>
-		</tr>
-		<tr>
-		<td class="bottom" align="center"> 
-		<input type="button" value="상세정보" class="btn2"
-		onclick="javascipt:location.href='<%=cp%>/movie/movie.jsp'"/>
-		&nbsp;<input type="button" value="예매하기" class="btn2"
-		onclick=""/></td>
-		</tr>
-	</table>
-	<table style="float: left;">
-		<tr>
-			<td width="220px" class="top">
-			<img src="<%=cp%>/movie/image/mission.jpg" width="100%" height="330px"/>
-			</td>
-		</tr>
-		<tr>
-		<td width="220px" height="50px" class="bottom">
-		<span style="line-height: 25px;">
-		<font color="grey" style="font-weight: bold;">평점8.3</font></span>
-		<span style="float: right;"><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/star.png"/><img src="<%=cp%>/movie/image/emptystar.png"/>
-		</span>
-		</td>
-		</tr>
-		<tr>
-		<td class="middle">
-		<img src="<%=cp%>/movie/image/age15.png" align="middle"/>
-		<font color="#353535" style="font-weight: bold;">
-		<a href="<%=cp%>/movie/movie.jsp">미션임파서블:폴</a>…</font></td>
-		</tr>
-		<tr>
-		<td class="bottom" align="center"> 
-		<input type="button" value="상세정보" class="btn2"
-		onclick="javascipt:location.href='<%=cp%>/movie/movie.jsp'"/>
-		&nbsp;<input type="button" value="예매하기" class="btn2"
-		onclick=""/></td>
-		</tr>
-	</table>
-	<table style="float: left;" class="wish_movie">
-		<tr>
-			<td width="235px" rowspan="4" height="515px"><img alt="" src="<%=cp%>/mypage/image/wishmovie.JPG">
-			</td>
-		</tr>
-	</table>
-</div>
-
+<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
 
 </div>
 
 </div>
+
+</div>
+
 </body>
 </html>

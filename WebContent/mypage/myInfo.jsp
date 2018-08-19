@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=cp%>/register/css/mypage.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/mypage/css/mypage.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <title>나의 메가박스</title>
@@ -113,6 +113,31 @@
 		f.submit();
 		
 	}
+	
+	function delImage(file_name) {
+		
+		if(file_name==null){
+			
+			alert("등록된 프로필 사진이 없습니다.");
+			return;
+		}
+		else{
+			
+			f = document.myForm;
+
+			if(confirm("프로필 사진을 삭제하시겠습니까?") == true){
+				
+				
+				
+				f.action = "<%=cp%>/Mypage/list/delImage_ok.do";
+					
+				f.submit();
+
+			}else{
+				return;
+			}		
+		}
+	}
 
 
 </script>
@@ -122,6 +147,25 @@
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="false"/>
+<div id="mypage">
+<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px;"><a href="<%=cp%>/Mypage/mypageMain.do"><span class="font"><br/>나의 메가박스<br/>&nbsp;<br/></span></a></div>
+<br/>
+<div>
+	<ul class="nav_gnb">     	
+		<li>
+           <a href="<%=cp%>/Mypage/myBooking.do"><img src="<%=cp%>/mypage/image/res.JPG" alt=""/><span>예매 확인/취소</span></a>
+        </li>
+        <li>
+           <a href="<%=cp%>/Mypage/myMoivestory.do?linkpage=interestingList"><img src="<%=cp%>/mypage/image/moviestory.JPG" alt=""/><span>나의 무비스토리</span></a>
+        </li>
+        <li>
+           <a href="<%=cp%>/Mypage/myInfo.do"><img src="<%=cp%>/mypage/image/update.JPG" alt=""/><span>개인정보수정</span></a>
+        </li>
+    </ul>
+</div>
+<br/><br/>
+</div>
+
 
 <div id="mypage">
 
@@ -133,8 +177,8 @@
 	<br/><br/>
 </div>
 <font color="#666">*표시 항목은 필수입력 항목입니다.</font>
-<span class="right"><input type="button" class="btn2" value="비밀번호 변경" width="120px"  > 
-	<input type="button" value="회원탈퇴" class="btn1"></span>
+<span class="right"><input type="button" class="btn2" value="비밀번호 변경" width="120px" onclick="javascipt:location.href='<%=cp%>/Mypage/updatePwd.do'"> 
+	<input type="button" value="회원탈퇴" class="btn1" name="cancelMember" onclick="javascipt:location.href='<%=cp%>/Mypage/cancelMember.do'"></span>
 <br/><br/>
 <div>
 <table height="120px">
@@ -154,7 +198,7 @@
 		<label for="file_upload">찾아보기</label>
 		<input type="file" value="찾아보기" name="file_name" id="file_upload">
 		</div>
-		<input type="button" value="삭제" class="btn5">
+		<input type="button" value="삭제" class="btn5" onclick="delImage(${member.getFile_name()});">
 		</td>
 	</tr>
 </table>
@@ -232,6 +276,7 @@
 			
 		
 			<select id="city" onchange="itemChange();" name="city">
+				<option value="">선택</option>
 				<option value="서울">서울</option>
 				<option value="경기">경기</option>	
 				<option value="인천">인천</option>		
