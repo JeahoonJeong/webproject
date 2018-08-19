@@ -139,30 +139,56 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 				</tr>
 			</table>
 		</div>
-		<div id="comment_view">
-			<div class="cell">
-				<div style="width: 80px; float: left;">
-					<img src="./image/profile.png" height="54px" width="54px"/>
-				</div>
-				<div class="text">
-				<div class="id"><strong>knr12**</strong></div>
-				<div class="date"><span>18.08.16</span></div>
-				<div><img src="./image/smallstar.png"/></div>
-				<p><span class="content">재밌는 영화
+	<div id="comment_view">
+		<table width="888px">
+			<tr>
+				<td class="head" colspan="2"></td>
+			</tr>
+			<c:set var="i" value="0"/>	
+			<c:forEach var="comm" items="${comm }">
+			<c:if test="${i==0 }">
+			<tr>
+			</c:if>
+			<c:if test="${i!=0&&i%2==0 }">
+			</tr>
+			<tr>
+			</c:if>
+				<td class="cell">
+				<span style="width: 80px; float: left;">
+				<c:choose>
+					<c:when test="${empty comm.file_name }">
+						<img src="${imagePath }/profile.png" height="54px" width="54px"/>
+					</c:when>
+					<c:otherwise>
+						<img src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
+					</c:otherwise>
+				</c:choose>
+				</span>
+				<span class="text">
+				<span class="id"><strong>${comm.user_id }</strong></span>
+				<span class="date">${comm.comment_date }</span>
+				<span>
+					<c:if test="${comm.rating==0 }"><img src="${imagePath }/s_star0.png"></c:if>
+					<c:if test="${comm.rating<3&&0<comm.rating}"><img src="${imagePath }/s_star1.png"></c:if>
+					<c:if test="${2<comm.rating&&comm.rating<5}"><img src="${imagePath }/s_star2.png"></c:if>
+					<c:if test="${4<comm.rating&&comm.rating<7 }"><img src="${imagePath }/s_star3.png"></c:if>
+					<c:if test="${6<comm.rating&&comm.rating<9 }"><img src="${imagePath }/s_star4.png"></c:if>
+					<c:if test="${8<comm.rating&&comm.rating<11 }"><img src="${imagePath }/s_star5.png"></c:if>
+				</span>
+				<p><span class="content">${comm.comments }
 				</span></p>
-				<div class="bottom">
-				<a href="javascript:thumb();">
-				<img src="./image/thumb.png" style="vertical-align: middle;" /> 추천 
-				<font style="font-weight: bold;">5</font></a></div>		
-				</div>
-			</div>	
-			
-		</div>
+				<p class="bottom">
+					<a href="javascript:thumb();">
+					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
+					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
+				</p>
+				</td>
+			<c:set var="i" value="${i+1 }" />
+			</c:forEach>	
+		</table>
 	</div>
 	
-	
-		
-</div>
+	</div>
 
 
 

@@ -105,6 +105,7 @@ public class MovieServlet extends HttpServlet{
 			
 			dto = dao.getOneData(movie_id);
 			List<MovieDTO> still = dao.getStillcut(movie_id);
+			List<MovieDTO> comm = dao.getAllComment(movie_id);
 					
 			dto.setSummary(dto.getSummary().replaceAll("/", "<br>"));
 			
@@ -113,6 +114,7 @@ public class MovieServlet extends HttpServlet{
 			req.setAttribute("imagePath", imagePath);
 			req.setAttribute("dto", dto);
 			req.setAttribute("still", still);
+			req.setAttribute("comm", comm);
 	
 			url = "/movie/movie.jsp?movie_id=" + movie_id;
 			forward(req, resp, url);

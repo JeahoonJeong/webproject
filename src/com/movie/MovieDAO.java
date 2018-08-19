@@ -207,7 +207,8 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select movie_id,user_id,comment_date,comments,recommend_num from comments where movie_id=?";
+			sql = "select a.*, rating from(select movie_id,a.user_id,comment_date,comments,recommend_num,file_name from comments a,";
+			sql+= "member_image b where a.user_id=b.user_id and movie_id=?) a , rating b where a.movie_id=b.movie_id and a.user_id=b.user_id";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -222,7 +223,10 @@ public class MovieDAO {
 				dto.setMovie_id(rs.getString("movie_id"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setComment_date(rs.getString("comment_date"));
+				dto.setComments(rs.getString("comments"));
 				dto.setRecommend_num(rs.getInt("recommend_num"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setRating(rs.getInt("rating"));
 				
 				lst.add(dto);	
 			}
