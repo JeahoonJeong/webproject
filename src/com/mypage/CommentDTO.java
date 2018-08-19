@@ -8,7 +8,7 @@ public class CommentDTO {
 	private String file_name;
 	private int rating;
 	private String age_limit;
-	private String comment;
+	private String comments;
 	private String comment_date;
 	private int recommend_num;
 	
@@ -49,11 +49,11 @@ public class CommentDTO {
 	public void setAge_limit(String age_limit) {
 		this.age_limit = age_limit;
 	}
-	public String getComment() {
-		return comment;
+	public String getComments() {
+		return comments;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	public String getComment_date() {
 		return comment_date;

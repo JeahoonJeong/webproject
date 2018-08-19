@@ -63,7 +63,7 @@ public class MovieServlet extends HttpServlet{
 			if(pageNum!=null)
 				currentPage = Integer.parseInt(pageNum);
 			
-			//ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
+			//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			int numPerPage = 21;
 			int dataCount = dao.getDataCount();
 			
@@ -72,7 +72,7 @@ public class MovieServlet extends HttpServlet{
 			if(currentPage>totalPage)
 				currentPage=totalPage;
 			
-			//µ¥ÀÌÅÍ ½ÃÀÛ°ú ³¡
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û°ï¿½ ï¿½ï¿½
 			int start = (currentPage-1)*numPerPage+1;
 			int end = currentPage*numPerPage;
 			
@@ -102,6 +102,8 @@ public class MovieServlet extends HttpServlet{
 			MovieDTO dto = new MovieDTO();
 			
 			String movie_id = req.getParameter("movie_id");
+			
+			System.out.println(movie_id);
 			
 			dto = dao.getOneData(movie_id);
 			List<MovieDTO> still = dao.getStillcut(movie_id);
