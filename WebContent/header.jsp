@@ -24,7 +24,7 @@
 
 #header {
 	background-color: white;
-	width: 1000px;
+	width: 1140px;
 	margin: auto;
 	height: 50px;
 }
@@ -51,8 +51,8 @@
 	color: black;
 	text-decoration: none;
 	display: block;
-	width: 100px;
-	font-size: 12px;
+	width: 120px;
+	font-size: 11pt;
 	font-weight: bold;
 }
 
@@ -65,7 +65,7 @@
 	margin-top: 60px;
 	padding-left: 0px;
 	height: 80px;
-	width: 1000px;
+	width: 1140px;
 	border-bottom-style: solid;
 	border-bottom-width: 5px;
 	border-bottom-color: #352669;
@@ -78,33 +78,38 @@
 }
 
 #header-menu-right {
+	margin-right:40px;
 	float: right;
 }
 
 #header-menu-left img {
+	margin-top: 5px;
 	width: 80px;
 	height: 40px;
 }
 
 #header-menu-right img {
+	margin-top: 5px;
 	width: 110px;
 	height: 40px;
 }
 
-#header-menu ul li {
+#header-menu ul li{
 	list-style: none;
 	float: left;
 	line-height: 50px;
 	vertical-align: middle;
 	text-align: center;
+	margin: 0px;
+	pdding: 0px;
 }
 
 #header-menu-left .menu-left {
 	color: black;
 	text-decoration: none;
 	display: block;
-	width: 150px;
-	font-size: 12px;
+	width: 100px;
+	font-size: 11pt;
 	font-weight: bold;
 	text-align: left;
 }
@@ -113,8 +118,8 @@
 	color: black;
 	text-decoration: none;
 	display: block;
-	width: 150px;
-	font-size: 12px;
+	width: 110px;
+	font-size: 11pt;
 	font-weight: bold;
 	text-align: left;
 }
@@ -128,8 +133,9 @@
 	<div id="header-wrap">
 		<div id="header">
 			<ul>
-				<li><a href="<%=cp %>/"><img alt="" src="../image/magabox.jpg"></a></li>
-				<li><a class="menuLink" href="<%=cp%>/movie/">영화</a></li>
+				<li><a href="<%=cp%>"><img alt=""
+						src="./login/image/magabox.jpg"></a></li>
+				<li><a class="menuLink" href="<%=cp%>/Movie/list.do">영화</a></li>
 				<li><a class="menuLink" href="#">큐레이션</a></li>
 				<li><a class="menuLink" href="<%=cp%>/Theater/theater.do">영화관</a></li>
 				<li><a class="menuLink" href="#">특별관</a></li>
@@ -142,19 +148,38 @@
 	<div id="header-menu">
 		<div id="header-menu-left">
 			<ul>
-				<li class="menu-left"><img alt="" src="../image/menu.jpg"></li>
-				<li class="menu-left">필름소사이어티</li>
-				<li class="menu-left">클래식 소사이어티</li>
+				<li class="menu-left"><img alt=""
+					src="<%=cp%>/login/image/menu.jpg"></li>
+				<li class="menu-left" style="width: 120px">필름소사이어티</li>
+				<li class="menu-left" style="width: 130px">클래식 소사이어티</li>
 			</ul>
 		</div>
 
+		<%
+			String str;
+			String strUrl;
+
+			strUrl = cp + "/Booking/booking.do";
+			str = "window.open('" + strUrl + "', 'Think', ";
+			str = str + "'left=100, ";
+			str = str + "top=20, ";
+			str = str + "width=1000, ";
+			str = str + "height=600, ";
+			str = str + "toolbar=no, ";
+			str = str + "menubar=no, ";
+			str = str + "status=no, ";
+			str = str + "scrollbars=no, ";
+			str = str + "resizable=no')";
+		%>
+
 		<div id="header-menu-right">
 			<ul>
-				<li class="menu-right">고객센터 | 멤버십 | VIP</li>
-				<li class="menu-right"><img alt=""
-					src="../image/timetable.jpg"></li>
-				<li class="menu-right"><img alt=""
-					src="../image/booking.jpg"></li>
+				<li class="menu-right" style="width: 170px">고객센터 | 멤버십 | VIP</li>
+				<li class="menu-right"><a
+					href="<%=cp%>/Timetable/movieTime.do"><img alt=""
+						src="./login/image/timetable.jpg"></a></li>
+				<li class="menu-right">
+				<img alt="" src="./login/image/booking.jpg" onclick="<%=str%>"></li>
 			</ul>
 		</div>
 	</div>
