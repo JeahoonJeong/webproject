@@ -1,21 +1,22 @@
 @CHARSET "UTF-8";
 
 #list {
-	width: 690px;
+	width: 980px;
 	text-align: left;
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 10pt;
 	vertical-align: middle;
+	margin-bottom: 100px;
 }
 
-#list .num {width:40px; text-align: center;}
+#list .num {width:90px; text-align: center;}
 #list .resNum {width:100px;}
-#list .movieTitle {width:200px;}
-#list .cinema {width:120px;}
-#list .playDate {width:150px;}
-#list .saleDate {width:150px;}
-#list .cancel {width:70px;}
-#list .cancelDate {width:150px;}
+#list .movieTitle {width:320px;}
+#list .cinema {width:150px;}
+#list .playDate {width:180px;}
+#list .saleDate {width:180px;}
+#list .cancel {width:100px;}
+#list .cancelDate {width:180px;}
 
 th {
 	background-color: #f2f2f2;
@@ -115,3 +116,34 @@ td {
 }
 
 ul,dl,ol,li,h1,h2,h3,h4,h5,h6,p,dd,dt{margin:0;padding:0}
+
+
+
+
+
+.js-load {
+    display: none;
+}
+.js-load.active {
+    display: block;
+}
+.is_comp.js-load:after {
+    display: none;
+}
+.btn-wrap, .lists, .main {
+    display: block;
+}
+.lists {
+    margin-bottom: 4rem;
+}
+.lists__item {
+    padding: 20px;
+    background: #EEE;
+}
+.lists__item:nth-child(2n) {
+    background: #59b1eb;
+    color: #fff;
+}
+.btn-wrap {
+    text-align: center;
+}

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% 
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -39,7 +40,7 @@
 		<td>${dto.getMovie_name() }</td>
 		<td>${dto.getDistrict() } ${dto.getScreen_num()}관</td>
 		<td>${dto.getStart_time() }</td>
-		<td>${dto.getReservation_date() }</td>
+		<td><c:out value="${fn:substring(dto.getReservation_date(),0,fn:length(dto.getReservation_date())-3) }"></c:out></td>
 		<td>${dto.getCancel_date() }</td>
 	</tr>
 	</c:forEach>

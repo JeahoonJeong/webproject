@@ -18,13 +18,11 @@
 <jsp:include page="../header.jsp" flush="false"/>
 
 <div id="mypage">
-
-<div>
-<a href="<%=cp%>/Mypage/mypageMain.do"><span class="font">나의 메가박스</span></a><br/><br/>
-<hr size="3" color="#352669" width="1000px" style="float: left;"><br/><br/></div>
-<div><span class="font" >${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
-<hr size="1" color="#352669" width="1000px" style="float: left"></div>
+<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px;"><a href="<%=cp%>/Mypage/mypageMain.do"><span class="font"><br/>나의 메가박스<br/>&nbsp;<br/></span></a></div>
+<br/>
+<div><span class="font" style="padding-left: 20px;">${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
 <br/><br/>
+</div>
 
 <div>
 	<ul class="nav_gnb">     	
@@ -32,7 +30,7 @@
            <a href="<%=cp%>/Mypage/myBooking.do"><img src="<%=cp%>/mypage/image/res.JPG" alt=""/><span>예매 확인/취소</span></a>
         </li>
         <li>
-           <a href="<%=cp%>/Mypage/myMoivestory.do"><img src="<%=cp%>/mypage/image/moviestory.JPG" alt=""/><span>나의 무비스토리</span></a>
+           <a href="<%=cp%>/Mypage/myMoivestory.do?linkpage=interestingList"><img src="<%=cp%>/mypage/image/moviestory.JPG" alt=""/><span>나의 무비스토리</span></a>
         </li>
         <li>
            <a href="<%=cp%>/Mypage/myInfo.do"><img src="<%=cp%>/mypage/image/update.JPG" alt=""/><span>개인정보수정</span></a>
@@ -97,13 +95,13 @@
 			<td><span class="title">나의 무비스토리</span></td>
 		</tr>
 		<tr>
-			<td><img alt="" src="<%=cp%>/mypage/image/main_icon1.png"><span class="myMovie">&nbsp;&nbsp;&nbsp;보고싶어</span><span class="right">${wishMovieCount }</span></td>
+			<td><img alt="" src="<%=cp%>/mypage/image/main_icon1.png"><a href="<%=cp%>/Mypage/myMoivestory.do?linkpage=interestingList"><span class="myMovie">&nbsp;&nbsp;&nbsp;보고싶어</span><span class="right">${wishMovieCount }</span></a></td>
 		</tr>
 		<tr>
-			<td><img alt="" src="<%=cp%>/mypage/image/main_icon2.png"><span class="myMovie">&nbsp;&nbsp;&nbsp;본영화</span><span class="right">${seenMovieCount }</span></td>
+			<td><img alt="" src="<%=cp%>/mypage/image/main_icon2.png"><a href="<%=cp%>/Mypage/myMoivestory.do?linkpage=seenList"><span class="myMovie">&nbsp;&nbsp;&nbsp;본영화</span><span class="right">${seenMovieCount }</span></a></td>
 		</tr>
 		<tr>
-			<td><img alt="" src="<%=cp%>/mypage/image/main_icon4.png"><span class="myMovie">&nbsp;&nbsp;&nbsp;나의 한줄평</span><span class="right">${commentCount }</span></td>
+			<td><img alt="" src="<%=cp%>/mypage/image/main_icon4.png"><a href="<%=cp%>/Mypage/myMoivestory.do?linkpage=myCommentList"><span class="myMovie">&nbsp;&nbsp;&nbsp;나의 한줄평</span><span class="right">${commentCount }</span></a></td>
 		</tr>
 	</table>
 </div>

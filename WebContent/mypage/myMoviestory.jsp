@@ -4,6 +4,8 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 	
+	String linkpage  = request.getParameter("linkpage");
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,17 +14,37 @@
 <link rel="stylesheet" href="<%=cp%>/mypage/css/mypage.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <title>나의 메가박스</title>
+
+<script type="text/javascript"> 
+
+function calcHeight(){
+
+
+ var the_height=
+ document.getElementById('iframe1').contentWindow.
+ document.body.scrollHeight;
+
+ //change the height of the iframe
+ document.getElementById('iframe1').height=
+ the_height;
+
+ //document.getElementById('the_iframe').scrolling = "no";
+ document.getElementById('iframe1').style.overflow = "hidden";
+}
+
+</script>
+
+
+
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="false"/>
 <div id="mypage">
-
-<div>
-<a href="<%=cp%>/Mypage/mypageMain.do"><span class="font">나의 메가박스</span></a><br/><br/>
-<hr size="3" color="#7A67AC" width="800px" style="float: left;"><br/><br/></div>
-<div><span class="font" >${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
-<hr size="1" color="#7A67AC" width="800px" style="float: left"></div>
+<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px;"><a href="<%=cp%>/Mypage/mypageMain.do"><span class="font"><br/>나의 메가박스<br/>&nbsp;<br/></span></a></div>
+<br/>
+<div><span class="font" style="padding-left: 20px;">${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
 <br/><br/>
+</div>
 
 <div>
 	<ul class="nav_gnb">     	
@@ -55,7 +77,8 @@
 	<br/><br/>
 
 <div style="clear: both;">
-<iframe  src="<%=cp %>/mypage/list/interestingList.jsp"  name="iframe1" width="900px" height="900px" frameborder="0"></iframe>
+<iframe onload="calcHeight();" src="<%=cp %>/mypage/list/<%=linkpage %>.jsp" id="iframe1" name="iframe1" width="100%" frameborder="0" scrolling="no" style="overflow-x:hidden; width:100%; min-height:500px; overflow: hidden;">
+</iframe>
 </div>
 
 
