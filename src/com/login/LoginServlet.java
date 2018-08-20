@@ -123,7 +123,7 @@ public class LoginServlet extends HttpServlet{
 			HttpSession session = req.getSession();
 			
 			session.removeAttribute("member"); 
-			session.invalidate();	
+			session.invalidate();
 
 			resp.sendRedirect(cp);
 			
