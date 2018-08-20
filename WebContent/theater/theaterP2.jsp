@@ -119,6 +119,26 @@
 			$(this).trigger("mouseout");
 		});
 	});
+	
+	/* 영화 클릭시 상세보기  */
+	 function showPop(movie_id) {
+	
+		var url = "<%=cp %>/Movie/movie.do?movie_id=" + movie_id;
+	
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+		
+		window.open(url,"movieInfo",setting);
+	
+	} 
+</script>
+<script type="text/javascript">
+	function goNextPage(screen_id){
+	var f= document.myForm1;
+	
+	f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
+	f.submit();
+	
+}
 
 </script>
 
@@ -130,7 +150,7 @@
 
 </head>
 <body>
-<jsp:include page="../header.jsp" flush="false" />
+<jsp:include page="../header2.jsp" flush="false" />
 	
 <%-- 	<div class="sub_navi ">
 		<div class="sub_navi_wrap">
@@ -326,7 +346,7 @@
 <table border="0" align="center" cellspacing="0" cellpadding="0">
 	<tr>
 		<td colspan="5" align="center"
-				style="padding-bottom: 10px; height: 62px">
+				style="padding-bottom: 10px; padding-top: 60px; height: 62px;">
 				
 	<a href="http://ad.imp.joins.com/NetInsight/event/
 	clk/v4tpfnqPm-iPGc4CsBFOh9jkGcGJ_ErzI1vVY3YeuIeIA
@@ -428,25 +448,45 @@
 	});
 	</script>
 
+<form name="myForm1" method="post">
 <table border="0" class="m_time_tb v2">
 	<tbody>	
 	
 	
 	<c:forEach var="dto" items="${lists }">
-		<c:if test="${!dto.screen_num.equals(screen_num) }">
+		<c:if test="${!dto.screen_num.equals(screen_num1) }">
 
 			
-		<tr class="lineheight_80">
+		<tr class="lineheight_80" style="width: 1300px;">
 			<th class="title">
 				<div>
-					<span class="age_m age_12">
-					<c:if test="${dto.age_limit eq 'all'}">전체관람가</c:if>
-					<c:if test="${dto.age_limit ne 'all'}">${dto.age_limit}세관람가</c:if>
-					&nbsp;${dto.movie_name}
+					<c:if test="${dto.age_limit eq 'all'}">
+					<span class="age_m age_all">
+					전체관람가
 					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '12'}">
+					<span class="age_m age_12">
+					${dto.age_limit}세관람가
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '15'}">
+					<span class="age_m age_15">
+					15세관람가
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '18'}">
+					<span class="age_m age_18">
+					18세관람가
+					</span>
+					</c:if>
+
+					
+
+					
 <!-- 영화 상세 보기 링크  -->
 					<strong>
-						<a href="" title="영화상세 보기">${dto.movie_name }</a>
+						<a href="javascript:showPop(${dto.movie_id})"  title="영화상세 보기">${dto.movie_name }</a>
 					</strong>
 				</div>
 			</th>
@@ -456,9 +496,16 @@
 			</th>
 			</c:if>
 				<td headers="th_theaterschedule_title th_theaterschedule_room">
+				<input type="hidden" name = "screen_id" value = "${dto.screen_id}">
+					<input type="hidden" name = "age_limit" value = "${dto.age_limit}">
+					<input type="hidden" name = "movie_name" value = "${dto.movie_name}">
+					<input type="hidden" name = "screen_num" value = "${dto.screen_num}">
+					<input type="hidden" name = "start_time" value = "${dto.start_time}">
+					<input type="hidden" name = "district" value = "${dto.district}">
+					<input type="hidden" name ="type" value ="${dto.type }">
 					
 					<div class="movie_time">
-						<a href="" onclick="">
+						<a onclick="goNextPage(${dto.screen_id});">
 							<span class="hover_time" style="display: none;">
 								${dto.start_time }~${dto.end_time }
 							</span>
@@ -476,12 +523,12 @@
 						</p>
 					</div>
 				</td>
-				
-				<c:set var="screen_num" value="${dto.screen_num}" />	
-			
+				<c:set var="screen_num1" value="${dto.screen_num}" />	
+	
 		</c:forEach>
 	</tbody>
 </table>
+</form>
 
 </div><!-- mtime_container 끝  -->
 <!-- lists 끝  -->
@@ -597,6 +644,7 @@
 
 	<!-- 네이버 지도 API  -->
     <div id="map" style="width:100%;height:400px;"></div>
+
 
     <script>
       var map = new naver.maps.Map('map');

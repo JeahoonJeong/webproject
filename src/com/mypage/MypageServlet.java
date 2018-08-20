@@ -400,8 +400,8 @@ public class MypageServlet extends HttpServlet{
 			
 			dao.updateUserPwd(user_pwd, user_id);
 			
-			session.removeAttribute("member"); //�꽭�뀡 data�궘�젣
-			session.invalidate();	//�꽭�뀡 蹂��닔 �궘�젣
+			session.removeAttribute("member"); 
+			session.invalidate();	
 			
 			resp.sendRedirect(cp);
 			
