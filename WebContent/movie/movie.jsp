@@ -82,6 +82,18 @@ function goToP() {
 	window.close();
 }
 
+function goToB(movie_id) {
+	
+	var url = "<%=cp%>/Booking/booking.do";
+	
+	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+	
+	window.open(url,"booking",setting);
+	
+	window.close();
+	
+}
+
 function sendIt() {
 	var f = document.mvForm;
 	
@@ -141,7 +153,7 @@ function sendIt() {
 			</span>
 			
 			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
-			onclick="<%=cp%>/booking/booking.jsp"/>
+			onclick="goToB(${dto.movie_id});"/>
 			</span>
 			</td>		
 		</tr>
