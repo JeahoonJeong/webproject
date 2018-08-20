@@ -309,6 +309,57 @@
 	background-color: #666666;
 }
 
+/* movie list */
+
+#content{
+	font-family: 'Nanum Gothic', sans-serif;
+	margin-left: 70px;
+	margin-right: 70px;
+	margin-bottom: 100px;
+	align: center;
+}
+
+#content .top{
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+#content .middle{
+	font-size: 16pt;
+	padding: 10px;
+	padding-bottom: 0px;
+	height: 50px;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+#content .bottom{
+	font-size: 10pt;
+	padding: 10px;
+	height: 30px;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+#content .btn1{
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 11pt;
+	font-weight: bold;
+	color: #4C4C4C;
+	background-color: #F2F2F2;
+	width: 100px;
+	height: 50px;
+	border-style: none;
+	cursor: pointer;
+}
+#content .btn1:hover{
+	background-color: white; 
+	color: #1294AB;
+	border: 1px solid #1294AB;
+}
+
+/* movie list */
+
 
 </style>
 
@@ -459,7 +510,7 @@
 								<tr>
 									<td class="bottom" align="center"><input type="hidden"
 										name="movie_id1" value="${dto.movie_id }" /> <input
-										type="button" value="상세정보" class="btn1" onclick="showPop();" />
+										type="button" value="상세정보" class="btn1" onclick="showPop(${dto.movie_id});" />
 										&nbsp;<input type="button" value="예매하기" class="btn1"
 										onclick="" /></td>
 									<c:set var="i" value="${i+1 }" />
@@ -869,6 +920,18 @@
 	}
 	
 	setInterval(ImageRotate,itv);
+	
+	
+	function showPop(movie_id) {
+
+		var url = "<%=cp%>/Movie/movie.do?movie_id=" + movie_id;
+
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+		
+		window.open(url,"movieInfo",setting);
+	
+	
+	} 
 	
 </script>
 </html>
