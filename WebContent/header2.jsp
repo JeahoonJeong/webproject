@@ -16,7 +16,7 @@
 <style type="text/css">
 #header-wrap {
 	position: fixed;
-	top: -0px;
+	top: 0px;
 	left: 0px;
 	width: 100%;
 	background-color: white;
@@ -134,7 +134,7 @@
 		<div id="header">
 			<ul>
 				<li><a href="<%=cp%>"><img alt=""
-						src="./login/image/magabox.jpg"></a></li>
+						src="../login/image/magabox.jpg"></a></li>
 				<li><a class="menuLink" href="<%=cp%>/Movie/list.do">영화</a></li>
 				<li><a class="menuLink" href="#">큐레이션</a></li>
 				<li><a class="menuLink" href="<%=cp%>/Theater/theater.do">영화관</a></li>

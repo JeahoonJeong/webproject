@@ -29,7 +29,7 @@
 
 #topMenu {
 height: 30px; /* 메인 메뉴의 높이 */ 
-width: 1300px; /* 메인 메뉴의 넓이 */
+width: 1140px; /* 메인 메뉴의 넓이 */
 text-align: center; 
 } 
 #topMenu ul { /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */ 
@@ -49,7 +49,7 @@ position: relative; /* 해당 li 태그 내부의 top/left 포지션 초기화 *
 .menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */ 
 text-decoration:none; /* a 태그의 꾸밈 효과 제거 */ 
 display: block; /* a 태그의 클릭 범위를 넓힘 */ 
-width: 159px; /* 기본 넓이를 150px로 설정 */ 
+width: 139px; /* 기본 넓이를 150px로 설정 */ 
 font-size: 12px; /* 폰트 사이즈를 12px로 설정 */ 
 font-weight: bold; /* 폰트를 굵게 설정 */ 
 font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대로 설정 */ 
@@ -115,9 +115,7 @@ position: relative;
 
 <body>
 
-
-
-<jsp:include page="../header2.jsp" flush="false" />
+<jsp:include page="../header3.jsp" flush="false"/>
 <div class="tmain_container" align="center">
 	<div class="section no1">
 	</div>	
@@ -135,7 +133,7 @@ position: relative;
 		</td>
 	</tr>
 	<tr align="center">
-		<td align="center" width="1300px">
+		<td align="center" width="1140px">
 			<div id="topMenu"> 
 			<ul> 
 				<li class="topMenuLi"> 
@@ -256,7 +254,7 @@ position: relative;
 	</tr>
 	<tr>
 		<td align="center" style="padding-right: 5px;">
-			<img alt="" src="http://image2.megabox.co.kr/mop/home/map/world2.jpg" style="width: 1295px; height: 500px">
+			<img alt="" src="http://image2.megabox.co.kr/mop/home/map/world2.jpg" style="width: 1135px; height: 500px">
 		</td>
 	</tr>
 	<tr>
@@ -278,7 +276,7 @@ position: relative;
 			NW1qU2JDQWJaa01XdHBUbXBaUjFSR2VXMVlSVFU1U1ZWRVNrcDNBc
 			3RCMXRmOFhpZ0VfQVBMUWRiWF9GNG9CUHekX2NpZLZwdWl6VDBsM1J
 			2MndHbldkeHJFQjJ3o19ydMtB1t2qjVLUNQqBoXLD" target="_blank" style="display:block;text-align:center;width:100%;background-color:#f4ddbd">
-			<img src="http://mlink-cdn.netinsight.co.kr/2018/08/14/3e69187c067a0d003472d491c898d73f.jpg" width="970" height="80" border="0"></a>
+			<img src="http://mlink-cdn.netinsight.co.kr/2018/08/14/3e69187c067a0d003472d491c898d73f.jpg" width="1140" height="80" border="0"></a>
 		</td>
 	</tr>
 </table>		

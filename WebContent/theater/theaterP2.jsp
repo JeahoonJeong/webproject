@@ -400,7 +400,7 @@
 
 <form action="" name="calendarForm">
 	<table border="0" align="center" cellspacing="0" cellpadding="0"
-		width="1300px">
+		width="1140px">
 		<tr>
 			<td colspan="5" style="padding-bottom: 3px">
 				<h3>상영시간표</h3>
@@ -460,7 +460,7 @@
 		<c:if test="${!dto.screen_num.equals(screen_num1) }">
 
 			
-		<tr class="lineheight_80" style="width: 1300px;">
+		<tr class="lineheight_80" style="width: 1140px;">
 			<th class="title">
 				<div>
 					<c:if test="${dto.age_limit eq 'all'}">
@@ -543,7 +543,7 @@
 
 		<!-- 층 안내 시작 -->
 		<div class="floorinfo" style="padding-top: 100px; padding-left: 10px;">
-			<div style="position: relative; width: 1300px; margin: 0 auto;">
+			<div style="position: relative; width: 1140px; margin: 0 auto;">
 				<h3>층별안내</h3>
 				<c:if test="${theater_id==1 }">
 					<div class="floorP2" style="margin-bottom: 15px;">
@@ -620,7 +620,7 @@
 		<!-- 층 안내 끝 -->
 		<!-- 약도/교통/주차 시작 -->
 		<div class="floorinfo" style="padding-top: 10px; padding-left: 10px;">
-			<div style="position: relative; width: 1300px; margin: 0 auto;">
+			<div style="position: relative; width: 1140px; margin: 0 auto;">
 				<h3>교통/약도/주차</h3>
 
 				<div class="mapInfo" style="margin-bottom: 15px;">
@@ -698,7 +698,7 @@
 		<!-- 약도/교통/주차 시작 -->
 		<div class="trafficInfo"
 			style="padding-top: 10px; padding-left: 10px;">
-			<div style="width: 1300px; margin: 0 auto;">
+			<div style="width: 1140px; margin: 0 auto;">
 				<h3>교통안내</h3>
 
 
@@ -781,7 +781,7 @@
 	style="background-color: #1F0000;" align="center">
 
 	<div id="theaterpay">
-		<div class="whole_wrap" style="width: 1300px">
+		<div class="whole_wrap" style="width: 1140px">
 			<h3 style="color: white; padding-left: 10px; padding-top: 20px; font-size: 25px; text-align: left;
 			 margin-bottom: 20px;" class="theater_pay">관람료</h3>
 
