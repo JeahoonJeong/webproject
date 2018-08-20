@@ -20,8 +20,8 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 
 #header-wrap {
 	position: fixed;
-	top: -20px;
-	left: 0px;
+	top: -3px;
+	left: 40px;
 	width: 100%;
 	background-color: white;
 }
@@ -29,7 +29,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 #header {
 	background-color: white;
 	width: 1140px;
-	margin: auto;
+	margin: 0 auto;
 	height: 50px;
 }
 
@@ -66,10 +66,11 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 
 #header-menu {
 	margin: auto;
-	margin-top: 60px;
-	padding-left: 0px;
+	margin-top: 75px;
+	padding-left: 40px;
 	height: 80px;
 	width: 1140px;
+	padding-bottom: -30px;
 	border-bottom-style: solid;
 	border-bottom-width: 5px;
 	border-bottom-color: #352669;
