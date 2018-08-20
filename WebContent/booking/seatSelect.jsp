@@ -11,6 +11,7 @@
 	
 	String cp = request.getContextPath();
 	
+	
 
 	
 	
@@ -48,10 +49,12 @@
 		var starttime = encodeURI("${start_time}");
 		var type = encodeURI("${type}");
 		var district = encodeURI("${district}");
+		var age_limit = endcodeURI("${age_limit}");
+		
 		
 		f.action = "<%=cp%>/Booking/seatSelect.do?value1=" + value1
 				+ "&value2=" + value2 + "&value3=" + value3 + "&value4="+ value4 + 
-				"&movie_name=" + moviename+"&age_limit=" +${age_limit}+
+				"&movie_name=" + moviename+"&age_limit=" +age_limit+
 				"&screen_num=" + ${screen_num}+"&start_time=" +starttime+
 				"&type=" + type+"&district=" + district+"&screen_id="+${screen_id};
 		f.submit();
@@ -448,7 +451,7 @@
 			<table border="0" align="center" style= "background-color:#555555" cellpadding="0" cellspacing="0">
 				<tr height="40">
 					<td>
-						<input type="button" value = "이전" onclick="" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #F9F9F9 ; color : #747474 ;border: 0"/>
+						<input type="button" value = "이전" onclick="javascript:location.href='<%=cp%>/Booking/booking.do'" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #F9F9F9 ; color : #747474 ;border: 0"/>
 					</td>	
 					<td style= "background-color:#555555; width: 20px;" > </td>
 					<td>			

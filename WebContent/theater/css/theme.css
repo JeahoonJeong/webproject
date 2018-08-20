@@ -8511,48 +8511,48 @@ video {
 	background: url(http://image2.megabox.co.kr/mop/home/main/pn_on.png)
 }
 
-.timetable_container .movie_time_table.v2 {
+.mtime_container .m_time_tb.v2 {
 	margin-bottom: 10px
 }
 
-.timetable_container .movie_time_table.v2 th {
+.mtime_container .m_time_tb.v2 th {
 	padding: 19px 20px
 }
 
-.timetable_container .movie_time_table.v2 th border-bottom: 1px solid #e5e5e5 strong
+.mtime_container .m_time_tb.v2 th border-bottom: 1px solid #e5e5e5 strong
 	{
 	font-weight: bold
 }
 
-.timetable_container .movie_time_table.v2 .title {
+.mtime_container .m_time_tb.v2 .title {
 	width: 200px;
 	padding-left: 15px;
 	padding-right: 10px;
 	border-right: 1px solid #e5e5e5
 }
 
-.timetable_container .movie_time_table.v2 .title div {
+.mtime_container .m_time_tb.v2 .title div {
 	position: relative;
 	padding-left: 27px
 }
 
-.timetable_container .movie_time_table.v2 .title div .age_m {
+.mtime_container .m_time_tb.v2 .title div .age_m {
 	position: absolute;
 	left: 0;
 	top: 0;
 	margin: 0
 }
 
-.timetable_container .movie_time_table.v2 .title div strong>a {
+.mtime_container .m_time_tb.v2 .title div strong>a {
 	color: #333
 }
 
-.timetable_container .movie_time_table.v2 .title div strong>a:hover,
-	.timetable_container .movie_time_table.v2 .title div strong>a:focus {
+.mtime_container .m_time_tb.v2 .title div strong>a:hover,
+	.mtime_container .m_time_tb.v2 .title div strong>a:focus {
 	text-decoration: none
 }
 
-.timetable_container .movie_time_table.v2 .room {
+.mtime_container .m_time_tb.v2 .room {
 	width: 130px;
 	font-size: 14px;
 	text-align: right;
@@ -8560,91 +8560,92 @@ video {
 	padding-left: 10px
 }
 
-.timetable_container .movie_time_table.v2 .room small {
+.mtime_container .m_time_tb.v2 .room small {
 	display: block;
 	margin-top: 4px;
 	font-weight: 400;
 	font-size: 13px
 }
 
-.timetable_container .movie_time_table.v2 .lineheight_80 .cinema_time {
+.mtime_container .m_time_tb.v2.lineheight_80 .movie_time {
 	position: relative;
 	height: 80px;
 	overflow: hidden
 }
 
-.timetable_container .movie_time_table.v2 .lineheight_80 .cinema_time a
+.mtime_container .m_time_tb.v2 .lineheight_80 .movie_time a
 	{
 	display: block;
 	width: 100%;
 	height: 80px
 }
 
-.timetable_container .movie_time_table.v2 .lineheight_80 .cinema_time .time_info
+.mtime_container .m_time_tb.v2 .lineheight_80 .movie_time .time_info
 	{
 	margin: 5px 0
+
 }
 
-.timetable_container .movie_time_table.v2 .lineheight_80 .cinema_time .hover_time
+.mtime_container .m_time_tb.v2 .lineheight_80 .movie_time .hover_time
 	{
 	line-height: 80px;
 	position: absolute
 }
 
-.timetable_container .movie_time_table.v2 .lineheight_90 .cinema_time {
+.mtime_container .m_time_tb.v2 .lineheight_90 .movie_time {
 	height: 90px
 }
 
-.timetable_container .movie_time_table.v2 .lineheight_90 .cinema_time .time_info
+.mtime_container .m_time_tb.v2 .lineheight_90 .movie_time .time_info
 	{
 	margin: 10px 0
 }
 
-.timetable_container .movie_time_table.v2 .lineheight_90 .cinema_time .hover_time
+.mtime_container .m_time_tb.v2 .lineheight_90 .movie_time .hover_time
 	{
 	line-height: 90px
 }
 
-.timetable_container .movie_time_table.v2 .li_3 .cinema_time {
+.mtime_container .m_time_tb.v2 .li_3 .movie_time {
 	height: 98px
 }
 
-.timetable_container .movie_time_table.v2 .li_3 .cinema_time .cinema_time
+.mtime_container .m_time_tb.v2 .li_3 .movie_time .movie_time
 	{
 	line-height: 98px
 }
 
-.timetable_container .movie_time_table.v2 .li_3 .cinema_time .time_info .time
+.mtime_container .m_time_tb.v2 .li_3 .movie_time .time_info .time
 	{
 	top: 21px
 }
 
-.timetable_container .movie_time_table.v2 .li_3 .cinema_time .time_info .seat
+.mtime_container .m_time_tb.v2 .li_3 .movie_time .time_info .seat
 	{
 	top: 45px
 }
 
-.timetable_container .movie_time_table.v2 .li_3 .cinema_time .time_info .ico_box
+.mtime_container .m_time_tb.v2 .li_3 .movie_time .time_info .ico_box
 	{
 	top: 43px
 }
 
-.timetable_container .movie_time_table.v2 .time_info .type {
+.mtime_container .m_time_tb.v2  .time_info .type {
 	display: none
 }
 
-.timetable_container .movie_time_table.v2 .time_info.play_type .type {
+.mtime_container .m_time_tb.v2 .time_info.play_type .type {
 	display: block;
 	font-size: 11px;
 	text-indent: -22px;
 	top: 11px
 }
 
-.timetable_container .movie_time_table.v2 .time_info.play_type .time {
+.mtime_container .m_time_tb.v2  .time_info.play_type .time {
 	top: 22px
 }
 
-.timetable_container .movie_time_table.v2 .time_info.play_type .seat {
+.mtime_container .m_time_tb.v2  .time_info.play_type .seat {
 	top: 45px
 }
 
@@ -17697,19 +17698,13 @@ p.phone_number .btn_remote {
 	width: 100%
 }
 
-.theater_container .section .content_wrap {
-	position: relative;
-	width: 970px;
-	margin: 0 auto
-}
-
-.theater_container .section .content_wrap>h1 {
+.P2_container .sc .whole_wrap>h1 {
 	margin: 0 0 30px;
 	font-size: 18px;
 	color: #333
 }
 
-.theater_container .section .content_wrap h3 {
+.P2_container .sc .whole_wrap h3 {
 	width: 100%;
 	height: 34px;
 	margin: 0 0 30px 0;
@@ -17749,7 +17744,7 @@ p.phone_number .btn_remote {
 	margin: 100px 0 0 0
 }
 
-.theater_container .section .content_wrap h4 {
+.P2_container .sc .whole_wrap h4 {
 	margin: 0;
 	padding-left: 23px;
 	font-size: 18px;
@@ -17759,13 +17754,13 @@ p.phone_number .btn_remote {
 		-93px no-repeat
 }
 
-.theater_container .section .content_wrap h4 span {
+.P2_container .sc .whole_wrap h4 span {
 	vertical-align: middle;
 	font-size: 13px;
 	color: #666
 }
 
-.theater_container .section .content_wrap h4.small {
+.P2_container .sc .whole_wrap h4.small {
 	font-size: 13px;
 	margin-bottom: 15px;
 	background-position: -36px -95px
@@ -17809,7 +17804,7 @@ p.phone_number .btn_remote {
 	background: #f2f2f2
 }
 
-.theater_container .section.no1 {
+.P2_container .sc.no1 {
 	position: relative;
 	height: 580px;
 	background: url(http://image2.megabox.co.kr/mop/home/theater/bg_top.jpg)
@@ -18145,7 +18140,7 @@ p.phone_number .btn_remote {
 	height: 16px
 }
 
-.movie_time_table {
+.m_time_tb {
 	clear: both;
 	border-collapse: collapse;
 	table-layout: fixed;
@@ -18154,11 +18149,11 @@ p.phone_number .btn_remote {
 	border-top: 1px solid #e5e5e5
 }
 
-.movie_time_table span {
+.m_time_tb span {
 	display: block
 }
 
-.movie_time_table th {
+.m_time_tb th {
 	padding: 19px 0 0 0;
 	width: 330px;
 	background-color: #f2f2f2;
@@ -18166,23 +18161,23 @@ p.phone_number .btn_remote {
 	vertical-align: top
 }
 
-.movie_time_table th strong.title {
+.m_time_tb th strong.title {
 	display: block;
 	float: left;
 	width: 170px;
 	font-size: 14px
 }
 
-.movie_time_table th span {
+.m_time_tb th span {
 	float: left
 }
 
-.movie_time_table th span.age {
+.m_time_tb th span.age {
 	width: 20px;
 	margin: 1px 6px 0 14px
 }
 
-.movie_time_table th span.cinema {
+.m_time_tb th span.cinema {
 	position: absolute;
 	width: 120px;
 	font-size: 14px;
@@ -18191,13 +18186,13 @@ p.phone_number .btn_remote {
 	padding-right: 15px
 }
 
-.movie_time_table td {
+.m_time_tb td {
 	width: 640px;
 	padding: 0;
 	border-bottom: 1px solid #e5e5e5
 }
 
-.movie_time_table td .cinema_time {
+.m_time_tb td .movie_time {
 	float: left;
 	width: 128px;
 	height: 60px;
@@ -18205,35 +18200,35 @@ p.phone_number .btn_remote {
 	cursor: pointer
 }
 
-.movie_time_table td .cinema_time .time_info {
+.m_time_tb td .movie_time .time_info {
 	height: 100%;
 	text-align: center
 }
 
-.movie_time_table td .cinema_time .time_info>span {
+.m_time_tb td .movie_time .time_info>span {
 	display: block;
 	position: absolute;
 	width: 100%
 }
 
-.movie_time_table td .cinema_time .time_info .offsale {
+.m_time_tb td .movie_time .time_info .offsale {
 	top: 4px;
 	margin-left: 12px;
 	font-size: 11px
 }
 
-.movie_time_table td .cinema_time .time_info .time {
+.m_time_tb td .movie_time .time_info .time {
 	top: 14px;
 	font-size: 18px
 }
 
-.movie_time_table td .cinema_time .time_info .seat {
+.m_time_tb td .movie_time .time_info .seat {
 	top: 36px;
 	font-size: 11px;
 	color: #503396
 }
 
-.movie_time_table td .cinema_time .time_info .event {
+.m_time_tb td .movie_time .time_info .event {
 	width: 11px;
 	height: 11px;
 	overflow: hidden;
@@ -18241,64 +18236,64 @@ p.phone_number .btn_remote {
 	background-color: #999
 }
 
-.movie_time_table td .cinema_time .time_info .event.event02 {
+.m_time_tb td .movie_time .time_info .event.event02 {
 	background-color: #ff0000
 }
 
-.movie_time_table td .cinema_time .time_info .event.event01 {
+.m_time_tb td .movie_time .time_info .event.event01 {
 	background-color: #00cc00
 }
 
-.movie_time_table td .cinema_time .time_info .event.event14 {
+.m_time_tb td .movie_time .time_info .event.event14 {
 	background-color: #00b7ee
 }
 
-.movie_time_table td .cinema_time .time_info .event.event11 {
+.m_time_tb td .movie_time .time_info .event.event11 {
 	background-color: #ff00ff
 }
 
-.movie_time_table td .cinema_time .time_info .event.event10 {
+.m_time_tb td .movie_time .time_info .event.event10 {
 	background-color: #673ab7
 }
 
-.movie_time_table td .cinema_time .time_info .event.event19 {
+.m_time_tb td .movie_time .time_info .event.event19 {
 	background-color: #f7941d
 }
 
-.movie_time_table td .cinema_time .time_info .event.event20 {
+.m_time_tb td .movie_time .time_info .event.event20 {
 	background-color: #37a452
 }
 
-.movie_time_table td .cinema_time .time_info .event.no1 {
+.m_time_tb td .movie_time .time_info .event.no1 {
 	top: 38px;
 	left: 90px
 }
 
-.movie_time_table td .cinema_time .time_info .event.no2 {
+.m_time_tb td .movie_time .time_info .event.no2 {
 	top: 38px;
 	left: 102px
 }
 
-.movie_time_table td .cinema_time .time_info .event.no3 {
+.m_time_tb td .movie_time .time_info .event.no3 {
 	top: 38px;
 	left: 114px
 }
 
-.movie_time_table td .cinema_time .time_info .ico_box {
+.m_time_tb td .movie_time .time_info .ico_box {
 	display: block;
 	position: absolute;
 	top: 35px;
 	left: 92px
 }
 
-.movie_time_table td .cinema_time .time_info .ico_box span {
+.m_time_tb td .movie_time .time_info .ico_box span {
 	display: inline-block;
 	*display: inline;
 	zoom: 1;
 	margin: 0 -1px 0 -2px
 }
 
-.movie_time_table td .cinema_time .hover_time {
+.m_time_tb td .movie_time .hover_time {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -18313,7 +18308,7 @@ p.phone_number .btn_remote {
 	z-index: 1
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop {
+.m_time_tb td .movie_time .theater_hv_pop {
 	display: none;
 	position: absolute;
 	top: 5px;
@@ -18326,7 +18321,7 @@ p.phone_number .btn_remote {
 	z-index: 9
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span {
+.m_time_tb td .movie_time .theater_hv_pop span {
 	display: block;
 	color: #333;
 	font-size: 11px;
@@ -18335,7 +18330,7 @@ p.phone_number .btn_remote {
 	vertical-align: top
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i {
+.m_time_tb td .movie_time .theater_hv_pop span i {
 	display: inline-block;
 	*display: inline;
 	zoom: 1;
@@ -18346,35 +18341,35 @@ p.phone_number .btn_remote {
 	float: left
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i.ico_02 {
+.m_time_tb td .movie_time .theater_hv_pop span i.ico_02 {
 	background-color: #ff0000
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i.ico_01 {
+.m_time_tb td .movie_time .theater_hv_pop span i.ico_01 {
 	background-color: #00cc00
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i.ico_14 {
+.m_time_tb td .movie_time .theater_hv_pop span i.ico_14 {
 	background-color: #00b7ee
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i.ico_11 {
+.m_time_tb td .movie_time .theater_hv_pop span i.ico_11 {
 	background-color: #ff00ff
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i.ico_10 {
+.m_time_tb td .movie_time .theater_hv_pop span i.ico_10 {
 	background-color: #601986
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i.ico_19 {
+.m_time_tb td .movie_time .theater_hv_pop span i.ico_19 {
 	background-color: #f7941d
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop span i.ico_20 {
+.m_time_tb td .movie_time .theater_hv_pop span i.ico_20 {
 	background-color: #37a452
 }
 
-.movie_time_table td .cinema_time .theater_hv_pop strong {
+.m_time_tb td .movie_time .theater_hv_pop strong {
 	position: absolute;
 	left: -6px;
 	top: 11px;
@@ -18386,32 +18381,32 @@ p.phone_number .btn_remote {
 		0 no-repeat
 }
 
-.movie_time_table td .cinema_time.done * {
+.m_time_tb td .movie_time.done * {
 	color: #666 !important;
 	cursor: default
 }
 
-.movie_time_table td .cinema_time:hover .theater_hv_pop {
+.m_time_tb td .movie_time:hover .theater_hv_pop {
 	display: block
 }
 
-.movie_time_table tr.li_2 th {
+.m_time_tb tr.li_2 th {
 	padding: 19px 0
 }
 
-.movie_time_table tr.li_2 .cinema_time {
+.m_time_tb tr.li_2 .movie_time {
 	height: 79px
 }
 
-.movie_time_table tr.li_2 .cinema_time .time_info .time {
+.m_time_tb tr.li_2 .movie_time .time_info .time {
 	top: 20px
 }
 
-.movie_time_table tr.li_2 .cinema_time .time_info .seat {
+.m_time_tb tr.li_2 .movie_time .time_info .seat {
 	top: 44px
 }
 
-.movie_time_table tr.li_2 td .cinema_time .hover_time {
+.m_time_tb tr.li_2 td .movie_time .hover_time {
 	line-height: 80px
 }
 

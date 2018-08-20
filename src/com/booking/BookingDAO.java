@@ -95,7 +95,7 @@ public class BookingDAO {
 //		
 //	}
 	// 2. 占쏙옙화占쏙옙 占쏙옙짜 占시곤옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 (Select) .v1
-	 public List<MovieDTO> getMovieData(){
+	 public List<MovieDTO> getMovieData(String date, String hour, String theaterId, String movieId){
 			List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
 			
 			PreparedStatement pstmt = null;
@@ -105,9 +105,20 @@ public class BookingDAO {
 			try {
 				sql = "SELECT screen_id ,to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
 						+ "age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber "
-						+ "FROM TIMETABLE"; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
+						+ "FROM TIMETABLE "
+						+ "where to_char(start_time,'DD') >= ? AND to_char(start_time,'HH24') >= ? and "
+						+ "theater_id = ? and movie_id = ?"; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
 						
+				//SELECT screen_id, to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time,
+//				age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber FROM timetable
+//				where movie_id =7 and theater_id = 4 and to_char(start_time,'HH24') >= 15 and to_char(start_time,'DD') = 21;
+				
+				
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, date);
+				pstmt.setString(2, hour);
+				pstmt.setString(3, theaterId);
+				pstmt.setString(4, movieId);
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()){
@@ -137,52 +148,7 @@ public class BookingDAO {
 			return lists2;
 
 		}
-	
-	// 3. 占쏙옙화占쏙옙 占쏙옙占신듸옙 占승쇽옙 占싸울옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 (Select)
-//	public List<E> getSelectedSeatData(){
-//		List<E> lists = new ArrayList<E>();
-//		
-//		PreparedStatement pstmt = null;
-//		
-//		ResultSet rs = null;
-//		
-//		String sql;
-//		
-//		try {
-//			sql = "select  from ";
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()){
-//				dataCount = rs.getInt(1);
-//				
-//			}
-//			rs.close();
-//			pstmt.close();
-//		} catch (Exception e) {
-//			e.toString();
-//		}
-//		
-//		return ;	
-//	}
-//	
-	
-	// 4. 占승쇽옙 占쏙옙占쏙옙 (Insert)
-	 public int insertData(String userId, String movie_id, String screen_id){
-		 int result = 0 ; 
-		 
-		 
-		 
-		 
-		 
-		 
-		 return result;
-		 
-	 }
-	 
-	 
-	 
-	 //------------------------------------------------------
+
 	 
 	 public List<BookingDTO> getSeatInfo(String screenId){
 			List<BookingDTO> lists = new ArrayList<BookingDTO>();
@@ -196,10 +162,10 @@ public class BookingDAO {
 				sql = "select rnum, screen_id, row_num, seat_num, status from "
 						+ " (select rownum rnum, data.* "
 						+ " from (select screen_id, row_num, seat_num, status from seat "
-						+ " where screen_id = 1 order by row_num,seat_num) data)";
+						+ " where screen_id = ? order by row_num,seat_num) data)";
 						
 				pstmt = conn.prepareStatement(sql);
-//				pstmt.setString(1, "1");
+				pstmt.setString(1, screenId);
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()){
@@ -287,6 +253,33 @@ public class BookingDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		 
+	 }
+	 
+	 public void updateSeatStatus(String screen_id, String row_num, int seat_num ){
+		 
+		 PreparedStatement pstmt = null;
+		 String sql = "";
+		 
+		 try {
+			
+			 sql = "update seat set status = 1 where screen_id=? and row_num = ? and seat_num = ?";
+			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(1, screen_id);
+			 pstmt.setString(2,row_num);
+			 pstmt.setInt(3, seat_num);
+			 
+			 pstmt.executeUpdate();
+			 
+			 pstmt.close();
+			 
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+		 
+		 
+		 
 		 
 	 }
 	 

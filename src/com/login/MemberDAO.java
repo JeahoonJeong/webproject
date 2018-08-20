@@ -66,26 +66,26 @@ public class MemberDAO {
 	}
 	
 	
-	public void insertData(MemberDTO dto){
-		
+	public int insertData(MemberDTO dto){
+		int result =  0 ; 
 		PreparedStatement pstmt = null;
 		String sql = "";
 		
 		try {
 			
-			sql = "insert into member(user_id, user_pwd, user_name, birth, tel, email, addr) "
-					+ "values(?,?,?,to_date(?,'YYYYMMDDHH24MISS'),?,?,?)";
+			sql = "insert into member(USER_ID, USER_PWD, USER_NAME, BIRTH, TEL, EMAIL, ADDR) "
+					+ "values(?,?,?,to_date(?,'YYYY-MM-DD'),?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getUser_id());
 			pstmt.setString(2, dto.getUser_pwd());
 			pstmt.setString(3, dto.getUser_name());
-			pstmt.setString(4,dto.getBirth());
-			pstmt.setString(5,dto.getTel());
-			pstmt.setString(6,dto.getEmail());
-			pstmt.setString(7,dto.getAddr());
+			pstmt.setString(4, dto.getBirth());
+			pstmt.setString(5, dto.getTel());
+			pstmt.setString(6, dto.getEmail());
+			pstmt.setString(7, dto.getAddr());
 			
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 			
 			pstmt.close();
 			
@@ -93,6 +93,7 @@ public class MemberDAO {
 			// TODO: handle exception
 			System.out.println(e.toString());
 		}
+		return result ;
 		
 	}
 	

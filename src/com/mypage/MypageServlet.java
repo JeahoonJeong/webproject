@@ -70,7 +70,7 @@ public class MypageServlet extends HttpServlet{
 		if(uri.indexOf("mypageMain.do")!=-1){
 
 			HttpSession session = req.getSession();
-
+			
 			MemberDTO member = (MemberDTO)session.getAttribute("member");
 			
 			if(member==null){
@@ -401,8 +401,8 @@ public class MypageServlet extends HttpServlet{
 			
 			dao.updateUserPwd(user_pwd, user_id);
 			
-			session.removeAttribute("member"); 
-			session.invalidate();	
+			session.removeAttribute("member"); //�꽭�뀡 data�궘�젣
+			session.invalidate();	//�꽭�뀡 蹂��닔 �궘�젣
 			
 			resp.sendRedirect(cp);
 			
@@ -420,8 +420,7 @@ public class MypageServlet extends HttpServlet{
 			
 			dao.deleteMember(user_id);
 			
-			session.removeAttribute("member"); 
-			session.invalidate();	
+			//�깉�눜 荑쇰━ 蹂대쪟 
 			
 			resp.sendRedirect(cp);
 
