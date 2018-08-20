@@ -153,7 +153,7 @@
 
 </head>
 <body>
-<jsp:include page="../header3.jsp" flush="false" />
+<jsp:include page="../header2.jsp" flush="false" />
 	
 <%-- 	<div class="sub_navi ">
 		<div class="sub_navi_wrap">
