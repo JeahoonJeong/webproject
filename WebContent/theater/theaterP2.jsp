@@ -350,6 +350,10 @@
 				</tr>
 			</table>
 		</form>
+		
+		<c:if test="${theater_id==null }">
+		<p align="center"><img src="../theater/image/영화관선택.png" width="1000" height="400" border="2" align="middle"></p>
+		</c:if>
 
 		<table border="0" class="scheduleP2">
 

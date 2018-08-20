@@ -156,10 +156,6 @@ function sendIt() {
 		</tr>
 		<tr>
 			<td height="50px" rowspan="2" style="padding: 0px;">
-<<<<<<< HEAD
-			<span style="float: left;">
-			<font size="2pt;" color="#4C4C4C">내 평점</font>
-=======
 			<!-- <span style="float: left;">
 			<font size="2pt;" color="#4C4C4C">내 평점</font> 
 >>>>>>> master
