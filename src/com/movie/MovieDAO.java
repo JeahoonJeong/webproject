@@ -114,16 +114,19 @@ public class MovieDAO {
 			sql+= "where a.movie_id=b.movie_id";
 			*/
 			
-			sql = "select * from (select (b.movie_id) movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
-			sql+= "age_limit,file_name,countRate from movie a, (select rating, countRate, file_name, a.movie_id from ";
-			sql+= "(select count(rating) countRate,round(avg(rating)) rating,movie_id from rating group by movie_id having movie_id=?) a";
-			sql+= ", (select * from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) b ";
-			sql+= "where a.movie_id=b.movie_id)a, (select count(comments) commCount from comments where movie_id=?) b";
+			sql = "select * from (select (b.movie_id) movie_id,movie_name,movie_eng_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
+			sql+= "age_limit,file_name,countRate from movie a,(select a.*, nvl(countRate,0) countRate, nvl(rating,0) rating from ";
+			sql+= "(select * from image_files where file_name like ('%Post%') and movie_id=?) a left join ";
+			sql+= "(select count(rating) countRate,round(avg(rating)) rating,movie_id from rating group by movie_id having movie_id=?) b ";
+			sql+= "on a.movie_id=b.movie_id) b where a.movie_id=b.movie_id) a,";
+			sql+= "(select count(comments) commCount from comments where movie_id=?) b";
 			
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, movie_id);
 			pstmt.setString(2, movie_id);
+			pstmt.setString(3, movie_id);
+			
 			rs = pstmt.executeQuery();
 			
 			
@@ -133,6 +136,7 @@ public class MovieDAO {
 				
 				dto.setMovie_id(rs.getString("movie_id"));
 				dto.setMovie_name(rs.getString("movie_name"));
+				dto.setMovie_eng_name(rs.getString("movie_eng_name"));
 				dto.setRating(rs.getInt("rating"));
 				dto.setRelease_date(rs.getString("release_date"));
 				dto.setType(rs.getString("type"));
@@ -205,7 +209,7 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select count(file_name) count from image_files where movie_id=?";
+			sql = "select count(file_name) count from image_files where file_name like ('%Still&') and movie_id=?";
 			
 			pstmt = conn.prepareCall(sql);
 			
@@ -241,10 +245,10 @@ public class MovieDAO {
 			sql+= "(select movie_id,a.user_id,comment_date,comments,recommend_num,file_name from comments a,";
 			sql+= "member_image b where a.user_id=b.user_id and movie_id=?) a , rating b where ";
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id) data) where rnum>=? and rnum<=?;";*/
-					
+			
 			sql = "select a.*, rating from ";
-			sql+= "(select movie_id,a.user_id,comment_date,comments,recommend_num,file_name from comments a,";
-			sql+= "member_image b where a.user_id=b.user_id and movie_id=?) a , rating b where ";
+			sql+= "(select movie_id,a.user_id,comment_date,comments,recommend_num,file_name from comments a ";
+			sql+= "left join member_image b on a.user_id=b.user_id where movie_id=?) a , rating b where "; 
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id";
 			
 			
@@ -285,7 +289,6 @@ public class MovieDAO {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		String sql;
 		
 		try {
@@ -301,7 +304,17 @@ public class MovieDAO {
 			
 			result = pstmt.executeUpdate();
 			
-			//rating insert sql 작성해야함
+			sql = "insert into rating (movie_id,user_id,rating) ";
+			sql+= "values(?,?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getMovie_id());
+			pstmt.setString(2, dto.getUser_id());
+			pstmt.setInt(3, dto.getRating());
+			
+			result = pstmt.executeUpdate();
+		
 			
 			pstmt.close();
 			

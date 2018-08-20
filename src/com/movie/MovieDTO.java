@@ -4,6 +4,7 @@ public class MovieDTO {
 	
 	private String movie_id; //영화 순위or고유넘버
 	private String movie_name; //영화 제목
+	private String movie_eng_name; //영화 영어 제목
 	private int rating; //영화 평점
 	private String release_date; //영화 개봉일
 	private String type; //상영타입 ex)디지털,3D,디지털(자막)..
@@ -133,12 +134,14 @@ public class MovieDTO {
 	public void setCommCount(int commCount) {
 		this.commCount = commCount;
 	}
+	public String getMovie_eng_name() {
+		return movie_eng_name;
+	}
+	public void setMovie_eng_name(String movie_eng_name) {
+		this.movie_eng_name = movie_eng_name;
+	}
 	
-	
-	
-	
-	
-	
+
 	
 	
 	
