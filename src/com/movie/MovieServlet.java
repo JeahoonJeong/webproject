@@ -98,8 +98,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);
 			
 		}else if(uri.indexOf("movie.do")!=-1){//영화 상세페이지
-			
-			
+		
 			/*String pageNum;
 			
 			if(req.getParameter("pageNum")==null||req.getParameter("pageNum").equals("")){
@@ -107,11 +106,10 @@ public class MovieServlet extends HttpServlet{
 			}else{
 				pageNum = req.getParameter("pageNum");
 			}*/
+
 			
 			MovieDTO dto = new MovieDTO();
 			String movie_id = req.getParameter("movie_id");
-			
-			System.out.println(movie_id);
 			
 			dto = dao.getOneData(movie_id);
 			
@@ -182,8 +180,9 @@ public class MovieServlet extends HttpServlet{
 			
 			HttpSession session = req.getSession();
 			
-			MovieDTO user = (MovieDTO)session.getAttribute("loginInfo");
-			String user_id = user.getUser_id();
+			MemberDTO member = (MemberDTO)session.getAttribute("member");
+			
+			String user_id = member.getUser_id();
 			
 			String movie_id = req.getParameter("movie_id");
 			
@@ -192,7 +191,8 @@ public class MovieServlet extends HttpServlet{
 			dto.setMovie_id(movie_id);
 			dto.setUser_id(user_id);
 			dto.setComments(req.getParameter("comments"));
-			dto.setRating(Integer.parseInt(req.getParameter("rate2"))*2);
+			System.out.println(req.getParameter("rating"));
+			dto.setRating(Integer.parseInt(req.getParameter("rating")));
 			
 			dao.insertComment(dto);
 			
