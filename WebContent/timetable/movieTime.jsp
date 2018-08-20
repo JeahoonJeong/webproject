@@ -99,6 +99,7 @@
 	function goNextPage(screen_id){
 	var f= document.myForm1;
 	
+	window.open("<%=str%>");
 	f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
 	f.submit();
 	
@@ -189,7 +190,7 @@
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
 
-					<br><a onclick="goNextPage(${dto.screen_id});">예매</a>
+					<br><br><a onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=100px, left=20px, height=600px, width=1000px')">예매</a>
 					
 
 				</p>
