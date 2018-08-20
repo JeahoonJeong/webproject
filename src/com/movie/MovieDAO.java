@@ -496,6 +496,32 @@ public class MovieDAO {
 		
 	}
 	
+	public int recommend(String user_id, String movie_id){
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "update comments set recommend_num=(recommend_numm+1) where user_id=? and movie_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, movie_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	
 	
 	
 	

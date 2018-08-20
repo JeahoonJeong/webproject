@@ -201,4 +201,15 @@ font-size: 12px; float: left;}
 
 #comment_view a:link{text-decoration: none; color: #333333;}
 
+.img-circle {
+  border-radius: 50%;
+}
+.radius {
+	border: 1px solid #ddd; 
+	border-radius: 70px; 
+	-moz-border-radius: 70px; 
+	-khtml-border-radius: 70px; 
+	-webkit-border-radius: 70px;
+}
+
 

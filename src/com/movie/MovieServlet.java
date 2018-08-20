@@ -184,7 +184,7 @@ public class MovieServlet extends HttpServlet{
 
 
 
-		}else if(uri.indexOf("comments.do")!=-1){//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		}else if(uri.indexOf("comments.do")!=-1){//ÇØ´ç ¿µÈ­ ÄÚ¸àÆ® °¡Á®¿À±â
 
 			HttpSession session = req.getSession();
 
@@ -208,7 +208,7 @@ public class MovieServlet extends HttpServlet{
 
 
 
-		}else if(uri.indexOf("list_date.do")!=-1){
+		}else if(uri.indexOf("list_date.do")!=-1){//ÃÖ±Ù°³ºÀ¿µÈ­ ÆäÀÌÁö
 
 
 			String pageNum = req.getParameter("pageNum");
@@ -250,7 +250,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);
 
 		
-		}else if(uri.indexOf("list_pre.do")!=-1){
+		}else if(uri.indexOf("list_pre.do")!=-1){ //°³ºÀ¿¹Á¤¿µÈ­ ÆäÀÌÁö
 
 
 			String pageNum = req.getParameter("pageNum");
@@ -293,7 +293,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);	
 			
 
-		}else if(uri.indexOf("movieTime_ok.do")!=-1){ // ï¿½ó¿µ½Ã°ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		}else if(uri.indexOf("movieTime_ok.do")!=-1){ //»ó¿µ½Ã°£Ç¥
 
 			String movie_id = req.getParameter("movie_id");
 
@@ -303,7 +303,7 @@ public class MovieServlet extends HttpServlet{
 			
 			
 			
-		}else if(uri.indexOf("wish.do")!=-1){
+		}else if(uri.indexOf("wish.do")!=-1){//º¸°í½Í¾î ÆäÀÌÁö
 			
 			List<MovieDTO> lst = new ArrayList<MovieDTO>();
 			
@@ -320,6 +320,20 @@ public class MovieServlet extends HttpServlet{
 			
 			url = "/movie/wish.jsp";
 			forward(req, resp, url);
+			
+
+		}else if(uri.indexOf("recommend.do")!=-1){
+			
+			String user_id = req.getParameter("user_id");
+			String movie_id = req.getParameter("movie_id");
+			
+			int result = dao.recommend(user_id, movie_id);
+			
+			req.setAttribute("result", result);
+			
+			url = "/movie/movie.jsp?movie_id=" + movie_id;
+			forward(req, resp, url);
+
 			
 		
 		////////--------------------------------------

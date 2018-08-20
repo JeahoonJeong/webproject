@@ -225,7 +225,7 @@ function sendIt() {
 			<c:choose>
 				<c:when test="${empty sessionScope.member.user_id }">
 				<span style="padding-top: 58px; float: left;">
-					<img width="56px" height="56px" src="${imagePath }/profile.png"></span>
+					<img class="radius" width="56px" height="56px" src="${imagePath }/profile.png"></span>
 				</c:when>
 				<c:otherwise>
 				<span style="padding-top: 58px; float: left;">
@@ -287,10 +287,10 @@ function sendIt() {
 				<span style="width: 80px; float: left;">
 				<c:choose>
 					<c:when test="${empty comm.file_name }">
-						<img src="${imagePath }/profile.png" height="54px" width="54px"/>
+						<img class="radius" src="${imagePath }/profile.png" height="54px" width="54px"/>
 					</c:when>
 					<c:otherwise>
-						<img src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
+						<img class="radius" src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
 					</c:otherwise>
 				</c:choose>
 				</span>
@@ -309,7 +309,8 @@ function sendIt() {
 				${comm.comments }
 				</span></p>
 				<p class="bottom">
-					<a href="javascript:location.href='<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }'">
+					<a href="javascript:location.href=
+					'<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }&movie_id=${dto.movie_id }'">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
 					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
 				</p>
