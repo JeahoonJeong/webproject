@@ -1,15 +1,5 @@
 @CHARSET "UTF-8";
 
-.bgimg {
-    border: 0;
-    padding: 0; 
-    max-height: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    max-width: 100%;
-}
-
 #topMenu {
 height: 30px; /* 메인 메뉴의 높이 */ 
 width: 1300px; /* 메인 메뉴의 넓이 */ 
@@ -40,7 +30,7 @@ font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대�
 } 
 
 .submenuLink{
-width: 100px;
+width: 110px;
 }
 
 .menuLink { /* 상위 메뉴의 글씨색을 흰색으로 설정 */ 
@@ -88,10 +78,3 @@ height: 32px; /* 높이를 31px / 메뉴 설정 */
 color: #368AFF; /* 글씨색을 설정 */ 
 background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */ 
 }
-
-.tmain_container>.no1 {
-position: relative;
-height: 585px;
-padding: 0;
-background: url(http://image2.megabox.co.kr/mop/home/theater/bg.jpg) 50% 0 no-repeat;
-background-size: cover;

@@ -107,13 +107,345 @@
 
 		window.open("calendar.do","달력","location = no, menubar = no, directories=no,left=580, top=150, width=350, height=350, toolbar = no, enubar=no, status=no, scrollbars=no, resizable=no, status = no");
 	}
+	
+	//키보드포커스
+	$(function(){
+		$('div.movie_time').on("focus", "a", function(){
+			$(this).prev().trigger("mouseout");
+			$(this).trigger("mouseover");
+		});
+
+		$('div.movie_time').on("focusout", "a", function(){
+			$(this).trigger("mouseout");
+		});
+	});
+
 </script>
+
+<style type="text/css">
+
+html, body {
+    font-family: 'NanumGothic','나눔고딕','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, strong, label {
+    font-weight: 700;
+    font-family: '나눔고딕','NanumGothic','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;
+}
+
+/* 메인이미지안에 글씨넣기위해  */
+#P2_container {
+    position: relative;
+    margin-top: 38px;
+    margin-bottom: 85px;
+}
+
+.P2_container .sc.no1 {
+    position: relative;
+    height: 580px;
+    background: url(http://image2.megabox.co.kr/mop/home/theater/bg_top.jpg) 50% 0 no-repeat;
+    background-size: cover !important;
+}
+
+element.style {
+    background-image: url(http://image2.megabox.co.kr/mop/cinema/2017/8A/966E47-A7E3-4261-A5CF-9A1D28E112B7.jpg);
+
+}
+
+.P2_container .sc.no1 .whole_wrap {
+    position: relative;
+}
+
+.P2_container .sc .whole_wrap {
+    position: relative;
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.P2_container .sc.no1 .whole_wrap p.P2_ti_box {
+    top: 106px;
+}
+
+.P2_container .sc.no1 .whole_wrap p.P2_ti_box, .P2_container .sc.no1 .whole_wrap p.P2_tx_box {
+    background: url(http://image2.megabox.co.kr/mop/home/special/bg_theater_tx.png);
+    padding: 5px;
+}
+
+.P2_container .sc.no1 .whole_wrap p {
+    display: block;
+    position: absolute;
+    left: 0;
+}
+
+.P2_container .sc.no1 .whole_wrap p.P2_ti_box img:first-child {
+    margin-bottom: 10px;
+}
+.P2_container .sc.no1 .whole_wrap p.P2_ti_box img {
+    display: block;
+    padding-bottom: 0px;
+}
+
+.P2_container .sc.no1 .whole_wrap p.P2_btn_box {
+    top: 198px;
+    overflow: hidden;
+}
+
+.P2_container .sc.no1 .whole_wrap p.P2_btn_box button {
+    float: left;
+    font-weight: bold;
+    font-size: 14px;
+    color: #503396;
+    border: 1px solid #fff;
+    background-color: rgba(255,255,255,0.7);
+}
+.P2_container .sc.no1 .whole_wrap .top_btn1 {
+    width: 148px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.P2_container .sc.no1 .whole_wrap .top_btn2 {
+    width: 148px;
+    height: 30px;
+    margin-top: 5px;
+    background-position: -150px 0;
+}
+
+.P2_container .sc.no1 .whole_wrap p.P2_tx_box {
+    max-height: 90px;
+    overflow: hidden;
+    top: 293px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #fff;
+}
+
+.P2_container .sc.no2 {
+    margin-bottom: 70px;
+}
+
+.P2_container .sc.no5 {
+    padding-top: 30px;
+}
+
+.mtime_container {
+    margin-top: 0 !important;
+}
+
+.mtime_container .m_time_tb.v2 {
+    margin-bottom: 10px;
+}
+
+.m_time_tb {
+    clear: both;
+    border-collapse: collapse;
+    table-layout: fixed;
+    padding: 0;
+    border-spacing: 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+table {
+    max-width: 100%;
+    background-color: transparent;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.mtime_container .m_time_tb.v2 .title {
+    width: 200px;
+    padding-left: 15px;
+    padding-right: 10px;
+    border-right: 1px solid #e5e5e5;
+}
+
+.mtime_container .m_time_tb.v2 th {
+    padding: 19px 20px;
+}
+
+.m_time_tb th {
+    padding: 19px 0 0 0;
+    width: 330px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+}
+th {
+    text-align: left;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.mtime_container .m_time_tb.v2 .title div .age_m {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+}
+
+.m_time_tb th span {
+    float: left;
+}
+
+.m_time_tb span {
+    display: block;
+}
+
+.age_12 {
+    background-position: -60px 0;
+}
+.age_m {
+    margin: 0 5px 0 15px;
+    width: 20px;
+    height: 21px;
+    background: url(http://image2.megabox.co.kr/mop/home/bg_age_m.png) 0 -999px no-repeat;
+}
+.age, .age_m {
+    background: url(http://image2.megabox.co.kr/mop/home/bg_age2.png) 0 -999px no-repeat;
+    display: inline-block;
+    width: 17px;
+    height: 18px;
+    margin-right: 4px;
+    text-indent: -99999px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.mtime_container .m_time_tb.v2 .room {
+    width: 130px;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 15px;
+    padding-left: 10px;
+}
+
+.m_time_tb td {
+    width: 640px;
+    padding: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.mtime_container .m_time_tb.v2 .lineheight_80 .movie_time {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+}
+
+.m_time_tb td .movie_time {
+    float: left;
+    width: 128px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+}
+
+.mtime_container .m_time_tb.v2 .lineheight_80 .movie_time a {
+    display: block;
+    width: 100%;
+    height: 80px;
+}
+
+a {
+    color: #198591;
+    text-decoration: none;
+}
+
+.mtime_container .m_time_tb.v2 .lineheight_80 .movie_time .time_info {
+    margin: 5px 0;
+}
+.m_time_tb td .movie_time .time_info {
+    height: 100%;
+    text-align: center;
+}
+ul, ol, dl, li, p {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.mtime_container .m_time_tb.v2 .time_info .type {
+    display: none;
+}
+.m_time_tb td .movie_time .time_info>span {
+    display: block;
+    position: absolute;
+    width: 100%;
+}
+.m_time_tb span {
+    display: block;
+}
+
+.m_time_tb td .movie_time .time_info .time {
+    top: 14px;
+    font-size: 18px;
+}
+
+.m_time_tb td .movie_time .time_info .seat {
+    top: 36px;
+    font-size: 11px;
+    color: #503396;
+}
+
+.m_time_tb td .movie_time .time_info .ico_box {
+    display: block;
+    position: absolute;
+    top: 35px;
+    left: 92px;
+}
+
+.time_info:hover .hover_time {
+	display : block;
+}
+
+.P2_container .m_time_tb.v2 .lineheight_80 .movie_time .hover_time {
+    line-height: 80px;
+    position: absolute;
+}
+
+</style>
 
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="false" />
-
-	<div class="sub_navi ">
+<jsp:include page="../header.jsp" flush="false" />
+	
+<%-- 	<div class="sub_navi ">
 		<div class="sub_navi_wrap">
 			<ul class="clearfix">
 				<li><a class="timetable i0 "
@@ -127,264 +459,345 @@
 
 			</ul>
 		</div>
-	</div>
-	<!-- 처음 이미지 -->
-	<div
-		style="background-image: url(http://image2.megabox.co.kr/mop/cinema/2018/57/703AF3-6E8B-4149-ABA3-E270FD395135.jpg); background-repeat: no-repeat; height: 580px; border: 1px solid black">
-	</div>
-	<!-- 처음 이미지 끝 -->
-
-	<div class="tmain_container" align="center">
-
-		<table align="center">
-			<tr>
-				<td height="0" align="center"></td>
-			</tr>
-		</table>
-		
-		<table border="0" align="center" cellspacing="0" cellpadding="0">
-			<tr>
-				<td align="left" style="padding-bottom: 0px;">
-					<h2 style="font-weight: bold; font-size: 50px; color: white; padding-left: 20px;">
-					<c:if test="${theater_id eq '1' }">
-					강남
-					</c:if>
-					<c:if test="${theater_id eq '2' }">
-					강동	
-					</c:if>
-					<c:if test="${theater_id eq '3' }">
-					김포	
-					</c:if>
-					<c:if test="${theater_id eq '4' }">
-					영통	
-					</c:if>
-					</h2>
-				</td>
-			</tr>
-			<tr align="center">
-				<td>
-					<div id="topMenu">
-						<ul>
-							<li class="topMenuLi"><a class="menuLink">서울</a>
-								<ul class="submenu">
-									<li><a class="submenuLink"
-										href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=1">강남</a></li>
-									<li><a class="submenuLink">강남대로(씨티)</a></li>
-									<li><a class="submenuLink"
-										href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=2">강동</a></li>
-									<li><a class="submenuLink">동대문</a></li>
-									<li><a class="submenuLink">마곡</a></li>
-									<li><a class="submenuLink">목동</a></li>
-									<li><a class="submenuLink">상봉</a></li>
-									<li><a class="submenuLink">상암월드컵경기장</a></li>
-									<li><a class="submenuLink">센트럴</a></li>
-									<li><a class="submenuLink">송파파크하비오</a></li>
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi"><a class="menuLink">경기</a>
-								<ul class="submenu">
-									<li><a class="submenuLink"
-										href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=3">김포</a></li>
-									<li><a class="submenuLink">미사강변</a></li>
-									<li><a class="submenuLink">별내</a></li>
-									<li><a class="submenuLink">수원</a></li>
-									<li><a class="submenuLink">시흥배곧</a></li>
-									<li><a class="submenuLink">양주</a></li>
-									<li><a class="submenuLink"
-										href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=4">영통</a></li>
-									<li><a class="submenuLink">오산</a></li>
-									<li><a class="submenuLink">일산</a></li>
-									<li><a class="submenuLink">킨텍스</a></li>
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi"><a class="menuLink">인천</a>
-								<ul class="submenu">
-									<li><a class="submenuLink">검단</a></li>
-									<li><a class="submenuLink">인천논현</a></li>
-									<li><a class="submenuLink">미사강변</a></li>
-									<li><a class="submenuLink">청라지젤</a></li>
-									<li><a class="submenuLink">송도</a></li>
-									<li><a class="submenuLink">청라</a></li>
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi"><a class="menuLink">대전/충정/세종</a>
-								<ul class="submenu">
-									<li><a class="submenuLink">공주</a></li>
-									<li><a class="submenuLink">대전</a></li>
-									<li><a class="submenuLink">세종</a></li>
-									<li><a class="submenuLink">오창</a></li>
-									<li><a class="submenuLink">제천</a></li>
-									<li><a class="submenuLink">진천</a></li>
-									<li><a class="submenuLink">천안</a></li>
-									<li><a class="submenuLink">충주</a></li>
-									<li><a class="submenuLink">흥성내포</a></li>
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi"><a class="menuLink">부산/대수/경상</a>
-								<ul class="submenu">
-									<li><a class="submenuLink">거창</a></li>
-									<li><a class="submenuLink">경산하양</a></li>
-									<li><a class="submenuLink">구미</a></li>
-									<li><a class="submenuLink">김천</a></li>
-									<li><a class="submenuLink">대구(칠성로)</a></li>
-									<li><a class="submenuLink">덕천</a></li>
-									<li><a class="submenuLink">문경</a></li>
-									<li><a class="submenuLink">부산대</a></li>
-									<li><a class="submenuLink">사천</a></li>
-									<li><a class="submenuLink">서면</a></li>
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi"><a class="menuLink">광주/전라</a>
-								<ul class="submenu">
-									<li><a class="submenuLink">광주(충장로)</a></li>
-									<li><a class="submenuLink">광주하남</a></li>
-									<li><a class="submenuLink">목포</a></li>
-									<li><a class="submenuLink">송천</a></li>
-									<li><a class="submenuLink">여수</a></li>
-									<li><a class="submenuLink">전대(광주)</a></li>
-									<li><a class="submenuLink">첨단</a></li>
-									<li><a class="submenuLink">광주상무</a></li>
-									<li><a class="submenuLink">남원</a></li>
-									<li><a class="submenuLink">목포하당(포르모)</a></li>
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi"><a class="menuLink">경기</a>
-								<ul class="submenu">
-									<li><a class="submenuLink">남춘천</a></li>
-									<li><a class="submenuLink">속초</a></li>
-									<li><a class="submenuLink">원주</a></li>
-									<li><a class="submenuLink">원주센트럴</a></li>
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi"><a class="menuLink">제주</a>
-								<ul class="submenu">
-									<li><a class="submenuLink">제주</a></li>
-									<li><a class="submenuLink">제주아라</a></li>
-								</ul></li>
-						</ul>
-					</div>
-				</td>
-			</tr>
-		</table>
-
-		<table border="0" align="center" cellspacing="0" cellpadding="0">
-			<tr>
-				<td align="left" style="padding-bottom: 10px; height: 62px"></td>
-			</tr>
-			<tr align="center">
-				<td>
-					<div id="topMenu2">
-						<ul>
-							<li class="topMenuLi2"><a class="menuLink2">상영시간표</a>
-								<ul class="submenu2">
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi2"><a class="menuLink2">층별안내</a>
-								<ul class="submenu2">
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi2"><a class="menuLink2">약도/교통/주차</a>
-								<ul class="submenu2">
-								</ul></li>
-							<li>|</li>
-							<li class="topMenuLi2"><a class="menuLink2">관람료</a>
-								<ul class="submenu2">
-								</ul></li>
-							<li>|</li>
-						</ul>
-					</div>
-				</td>
-			</tr>
-		</table>
-
-		<form action="" name="calendarForm">
-			<table border="0" align="center" cellspacing="0" cellpadding="0"
-				width="1300px">
-				<tr>
-					<td colspan="5" align="center"
-						style="padding-bottom: 10px; height: 62px">
-						
-			<a href="http://ad.imp.joins.com/NetInsight/event/
-			clk/v4tpfnqPm-iPGc4CsBFOh9jkGcGJ_ErzI1vVY3YeuIeIA
-			bZueUdSaUpDQ1NVZWVUby1kVkp1N2tBAstB1t2qjVLUNQO2Tnh
-			YbS1DWmNTR21LcGN5MW45YU45dwbZI21lZ2Fib3hfcC9tYWluL
-			21haW5AbWFpbl90b3BfOTcweDgwB83uSAjNAWoJhaN0aWS2T1pv
-			RjVOSmZUcHEtcnZGM2tIQWtwZ6RfbW5toKRfdWlk2W9GZXFfcG1
-			aa1R2NjJWN3liUnpCZ2FoRHFpUWQ4MUw2ODFsSTVuSDh5Y1FpRUFN
-			NW1qU2JDQWJaa01XdHBUbXBaUjFSR2VXMVlSVFU1U1ZWRVNrcDNBc
-			3RCMXRmOFhpZ0VfQVBMUWRiWF9GNG9CUHekX2NpZLZwdWl6VDBsM1J
-			2MndHbldkeHJFQjJ3o19ydMtB1t2qjVLUNQqBoXLD" target="_blank" style="display:block;text-align:center;width:100%;background-color:#f4ddbd">
-			<img src="http://mlink-cdn.netinsight.co.kr/2018/08/14/3e69187c067a0d003472d491c898d73f.jpg" width="970" height="80" border="0"></a>
-					</td>
-				</tr>
-
-				<tr>
-					<td colspan="5" style="padding-bottom: 3px">
-						<h3>상영시간표</h3>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="5" height="2"
-						style="background-color: #BDBDBD; padding-bottom: 3px"></td>
-				</tr>
-				<tr>
-					<td style="height: 62px; width: 100px;" align="center"><a
-						onclick="showCalendar();">달력</a></td>
-					<td style="width: 50px;" align="center">
-						<!--  <a href="calender.jsp?year=< %= nowYear %>&month=< %= nowMonth%>"><img src="./image/today.jpg" align="left"></a> -->
-						<a
-						href="<%=cp %>/Theater/theaterP2_ok.do?theater_id=${theater_id}&year=<%=preYear %>&month=<%=preMonth%>&day=<%=preDay%>">
-							<img src="../theater/image/화살표1.png" width="30" height="30"
-							border="2" align="middle">
-					</a>
-					</td>
-					<td style="width: 200px; padding: 0px;" align="center"><font
-						style="font-size: 30px;"><b>&nbsp;<%=month%>월&nbsp;&nbsp;<%=day%>일
-						</b>&nbsp;</font></td>
-					<td style="width: 50px;" align="center"><a
-						href="<%=cp %>/Theater/theaterP2_ok.do?theater_id=${theater_id}&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>">
-							<img src="../theater/image/화살표2.png" width="30" height="30"
-							border="2" align="middle">
-					</a></td>
-					<td></td>
-				</tr>
-			</table>
-		</form>
-		
-		<c:if test="${theater_id==null }">
-		<p align="center"><img src="../theater/image/영화관선택.png" width="1000" height="400" border="2" align="middle"></p>
+	</div> --%>
+	
+<!-- 첫이미지부터 탭메뉴전까지 -->
+<div class="whole_wrap">
+	<div class="main_wrap">
+		<div class="P2_container" style="position: static; margin-top: 0px;">
+ 	
+<div class="sc no1"
+		style="background-repeat: no-repeat; height: 580px; border: 1px solid black; 
+		background-image: 
+		<c:if test="${theater_id eq '1' }">
+		url(http://image2.megabox.co.kr/mop/cinema/2014/51/C2345A-5B27-4E50-A432-B9754B2A3F16.jpg);
 		</c:if>
+		<c:if test="${theater_id eq '2' }">
+		url(http://image2.megabox.co.kr/mop/cinema/2017/D9/AE0200-6A48-4342-9B24-B1A77D1C4CA7.jpg);
+		</c:if>
+		<c:if test="${theater_id eq '3' }">
+		url(http://image2.megabox.co.kr/mop/cinema/2018/57/703AF3-6E8B-4149-ABA3-E270FD395135.jpg);
+		</c:if>
+		<c:if test="${theater_id eq '4' }">
+		url(http://image2.megabox.co.kr/mop/cinema/2014/A5/DF9DFB-4533-4B70-8A8E-22C8672D6C1A.jpg);
+		</c:if>
+		">
 
-		<table border="0" class="scheduleP2">
+<div class="whole_wrap narrow">
+	<p class="P2_ti_box">
+		<img src="http://image2.megabox.co.kr/mop/home/theater/slogan.png" alt="라이프시어터" class="slogan">
+		<font style="color: #fff; font-size: 37px; font-weight: bolder;">
+		<c:if test="${theater_id eq '1' }">
+		메가박스 강남	
+		</c:if>
+		<c:if test="${theater_id eq '2' }">
+		메가박스 강동	
+		</c:if>
+		<c:if test="${theater_id eq '3' }">
+		메가박스 김포	
+		</c:if>
+		<c:if test="${theater_id eq '4' }">
+		메가박스 영통	
+		</c:if>
+		</font>
+	</p>
+	<p class="P2_btn_box">
+		<button class="top_btn2" type="button" onclick="">선호영화관</button>
+	</p>
+	<p class="P2_tx_box">
+		<c:if test="${theater_id eq '1' }">
+		강남의 중심! 강남 소비문화의 중심지인 지하철 2호선 , 신분당선  - 강남역과 연결 <br>
+		로맨틱 멀티플렉스! 젊은 도시 강남이 한 눈에 보이는 최상의 View를 제공 <br>
+		&lt;프라다&gt;가 선택한 수려한 디자인의 상영관 의자를 체험해보세요!
+		</c:if>
+		<c:if test="${theater_id eq '2' }">
+		강동구청역 도보 5분 거리에 위치! <br>
+		10개관 총 1500석 규모! 249석의 대형 상영관에서 생생한 관람을! <br>
+		안락하고 쾌적한 관람을 위한 가죽시트 도입! 
+		</c:if>
+		<c:if test="${theater_id eq '3' }">
+		김포의 랜드마크! 메가박스 김포점 <br>
+		최신 바코 디지털 영사기와 음향 시스템으로 더욱 선명한 화질과 실감나는 음향! <br>
+		쾌적하고 편안한 시트, 테이블이 마련되어 있는 4관!!	
+		</c:if>
+		<c:if test="${theater_id eq '4' }">
+		11개관, 1873석의 전관 디지털 상영시스템, 전관 가죽 시트 <br>
+		가장 진화된 상영관 MX관, Meyer Sound와 Dolby ATMOS 시스템, 와이드 시트 <br>
+		어린이들을 위한 복합 문화 공간 메가키즈박스
+		</c:if>
+	</p>
+</div>
+</div>
 
-			<c:forEach var="dto" items="${lists }">
-				<c:if test="${!dto.screen_num.equals(screen_num) }">
+<!-- 텝메뉴 시작 -->
+<div class="sc no2">
+	<div class=whole_wrap>
+		<div id="topMenu" class="P2_menu">
+			<ul>
+				<li class="topMenuLi"><a class="menuLink">서울</a>
+					<ul class="submenu">
+						<li><a class="submenuLink"
+							href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=1">강남</a></li>
+						<li><a class="submenuLink">강남대로(씨티)</a></li>
+						<li><a class="submenuLink"
+							href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=2">강동</a></li>
+						<li><a class="submenuLink">동대문</a></li>
+						<li><a class="submenuLink">마곡</a></li>
+						<li><a class="submenuLink">목동</a></li>
+						<li><a class="submenuLink">상봉</a></li>
+						<li><a class="submenuLink">상암월드컵경기장</a></li>
+						<li><a class="submenuLink">센트럴</a></li>
+						<li><a class="submenuLink">송파파크하비오</a></li>
+					</ul></li>
+				<li>|</li>
+				<li class="topMenuLi"><a class="menuLink">경기</a>
+					<ul class="submenu">
+						<li><a class="submenuLink"
+							href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=3">김포</a></li>
+						<li><a class="submenuLink">미사강변</a></li>
+						<li><a class="submenuLink">별내</a></li>
+						<li><a class="submenuLink">수원</a></li>
+						<li><a class="submenuLink">시흥배곧</a></li>
+						<li><a class="submenuLink">양주</a></li>
+						<li><a class="submenuLink"
+							href="<%=cp%>/Theater/theaterP2_ok.do?theater_id=4">영통</a></li>
+						<li><a class="submenuLink">오산</a></li>
+						<li><a class="submenuLink">일산</a></li>
+						<li><a class="submenuLink">킨텍스</a></li>
+					</ul></li>
+				<li>|</li>
+				<li class="topMenuLi"><a class="menuLink">인천</a>
+					<ul class="submenu">
+						<li><a class="submenuLink">검단</a></li>
+						<li><a class="submenuLink">인천논현</a></li>
+						<li><a class="submenuLink">미사강변</a></li>
+						<li><a class="submenuLink">청라지젤</a></li>
+						<li><a class="submenuLink">송도</a></li>
+						<li><a class="submenuLink">청라</a></li>
+					</ul></li>
+				<li>|</li>
+				<li class="topMenuLi"><a class="menuLink">대전/충정/세종</a>
+					<ul class="submenu">
+						<li><a class="submenuLink">공주</a></li>
+						<li><a class="submenuLink">대전</a></li>
+						<li><a class="submenuLink">세종</a></li>
+						<li><a class="submenuLink">오창</a></li>
+						<li><a class="submenuLink">제천</a></li>
+						<li><a class="submenuLink">진천</a></li>
+						<li><a class="submenuLink">천안</a></li>
+						<li><a class="submenuLink">충주</a></li>
+						<li><a class="submenuLink">흥성내포</a></li>
+					</ul></li>
+				<li>|</li>
+				<li class="topMenuLi"><a class="menuLink">부산/대수/경상</a>
+					<ul class="submenu">
+						<li><a class="submenuLink">거창</a></li>
+						<li><a class="submenuLink">경산하양</a></li>
+						<li><a class="submenuLink">구미</a></li>
+						<li><a class="submenuLink">김천</a></li>
+						<li><a class="submenuLink">대구(칠성로)</a></li>
+						<li><a class="submenuLink">덕천</a></li>
+						<li><a class="submenuLink">문경</a></li>
+						<li><a class="submenuLink">부산대</a></li>
+						<li><a class="submenuLink">사천</a></li>
+						<li><a class="submenuLink">서면</a></li>
+					</ul></li>
+				<li>|</li>
+				<li class="topMenuLi"><a class="menuLink">광주/전라</a>
+					<ul class="submenu">
+						<li><a class="submenuLink">광주(충장로)</a></li>
+						<li><a class="submenuLink">광주하남</a></li>
+						<li><a class="submenuLink">목포</a></li>
+						<li><a class="submenuLink">송천</a></li>
+						<li><a class="submenuLink">여수</a></li>
+						<li><a class="submenuLink">전대(광주)</a></li>
+						<li><a class="submenuLink">첨단</a></li>
+						<li><a class="submenuLink">광주상무</a></li>
+						<li><a class="submenuLink">남원</a></li>
+						<li><a class="submenuLink">목포하당(포르모)</a></li>
+					</ul></li>
+				<li>|</li>
+				<li class="topMenuLi"><a class="menuLink">경기</a>
+					<ul class="submenu">
+						<li><a class="submenuLink">남춘천</a></li>
+						<li><a class="submenuLink">속초</a></li>
+						<li><a class="submenuLink">원주</a></li>
+						<li><a class="submenuLink">원주센트럴</a></li>
+					</ul></li>
+				<li>|</li>
+				<li class="topMenuLi"><a class="menuLink">제주</a>
+					<ul class="submenu">
+						<li><a class="submenuLink">제주</a></li>
+						<li><a class="submenuLink">제주아라</a></li>
+					</ul></li>
+			</ul>
+		</div>
+<!-- 텝메뉴 끝  -->
+	
 
-					<tr>
-						<th 
-							style="width: 50px; font-size: 14px; text-align: right; padding-right: 15px; padding-left: 10px;"><div>${dto.city}</div>
-							<small>${dto.district}</small></th>
-						<th
-							style="width: 110px; padding-left: 15px; padding-right: 10px; border-right: 1px solid #e5e5e5;"><div>${dto.movie_name}</div>
-							<small><c:if test="${dto.age_limit eq 'all'}">전체관람가</c:if>
-								   <c:if test="${dto.age_limit ne 'all'}">${dto.age_limit}세 관람가</c:if>
-							</small></th>
-						<th
-							style="width: 100px; font-size: 14px; text-align: right; padding-right: 15px; padding-left: 10px;"><div>${dto.screen_num}관</div>
-							<small>${dto.type}</small></th>
-						<td>
-				</c:if>
-				<div class="movie_time">
-					<p class="mtime_info">
-						<span class="time">${dto.start_time }~${dto.end_time }</span> <span
-							class="seat"> ${dto.seatedseat}/${dto.seatnumber}</span> <br>
-						<br> <a href="">예매</a>
-					</p>
+<!-- 광고 삽입 부분 & 상영시간표 교통안내 링크s 시작 -->
+<table border="0" align="center" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="5" align="center"
+				style="padding-bottom: 10px; height: 62px">
+				
+	<a href="http://ad.imp.joins.com/NetInsight/event/
+	clk/v4tpfnqPm-iPGc4CsBFOh9jkGcGJ_ErzI1vVY3YeuIeIA
+	bZueUdSaUpDQ1NVZWVUby1kVkp1N2tBAstB1t2qjVLUNQO2Tnh
+	YbS1DWmNTR21LcGN5MW45YU45dwbZI21lZ2Fib3hfcC9tYWluL
+	21haW5AbWFpbl90b3BfOTcweDgwB83uSAjNAWoJhaN0aWS2T1pv
+	RjVOSmZUcHEtcnZGM2tIQWtwZ6RfbW5toKRfdWlk2W9GZXFfcG1
+	aa1R2NjJWN3liUnpCZ2FoRHFpUWQ4MUw2ODFsSTVuSDh5Y1FpRUFN
+	NW1qU2JDQWJaa01XdHBUbXBaUjFSR2VXMVlSVFU1U1ZWRVNrcDNBc
+	3RCMXRmOFhpZ0VfQVBMUWRiWF9GNG9CUHekX2NpZLZwdWl6VDBsM1J
+	2MndHbldkeHJFQjJ3o19ydMtB1t2qjVLUNQqBoXLD" target="_blank" style="display:block;text-align:center;width:100%;background-color:#f4ddbd">
+	<img src="http://mlink-cdn.netinsight.co.kr/2018/08/14/3e69187c067a0d003472d491c898d73f.jpg" width="970" height="80" border="0"></a>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="left" style="padding-bottom: 10px; height: 10px; margin-bottom: 20px;"></td>
+	</tr>
+	<tr align="center">
+		<td>
+			<div id="topMenu2">
+				<ul>
+					<li class="topMenuLi2"><a class="menuLink2">상영시간표</a>
+						<ul class="submenu2">
+						</ul></li>
+					<li>|</li>
+					<li class="topMenuLi2"><a class="menuLink2">층별안내</a>
+						<ul class="submenu2">
+						</ul></li>
+					<li>|</li>
+					<li class="topMenuLi2"><a class="menuLink2">약도/교통/주차</a>
+						<ul class="submenu2">
+						</ul></li>
+					<li>|</li>
+					<li class="topMenuLi2"><a class="menuLink2">관람료</a>
+						<ul class="submenu2">
+						</ul></li>
+					<li>|</li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+</table>
+<!-- 링크 끝  -->
+
+<!-- 달력 부분  -->
+<div id="theaterSchedule">
+
+<form action="" name="calendarForm">
+	<table border="0" align="center" cellspacing="0" cellpadding="0"
+		width="1300px">
+		<tr>
+			<td colspan="5" style="padding-bottom: 3px">
+				<h3>상영시간표</h3>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" height="2"
+				style="background-color: #BDBDBD; padding-bottom: 3px"></td>
+		</tr>
+		<tr>
+			<td style="height: 62px; width: 100px;" align="center"><a
+				onclick="showCalendar();">달력</a></td>
+			<td style="width: 50px;" align="center">
+				<!--  <a href="calender.jsp?year=< %= nowYear %>&month=< %= nowMonth%>"><img src="./image/today.jpg" align="left"></a> -->
+				<a
+				href="<%=cp %>/Theater/theaterP2_ok.do?theater_id=${theater_id}&year=<%=preYear %>&month=<%=preMonth%>&day=<%=preDay%>">
+					<img src="../theater/image/화살표1.png" width="30" height="30"
+					border="2" align="middle">
+			</a>
+			</td>
+			<td style="width: 200px; padding: 0px;" align="center"><font
+				style="font-size: 30px;"><b>&nbsp;<%=month%>월&nbsp;&nbsp;<%=day%>일
+				</b>&nbsp;</font></td>
+			<td style="width: 50px;" align="center"><a
+				href="<%=cp %>/Theater/theaterP2_ok.do?theater_id=${theater_id}&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>">
+					<img src="../theater/image/화살표2.png" width="30" height="30"
+					border="2" align="middle">
+			</a></td>
+			<td></td>
+		</tr>
+	</table>
+</form>
+<!-- 달력 끝  -->
+
+<!-- 영화 스케쥴 lists 뿌리는 부분  -->
+<div class="mtime_container">
+	<script type="text/javascript">
+	//키보드포커스
+	$(function(){
+		$('div.movie_time').on("focus", "a", function(){
+			$(this).prev().trigger("mouseout");
+			$(this).trigger("mouseover");
+		});
+
+		$('div.movie_time').on("focusout", "a", function(){
+			$(this).trigger("mouseout");
+		});
+	});
+	</script>
+
+<table border="0" class="m_time_tb v2">
+	<tbody>	
+	
+	<c:forEach var="dto" items="${lists }">
+		<c:if test="${!dto.screen_num.equals(screen_num) }">
+	
+		<tr class="lineheight_80">
+			<th class="title">
+				<div>
+					<span class="age_m age_12">
+					<c:if test="${dto.age_limit eq 'all'}">전체관람가</c:if>
+					<c:if test="${dto.age_limit ne 'all'}">${dto.age_limit}세관람가</c:if>
+					&nbsp;${dto.movie_name}
+					</span>
+<!-- 영화 상세 보기 링크  -->
+					<strong>
+						<a href="" title="영화상세 보기">${dto.movie_name }</a>
+					</strong>
 				</div>
+			</th>
+			<th class="room">
+				<div>${dto.screen_num }관</div>
+				<small>${dto.type }</small>
+			</th>
+				<td headers="th_theaterschedule_title th_theaterschedule_room">
+					<div class="movie_time">
+						<a href="" onclick="">
+							<span class="hover_time" style="display: none;">
+								${dto.start_time }~${dto.end_time }
+							</span>
+						</a>
+						
+						<p class="time_info">
+							<span class="type"></span>
+							<span class="time">${dto.start_time }</span>
+							<span class="seat">${dto.seatedseat }/${dto.seatnumber }</span>
+						
+						
+						<strong class="ico_box">
+						
+						</strong>
+						</p>
+					</div>
+				</td>
+				
+			</c:if>
+			<c:set var="screen_num" value="${dto.screen_num}" />
+		</c:forEach>
+	</tbody>
+</table>
 
-				<c:set var="screen_num" value="${dto.screen_num}" />
-			</c:forEach>
-		</table>
+</div><!-- mtime_container 끝  -->
+<!-- lists 끝  -->
+
+		</div><!-- theaterSchedule div 끝 -->
+	</div><!-- whole_wrap 끝  -->
+</div><!-- sc n02 끝  -->
 
 
 		<!-- 층 안내 시작 -->
@@ -618,18 +1031,19 @@
 
 				</div>
 			</div>
+		</div>
 			<!-- 약도/교통/주차 끝 -->
 
 <!-- 관람료  -->
-<div class="section no5" id="menu4"
-	style="background-color: #1F0000;">
+<div class="sc no5" id="menu4"
+	style="background-color: #1F0000;" align="center">
 
 	<div id="theaterpay">
-		<div class="content_wrap narrow" style="width: 1300px">
-			<h3 style="color: white; padding-left: 10px; font-size: 25px;"
-				class="theater_pay">관람료</h3>
+		<div class="whole_wrap" style="width: 1300px">
+			<h3 style="color: white; padding-left: 10px; padding-top: 20px; font-size: 25px; text-align: left;
+			 margin-bottom: 20px;" class="theater_pay">관람료</h3>
 
-			<h4>1. 영화관람료</h4>
+			<h4 style="text-align: left;">1. 영화관람료</h4>
 
 			<table class="table_dark" summary="영화관람료">
 				<caption class="blind2">영화관람료: 상영관, 구분, 상영시간, 성인, 청소년,
@@ -1029,11 +1443,14 @@
 				</tbody>
 			</table>
 		</div>
-		<!-- //content_wrap -->
+<!-- //content_wrap -->
 			</div>
 		</div>
 	</div>
 </div>
-	<jsp:include page="../footer.jsp" flush="false" />
+
+<jsp:include page="../footer.jsp" flush="false" />
+</div>
+
 </body>
 </html>
