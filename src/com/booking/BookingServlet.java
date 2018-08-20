@@ -122,7 +122,7 @@ public class BookingServlet extends HttpServlet {
 				checkPara = strPara;
 			}
 			
-			if(checkPara.equals("1")){
+			if(checkPara.equals("1")){ // 모두 선택되었을때
 				System.out.println(selectedDate2);
 				System.out.println(selectedHour2);
 				System.out.println(selectedTheaterId2);
@@ -130,6 +130,21 @@ public class BookingServlet extends HttpServlet {
 				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2,selectedMoviedId2);
 				req.setAttribute("lists2", lists2);
 			}
+			
+			if(checkPara.equals("2")){ // 날짜만 선택되었을때
+				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2);
+				req.setAttribute("lists2", lists2);
+			}
+			
+			if(checkPara.equals("3")){ // 날짜 시간 선택되었을때
+				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2);
+				req.setAttribute("lists2", lists2);
+			}
+			if(checkPara.equals("4")){ // 날짜 시간 영화관 선택되었을때
+				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2);
+				req.setAttribute("lists2", lists2);
+			}
+			
 			
 			
 			// 세션에 올리기
