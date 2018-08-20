@@ -121,6 +121,16 @@
 	});
 
 </script>
+<script type="text/javascript">
+	function goNextPage(screen_id){
+	var f= document.myForm1;
+	
+	f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
+	f.submit();
+	
+}
+
+</script>
 
 <style type="text/css">
 
@@ -428,12 +438,13 @@
 	});
 	</script>
 
+<form name="myForm1" method="post">
 <table border="0" class="m_time_tb v2">
 	<tbody>	
 	
 	
 	<c:forEach var="dto" items="${lists }">
-		<c:if test="${!dto.screen_num.equals(screen_num) }">
+		<c:if test="${!dto.screen_num.equals(screen_num1) }">
 
 			
 		<tr class="lineheight_80" style="width: 1300px;">
@@ -475,9 +486,16 @@
 			</th>
 			</c:if>
 				<td headers="th_theaterschedule_title th_theaterschedule_room">
+				<input type="hidden" name = "screen_id" value = "${dto.screen_id}">
+					<input type="hidden" name = "age_limit" value = "${dto.age_limit}">
+					<input type="hidden" name = "movie_name" value = "${dto.movie_name}">
+					<input type="hidden" name = "screen_num" value = "${dto.screen_num}">
+					<input type="hidden" name = "start_time" value = "${dto.start_time}">
+					<input type="hidden" name = "district" value = "${dto.district}">
+					<input type="hidden" name ="type" value ="${dto.type }">
 					
 					<div class="movie_time">
-						<a href="" onclick="">
+						<a onclick="goNextPage(${dto.screen_id});">
 							<span class="hover_time" style="display: none;">
 								${dto.start_time }~${dto.end_time }
 							</span>
@@ -495,11 +513,12 @@
 						</p>
 					</div>
 				</td>
-				<c:set var="screen_num" value="${dto.screen_num}" />	
+				<c:set var="screen_num1" value="${dto.screen_num}" />	
 	
 		</c:forEach>
 	</tbody>
 </table>
+</form>
 
 </div><!-- mtime_container 끝  -->
 <!-- lists 끝  -->
@@ -615,6 +634,7 @@
 
 	<!-- 네이버 지도 API  -->
     <div id="map" style="width:100%;height:400px;"></div>
+
 
     <script>
       var map = new naver.maps.Map('map');
