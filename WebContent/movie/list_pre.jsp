@@ -71,17 +71,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="230px" height="50px" class="bottom">
-				<span style="line-height: 25px;">
-				<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
-				<span style="float: right;">
-				<c:if test="${dto.rating==0 }"><img src="${imagePath }/rate0.png"></c:if>
-				<c:if test="${dto.rating<3&&0<dto.rating}"><img src="${imagePath }/rate1.png"></c:if>
-				<c:if test="${2<dto.rating&&dto.rating<5}"><img src="${imagePath }/rate2.png"></c:if>
-				<c:if test="${4<dto.rating&&dto.rating<7 }"><img src="${imagePath }/rate3.png"></c:if>
-				<c:if test="${6<dto.rating&&dto.rating<9 }"><img src="${imagePath }/rate4.png"></c:if>
-				<c:if test="${8<dto.rating&&dto.rating<11 }"><img src="${imagePath }/rate5.png"></c:if>
-				</span>
+				<td class="d-day">
+					<font style="line-height: 30px;">${dto.release_date }</font> 
+					<input type="button" class="d-btn" value="D-2" disabled="disabled"/>
 				</td>
 			</tr>
 			<tr>

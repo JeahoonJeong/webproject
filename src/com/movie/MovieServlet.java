@@ -140,8 +140,6 @@ public class MovieServlet extends HttpServlet{
 			List<MovieDTO> comm = dao.getAllComment(movie_id);
 			int stillCount = dao.getStillCount(movie_id);
 
-			System.out.println(stillCount);
-
 			dto.setSummary(dto.getSummary().replaceAll("/", "<br>"));
 			/*
 			String listUrl = cp + "/Movie/movie.do?movie_id" + movie_id;
@@ -159,7 +157,6 @@ public class MovieServlet extends HttpServlet{
 				
 				String wish = dao.searchWishlist(user_id, movie_id);
 				req.setAttribute("wish", wish);
-				System.out.println("wish" + wish);
 				
 			}
 
@@ -198,7 +195,6 @@ public class MovieServlet extends HttpServlet{
 			dto.setMovie_id(movie_id);
 			dto.setUser_id(user_id);
 			dto.setComments(req.getParameter("comments"));
-			System.out.println(req.getParameter("rating"));
 			dto.setRating(Integer.parseInt(req.getParameter("rating")));
 
 			dao.insertComment(dto);
@@ -306,7 +302,7 @@ public class MovieServlet extends HttpServlet{
 		}else if(uri.indexOf("wish.do")!=-1){
 			
 			
-			url = "/mypage/list/interestingList.jsp";
+			url = "/movie/wish.jsp";
 			
 			forward(req, resp, url);
 			
@@ -348,8 +344,6 @@ public class MovieServlet extends HttpServlet{
 			String user_id = member.getUser_id();
 			
 			String movie_id = (String) req.getParameter("movie_id");	
-			System.out.println(user_id + "user");
-			System.out.println(movie_id + "movie");
 			
 			dao.deleteWishlist(user_id, movie_id);
 			

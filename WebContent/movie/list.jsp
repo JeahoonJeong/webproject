@@ -28,6 +28,13 @@
 		
 		
 		} 
+		 
+		 function loginPlz() {
+			
+			 alert("로그인 후 이용 가능합니다")
+			 return;
+			 
+		}
 		
 </script>
 </head>
@@ -39,8 +46,17 @@
 			<td><a href=<%=cp %>/Movie/list.do><font color="#503396">박스오피스</font></a></td>
 			<td><a href=<%=cp %>/Movie/list_date.do>최신개봉작</a></td>
 			<td><a href=<%=cp %>/Movie/list_pre.do>상영예정작</a></td>
-			<td><span style="float: left;">
-			<a href="<%=cp %>/Movie/wish.do">♥ 보고싶어</a></span>
+			<c:choose>
+				<c:when test="${empty sessionScope.member.user_id }">
+					<td><span style="float: left;">
+					<a href="javascript:loginPlz();">♥ 보고싶어</a></span>
+				</c:when>
+				<c:otherwise>
+					<td><span style="float: left;">
+					<a href="<%=cp%>/Movie/wish.do">♥ 보고싶어</a></span>
+				</c:otherwise>
+			</c:choose>
+		
 			<span style="float: right;">
 			<font size="2pt">
 			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리 ></a></font></span></td>
