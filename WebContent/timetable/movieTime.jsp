@@ -10,7 +10,7 @@
 	int nowYear = cal.get(Calendar.YEAR);
 	int nowMonth = cal.get(Calendar.MONTH) + 1;
 	int nowDay = cal.get(Calendar.DAY_OF_MONTH);
-
+  
 	//클라이언트에서 넘어온 데이터
 
 	String strYear = request.getParameter("year"); //사용자에게 년,월 값을 받아옴
@@ -31,7 +31,7 @@
 	if (strDay != null) {
 		day = Integer.parseInt(strDay);
 	}
-
+ 
 	int preYear = year;
 	int preMonth = month;
 	int preDay = day - 1;
@@ -78,6 +78,17 @@
 	type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/timetable/dd.css" type="text/css" />
 <title>Insert title here</title>
+<script type="text/javascript">
+	function goNextPage(screen_id){
+	var f= document.myForm1;
+	
+	f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
+	f.submit();
+	
+}
+
+</script>
+
 
 
 </head>
@@ -128,10 +139,11 @@
 	<c:if test="${movie_id==null }">
 		<p align="center"><img src="${imagePath}/nullmovie.PNG" width="1000" height="400" border="2" align="middle"></p>
 	</c:if>
-
+	
+	<form name="myForm1" method="post">
 	<table border="0" class="scheduleP2">
 		<c:forEach var="dto" items="${lists }">
-			<c:if test="${!dto.district.equals(district)||!dto.screen_num.equals(screen_num) }">
+			<c:if test="${!dto.district.equals(district1)||!dto.screen_num.equals(screen_num1) }">
 				<tr>
 					<th	style="width: 50px; font-size: 14px; text-align: right; padding-right: 15px; padding-left: 10px;"><div>${dto.city}</div>
 						<small>${dto.district}</small></th>
@@ -150,13 +162,26 @@
 				<p class="mtime_info">
 					<span class="time">${dto.start_time }~${dto.end_time }</span> 
 					<span class="seat"> ${dto.seatedseat}/${dto.seatnumber}</span><br>
-					<br><a href="<%=cp%>/">예매</a>
+					
+					<input type="hidden" name = "screen_id" value = "${dto.screen_id}">
+					<input type="hidden" name = "age_limit" value = "${dto.age_limit}">
+					<input type="hidden" name = "movie_name" value = "${dto.movie_name}">
+					<input type="hidden" name = "screen_num" value = "${dto.screen_num}">
+					<input type="hidden" name = "start_time" value = "${dto.start_time}">
+					<input type="hidden" name = "district" value = "${dto.district}">
+					<input type="hidden" name ="type" value ="${dto.type }">
+					
+
+					<br><a onclick="goNextPage(${dto.screen_id});">예매</a>
+					
+
 				</p>
 			</div>
-			<c:set var="district" value="${dto.district }" />
-			<c:set var="screen_num" value="${dto.screen_num}" />
+			<c:set var="district1" value="${dto.district }" />
+			<c:set var="screen_num1" value="${dto.screen_num}" />
 		</c:forEach>
 	</table>
+	</form>
 
 
 	<br /><br /><br /><br /><br />

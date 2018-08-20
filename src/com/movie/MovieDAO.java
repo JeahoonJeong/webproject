@@ -311,11 +311,95 @@ public class MovieDAO {
 		}
 		return result;
 	}
+	////////--------------------------------------
+	//wish된 영화인지 판별하기
+	public String searchWishlist(String user_id, String movie_id){
 	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		String wish = null;
+		
+		try {
+			
+			sql = "select movie_id from wish_list where user_id=? and movie_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, movie_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				wish = rs.getString("movie_id");
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return wish;
+	}
 	
+	public int insertWishlist(String user_id, String movie_id){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "insert into wish_list values(?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, movie_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+		
+	}
 	
+	public int deleteWishlist(String user_id, String movie_id){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "delete wish_list where user_id=? and movie_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, movie_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
 	
-	
+	////////--------------------------------------
 	
 	
 	

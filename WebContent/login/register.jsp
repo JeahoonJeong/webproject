@@ -13,13 +13,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/login/css/register.css"
 	type="text/css" />
-<title>Insert title here</title>
+<title>회원 가입</title>
 </head>
 <body>
 	<div id="title">회원가입</div>
 
 
-<form action="" method="post" name="myForm">
+<form  method="post" name="myForm">
 	<div id="register">
 		<div style="clear: both;">
 			<br />
@@ -51,10 +51,10 @@
 					<tr>
 						<td>* 생년월일</td>
 						<td><input type="text" style="width: 50px" maxlength="4"
-							name="birth1" value="">년&nbsp;&nbsp; <input type="text"
-							style="width: 40px" maxlength="2" name="birth2" value="">월&nbsp;&nbsp;
+							name="year" value="">년&nbsp;&nbsp; <input type="text"
+							style="width: 40px" maxlength="2" name="month" value="">월&nbsp;&nbsp;
 							<input type="text" style="width: 40px" maxlength="2"
-							name="birth3" value="">일</td>
+							name="day" value="">일</td>
 					</tr>
 					<tr>
 						<td>* 휴대폰</td>
@@ -87,16 +87,16 @@
 				</table>
 			</div>
 			<div align="center" style="margin-top: 50px">
-				<input type="hidden" value="" name="birth">
-				<input type="hidden" value="" name="tel">
-				<input type="submit" value="확인" class="btn1" onclick="sendIt()">
+				<input type="hidden" value="aaa" name="birth">
+				<input type="hidden" value="aaa" name="tel">
+				<input type="button" value="확인" class="btn1" onclick="sendIt();">
 				<input type="button" value="취소" class="btn1" onclick="javascipt:location.href='<%=cp %>/Login/login.do'">
 			</div>
 		</div>
 
 	</div>
 </form>
-</body>
+
 
 <script type="text/javascript">
 
@@ -133,6 +133,7 @@ function sendIt() {
 		f.month.foucs();
 		return;	
 	}
+	
 	
 	if(!f.day.value){
 		alert("생년월일을 입력하세요!");
@@ -173,6 +174,8 @@ function sendIt() {
 }
 
 </script>
+</body>
+
 
 
 <jsp:include page="../footer.jsp" flush="false" />

@@ -13,6 +13,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/movie/css/movie.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<<<<<<< HEAD
+=======
 <script type="text/javascript">
 
 	<%-- function imageChange(file_name) {
@@ -71,21 +73,45 @@
 
 
 </script>
+>>>>>>> master
 <title>Movie Info</title>
 <style type="text/css">
 
 select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);   }
 
-
 </style>
+
 <script type="text/javascript">
 
-	function goToP() {
-		
-		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
-		
-		window.close();
+function goToP() {
+	
+	window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
+	
+	window.close();
+}
+
+function sendIt() {
+	var f = document.mvForm;
+	
+	str = f.rate2.value;
+	if(!str){
+		alert("평점을 선택하세요");
+		return;
 	}
+	f.rate2.value = str;
+	
+	str = f.comments.value;
+	if(!str){
+		alert("내용을 입력해주세요");
+		f.comments.focus();
+		return;
+	}
+	f.comments.value = str;
+	
+	f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
+	f.submit();
+		
+}
 
 </script>
 </head>
@@ -140,6 +166,7 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 			<td height="50px" rowspan="2" style="padding: 0px;">
 			<!-- <span style="float: left;">
 			<font size="2pt;" color="#4C4C4C">내 평점</font> 
+>>>>>>> master
 			
 			<select id="rate1" style="width: 119px; height: 20px;">
 			<option value="0"></option>
@@ -147,9 +174,14 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 			
 			<font size="1pt;" color="#4C4C4C">너무 멋진 영화였어요!</font></span> -->
 			<span style="float: right;">
-			<input type="button" value="♥보고싶어" name="wishMovie" onclick="" class="btn2"/>
+			<c:if test="${empty wish }">
+				<input type="button" value="♥ 보고싶어" name="wishMovie" class="btn2" onclick="javascipt:location.href='<%=cp%>/Movie/wish_add.do?movie_id=${dto.movie_id}'">
+			</c:if>
+			<c:if test="${!empty wish }">
+				<input type="button" value="♡ 보기싫어" name="wishMovie" onclick="javascipt:location.href='<%=cp%>/Movie/wish_remove.do?movie_id=${dto.movie_id}'" class="btn4"/>
+			</c:if>
 			<input type="button" value="상영시간표" name="booking" onclick="goToP();" class="btn3"/>
-			
+			<br/><font size="2pt" color="red">${message }</font>
 			</span>
 			</td>
 		</tr>

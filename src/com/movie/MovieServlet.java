@@ -61,7 +61,7 @@ public class MovieServlet extends HttpServlet{
 		if(!f.exists())
 			f.mkdirs();
 
-		if(uri.indexOf("list.do")!=-1){// ¿µÈ­ ¸®½ºÆ®
+		if(uri.indexOf("list.do")!=-1){// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½Æ®
 
 			String pageNum = req.getParameter("pageNum");
 
@@ -101,7 +101,7 @@ public class MovieServlet extends HttpServlet{
 			url = "/movie/list.jsp";
 			forward(req, resp, url);
 
-		}else if(uri.indexOf("movie.do")!=-1){//¿µÈ­ »ó¼¼ÆäÀÌÁö
+		}else if(uri.indexOf("movie.do")!=-1){//ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 			/*String pageNum;
 
@@ -122,7 +122,7 @@ public class MovieServlet extends HttpServlet{
 			if(pageNum!=null)
 				currentPage = Integer.parseInt(pageNum);
 
-			//ÀüÃ¼ µ¥ÀÌÅÍ °¹¼ö
+			//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			int numPerPage = 10;
 			int dataCount = dto.getCommCount();
 
@@ -131,7 +131,7 @@ public class MovieServlet extends HttpServlet{
 			if(currentPage>totalPage)
 				currentPage=totalPage;
 
-			//µ¥ÀÌÅÍ ½ÃÀÛ°ú ³¡
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û°ï¿½ ï¿½ï¿½
 			int start = (currentPage-1)*numPerPage+1;
 			int end = currentPage*numPerPage;*/
 
@@ -145,7 +145,26 @@ public class MovieServlet extends HttpServlet{
 			/*
 			String listUrl = cp + "/Movie/movie.do?movie_id" + movie_id;
 			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);*/
+			
+			
+			/////////-------------------------------------
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			
+			if(member!=null){
+				
+				String user_id = member.getUser_id();
+				
+				String wish = dao.searchWishlist(user_id, movie_id);
+				req.setAttribute("wish", wish);
+				System.out.println("wish" + wish);
+				
+			}
 
+			////////--------------------------------------
+			
+			
 			String imagePath = cp + "/mv/imageFile";
 
 			/*req.setAttribute("totalPage", totalPage);
@@ -163,7 +182,7 @@ public class MovieServlet extends HttpServlet{
 
 
 
-		}else if(uri.indexOf("comments.do")!=-1){//ÄÚ¸àÆ® ³»¿ë ÀúÀå
+		}else if(uri.indexOf("comments.do")!=-1){//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 			HttpSession session = req.getSession();
 
@@ -272,23 +291,70 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);	
 			
 
-		}else if(uri.indexOf("movieTime_ok.do")!=-1){ // »ó¿µ½Ã°£Ç¥·Î ¿¬°á
+		}else if(uri.indexOf("movieTime_ok.do")!=-1){ // ï¿½ó¿µ½Ã°ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 			String movie_id = req.getParameter("movie_id");
 
 
 			url = "/timetable/movieTime_ok.jsp?movie_id=" + movie_id;
 			forward(req, resp, url);
+		
+			
+		////////--------------------------------------
+			
+		}else if(uri.indexOf("wish_add.do")!=-1){
+			
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			String movie_id = (String) req.getParameter("movie_id");
+			String message = null;
+			
+			if(member!=null){
+				
+				String user_id = member.getUser_id();
 
-
-
-
-
-
-
-
-
+				dao.insertWishlist(user_id, movie_id);
+			}
+			else{
+				message = "ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½!";
+			}
+			
+			req.setAttribute("message", message);
+			/*
+			url = cp + "/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
+			*/
+			
+			url = "/Movie/movie.do?movie_id=" + movie_id;
+			forward(req, resp, url);
+			
+		}else if(uri.indexOf("wish_remove.do")!=-1){
+				
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			String user_id = member.getUser_id();
+			
+			String movie_id = (String) req.getParameter("movie_id");	
+			System.out.println(user_id + "user");
+			System.out.println(movie_id + "movie");
+			
+			dao.deleteWishlist(user_id, movie_id);
+			
+			url = cp +"/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
 		}
+		
+			
+		////////--------------------------------------
+			
+		
+		
+		
+		
+		
+		
 	}
 }
 

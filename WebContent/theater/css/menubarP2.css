@@ -68,9 +68,3 @@ color: #368AFF; /* 글씨색을 빨간색으로 설정 */
 background-color: #ffffff; /* 배경을 RGB(DDDDDD)로 설정 */ 
 }
 
-.tmain_container2>.no1 {
-    position: relative;
-    height: 585px;
-    padding: 0;
-    background: url(http://image2.megabox.co.kr/mop/home/theater/bg.jpg) 50% 0 no-repeat;
-    background-size: cover;

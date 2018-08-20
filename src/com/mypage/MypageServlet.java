@@ -56,7 +56,7 @@ public class MypageServlet extends HttpServlet{
 
 		String uri = req.getRequestURI();
 
-		//������ ������ ���
+	
 		String root = getServletContext().getRealPath("/");
 		String path = root + "memberImages";
 
@@ -70,37 +70,45 @@ public class MypageServlet extends HttpServlet{
 		if(uri.indexOf("mypageMain.do")!=-1){
 
 			HttpSession session = req.getSession();
-
+			
 			MemberDTO member = (MemberDTO)session.getAttribute("member");
+			
+			if(member==null){
+				
+				url = cp;
+				forward(req, resp, url);
+				
+			}
+			else{
+				
+				String user_id = member.getUser_id();
 
-			String user_id = member.getUser_id();
+				List<MyBookingDTO> recentBookedList = new ArrayList<MyBookingDTO>();
 
+				recentBookedList = dao.getRecentBookedList(user_id);
 
-			List<MyBookingDTO> recentBookedList = new ArrayList<MyBookingDTO>();
-
-			recentBookedList = dao.getRecentBookedList(user_id);
-
-			req.setAttribute("recentBookedList", recentBookedList);
-
-
-
-			int wishMovieCount = dao.getWishMovieCount(member.getUser_id());
-			int seenMovieCount = dao.getSeenMovieCount(member.getUser_id());
-			int commentCount = dao.getCommentCount(member.getUser_id());
-
-			req.setAttribute("wishMovieCount", wishMovieCount);
-			req.setAttribute("seenMovieCount", seenMovieCount);
-			req.setAttribute("commentCount", commentCount);
+				req.setAttribute("recentBookedList", recentBookedList);
 
 
 
-			String preferredTheater = dao.getPreferredTheater(member.getUser_id());
+				int wishMovieCount = dao.getWishMovieCount(member.getUser_id());
+				int seenMovieCount = dao.getSeenMovieCount(member.getUser_id());
+				int commentCount = dao.getCommentCount(member.getUser_id());
 
-			session.setAttribute("preferredTheater", preferredTheater);
+				req.setAttribute("wishMovieCount", wishMovieCount);
+				req.setAttribute("seenMovieCount", seenMovieCount);
+				req.setAttribute("commentCount", commentCount);
 
-			url = "/mypage/mypageMain.jsp";
-			forward(req, resp, url);
 
+
+				String preferredTheater = dao.getPreferredTheater(member.getUser_id());
+
+				session.setAttribute("preferredTheater", preferredTheater);
+
+				url = "/mypage/mypageMain.jsp";
+				forward(req, resp, url);
+				
+			}
 
 		}else if(uri.indexOf("myBooking.do")!=-1){
 
@@ -156,8 +164,14 @@ public class MypageServlet extends HttpServlet{
 			bookingList = dao.getBookingList(user_id);
 
 			session.setAttribute("bookingList", bookingList);
+			
+			List<MyBookingDTO> canceledList = new ArrayList<MyBookingDTO>();
 
-			url = cp+ "/mypage/list/bookingList.jsp";
+			canceledList = dao.getCanceledBooking(user_id);
+
+			session.setAttribute("canceledList", canceledList);
+
+			url = cp+ "/mypage/list/cancelList.jsp";
 
 			resp.sendRedirect(url);
 
@@ -166,6 +180,13 @@ public class MypageServlet extends HttpServlet{
 			HttpSession session = req.getSession();
 
 			MemberDTO member = (MemberDTO)session.getAttribute("member");
+			
+			if(member==null){
+				
+				url = "/Login/login.do";
+				forward(req, resp, url);
+				
+			}
 
 			String user_id = member.getUser_id();
 
@@ -267,25 +288,6 @@ public class MypageServlet extends HttpServlet{
 			String preferredTheater = dao.getPreferredTheater(member.getUser_id());
 
 			session.setAttribute("preferredTheater", preferredTheater);
-			/*
-			List<MyBookingDTO> recentBookedList = new ArrayList<MyBookingDTO>();
-
-			recentBookedList = dao.getRecentBookedList(user_id);
-
-			req.setAttribute("recentBookedList", recentBookedList);
-
-			int wishMovieCount = dao.getWishMovieCount(member.getUser_id());
-			int seenMovieCount = dao.getSeenMovieCount(member.getUser_id());
-			int commentCount = dao.getCommentCount(member.getUser_id());
-
-			req.setAttribute("wishMovieCount", wishMovieCount);
-			req.setAttribute("seenMovieCount", seenMovieCount);
-			req.setAttribute("commentCount", commentCount);
-			
-			*/
-			
-			
-			
 
 			url = cp + "/Mypage/mypageMain.do";
 
@@ -381,6 +383,8 @@ public class MypageServlet extends HttpServlet{
 			
 			url = cp + "/mypage/mypageMain.jsp";
 			
+			resp.sendRedirect(url);
+			
 		}else if(uri.indexOf("updatePwd.do")!=-1){
 			
 			url = "/mypage/updatePwd.jsp";
@@ -397,8 +401,8 @@ public class MypageServlet extends HttpServlet{
 			
 			dao.updateUserPwd(user_pwd, user_id);
 			
-			session.removeAttribute("member"); //세션 data삭제
-			session.invalidate();	//세션 변수 삭제
+			session.removeAttribute("member"); //�꽭�뀡 data�궘�젣
+			session.invalidate();	//�꽭�뀡 蹂��닔 �궘�젣
 			
 			resp.sendRedirect(cp);
 			
@@ -414,10 +418,12 @@ public class MypageServlet extends HttpServlet{
 			member = (MemberDTO)session.getAttribute("member");
 			String user_id = member.getUser_id();
 			
-			String user_pwd = req.getParameter("user_pwd");
+			dao.deleteMember(user_id);
 			
-			//탈퇴 쿼리 보류 
+			//�깉�눜 荑쇰━ 蹂대쪟 
 			
+			resp.sendRedirect(cp);
+
 		}else if(uri.indexOf("bookingDetail.do")!=-1){
 			
 			String booked_id = req.getParameter("booked_id");

@@ -10,8 +10,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>footer</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <style type="text/css">
+
+body{font-family: 'Nanum Gothic', sans-serif;}
 
 #footer-wrap {
 	overflow: hidden;

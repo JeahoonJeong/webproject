@@ -123,7 +123,7 @@ function close_field(movie_id) {
                 <dd>
 					<img alt="포스터" src="<%=path %>/${dto.getFile_name()}"  style="float: left;" height="120px" width="70px">
 					<div style="float: left; text-align: center; height: 120px; width: 280px;"><br/>
-					<img src="<%=path %>/age${dto.age_limit }.png" height="25px" width="25px" alt="나이"> 
+					<img src="<%=path %>/age${dto.age_limit }.png" height="20px" width="20px" alt="나이"> 
 					<font size="2" style="font-weight: bold; line-height: 25px">${dto.getMovie_name() }</font>
 					<br/><br/>
 					 <c:if test="${empty dto.getRating()}">등록된 평점이 없습니다.</c:if>

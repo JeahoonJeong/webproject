@@ -17,7 +17,7 @@ public class TimetableDAO {
 		this.conn = conn;
 	}		
 
-	
+	         
 
 	//영화_중복제거
 		public List<TimetableDTO> getMovie(){
@@ -73,7 +73,7 @@ public class TimetableDAO {
 				sql+="seatedseat, seatnumber, type, age_limit, movie_id from timetable where movie_id=? order by district,screen_num,start_time";
 				*/
 				sql ="select city, district, movie_name, screen_num, to_char(start_time,'hh24:mi') start_time, to_char(end_time,'hh24:mi') end_time, ";
-				sql+="seatedseat, seatnumber, type, age_limit, movie_id from timetable where movie_id=? and start_time like ? order by district,screen_num,start_time";
+				sql+="seatedseat, seatnumber, type, age_limit, movie_id, screen_id from timetable where movie_id=? and start_time like ? order by district,screen_num,start_time";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, movie_id);
@@ -92,8 +92,8 @@ public class TimetableDAO {
 					dto.setSeatedseat(rs.getInt("seatedseat"));
 					dto.setSeatnumber(rs.getInt("seatnumber"));
 					dto.setType(rs.getString("type"));
-					dto.setAge_limit(rs.getString("age_limit"));				
-					
+					dto.setAge_limit(rs.getString("age_limit"));
+					dto.setScreen_id(rs.getString("screen_id"));					
 					
 					lists.add(dto);
 				}

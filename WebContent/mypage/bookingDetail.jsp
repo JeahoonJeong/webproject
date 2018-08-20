@@ -109,7 +109,7 @@ function cancel(booked_id) {
 
 <div style="float: left;padding-left: 10px;">
 <br/><br/>
-	<img src="<%=path %>/${detailDTO.file_name}" width="210px" height="310px" alt="포스터" border="1"/>
+	<img src="<%=path %>/${detailDTO.file_name}" width="210px" height="310px" alt="포스터" />
 </div>
 
 
@@ -129,7 +129,7 @@ function cancel(booked_id) {
 	<tr>
 		<td style="background-color: #f8f8f8"><b>결제금액</b>
 		</td>
-		<td>${price }
+		<td>${price }원
 		</td>	
 	</tr>
 
