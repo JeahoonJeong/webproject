@@ -40,7 +40,7 @@
 			<td><a href=<%=cp %>/Movie/list_date.do>최신개봉작</a></td>
 			<td><a href=<%=cp %>/Movie/list_pre.do>상영예정작</a></td>
 			<td><span style="float: left;">
-			<a href="<%=cp %>/movie/wishMov.jsp">♥ 보고싶어</a></span>
+			<a href="<%=cp %>/Movie/wish.do">♥ 보고싶어</a></span>
 			<span style="float: right;">
 			<font size="2pt">
 			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리 ></a></font></span></td>

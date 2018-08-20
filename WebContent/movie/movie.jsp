@@ -13,8 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/movie/css/movie.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-<<<<<<< HEAD
-=======
+
 <script type="text/javascript">
 
 	<%-- function imageChange(file_name) {
@@ -31,14 +30,7 @@
 		
 		
 	} --%>
-	
-	function thumb() {
-		
-		var f = document.mvForm;
-		
-		f.
 
-	}
 	
 	function sendIt() {
 		var f = document.mvForm;
@@ -73,7 +65,7 @@
 
 
 </script>
->>>>>>> master
+
 <title>Movie Info</title>
 <style type="text/css">
 

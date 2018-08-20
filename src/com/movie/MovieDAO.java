@@ -57,7 +57,9 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select rnum, movie_id,movie_name,age_limit,rating,file_name from (select rownum rnum, data.* from (movie_list) data) where rnum>=? and rnum<=?";
+			sql = "select rnum, movie_id,movie_name,age_limit,rating,file_name from ";
+			sql+= "(select rownum rnum, a.* , release_date from (movie_list) a , ";
+			sql+= "movie b where a.movie_id=b.movie_id) where rnum>=? and rnum<=? and release_date<sysdate";
 
 			pstmt = conn.prepareStatement(sql);
 			
@@ -196,7 +198,7 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select count(file_name) count from image_files where file_name like ('%Still&') and movie_id=?";
+			sql = "select count(file_name) count from image_files where file_name like ('%Still%') and movie_id=?";
 			
 			pstmt = conn.prepareCall(sql);
 			
@@ -402,7 +404,97 @@ public class MovieDAO {
 	////////--------------------------------------
 	
 	
+	public List<MovieDTO> getListDate(int start, int end){//list.do ø° ª—∏± µ•¿Ã≈Õ∏¶ ∞°¡Æø»
+		
+		List<MovieDTO> lst = new ArrayList<MovieDTO>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			
+			sql = "select * from (select rownum rnum, data.* from (select a.*, release_date from movie_list a, ";
+			sql+= "movie b where a.movie_id=b.movie_id order by release_date desc) data) ";
+			sql+= "where rnum>=? and rnum<=? and release_date<sysdate";
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				MovieDTO dto = new MovieDTO();
+				
+				dto.setMovie_id(rs.getString("movie_id"));
+				dto.setMovie_name(rs.getString("movie_name"));
+				dto.setAge_limit(rs.getString("age_limit"));
+				dto.setRating(rs.getInt("rating"));
+				dto.setFile_name(rs.getString("file_name"));
+				
+				lst.add(dto);	
+			}
+			
+			
+			rs.close();
+			pstmt.close();	
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return lst;
+		
+	}
 	
+	
+	public List<MovieDTO> getListPre(int start, int end){//list_pre.do ø° ª—∏± µ•¿Ã≈Õ∏¶ ∞°¡Æø»
+		
+		List<MovieDTO> lst = new ArrayList<MovieDTO>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			
+			sql = "select * from (select rownum rnum, data.* from (select a.*, release_date from movie_list a, ";
+			sql+= "movie b where a.movie_id=b.movie_id order by release_date desc) data) ";
+			sql+= "where rnum>=? and rnum<=? and release_date>sysdate";
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				MovieDTO dto = new MovieDTO();
+				
+				dto.setMovie_id(rs.getString("movie_id"));
+				dto.setMovie_name(rs.getString("movie_name"));
+				dto.setAge_limit(rs.getString("age_limit"));
+				dto.setRating(rs.getInt("rating"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setRelease_date(rs.getString("release_date"));
+				
+				lst.add(dto);	
+			}
+			
+			
+			rs.close();
+			pstmt.close();	
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return lst;
+		
+	}
 	
 	
 	
