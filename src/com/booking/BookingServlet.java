@@ -1,6 +1,7 @@
 package com.booking;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -357,9 +358,13 @@ public class BookingServlet extends HttpServlet {
 			
 			
 		} else if (uri.indexOf("seatSelect_ok.do") != -1) {
+			int temp = dao.getBookedNum();		
+			int maxNum = temp +1;
 			
 			
-//			dao.insertData();
+			
+//			dao.insertBookedSeats(lists, maxNum);
+
 			
 			
 			
