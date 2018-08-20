@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.Connection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -230,7 +231,7 @@ public class MovieServlet extends HttpServlet{
 			int start = (currentPage-1)*numPerPage+1;
 			int end = currentPage*numPerPage;
 
-			List<MovieDTO> lst = dao.getAllMV(start, end);
+			List<MovieDTO> lst = dao.getListDate(start, end);
 
 			String listUrl = cp + "/Movie/list.do";
 			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
@@ -272,8 +273,9 @@ public class MovieServlet extends HttpServlet{
 			int start = (currentPage-1)*numPerPage+1;
 			int end = currentPage*numPerPage;
 
-			List<MovieDTO> lst = dao.getAllMV(start, end);
-
+			List<MovieDTO> lst = dao.getListPre(start, end);
+			
+					
 			String listUrl = cp + "/Movie/list.do";
 			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
 
@@ -298,8 +300,17 @@ public class MovieServlet extends HttpServlet{
 
 			url = "/timetable/movieTime_ok.jsp?movie_id=" + movie_id;
 			forward(req, resp, url);
-		
 			
+			
+			
+		}else if(uri.indexOf("wish.do")!=-1){
+			
+			
+			url = "/mypage/list/interestingList.jsp";
+			
+			forward(req, resp, url);
+			
+		
 		////////--------------------------------------
 			
 		}else if(uri.indexOf("wish_add.do")!=-1){

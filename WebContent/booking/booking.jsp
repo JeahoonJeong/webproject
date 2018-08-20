@@ -79,7 +79,7 @@
 		
 		
 		
-		f.action= "<%=cp %>/Booking/booking.do?selectedMoviedId=" + movieId 
+		f.action= "<%=cp %>/Booking/booking.do?checking="+4+"&selectedMoviedId=" + movieId 
 		+ "&nowHour=" + changedTime + "&nowDay=" +changedDate
 		+ "&selectedDate="+date+"&selectedHour="+hour+"&theaterId="+theaterId;
 		f.submit();
@@ -161,15 +161,6 @@
 		f.submit();
 	}
 	
-	function selectDate1(){
-		var f = document.bookingForm;
-		
-		date = f.dateButton1.value; // 선택된 날짜 
-		changedDate = ${day };
-		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
-		f.submit();		
-	}
 	
 	function selectDate1(){ 
 		var f = document.bookingForm;
@@ -178,7 +169,7 @@
 	
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&checking="+2;
 		f.submit();		
 	}
 	
@@ -188,7 +179,7 @@
 		var date = f.dateButton2.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&checking="+2;
 		f.submit();		
 	}
 	
@@ -198,7 +189,7 @@
 		date = f.dateButton3.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&checking="+2;
 		f.submit();		
 	}
 	
@@ -208,7 +199,7 @@
 		date = f.dateButton4.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&checking="+2;
 		f.submit();		
 	}
 	
@@ -218,7 +209,7 @@
 		date = f.dateButton5.value; // 선택된 날짜 
 		changedDate = ${day };
 		changedTime = ${hour };
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&checking="+2;
 		f.submit();		
 	}
 	
@@ -231,7 +222,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -244,7 +235,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -258,7 +249,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -272,7 +263,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -286,7 +277,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -300,7 +291,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -314,7 +305,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -328,7 +319,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -342,7 +333,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	
@@ -356,7 +347,7 @@
 		changedTime = ${hour };
 		date = ${selectedDate }; // 선택된 날짜 받아오기 
 		
-		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour;
+		f.action = "<%=cp%>/Booking/booking.do?nowHour="+changedTime+"&nowDay="+changedDate+"&selectedDate="+date+"&selectedHour="+hour+"&checking="+3;
 		f.submit();		
 	}
 	

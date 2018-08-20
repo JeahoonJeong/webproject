@@ -99,6 +99,7 @@
 	function goNextPage(screen_id){
 	var f= document.myForm1;
 	
+	window.open("<%=str%>");
 	f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
 	f.submit();
 	
@@ -128,11 +129,11 @@
 	</div>
 
 	<form name="myForm" method="post" action="">
-		<table width="100" cellpadding="0" cellspacing="10" align="center">
+		<table width="230px" height="503px" style="margin: 3px;">
 			<tr>
 				<c:forEach var="dto" items="${lists1 }">
 					<td><a href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}">
-						<img src="${imagePath}/${dto.movie_name}.PNG" width="180" height="180" border="2">
+						<img src="${imagePath}/${dto.movie_name}.PNG" width="230" height="330">
 					</a></td>
 				</c:forEach>
 			</tr>
@@ -154,7 +155,7 @@
 	</table>
 
 	<c:if test="${movie_id==null }">
-		<p align="center"><img src="${imagePath}/nullmovie.PNG" width="1000" height="400" border="2" align="middle"></p>
+		<p align="center"><img src="${imagePath}/nullmovie.PNG" width="1000" height="400" border="0" align="middle"></p>
 	</c:if>
 	
 	<form name="myForm1" method="post">
@@ -189,7 +190,7 @@
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
 
-					<br><a onclick="goNextPage(${dto.screen_id});">예매</a>
+					<br><a onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=20x, left=100px, height=600px, width=1000px')">예매</a>
 					
 
 				</p>
