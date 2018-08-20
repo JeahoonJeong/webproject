@@ -56,12 +56,12 @@
 	<c:set var = "i" value = "1"></c:set>
 	<table  border="0"   cellpadding="0" cellspacing="10" align="center" >
 		<c:if test="${i % 4 == 1 }">
-			<tr>		
+			<tr height="190">		
 		</c:if>
 		
 			<c:forEach var="dto" items="${lists1 }">	
 			
-			<td width="250">
+			<td width="260">
 			<center>
 			<img src="${imagePath}/${dto.movie_name}.PNG" width="200" height="180" border="2">
 			</center>
@@ -80,13 +80,13 @@
 		</c:if>
 		<c:set var = "i" value="${i+1 }"></c:set>
 			</c:forEach>	
-		<tr height="30">
+		<tr height="20">
 			<td></td>
 		</tr>
 	</table>
 	
 	<center>
-	<hr width="1000" >
+	<hr width="1100" >
 		<input type="button" value = "취소" onclick="javascript:location.href='<%=cp %>/Booking/booking.do'" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #F9F9F9 ; color : #747474 ;border: 0"/>
 				
 		<input type="button" value = "다음" onclick="sendIt();" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #513396; color: #ffffff; border: 0"/>

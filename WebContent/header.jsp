@@ -137,7 +137,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 	<div id="header-wrap">
 		<div id="header">
 			<ul>
-				<li><a href="<%=cp%>"><img alt=""
+				<li style="list-style: none; border: none; padding-top: 2px;"><a href="<%=cp%>"><img alt=""
 						src="<%=cp%>/login/image/magabox.jpg"></a></li>
 				<li><a class="menuLink" href="<%=cp%>/Movie/list.do">영화</a></li>
 				<li><a class="menuLink" href="#">큐레이션</a></li>
