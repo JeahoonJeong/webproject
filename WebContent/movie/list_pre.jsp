@@ -29,6 +29,17 @@
 		
 		
 		} 
+		 
+		 function goToB(movie_id) {
+				
+				var url = "<%=cp%>/Booking/booking.do";
+				
+				var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+				
+				window.open(url,"booking",setting);
+	
+		}
+
 		
 </script>
 </head>
@@ -99,7 +110,7 @@
 				<input type="button" value="상세정보" class="btn1"
 				onclick="showPop(${dto.movie_id});"/>
 				&nbsp;<input type="button" value="예매하기" class="btn1"
-				onclick=""/></td>
+				onclick="goToB(${dto.movie_id});"/></td>
 				<c:set var="i" value="${i+1 }" />
 			</tr>
 	</table>
