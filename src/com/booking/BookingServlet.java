@@ -272,6 +272,8 @@ public class BookingServlet extends HttpServlet {
 			
 			if(member==null){
 				//로그인해야합니다.페이지로 넘기기
+				url = "/booking/needLogin.jsp";
+				forward(req, resp, url);
 				return;
 			}
 			
@@ -373,8 +375,9 @@ public class BookingServlet extends HttpServlet {
 			
 //			dao.insertBookedSeats(lists, maxNum);
 
-			url = cp;
-			resp.sendRedirect(url);
+			url = "/booking/bookingOK.jsp";
+			forward(req, resp, url);
+			return;
 			
 			
 		}else if (uri.indexOf("theaterSelect.do") != -1) {
