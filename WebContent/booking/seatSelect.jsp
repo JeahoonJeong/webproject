@@ -49,7 +49,7 @@
 		var starttime = encodeURI("${start_time}");
 		var type = encodeURI("${type}");
 		var district = encodeURI("${district}");
-		var age_limit = endcodeURI("${age_limit}");
+		var age_limit = encodeURI("${age_limit}");
 		
 		
 		f.action = "<%=cp%>/Booking/seatSelect.do?value1=" + value1

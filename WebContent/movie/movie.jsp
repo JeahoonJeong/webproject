@@ -32,6 +32,14 @@
 		
 	} --%>
 	
+	function thumb() {
+		
+		var f = document.mvForm;
+		
+		f.
+
+	}
+	
 	function sendIt() {
 		var f = document.mvForm;
 		
@@ -50,7 +58,7 @@
 		}
 		f.comments.value = str;
 		
-		f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
+		f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id };
 		f.submit();	
 	}
 
@@ -189,20 +197,32 @@ function sendIt() {
 		<div id="image_top">						
 			<%-- <div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/left_btnn.png"/></a></div> --%>
+			
 			<c:forEach var="still" items="${still }">
-			<span style="float: left;"><img src="${imagePath }/${still.file_name}" height="110px" onclick="imageChange(${still.file_name})"/></span>
+			<ul style="float: left;">
+			<li>
+			<a href="#image_top"><img src="${imagePath }/${still.file_name}" height="110px"/></a>
+
+			<img class="full" src="${imagePath }/${still.file_name}" height="500px" />
+			
+			</li>
+			</ul>
 			</c:forEach>
+
 		
-		<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
+			<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/right_btnn.png"/></a></div>	 --%>	
 	</div>
 		<div id="image_content">
 			<%-- <div class="lbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/left_btnbig.png"/></a></div> --%>
-			<img src="${imagePath }/godStill1.jpg" height="500px">
-			<%-- <div class="rbtn"><a href="javascript:void(0);">
+		
+			
+	<%-- 	<div class="rbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/right_btnbig.png"/></a></div> --%>
 		</div>
+
+		
 	</div>
 	<!-- </form> -->
 	<div id="comment">
@@ -297,7 +317,7 @@ function sendIt() {
 				${comm.comments }
 				</span></p>
 				<p class="bottom">
-					<a href="javascript:thumb();">
+					<a href="javascript:location.href='<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }'">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
 					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
 				</p>
