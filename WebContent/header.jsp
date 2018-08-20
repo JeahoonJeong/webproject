@@ -184,9 +184,9 @@
 				<li class="menu-right" style="width: 170px">고객센터 | 멤버십 | VIP</li>
 				<li class="menu-right"><a
 					href="<%=cp%>/Timetable/movieTime.do"><img alt=""
-						src="./login/image/timetable.jpg"></a></li>
+						src="<%=cp %>/login/image/timetable.jpg"></a></li>
 				<li class="menu-right">
-				<img alt="" src="./login/image/booking.jpg" onclick="<%=str%>"></li>
+				<img alt="" src="<%=cp %>/login/image/booking.jpg" onclick="<%=str%>"></li>
 			</ul>
 		</div>
 	</div>

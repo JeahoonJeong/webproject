@@ -126,9 +126,7 @@
 			f = document.myForm;
 
 			if(confirm("프로필 사진을 삭제하시겠습니까?") == true){
-				
-				
-				
+	
 				f.action = "<%=cp%>/Mypage/list/delImage_ok.do";
 					
 				f.submit();
@@ -198,7 +196,7 @@
 		<label for="file_upload">찾아보기</label>
 		<input type="file" value="찾아보기" name="file_name" id="file_upload">
 		</div>
-		<input type="button" value="삭제" class="btn5" onclick="delImage(${member.getFile_name()});">
+		<input type="button" value="삭제" class="btn5" onclick="delImage('${member.getFile_name()}');">
 		</td>
 	</tr>
 </table>

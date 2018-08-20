@@ -1,8 +1,11 @@
 package com.booking;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +13,12 @@ public class BookingDAO {
 
 	private Connection conn;
 	
-	// DI (����������)
+	// DI (占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙)
 	public BookingDAO(Connection conn) {
 		this.conn = conn;		
 	}
 	
-	// 1. ��ȭ�� ���� �������� (Select)
+	// 1. 占쏙옙화占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 (Select)
 	public List<TheaterDTO> getReadData(){
 		List<TheaterDTO> lists_theater = new ArrayList<TheaterDTO>();
 		
@@ -24,7 +27,7 @@ public class BookingDAO {
 		String sql ;
 		
 		try {
-			sql = "select theater_id ,city, district from theater "; // �󿵰� ���� �������� sql��
+			sql = "select theater_id ,city, district from theater "; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
 					
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -50,7 +53,7 @@ public class BookingDAO {
 	}
 	
 	
-	// 2. ��ȭ�� ��¥ �ð��� ���� ���� �������� (Select) .v2
+	// 2. 占쏙옙화占쏙옙 占쏙옙짜 占시곤옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 (Select) .v2
 //	 public List<MovieDTO> getMovieData(String movieName,String date){
 //		List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
 //		
@@ -61,7 +64,7 @@ public class BookingDAO {
 //		try {
 //			sql = "SELECT to_char(start_time,'HH24:MI'), to_char(end_time,'HH24:MI'), "
 //					+ "age_limit , movie_name, type , city, district"
-//					+ "FROM TIMETABLE;"; // �󿵰� ���� �������� sql��
+//					+ "FROM TIMETABLE;"; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
 //					
 //			pstmt = conn.prepareStatement(sql);
 //			pstmt.setString(1, );
@@ -91,7 +94,7 @@ public class BookingDAO {
 //		return lists2;	
 //		
 //	}
-	// 2. ��ȭ�� ��¥ �ð��� ���� ���� �������� (Select) .v1
+	// 2. 占쏙옙화占쏙옙 占쏙옙짜 占시곤옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 (Select) .v1
 	 public List<MovieDTO> getMovieData(){
 			List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
 			
@@ -102,7 +105,7 @@ public class BookingDAO {
 			try {
 				sql = "SELECT screen_id ,to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
 						+ "age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber "
-						+ "FROM TIMETABLE"; // �󿵰� ���� �������� sql��
+						+ "FROM TIMETABLE"; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
 						
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
@@ -135,7 +138,7 @@ public class BookingDAO {
 
 		}
 	
-	// 3. ��ȭ�� ���ŵ� �¼� �ο����� �������� (Select)
+	// 3. 占쏙옙화占쏙옙 占쏙옙占신듸옙 占승쇽옙 占싸울옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 (Select)
 //	public List<E> getSelectedSeatData(){
 //		List<E> lists = new ArrayList<E>();
 //		
@@ -164,7 +167,7 @@ public class BookingDAO {
 //	}
 //	
 	
-	// 4. �¼� ���� (Insert)
+	// 4. 占승쇽옙 占쏙옙占쏙옙 (Insert)
 	 public int insertData(String userId, String movie_id, String screen_id){
 		 int result = 0 ; 
 		 
@@ -221,13 +224,43 @@ public class BookingDAO {
 
 		}
 	 
-	 public void insertBookedSeats(List<bookedSeatDTO> lists, int booked_id){
+	 public void insertBookedSeats(bookedSeatDTO dto, int booked_id){
 		 
 		 PreparedStatement pstmt = null;
 		 String sql;
 		 
-		 sql = "insert into booked_seats(screen_id, row_num, seat_num, booked_id, user_id"
-					+ ", reservation_date, type, cancel_date) values(?,?,?,?,?,sysdate,?,null)";
+		 sql = "insert into booked_seats(screen_id, row_num, seat_num, booked_id, user_id, reservation_date, type, cancel_date) values(?,?,?,?,?,SYSDATE,?,NULL)";
+		 
+		 
+		 try {
+			 
+			pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getScreen_id());
+				pstmt.setString(2, dto.getRow_num());
+				pstmt.setInt(3,dto.getSeat_num());
+				pstmt.setString(4,Integer.toString(booked_id));
+				pstmt.setString(5, dto.getUser_id());
+				//pstmt.setDate(6,Date.valueOf(LocalDate.now()));
+				pstmt.setString(6,dto.getType());
+				//pstmt.setNull(8,Types.NULL);
+				
+				pstmt.executeUpdate();
+				
+				pstmt.close();
+				
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		 
+	 }
+	 
+	 public void insertBookedSeatsList(List<bookedSeatDTO> lists, int booked_id){
+		 
+		 PreparedStatement pstmt = null;
+		 String sql;
+		 
+		 sql = "insert into booked_seats(screen_id, row_num, seat_num, booked_id, user_id, reservation_date, type, cancel_date) values(?,?,?,?,?,SYSDATE,?,NULL)";
 		 
 		 
 		 try {
@@ -235,12 +268,16 @@ public class BookingDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			for(bookedSeatDTO dto : lists){
+				
 				pstmt.setString(1, dto.getScreen_id());
 				pstmt.setString(2, dto.getRow_num());
 				pstmt.setInt(3,dto.getSeat_num());
-				pstmt.setInt(4,booked_id);
+				pstmt.setString(4,Integer.toString(booked_id));
 				pstmt.setString(5, dto.getUser_id());
+				//pstmt.setDate(6,Date.valueOf(LocalDate.now()));
 				pstmt.setString(6,dto.getType());
+				//pstmt.setNull(8,Types.NULL);
+				
 				
 				pstmt.addBatch();
 			}
@@ -256,14 +293,14 @@ public class BookingDAO {
 	 
 	 public int getBookedNum(){
 			
-			int maxNum = 0;
+			int maxNum =0;
 			
 			PreparedStatement pstmt = null;
 			String sql= "";
 			ResultSet rs = null;
 			
 			try {
-				sql = "select max(to_number(booked_id)) from booked_seats;";
+				sql = "select max(to_number(BOOKED_ID)) from booked_seats";
 				pstmt = conn.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 				
@@ -281,9 +318,7 @@ public class BookingDAO {
 			return maxNum;
 		}
 	 
-	 //---타입을 받아온다.
-	
-	 
+	 //---���엯�쓣 諛쏆븘�삩�떎.
 	
 
 	

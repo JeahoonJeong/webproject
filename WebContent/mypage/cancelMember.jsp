@@ -81,8 +81,8 @@
 	</tr>
 	<tr>
 		<td><br/>
-		<span><b>1. 30일간 회원 재가입이 불가능합니다.</b></span><br/>
-		<span><img alt="" src="<%=cp%>/mypage/image/icon_list.png">&nbsp;&nbsp;회원 탈퇴 후, 30일 경과 후 재가입할 수 있습니다.</span><br/><br/>
+		<span><b>1. 즉시 회원 정보가 삭제 됩니다.</b></span><br/>
+		<span><img alt="" src="<%=cp%>/mypage/image/icon_list.png">&nbsp;&nbsp;모든 개인정보는 바로 파기됩니다.</span><br/><br/>
 		</td>
 	</tr>
 	<tr>

@@ -13,6 +13,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/movie/css/movie.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<<<<<<< HEAD
+=======
 <script type="text/javascript">
 
 	<%-- function imageChange(file_name) {
@@ -49,29 +51,59 @@
 		f.comments.value = str;
 		
 		f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
-		f.submit();
+		f.submit();	
+	}
+
+	
+	function star() {
+		var f = document.mvForm;
+
+		var svalue = f.rate2.selectedIndex;
 		
-		
+		f.rating.value=f.rate2.options[svalue].value;
 	}
 
 
-
 </script>
+>>>>>>> master
 <title>Movie Info</title>
 <style type="text/css">
 
 select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);   }
 
-
 </style>
+
 <script type="text/javascript">
 
-	function goToP() {
-		
-		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
-		
-		window.close();
+function goToP() {
+	
+	window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
+	
+	window.close();
+}
+
+function sendIt() {
+	var f = document.mvForm;
+	
+	str = f.rate2.value;
+	if(!str){
+		alert("평점을 선택하세요");
+		return;
 	}
+	f.rate2.value = str;
+	
+	str = f.comments.value;
+	if(!str){
+		alert("내용을 입력해주세요");
+		f.comments.focus();
+		return;
+	}
+	f.comments.value = str;
+	
+	f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
+	f.submit();
+		
+}
 
 </script>
 </head>
@@ -91,7 +123,7 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 			<span style="color: #353535; font-size: 22pt; vertical-align: top; font-weight: bold;">
 			${dto.movie_name }</span>
 			<p style="color: #747474; font-size: 9pt; font-family: 맑은고딕;">
-			Mission:Impossible- Fallout ,</p></td>
+			${dto.movie_eng_name }</p></td>
 		</tr>
 		<tr>
 			<td height="42px" style="padding-top: 5px;">
@@ -124,18 +156,24 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 		</tr>
 		<tr>
 			<td height="50px" rowspan="2" style="padding: 0px;">
-			<span style="float: left;">
+			<!-- <span style="float: left;">
 			<font size="2pt;" color="#4C4C4C">내 평점</font> 
+>>>>>>> master
 			
 			<select id="rate1" style="width: 119px; height: 20px;">
 			<option value="0"></option>
 			</select>
 			
-			<font size="1pt;" color="#4C4C4C">너무 멋진 영화였어요!</font></span>
+			<font size="1pt;" color="#4C4C4C">너무 멋진 영화였어요!</font></span> -->
 			<span style="float: right;">
-			<input type="button" value="♥보고싶어" name="wishMovie" onclick="" class="btn2"/>
+			<c:if test="${empty wish }">
+				<input type="button" value="♥ 보고싶어" name="wishMovie" class="btn2" onclick="javascipt:location.href='<%=cp%>/Movie/wish_add.do?movie_id=${dto.movie_id}'">
+			</c:if>
+			<c:if test="${!empty wish }">
+				<input type="button" value="♡ 보기싫어" name="wishMovie" onclick="javascipt:location.href='<%=cp%>/Movie/wish_remove.do?movie_id=${dto.movie_id}'" class="btn4"/>
+			</c:if>
 			<input type="button" value="상영시간표" name="booking" onclick="goToP();" class="btn3"/>
-			
+			<br/><font size="2pt" color="red">${message }</font>
 			</span>
 			</td>
 		</tr>
@@ -172,27 +210,50 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(${dto.commCount })</span></h3>
 		</div>
 		<div style="width: 888px; height: 128px;">
-			<span style="padding-top: 58px; float: left;">
-			<img width="56px" height="56px" src="${imagePath }/profile.png"></span>
+			<c:choose>
+				<c:when test="${empty sessionScope.member.user_id }">
+				<span style="padding-top: 58px; float: left;">
+					<img width="56px" height="56px" src="${imagePath }/profile.png"></span>
+				</c:when>
+				<c:otherwise>
+				<span style="padding-top: 58px; float: left;">
+					<img width="56px" height="56px" src="${imagePath }/${sessionScope.member.file_name}"></span>
+				</c:otherwise>
+			</c:choose>
 			<table id="comment_input">
 				<tr>
-					<td class="star">
-					<select id="rate2" style="width: 119px; height: 30px; border-style: none; appearance: none; ">
-					<option value="0">☆☆☆☆☆</option>
-					<option value="1">★☆☆☆☆</option>
-					<option value="2">★★☆☆☆</option>
-					<option value="3">★★★☆☆</option>
-					<option value="4">★★★★☆</option>
-					<option value="5">★★★★★</option>
-					</select>
-					</td>
-					<td class="text">
-					<textarea title="댓글쓰기" name="comments" maxlength="100"
-					class="textarea"></textarea>
-					</td>
-					<td width="84px" height="84px">
-					<input type="button" value="등록" class="btn" onclick="sendIt();"/>
-					</td>
+					<c:choose>
+						<c:when test="${empty sessionScope.member.user_id }">
+						<td class="star">
+						</td>
+						<td class="text">
+						<span class="textarea">로그인 후 이용 가능합니다</span>
+						</td>
+						<td width="84px" height="84px">
+						<input type="button" value="등록" class="btn" onclick="#"/>
+						</td>
+						</c:when>
+						<c:otherwise>
+						<td class="star">
+						<input type="hidden" name="rating" />
+						<select id="rate2" style="width: 119px; height: 30px; border-style: none; appearance: none;" onchange="star();">
+						<option value="0">☆☆☆☆☆</option>
+						<option value="2">★☆☆☆☆</option>
+						<option value="4">★★☆☆☆</option>
+						<option value="6">★★★☆☆</option>
+						<option value="8">★★★★☆</option>
+						<option value="10">★★★★★</option>
+						</select>
+						</td>
+						<td class="text">
+						<textarea title="댓글쓰기" name="comments" maxlength="100"
+						class="textarea"></textarea>
+						</td>
+						<td width="84px" height="84px">
+						<input type="button" value="등록" class="btn" onclick="sendIt();"/>
+						</td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 			</table>
 		</div>
@@ -243,6 +304,10 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 				</td>
 			<c:set var="i" value="${i+1 }" />
 			</c:forEach>
+			<c:if test="${i>0&&i%2!=0 }">
+			<td class="cell">&nbsp;</td>
+			</c:if>
+			<c:if test="${i!=0 }"></td></c:if>
 		</table>
 		<input type="hidden" name="stillCount" value="${stillCount }"/>
 		<%-- <div>
