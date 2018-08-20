@@ -935,7 +935,7 @@ public class MypageDAO {
 		
 		try {
 			
-			sql = "select row_num, seat_num from detail_booked_list where booked_id=?";
+			sql = "select row_num, seat_num from detail_booked_list where booked_id=? order by seat_num";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -1001,7 +1001,6 @@ public class MypageDAO {
 	
 	
 	//회원탈퇴 cancelMember_ok.do 시작
-	//보류
 	public int deleteMember(String user_id){
 		
 		int result = 0;

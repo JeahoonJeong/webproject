@@ -93,7 +93,7 @@ function cancel(booked_id) {
 		</td>
 		<td>
 			<c:forEach var="seat" items="${seats }">
-			${seat } 
+			${seat } | 
 			</c:forEach>
 		</td>
 	</tr>
