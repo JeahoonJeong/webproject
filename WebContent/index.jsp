@@ -60,8 +60,6 @@
 	request.setAttribute("totalPage", totalPage);
 	request.setAttribute("imagePath", imagePath);
 	
-	
-	
 %>
 
 <%-- 
@@ -72,9 +70,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>라이프시어터, 메가박스</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 <style type="text/css">
+
+body{font-family: 'Nanum Gothic', sans-serif;}
 
 #header-wrap {
 	position: fixed;
@@ -300,7 +301,7 @@
 	width: 140px;
 	font-size: 11pt;
 	font-weight: bold;
-	border: 2px solid #666666;
+	border: 1px solid #666666;
 	
 }
 
@@ -326,7 +327,7 @@
 	border-right: 1px solid #CCCCCC;
 }
 #content .middle{
-	font-size: 16pt;
+	font-size: 14pt;
 	padding: 10px;
 	padding-bottom: 0px;
 	height: 50px;
@@ -358,6 +359,9 @@
 	border: 1px solid #1294AB;
 }
 
+a:visited{text-decoration: none; color: #4C4C4C;}
+a:link {text-decoration: none; color: #4C4C4C;}
+
 /* movie list */
 
 
@@ -370,7 +374,7 @@
 	<div id="header-wrap">
 		<div id="header">
 			<ul>
-				<li><a href="<%=cp%>"><img alt=""
+				<li style="list-style: none; border: none; padding-top: 2px;"><a href="<%=cp%>"><img alt=""
 						src="./login/image/magabox.jpg"></a></li>
 				<li><a class="menuLink" href="<%=cp%>/Movie/list.do">영화</a></li>
 				<li><a class="menuLink" href="#">큐레이션</a></li>
@@ -378,7 +382,15 @@
 				<li><a class="menuLink" href="#">특별관</a></li>
 				<li><a class="menuLink" href="#">스토어</a></li>
 				<li><a class="menuLink" href="#">이벤트</a></li>
-				<li><a class="menuLink" href="<%=cp%>/Login/login.do">로그인</a></li>
+				<li>
+					<c:if test="${empty member.getUser_id() }">
+						<a class="menuLink" href="<%=cp%>/Login/login.do">로그인</a>
+					</c:if>
+					<c:if test="${!empty member.getUser_id() }">
+						<a class="menuLink" href="<%=cp%>/Mypage/mypageMain.do"><font color="#351f66">마이페이지</font></a>
+					</c:if>
+				</li>
+				
 			</ul>
 		</div>
 	</div>
@@ -415,7 +427,7 @@
 				<li class="menu-right"><a
 					href="<%=cp%>/Timetable/movieTime.do"><img alt=""
 						src="./login/image/timetable.jpg"></a></li>
-				<li class="menu-right">
+				<li class="menu-right" style="margin-left: 5px">
 				<img alt="" src="./login/image/booking.jpg" onclick="<%=str%>"></li>
 			</ul>
 		</div>
@@ -459,7 +471,7 @@
 							<tr>
 						</c:if>
 						<td width="242px" height="517px">
-							<table width="230px" height="503px" style="margin: 3px;">
+							<table width="230px" height="503px" style="margin: 0px; background-color: white;">
 								<tr>
 									<td class="top"><img src="${imagePath }/${dto.file_name}"
 										width="230px" height="330px" />

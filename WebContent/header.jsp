@@ -10,10 +10,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<title>header</title>
 
 
 <style type="text/css">
+
+body{font-family: 'Nanum Gothic', sans-serif;}
+
 #header-wrap {
 	position: fixed;
 	top: -20px;
@@ -134,7 +138,7 @@
 		<div id="header">
 			<ul>
 				<li><a href="<%=cp%>"><img alt=""
-						src="./login/image/magabox.jpg"></a></li>
+						src="<%=cp%>/login/image/magabox.jpg"></a></li>
 				<li><a class="menuLink" href="<%=cp%>/Movie/list.do">영화</a></li>
 				<li><a class="menuLink" href="#">큐레이션</a></li>
 				<li><a class="menuLink" href="<%=cp%>/Theater/theater.do">영화관</a></li>
@@ -146,7 +150,7 @@
 						<a class="menuLink" href="<%=cp%>/Login/login.do">로그인</a>
 					</c:if>
 					<c:if test="${!empty member.getUser_id() }">
-						<a class="menuLink" href="<%=cp%>/Login/log_out.do">로그아웃</a>
+						<a class="menuLink" href="<%=cp%>/Mypage/mypageMain.do"><font color="#351f66">마이페이지</font></a>
 					</c:if>
 				</li>
 			</ul>
