@@ -119,7 +119,17 @@
 			$(this).trigger("mouseout");
 		});
 	});
-
+	
+	/* 영화 클릭시 상세보기  */
+	 function showPop(movie_id) {
+	
+		var url = "<%=cp %>/Movie/movie.do?movie_id=" + movie_id;
+	
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+		
+		window.open(url,"movieInfo",setting);
+	
+	} 
 </script>
 <script type="text/javascript">
 	function goNextPage(screen_id){
@@ -476,7 +486,7 @@
 					
 <!-- 영화 상세 보기 링크  -->
 					<strong>
-						<a href="" title="영화상세 보기">${dto.movie_name }</a>
+						<a href="javascript:showPop(${dto.movie_id})"  title="영화상세 보기">${dto.movie_name }</a>
 					</strong>
 				</div>
 			</th>
