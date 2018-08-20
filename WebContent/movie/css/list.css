@@ -68,6 +68,29 @@
 }
 
 
+.d-day{
+	width: 180px;
+	height: 31px;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	padding-bottom: 9px;
+	padding-top: 9px;
+	padding-left: 25px;
+	padding-right: 25px;
+	color: #333333;
+	font-size: 14px;
+	font-weight: bold;
+}
+.d-btn{
+	float:right;
+	width: 87px;
+	height: 30px;
+	background-color: #503396;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+}
 
 .topMenu a:hover {text-decoration: none; color: #503396;}
 
