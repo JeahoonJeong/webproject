@@ -19,7 +19,9 @@ public class MypageDAO {
 		this.conn = conn;
 	}
 
-
+	
+	//mypageMain에서 출력되는 최근 예매 내역 리스트 불러오기
+	
 	public List<MyBookingDTO> getRecentBookedList(String user_id){
 
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
@@ -74,8 +76,8 @@ public class MypageDAO {
 
 	}
 
-	//���� ���� �ҷ����� (���� ���� X, ��ҵ� ���� X)
-	//getBookedId�޼ҵ忡�� ������ ����Ʈ�� �Ű������� �޾� ���� �� ������ ����Ʈ�� �޾Ƴ�
+	//현재 예약중인 리스트
+	
 	public List<MyBookingDTO> getBookingList(String user_id){
 
 		List<MyBookingDTO> lists = new ArrayList<MyBookingDTO>();
@@ -87,7 +89,7 @@ public class MypageDAO {
 
 		try {
 			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
-					+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
+					+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time "
 					+ " from booked_list where user_id=? and cancel_date is null and start_time>sysdate order by start_time desc";
 
 
@@ -113,7 +115,6 @@ public class MypageDAO {
 				dto.setScreen_num(rs.getString("screen_num"));
 				dto.setStart_time(rs.getString("start_time"));
 				dto.setEnd_time(rs.getString("end_time"));
-				dto.setRating(rs.getInt("rating"));
 
 				lists.add(dto);
 
@@ -204,7 +205,7 @@ public class MypageDAO {
 		try {
 
 			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
-					+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time, rating"
+					+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time "
 					+ " from booked_list where user_id=? and cancel_date is not null order by start_time desc";
 
 
@@ -230,7 +231,6 @@ public class MypageDAO {
 				dto.setScreen_num(rs.getString("screen_num"));
 				dto.setStart_time(rs.getString("start_time"));
 				dto.setEnd_time(rs.getString("end_time"));
-				dto.setRating(rs.getInt("rating"));
 
 				lists.add(dto);
 
@@ -703,7 +703,7 @@ public class MypageDAO {
 					+ "from (select c.user_id, c.movie_id, comments, comment_date, recommend_num, movie_name, age_limit, file_name "
 					+ "from (select user_id, movie_id, comments, comment_date, recommend_num from comments  where user_id=?) c " + 
 					"left join (select a.movie_id, movie_name, age_limit, file_name "
-					+ "from movie a left join IMAGE_FILES b on a.movie_id = b.movie_id) d on c.movie_id = d.movie_id) e "
+					+ "from movie a left join IMAGE_FILES b on a.movie_id = b.movie_id where file_name like '%Post%') d on c.movie_id = d.movie_id) e "
 					+ "left join rating f on e.user_id=f.user_id and e.movie_id=f.movie_id";
 
 			pstmt = conn.prepareStatement(sql);
@@ -1002,6 +1002,31 @@ public class MypageDAO {
 	
 	//회원탈퇴 cancelMember_ok.do 시작
 	//보류
+	public int deleteMember(String user_id){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "delete member where user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+	
+		return result;
+	}
+	
 	
 
 }

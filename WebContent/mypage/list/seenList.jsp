@@ -53,6 +53,7 @@ scrollbar-arrow-color: #FFFFFF
 <body>
 <div id="list"><br/><br/>
 * 본 영화 리스트는 실제 관람한 이력으로 보여지며, 상영일 익일에 자동 노출됩니다.<br/><br/><br/>
+<c:if test="${!empty seenMovieList }">
 <c:forEach items="${seenMovieList }" var="dto">
 <div class="guest_book">	
             <dl class="g_book-box">
@@ -99,7 +100,18 @@ scrollbar-arrow-color: #FFFFFF
 
 </div>
 </c:forEach>
+</c:if>
+<c:if test="${empty seenMovieList }">
+	<div class="guest_book">	
+		<dl class="g_book-box">
+			<dd style="text-align: center;">
+			<br/><br/><br/><br/>
+				본 영화가 없습니다.
+			</dd>
+		</dl>
+	</div>
 
+</c:if>
 
 
 

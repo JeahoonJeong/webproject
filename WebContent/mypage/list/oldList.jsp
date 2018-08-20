@@ -18,7 +18,7 @@
 <div id="list">
 <table>
 	<tr>
-		<td colspan="7" height="1px" style="border-bottom: 2px solid #503396;"></td>
+		<td colspan="7" height="1px" style="border-bottom: 2px solid #503396; text-align: left"><font style="font-size: 12pt; color:#503396; font-weight: bold;">지난 내역</font></td>
 	</tr>
 	<tr>
 		<th class="num">NO</th>
@@ -29,7 +29,7 @@
 		<th class="saleDate">예매일</th>
 	</tr>
 	<!-- DB에서 정보 불러서 돌려야함 -->
-	<c:if test="${!empty canceledList }">
+	<c:if test="${!empty seenMovieList }">
 	<c:set var="i" value="1"/>
 	<c:forEach items="${seenMovieList }" var="dto">
 	<tr>
@@ -43,7 +43,7 @@
 	</tr>
 	</c:forEach>
 	</c:if>
-	<c:if test="">
+	<c:if test="${empty seenMovieList }">
 		<tr>
 			<td colspan="6"> 지난 예매 내역이 없습니다.
 			</td>

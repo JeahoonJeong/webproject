@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet{
 			
 			if(dto==null || !(dto.getUser_id().equals(user_id))){
 				
-				req.setAttribute("message", "占쏙옙占싱듸옙 占쌕쏙옙 확占쏙옙占싹쇽옙占쏙옙!");
+				req.setAttribute("message", "아이디를 다시 확인하세요!");
 				
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet{
 				
 			}else if(!(dto.getUser_pwd().equals(user_pwd))){
 				
-				req.setAttribute("message", "占쏙옙橘占싫ｏ옙占� 占쌕쏙옙 확占쏙옙占싹쇽옙占쏙옙!");
+				req.setAttribute("message", "비밀번호를 다시 확인하세요!");
 				
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
@@ -110,8 +110,8 @@ public class LoginServlet extends HttpServlet{
 			
 			HttpSession session = req.getSession();
 			
-			session.removeAttribute("member"); //�꽭�뀡 data�궘�젣
-			session.invalidate();	//�꽭�뀡 蹂��닔 �궘�젣
+			session.removeAttribute("member"); 
+			session.invalidate();	
 			
 			resp.sendRedirect(cp);
 			

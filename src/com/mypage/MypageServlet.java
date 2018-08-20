@@ -56,7 +56,7 @@ public class MypageServlet extends HttpServlet{
 
 		String uri = req.getRequestURI();
 
-		//������ ������ ���
+		//占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占�
 		String root = getServletContext().getRealPath("/");
 		String path = root + "memberImages";
 
@@ -156,8 +156,14 @@ public class MypageServlet extends HttpServlet{
 			bookingList = dao.getBookingList(user_id);
 
 			session.setAttribute("bookingList", bookingList);
+			
+			List<MyBookingDTO> canceledList = new ArrayList<MyBookingDTO>();
 
-			url = cp+ "/mypage/list/bookingList.jsp";
+			canceledList = dao.getCanceledBooking(user_id);
+
+			session.setAttribute("canceledList", canceledList);
+
+			url = cp+ "/mypage/list/cancelList.jsp";
 
 			resp.sendRedirect(url);
 
@@ -381,6 +387,8 @@ public class MypageServlet extends HttpServlet{
 			
 			url = cp + "/mypage/mypageMain.jsp";
 			
+			resp.sendRedirect(url);
+			
 		}else if(uri.indexOf("updatePwd.do")!=-1){
 			
 			url = "/mypage/updatePwd.jsp";
@@ -397,8 +405,8 @@ public class MypageServlet extends HttpServlet{
 			
 			dao.updateUserPwd(user_pwd, user_id);
 			
-			session.removeAttribute("member"); //세션 data삭제
-			session.invalidate();	//세션 변수 삭제
+			session.removeAttribute("member"); 
+			session.invalidate();	
 			
 			resp.sendRedirect(cp);
 			
@@ -414,10 +422,13 @@ public class MypageServlet extends HttpServlet{
 			member = (MemberDTO)session.getAttribute("member");
 			String user_id = member.getUser_id();
 			
-			String user_pwd = req.getParameter("user_pwd");
+			dao.deleteMember(user_id);
 			
-			//탈퇴 쿼리 보류 
+			session.removeAttribute("member"); 
+			session.invalidate();	
 			
+			resp.sendRedirect(cp);
+
 		}else if(uri.indexOf("bookingDetail.do")!=-1){
 			
 			String booked_id = req.getParameter("booked_id");

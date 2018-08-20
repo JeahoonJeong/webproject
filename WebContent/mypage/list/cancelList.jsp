@@ -18,7 +18,7 @@
 <div id="list">
 <table>
 	<tr>
-		<td colspan="7" height="1px" style="border-bottom: 2px solid #503396;"></td>
+		<td colspan="7" height="1px" style="border-bottom: 2px solid #503396;text-align: left"><font style="font-size: 12pt; color:#503396; font-weight: bold;">취소 내역</font></td>
 	</tr>
 	<tr>
 		<th class="num">NO</th>
