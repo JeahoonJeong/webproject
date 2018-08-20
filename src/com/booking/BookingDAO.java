@@ -290,6 +290,33 @@ public class BookingDAO {
 		 
 	 }
 	 
+	 public void updateSeatStatus(String screen_id, String row_num, int seat_num ){
+		 
+		 PreparedStatement pstmt = null;
+		 String sql = "";
+		 
+		 try {
+			
+			 sql = "update seat set status = 1 where screen_id=? and row_num = ? and seat_num = ?";
+			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(1, screen_id);
+			 pstmt.setString(2,row_num);
+			 pstmt.setInt(3, seat_num);
+			 
+			 pstmt.executeUpdate();
+			 
+			 pstmt.close();
+			 
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+		 
+		 
+		 
+		 
+	 }
+	 
 	 
 	 public int getBookedNum(){
 			

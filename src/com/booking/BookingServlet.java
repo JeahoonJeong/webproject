@@ -355,7 +355,7 @@ public class BookingServlet extends HttpServlet {
 				//dto.setType("1");
 				dto.setUser_id(user_id);
 				
-				
+				dao.updateSeatStatus(screen_id, row_num, seat_num);
 				dao.insertBookedSeats(dto,bookedNum);
 				
 				
