@@ -10,7 +10,7 @@
 	int nowYear = cal.get(Calendar.YEAR);
 	int nowMonth = cal.get(Calendar.MONTH) + 1;
 	int nowDay = cal.get(Calendar.DAY_OF_MONTH);
-
+  
 	//클라이언트에서 넘어온 데이터
 
 	String strYear = request.getParameter("year"); //사용자에게 년,월 값을 받아옴
@@ -31,7 +31,7 @@
 	if (strDay != null) {
 		day = Integer.parseInt(strDay);
 	}
-
+ 
 	int preYear = year;
 	int preMonth = month;
 	int preDay = day - 1;

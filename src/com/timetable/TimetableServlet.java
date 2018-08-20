@@ -33,7 +33,7 @@ public class TimetableServlet extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher(url);
 		rd.forward(req, resp);
 	}
-
+ 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
