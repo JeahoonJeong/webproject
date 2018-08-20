@@ -1,11 +1,15 @@
 package com.movie;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -180,8 +184,7 @@ public class MovieServlet extends HttpServlet{
 			url = "/Movie/movie.do?movie_id=" + movie_id;			
 			forward(req, resp, url);
 
-			
-			
+
 			
 		}else if(uri.indexOf("movieTime_ok.do")!=-1){ // 상영시간표로 연결
 			

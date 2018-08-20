@@ -30,6 +30,13 @@
 		
 	} --%>
 	
+	function goToP() {
+		
+		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
+		
+		window.close();
+	}
+	
 	function sendIt() {
 		var f = document.mvForm;
 		
@@ -48,7 +55,7 @@
 		}
 		f.comments.value = str;
 		
-		f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
+		f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id };
 		f.submit();	
 	}
 
@@ -61,6 +68,8 @@
 		f.rating.value=f.rate2.options[svalue].value;
 	}
 
+	/* self.resizeTo(document.body.scrollWidth , document.body.scrollHeight + 10); */
+
 
 </script>
 <title>Movie Info</title>
@@ -70,16 +79,6 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 
 
 </style>
-<script type="text/javascript">
-
-	function goToP() {
-		
-		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
-		
-		window.close();
-	}
-
-</script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
 <form action="" method="post" name="mvForm">
@@ -157,20 +156,34 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 		<div id="image_top">						
 			<%-- <div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/left_btnn.png"/></a></div> --%>
+			
 			<c:forEach var="still" items="${still }">
-			<span style="float: left;"><img src="${imagePath }/${still.file_name}" height="110px" onclick="imageChange(${still.file_name})"/></span>
+			<span style="float: left;">
+			<a href="${imagePath }/${still.file_name}" target="iFrame"><img src="${imagePath }/${still.file_name}" height="110px"/></a></span>
 			</c:forEach>
+			
 		
-		<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
+			<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/right_btnn.png"/></a></div>	 --%>	
 	</div>
 		<div id="image_content">
 			<%-- <div class="lbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/left_btnbig.png"/></a></div> --%>
-			<img src="${imagePath }/godStill1.jpg" height="500px">
+			
+			<div style="height: 100%; width:100%; float: center;">
+			<iframe style="overflow: hidden; height: 100%; width: 100%;" src="${imagePath }/${dto.file_name}"
+			id="iFrame" name="iFrame" frameborder="0" scrolling="no"></iframe>
+			</div>
+			
 			<%-- <div class="rbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/right_btnbig.png"/></a></div> --%>
 		</div>
+		<div>
+			<iframe>
+			</iframe>
+		</div>
+		
+		
 	</div>
 	<!-- </form> -->
 	<div id="comment">
@@ -265,7 +278,7 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 				${comm.comments }
 				</span></p>
 				<p class="bottom">
-					<a href="javascript:thumb();">
+					<a href="javascript:location.href='<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }'">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
 					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
 				</p>

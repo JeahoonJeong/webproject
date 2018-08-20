@@ -57,12 +57,6 @@ public class MovieDAO {
 		
 		try {
 			
-			/*sql = "select * from (select rownum rnum, data.* from(select a.movie_id,movie_name,age_limit, rating, file_name ";
-			sql+= "from movie a,(select rating, file_name, a.movie_id from ";
-			sql+= "(select round(avg(rating)) rating, movie_id from rating group by movie_id) a, ";
-			sql+= "(select file_name, movie_id from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) ";
-			sql+= "b where a.movie_id=b.movie_id order by movie_id) data) where rnum>=? and rnum<=?";*/
-			
 			sql = "select rnum,movie_id,movie_name,age_limit,rating,file_name from movie_list where rnum>=? and rnum<=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -106,13 +100,6 @@ public class MovieDAO {
 		String sql;
 		
 		try {
-			
-			/*sql = "select (b.movie_id) movie_id,movie_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
-			sql+= "age_limit,file_name,countRate from movie a, (select rating, countRate, file_name, a.movie_id from ";
-			sql+= "(select count(rating) countRate,round(avg(rating)) rating,movie_id from rating group by movie_id having movie_id=?) a";
-			sql+= ", (select * from image_files where file_name like ('%Post%')) b where a.movie_id = b.movie_id) b ";
-			sql+= "where a.movie_id=b.movie_id";
-			*/
 			
 			sql = "select * from (select (b.movie_id) movie_id,movie_name,movie_eng_name,rating,release_date,type,director,actors,genre,showtimes,summary,";
 			sql+= "age_limit,file_name,countRate from movie a,(select a.*, nvl(countRate,0) countRate, nvl(rating,0) rating from ";
