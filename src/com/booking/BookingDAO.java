@@ -1,8 +1,11 @@
 package com.booking;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -221,13 +224,43 @@ public class BookingDAO {
 
 		}
 	 
-	 public void insertBookedSeats(List<bookedSeatDTO> lists, int booked_id){
+	 public void insertBookedSeats(bookedSeatDTO dto, int booked_id){
 		 
 		 PreparedStatement pstmt = null;
 		 String sql;
 		 
-		 sql = "insert into booked_seats(screen_id, row_num, seat_num, booked_id, user_id"
-					+ ", reservation_date, type, cancel_date) values(?,?,?,?,?,sysdate,?,null)";
+		 sql = "insert into booked_seats(screen_id, row_num, seat_num, booked_id, user_id, reservation_date, type, cancel_date) values(?,?,?,?,?,SYSDATE,?,NULL)";
+		 
+		 
+		 try {
+			 
+			pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getScreen_id());
+				pstmt.setString(2, dto.getRow_num());
+				pstmt.setInt(3,dto.getSeat_num());
+				pstmt.setString(4,Integer.toString(booked_id));
+				pstmt.setString(5, dto.getUser_id());
+				//pstmt.setDate(6,Date.valueOf(LocalDate.now()));
+				pstmt.setString(6,dto.getType());
+				//pstmt.setNull(8,Types.NULL);
+				
+				pstmt.executeUpdate();
+				
+				pstmt.close();
+				
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		 
+	 }
+	 
+	 public void insertBookedSeatsList(List<bookedSeatDTO> lists, int booked_id){
+		 
+		 PreparedStatement pstmt = null;
+		 String sql;
+		 
+		 sql = "insert into booked_seats(screen_id, row_num, seat_num, booked_id, user_id, reservation_date, type, cancel_date) values(?,?,?,?,?,SYSDATE,?,NULL)";
 		 
 		 
 		 try {
@@ -235,12 +268,16 @@ public class BookingDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			for(bookedSeatDTO dto : lists){
+				
 				pstmt.setString(1, dto.getScreen_id());
 				pstmt.setString(2, dto.getRow_num());
 				pstmt.setInt(3,dto.getSeat_num());
-				pstmt.setInt(4,booked_id);
+				pstmt.setString(4,Integer.toString(booked_id));
 				pstmt.setString(5, dto.getUser_id());
+				//pstmt.setDate(6,Date.valueOf(LocalDate.now()));
 				pstmt.setString(6,dto.getType());
+				//pstmt.setNull(8,Types.NULL);
+				
 				
 				pstmt.addBatch();
 			}
@@ -256,14 +293,14 @@ public class BookingDAO {
 	 
 	 public int getBookedNum(){
 			
-			int maxNum = 0;
+			int maxNum =0;
 			
 			PreparedStatement pstmt = null;
 			String sql= "";
 			ResultSet rs = null;
 			
 			try {
-				sql = "select nvl(max(to_number(booked_id),0) from booked_seats;";
+				sql = "select max(to_number(BOOKED_ID)) from booked_seats";
 				pstmt = conn.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 				
@@ -282,8 +319,6 @@ public class BookingDAO {
 		}
 	 
 	 //---���엯�쓣 諛쏆븘�삩�떎.
-	
-	 
 	
 
 	

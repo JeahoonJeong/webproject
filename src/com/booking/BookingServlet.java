@@ -8,13 +8,16 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.login.MemberDTO;
 import com.sun.java.swing.plaf.windows.resources.windows;
 import com.timetable.TimetableDAO;
 import com.timetable.TimetableDTO;
@@ -92,7 +95,7 @@ public class BookingServlet extends HttpServlet {
 			if (strDate != null) {
 				String[] strTemp = strDate.split("일");
 				selectedDate2 = strTemp[0];
-				System.out.println(selectedDate2);
+				//System.out.println(selectedDate2);
 			}
 
 			if (strHour != null) {
@@ -149,7 +152,11 @@ public class BookingServlet extends HttpServlet {
 
 			
 		} else if (uri.indexOf("seatSelect.do") != -1) {
+			
 			String screen_id = req.getParameter("screen_id");
+			//System.out.println(screen_id);
+			req.setAttribute("screen_id", screen_id);
+			
 			String age_limit = req.getParameter("age_limit");
 			String movie_name = req.getParameter("movie_name");
 			String screen_num = req.getParameter("screen_num");
@@ -179,12 +186,13 @@ public class BookingServlet extends HttpServlet {
 				BookingDTO dto = it.next();
 				dto.getRnum();
 				dto.getStatus();
-				System.out.print(dto.getScreen_id());
+				
+				/*System.out.print(dto.getScreen_id());
 				System.out.print(dto.getRnum());
 				System.out.print(dto.getRow_num());
 				System.out.print(dto.getSeat_num());
 				System.out.print(dto.getStatus());
-				System.out.print("\n");
+				System.out.print("\n");*/
 			}
 			
 			
@@ -247,13 +255,125 @@ public class BookingServlet extends HttpServlet {
 			req.setAttribute("imagePath2", imagePath2);
 
 			//------------------------------------------------------------------
-			
 			req.setAttribute("lists_seat", lists_seat);
 
 			url = "/booking/seatSelect.jsp";
 			forward(req, resp, url);
 
-		} else if (uri.indexOf("theaterSelect.do") != -1) {
+		}else if (uri.indexOf("seatSelect_ok.do") != -1) {
+			
+			
+			HttpSession session = req.getSession();
+
+			MemberDTO member = (MemberDTO)session.getAttribute("member");
+			
+			if(member==null){
+				return;
+			}
+				
+
+			String user_id = member.getUser_id();
+			System.out.println("userid: "+user_id);
+
+			String screen_id = req.getParameter("screen_id");
+			req.setAttribute("screen_id", screen_id);
+			
+			String value1 = req.getParameter("value1"); // 성인
+			String value2 = req.getParameter("value2"); // 청소년
+			String value3 = req.getParameter("value3"); // 어린이
+			String value4 = req.getParameter("value4"); // 우대
+			
+			System.out.println("value1:"+value1);
+			System.out.println("value2:"+value2);
+			System.out.println("value3:"+value3);
+			System.out.println("value4:"+value4);
+			
+			
+			
+			//------------------------------------------------------------------
+			//좌석예매
+			String[] temp = req.getParameterValues("arrSeatNum");
+			
+			//System.out.println(temp.length);
+			
+			String[] seatNum;
+			
+			seatNum = temp[0].split(",");
+			
+			
+			int bookedNum = dao.getBookedNum()+1;
+			
+			if(seatNum!=null){
+			
+			int[] type = new int[]{0,0,0,0};
+			
+			if(req.getParameter(value1)!=null){
+				type[0] = Integer.parseInt(req.getParameter(value1));
+			}
+			if(req.getParameter(value2)!=null){
+				type[1] = Integer.parseInt(req.getParameter(value2));
+			}
+			if(req.getParameter(value3)!=null){
+				type[2] = Integer.parseInt(req.getParameter(value3));
+			}
+			if(req.getParameter(value4)!=null){
+				type[3] = Integer.parseInt(req.getParameter(value4));
+			}
+			
+			
+			
+			for(int i = 0; i<seatNum.length; i++){
+				
+				int ticketType=0;
+				for(int j = 0; j<4; j++){}
+				
+				bookedSeatDTO dto = new bookedSeatDTO();
+				
+				String row_num = "";
+				int seat_num = 0;
+				
+				if(Integer.parseInt(seatNum[i])/10==0){
+					row_num = "A";
+					seat_num = Integer.parseInt(seatNum[i])%10;
+				}if(Integer.parseInt(seatNum[i])/10==1){
+					row_num = "B";
+					seat_num = Integer.parseInt(seatNum[i])%10;
+				}if(Integer.parseInt(seatNum[i])/10==2){
+					row_num = "C";
+					seat_num = Integer.parseInt(seatNum[i])%10;
+				}if(Integer.parseInt(seatNum[i])/10==3){
+					row_num = "D";
+					seat_num = Integer.parseInt(seatNum[i])%10;
+				}
+				
+				dto.setRow_num(row_num);
+				dto.setSeat_num(seat_num);
+				dto.setScreen_id(screen_id);
+				dto.setType(Integer.toString(ticketType));//어떻게?
+				dto.setUser_id(user_id);
+				
+				
+				dao.insertBookedSeats(dto,bookedNum);
+				
+				
+			}
+			
+			
+			
+				
+			
+			}
+			
+			//------------------------------------------------------------------
+			
+			
+//			dao.insertBookedSeats(lists, maxNum);
+
+			url = cp;
+			resp.sendRedirect(url);
+			
+			
+		}else if (uri.indexOf("theaterSelect.do") != -1) {
 
 			// String nowHour2 = req.getParameter("nowHour");
 			// String nowDay2 = req.getParameter("nowDay");
@@ -284,7 +404,7 @@ public class BookingServlet extends HttpServlet {
 			url = "/booking/theaterSelect.jsp";
 			forward(req, resp, url);
 
-		} else if (uri.indexOf("movieSelect.do") != -1) {
+		}else if (uri.indexOf("movieSelect.do") != -1) {
 
 			
 			
@@ -318,7 +438,7 @@ public class BookingServlet extends HttpServlet {
 			if (strDate != null) {
 				String[] strTemp = strDate.split("일");
 				selectedDate2 = strTemp[0];
-				System.out.println(selectedDate2);
+				//System.out.println(selectedDate2);
 			}
 
 			selectedHour2 = req.getParameter("selectedHour"); // 선택된 시간
@@ -357,18 +477,7 @@ public class BookingServlet extends HttpServlet {
 			
 			
 			
-		} else if (uri.indexOf("seatSelect_ok.do") != -1) {
-			int temp = dao.getBookedNum();		
-			int maxNum = temp +1;
-			
-			
-			
-//			dao.insertBookedSeats(lists, maxNum);
-
-			
-			
-			
-		}
+		} 
 
 	}
 

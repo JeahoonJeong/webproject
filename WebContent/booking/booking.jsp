@@ -28,10 +28,10 @@
 	var windowObj; // 자식창 window 객체를 저장할 변수
 
 	// 영화 선택해서 다음 좌석선택으로 넘어가기
-	function goNextPage(){
+	function goNextPage(screen_id){
 		var f= document.bookingForm;
 		
-		f.action ="<%=cp%>/Booking/seatSelect.do" ;
+		f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
 		f.submit();
 		
 	}
@@ -502,7 +502,7 @@
 									
 									<input type="hidden" name ="type" value ="${dto2.type }">
 									
-									&nbsp;&nbsp;<a onclick="goNextPage();"> 
+									&nbsp;&nbsp;<a onclick="goNextPage(${dto2.screen_id});"> 
 									<c:if test="${dto2.age_limit=='all' }"><img width="20" height="20" src="${imagePath2 }/ageallbig.png"></c:if>
 									<c:if test="${dto2.age_limit=='12' }"><img width="20" height="20" src="${imagePath2 }/age12big.png"></c:if>
 									<c:if test="${dto2.age_limit=='15' }"><img width="20" height="20" src="${imagePath2 }/age15big.png"></c:if>

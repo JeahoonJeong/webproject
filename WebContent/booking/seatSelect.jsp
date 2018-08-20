@@ -44,13 +44,16 @@
 		
 		value4 = f.type4.options[cvalue4].value;
 		
-		
+		var moviename = encodeURI("${movie_name}");
+		var starttime = encodeURI("${start_time}");
+		var type = encodeURI("${type}");
+		var district = encodeURI("${district}");
 		
 		f.action = "<%=cp%>/Booking/seatSelect.do?value1=" + value1
 				+ "&value2=" + value2 + "&value3=" + value3 + "&value4="+ value4 + 
-				"&movie_name=" + encodeURI(${movie_name})+"&age_limit=" +${age_limit}+
-				"&screen_num=" + ${screen_num}+"&start_time=" +${start_time}+
-				"&type=" + ${type}+"&district=" + ${district};
+				"&movie_name=" + moviename+"&age_limit=" +${age_limit}+
+				"&screen_num=" + ${screen_num}+"&start_time=" +starttime+
+				"&type=" + type+"&district=" + district+"&screen_id="+${screen_id};
 		f.submit();
 	}
 
@@ -59,26 +62,11 @@
 		var cntCheck = 0; // 사용자가 체크한 체크박스 개수
 		var f = document.seatSelectForm;
 
-		var value1 = $
-		{
-			value1
-		}
-		;
-		var value2 = $
-		{
-			value2
-		}
-		;
-		var value3 = $
-		{
-			value3
-		}
-		;
-		var value4 = $
-		{
-			value4
-		}
-		;
+		var value1 = ${value1};
+		var value2 = ${value2};
+		var value3 = ${value3};
+		var value4 = ${value4};
+		
 
 		var arrSeatNum = new Array; // 선택된 좌석 번호 저장할 배열
 
@@ -91,8 +79,6 @@
 			if (arr_Check[i].checked == true) {
 				cntCheck++; // 체크 되어있다면 1증가
 				arrSeatNum.push(arr_Check[i].value); // 체크박스의 값을 배열에 추가
-				
-				
 			}
 		}
 		alert("선택한 좌석수 : " + cntCheck);
@@ -110,7 +96,8 @@
 
 		
 		
-		f.action = "<%=cp%>/Booking/seatSelect_ok.do?arrSeatNum="+arrSeatNum;
+		f.action = "<%=cp%>/Booking/seatSelect_ok.do?arrSeatNum="+arrSeatNum+"&screen_id="+${screen_id}+"&value1=" + value1
+			+ "&value2=" + value2 + "&value3=" + value3 + "&value4="+ value4;
 		f.submit();
 		
 	}
@@ -464,7 +451,7 @@
 						<input type="button" value = "이전" onclick="" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #F9F9F9 ; color : #747474 ;border: 0"/>
 					</td>	
 					<td style= "background-color:#555555; width: 20px;" > </td>
-					<td>					
+					<td>			
 						<input type="button" value = "다음" onclick="cntCheck();" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #513396; color: #ffffff; border: 0"/>
 					</td>
 				</tr>

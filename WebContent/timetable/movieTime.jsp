@@ -150,7 +150,7 @@
 				<p class="mtime_info">
 					<span class="time">${dto.start_time }~${dto.end_time }</span> 
 					<span class="seat"> ${dto.seatedseat}/${dto.seatnumber}</span><br>
-					<br><a href="<%=cp%>/">예매</a>
+					<br><a href="<%=cp%>">예매</a>
 				</p>
 			</div>
 			<c:set var="district" value="${dto.district }" />
