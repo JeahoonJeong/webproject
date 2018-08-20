@@ -195,6 +195,36 @@ public class MovieDAO {
 		
 	}
 	
+	public int getStillCount(String movie_id){
+		
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			
+			sql = "select count(file_name) count from image_files where movie_id=?";
+			
+			pstmt = conn.prepareCall(sql);
+			
+			pstmt.setString(1, movie_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				count = rs.getInt("count");
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return count;
+	}
+	
 	
 	public List<MovieDTO> getAllComment(String movie_id){//moive.do에 뿌릴 영화 코멘트를 가져옴
 		
@@ -207,11 +237,22 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select movie_id,user_id,comment_date,comments,recommend_num from comments where movie_id=?";
+			/*sql = "select * from (select rownum rnum, data.* from (select a.*, rating from";
+			sql+= "(select movie_id,a.user_id,comment_date,comments,recommend_num,file_name from comments a,";
+			sql+= "member_image b where a.user_id=b.user_id and movie_id=?) a , rating b where ";
+			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id) data) where rnum>=? and rnum<=?;";*/
+					
+			sql = "select a.*, rating from ";
+			sql+= "(select movie_id,a.user_id,comment_date,comments,recommend_num,file_name from comments a,";
+			sql+= "member_image b where a.user_id=b.user_id and movie_id=?) a , rating b where ";
+			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id";
+			
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, movie_id);
+			/*pstmt.setInt(2, start);
+			pstmt.setInt(3, end);*/
 			
 			rs = pstmt.executeQuery();
 			
@@ -222,7 +263,10 @@ public class MovieDAO {
 				dto.setMovie_id(rs.getString("movie_id"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setComment_date(rs.getString("comment_date"));
+				dto.setComments(rs.getString("comments"));
 				dto.setRecommend_num(rs.getInt("recommend_num"));
+				dto.setFile_name(rs.getString("file_name"));
+				dto.setRating(rs.getInt("rating"));
 				
 				lst.add(dto);	
 			}
@@ -235,6 +279,37 @@ public class MovieDAO {
 		}
 		return lst;
 		
+	}
+	
+	public int insertComment(MovieDTO dto){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			
+			sql = "insert into comments (user_id,movie_id,comments,comment_date,recommend_num) ";
+			sql+= "values(?,?,?,sysdate,0)";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getUser_id());
+			pstmt.setString(2, dto.getMovie_id());
+			pstmt.setString(3, dto.getComments());
+			
+			result = pstmt.executeUpdate();
+			
+			//rating insert sql 작성해야함
+			
+			pstmt.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 	
 	

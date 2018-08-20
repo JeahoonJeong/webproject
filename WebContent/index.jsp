@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="util.MyUtil"%>
 <%@page import="com.movie.MovieDAO"%>
 <%@page import="util.DBCPConn"%>
@@ -11,10 +12,21 @@
 <%
 	//POST 방식에서 한글깨짐을 방지
 	request.setCharacterEncoding("UTF-8");
-	String cp = request.getContextPath();
 	
 	Connection conn = DBCPConn.getConnection();
 	MovieDAO dao = new MovieDAO(conn);
+	MyUtil myUtil = new MyUtil();
+	
+	String cp = request.getContextPath();
+	String uri = request.getRequestURI();
+	String url;
+	
+	String root = getServletContext().getRealPath("/");
+	String path = root + File.separator + "mv" + File.separator + "imageFile";
+	
+	File f = new File(path);
+	if(!f.exists())
+		f.mkdirs();
 	
 	String pageNum = request.getParameter("pageNum");
 	
@@ -23,18 +35,14 @@
 	if(pageNum!=null)
 		currentPage = Integer.parseInt(pageNum);
 	
-	//��ü ������ ����
 	int numPerPage = 21;
 	int dataCount = dao.getDataCount();
-	
-	MyUtil myUtil = new MyUtil();
 	
 	int totalPage = myUtil.getPageCount(numPerPage, dataCount);
 	
 	if(currentPage>totalPage)
 		currentPage=totalPage;
 	
-	//������ ���۰� ��
 	int start = (currentPage-1)*numPerPage+1;
 	int end = currentPage*numPerPage;
 	
@@ -44,6 +52,13 @@
 	String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
 	
 	String imagePath = cp + "/mv/imageFile";
+	
+	request.setAttribute("lst", lst);
+	request.setAttribute("pageIndexList", pageIndexList);
+	request.setAttribute("dataCount", dataCount);
+	request.setAttribute("pageNum", currentPage);
+	request.setAttribute("totalPage", totalPage);
+	request.setAttribute("imagePath", imagePath);
 	
 	
 	
@@ -60,6 +75,7 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+
 #header-wrap {
 	position: fixed;
 	top: -20px;
@@ -70,7 +86,7 @@
 
 #header {
 	background-color: white;
-	width: 1000px;
+	width: 1140px;
 	margin: auto;
 	height: 50px;
 }
@@ -97,8 +113,8 @@
 	color: black;
 	text-decoration: none;
 	display: block;
-	width: 100px;
-	font-size: 12px;
+	width: 120px;
+	font-size: 11pt;
 	font-weight: bold;
 }
 
@@ -111,7 +127,7 @@
 	margin-top: 60px;
 	padding-left: 0px;
 	height: 80px;
-	width: 1000px;
+	width: 1140px;
 	border-bottom-style: solid;
 	border-bottom-width: 5px;
 	border-bottom-color: #352669;
@@ -124,33 +140,38 @@
 }
 
 #header-menu-right {
+	margin-right:40px;
 	float: right;
 }
 
 #header-menu-left img {
+	margin-top: 5px;
 	width: 80px;
 	height: 40px;
 }
 
 #header-menu-right img {
+	margin-top: 5px;
 	width: 110px;
 	height: 40px;
 }
 
-#header-menu ul li {
+#header-menu ul li{
 	list-style: none;
 	float: left;
 	line-height: 50px;
 	vertical-align: middle;
 	text-align: center;
+	margin: 0px;
+	pdding: 0px;
 }
 
 #header-menu-left .menu-left {
 	color: black;
 	text-decoration: none;
 	display: block;
-	width: 150px;
-	font-size: 12px;
+	width: 100px;
+	font-size: 11pt;
 	font-weight: bold;
 	text-align: left;
 }
@@ -159,8 +180,8 @@
 	color: black;
 	text-decoration: none;
 	display: block;
-	width: 150px;
-	font-size: 12px;
+	width: 110px;
+	font-size: 11pt;
 	font-weight: bold;
 	text-align: left;
 }
@@ -251,7 +272,7 @@
 }
 
 #middle-box {
-	background-color: gray;
+	background-color: #E6E6E6;
 	overflow: hidden;
 }
 
@@ -262,7 +283,8 @@
 	height: 500px;
 }
 
-#middle-list ul li {
+#middle-list li {
+	
 	list-style: none;
 	float: left;
 	line-height: 50px;
@@ -272,39 +294,26 @@
 
 #middle-list a {
 	background-color: white;
-	color: black;
+	color: #666666;
 	text-decoration: none;
 	display: block;
-	width: 100px;
-	font-size: 12px;
+	width: 140px;
+	font-size: 11pt;
 	font-weight: bold;
+	border: 2px solid #666666;
+	
 }
+
+#middle-list a:HOVER {
+	color: white;
+	background-color: #666666;
+}
+
+
 </style>
 
-<script type="text/javascript">
-	var itv = 1000;
-
-	var bannerArray = new Array();
-	bannerArray[0] = "./image/banner1.jpg";
-	bannerArray[0] = "./image/banner2.jpg";
-	bannerArray[0] = "./image/banner3.jpg";
-	bannerArray[0] = "./image/banner4.jpg";
-	bannerArray[0] = "./image/banner5.jpg";
-	bannerArray[0] = "./image/banner6.jpg";
-
-	function bannerRotate() {
-
-		setTimeout("blendbanner()", itv);
-
-	}
-
-	function blendbanner() {
-
-	}
-</script>
-
 </head>
-<body>
+<body >
 
 	<!-- HEADER 시작 -->
 	<div id="header-wrap">
@@ -327,8 +336,8 @@
 			<ul>
 				<li class="menu-left"><img alt=""
 					src="<%=cp%>/login/image/menu.jpg"></li>
-				<li class="menu-left">필름소사이어티</li>
-				<li class="menu-left">클래식 소사이어티</li>
+				<li class="menu-left" style="width: 120px">필름소사이어티</li>
+				<li class="menu-left" style="width: 130px">클래식 소사이어티</li>
 			</ul>
 		</div>
 
@@ -351,7 +360,7 @@
 
 		<div id="header-menu-right">
 			<ul>
-				<li class="menu-right">고객센터 | 멤버십 | VIP</li>
+				<li class="menu-right" style="width: 170px">고객센터 | 멤버십 | VIP</li>
 				<li class="menu-right"><a
 					href="<%=cp%>/Timetable/movieTime.do"><img alt=""
 						src="./login/image/timetable.jpg"></a></li>
@@ -365,14 +374,15 @@
 
 	<div id="topbanner">
 		<div id="topbanner-wrap">
-			<img alt="" src="./image/banner3.jpg">
+			<img id="banner-image"  alt=""  src="./image/banner1.jpg">
 		</div>
 	</div>
 
 	<div id="middle-box">
-		<div id="middle-box-wrap">
-			<div id="middle-list">
-				<ul>
+		<div id="middle-box-wrap" style="width: 1000px; margin: 0 auto;">
+		
+			<div id="middle-list" style=" width: 1000px; margin: 0 auto;">
+				<ul style="overflow: hidden; margin: 170px; margin-top: 60px; margin-bottom: 0px;">
 					<li><a href="">박스오피스</a></li>
 					<li><a href="">최신개봉작</a></li>
 					<li><a href="">상영예정작</a></li>
@@ -382,8 +392,8 @@
 
 			<!-- 메인 영화정보 -->
 
-			<div id="content">
-				<table width="1722px">
+			<div id="content" style="margin: 0 auto;">
+				<table width="1000px" >
 					<tr>
 						<td height="50px" colspan="7"></td>
 
@@ -393,7 +403,7 @@
 						<c:if test="${i==0 }">
 							<tr>
 						</c:if>
-						<c:if test="${i!=0&&i%7==0 }">
+						<c:if test="${i!=0&&i%4==0 }">
 							</tr>
 							<tr>
 						</c:if>
@@ -401,7 +411,8 @@
 							<table width="230px" height="503px" style="margin: 3px;">
 								<tr>
 									<td class="top"><img src="${imagePath }/${dto.file_name}"
-										width="230px" height="330px" /></td>
+										width="230px" height="330px" />
+									</td>
 								</tr>
 								<tr>
 									<td width="230px" height="50px" class="bottom"><span
@@ -835,4 +846,29 @@
 	<!-- FOOTER 끝 -->
 
 </body>
+
+<script type="text/javascript">
+	var itv = 2000;
+	var mainImage = document.getElementById("banner-image");
+	var imageIndex = 0;
+	
+	var ImageArray = new Array();
+	ImageArray[0] = "./image/banner1.jpg";
+	ImageArray[1] = "./image/banner2.jpg";
+	ImageArray[2] = "./image/banner3.jpg";
+	ImageArray[3] = "./image/banner4.jpg";
+	ImageArray[4] = "./image/banner5.jpg";
+	ImageArray[5] = "./image/banner6.jpg";
+
+	function ImageRotate() {
+		mainImage.setAttribute("src", ImageArray[imageIndex]);
+		imageIndex++;
+		if(imageIndex>=ImageArray.length){
+			imageIndex=0;
+		}
+	}
+	
+	setInterval(ImageRotate,itv);
+	
+</script>
 </html>

@@ -72,10 +72,10 @@ public class TheaterServlet extends HttpServlet {
 			date = date+"/0"+m+"/"+d+"%";
 
 			//다음페이지 데이터 받기
-			String district = req.getParameter("district");
-			String start_time = req.getParameter("start_time");					
+			String theater_id = req.getParameter("theater_id");
+			String start_time = req.getParameter("start_time");
 			
-			req.setAttribute("district", district);
+			req.setAttribute("theater_id", theater_id);
 			req.setAttribute("start_time", start_time);
 	
 			url = "/theater/theaterP2.jsp";
@@ -87,7 +87,6 @@ public class TheaterServlet extends HttpServlet {
 			
 			String theater_id = req.getParameter("theater_id");
 			req.setAttribute("theater_id", theater_id);
-			System.out.println(theater_id);
 			
 			String year = req.getParameter("year");
 			String month = req.getParameter("month");
@@ -98,7 +97,6 @@ public class TheaterServlet extends HttpServlet {
 				date = year + "/";
 				date = date.substring(2, 4);
 				date = date + "/0" + month + "/" + day + "%";
-				System.out.println(date);
 			} else {
 
 				Calendar cal = Calendar.getInstance();
@@ -109,12 +107,9 @@ public class TheaterServlet extends HttpServlet {
 				date = y + "/";
 				date = date.substring(2, 4);
 				date = date + "/0" + m + "/" + d + "%";
-				System.out.println(date);
 
 			}
-			
-			
-			
+
 			List<TheaterDTO> lists = dao.getlist(theater_id,date);			
 			req.setAttribute("lists", lists);
 			

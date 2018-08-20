@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -12,10 +13,55 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/movie/css/movie.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<script type="text/javascript">
+
+	<%-- function imageChange(file_name) {
+		
+		var i = "${imagePath }/" + file_name;
+		
+		alert(i);
+		
+		var f = document.mvFrom;
+		
+		f.action = "<%=cp%>/Movie/movie.do"
+		f.submit();
+		
+		
+		
+	} --%>
+	
+	function sendIt() {
+		var f = document.mvForm;
+		
+		str = f.rate2.value;
+		if(!str){
+			alert("평점을 선택하세요");
+			return;
+		}
+		f.rate2.value = str;
+		
+		str = f.comments.value;
+		if(!str){
+			alert("내용을 입력해주세요");
+			f.comments.focus();
+			return;
+		}
+		f.comments.value = str;
+		
+		f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
+		f.submit();
+		
+		
+	}
+
+
+
+</script>
 <title>Movie Info</title>
 <style type="text/css">
 
 select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);   }
+
 
 </style>
 <script type="text/javascript">
@@ -30,6 +76,7 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 </script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
+<form action="" method="post" name="mvForm">
 <div class="all">
 	<table border="0" width="888px" height="376px" style="margin-bottom: 40px;">
 		<tr>
@@ -80,7 +127,7 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 			<span style="float: left;">
 			<font size="2pt;" color="#4C4C4C">내 평점</font> 
 			
-			<select id="rate" style="width: 119px; height: 20px;">
+			<select id="rate1" style="width: 119px; height: 20px;">
 			<option value="0"></option>
 			</select>
 			
@@ -100,25 +147,26 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 		</div>
 	</div>
 	<div id="image">
-		<h3>스틸컷 <font style="font-size: 14px;">22</font></h3>
+		<h3>스틸컷 <font style="font-size: 14px;">${stillCount }</font></h3>
 		<div id="image_top">						
-			<div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
-			<img src="${imagePath }/left_btnn.png"/></a></div>
+			<%-- <div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
+			<img src="${imagePath }/left_btnn.png"/></a></div> --%>
 			<c:forEach var="still" items="${still }">
-			<span style="float: left;"><img src="${imagePath }/${still.file_name}" height="110px"/></span>
+			<span style="float: left;"><img src="${imagePath }/${still.file_name}" height="110px" onclick="imageChange(${still.file_name})"/></span>
 			</c:forEach>
 		
-		<div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
-			<img src="${imagePath }/right_btnn.png"/></a></div>		
+		<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
+			<img src="${imagePath }/right_btnn.png"/></a></div>	 --%>	
 	</div>
 		<div id="image_content">
-			<div class="lbtn"><a href="javascript:void(0);">
-			<img src="${imagePath }/left_btnbig.png"/></a></div>
+			<%-- <div class="lbtn"><a href="javascript:void(0);">
+			<img src="${imagePath }/left_btnbig.png"/></a></div> --%>
 			<img src="${imagePath }/godStill1.jpg" height="500px">
-			<div class="rbtn"><a href="javascript:void(0);">
-			<img src="${imagePath }/right_btnbig.png"/></a></div>
+			<%-- <div class="rbtn"><a href="javascript:void(0);">
+			<img src="${imagePath }/right_btnbig.png"/></a></div> --%>
 		</div>
 	</div>
+	<!-- </form> -->
 	<div id="comment">
 		<div id="comment_head">
 		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(${dto.commCount })</span></h3>
@@ -128,41 +176,93 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 			<img width="56px" height="56px" src="${imagePath }/profile.png"></span>
 			<table id="comment_input">
 				<tr>
-					<td class="star"></td>
+					<td class="star">
+					<select id="rate2" style="width: 119px; height: 30px; border-style: none; appearance: none; ">
+					<option value="0">☆☆☆☆☆</option>
+					<option value="1">★☆☆☆☆</option>
+					<option value="2">★★☆☆☆</option>
+					<option value="3">★★★☆☆</option>
+					<option value="4">★★★★☆</option>
+					<option value="5">★★★★★</option>
+					</select>
+					</td>
 					<td class="text">
-					<textarea title="댓글쓰기" name="comment" maxlength="100"
+					<textarea title="댓글쓰기" name="comments" maxlength="100"
 					class="textarea"></textarea>
 					</td>
 					<td width="84px" height="84px">
-					<input type="button" value="등록" class="btn"/>
+					<input type="button" value="등록" class="btn" onclick="sendIt();"/>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<div id="comment_view">
-			<div class="cell">
-				<div style="width: 80px; float: left;">
-					<img src="./image/profile.png" height="54px" width="54px"/>
-				</div>
-				<div class="text">
-				<div class="id"><strong>knr12**</strong></div>
-				<div class="date"><span>18.08.16</span></div>
-				<div><img src="./image/smallstar.png"/></div>
-				<p><span class="content">재밌는 영화
+	<div id="comment_view">
+		<table width="888px">
+			<tr>
+				<td class="head" colspan="2"></td>
+			</tr>
+			<c:set var="i" value="0"/>	
+			<c:forEach var="comm" items="${comm }">
+			<c:if test="${i==0 }">
+			<tr>
+			</c:if>
+			<c:if test="${i!=0&&i%2==0 }">
+			</tr>
+			<tr>
+			</c:if>
+				<td class="cell">
+				<span style="width: 80px; float: left;">
+				<c:choose>
+					<c:when test="${empty comm.file_name }">
+						<img src="${imagePath }/profile.png" height="54px" width="54px"/>
+					</c:when>
+					<c:otherwise>
+						<img src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
+					</c:otherwise>
+				</c:choose>
+				</span>
+				<span class="text">
+				<span class="id"><strong>${comm.user_id }</strong></span>
+				<span class="date">${comm.comment_date }</span>
+				<span>
+					<c:if test="${comm.rating==0 }"><img src="${imagePath }/s_star0.png"></c:if>
+					<c:if test="${comm.rating<3&&0<comm.rating}"><img src="${imagePath }/s_star1.png"></c:if>
+					<c:if test="${2<comm.rating&&comm.rating<5}"><img src="${imagePath }/s_star2.png"></c:if>
+					<c:if test="${4<comm.rating&&comm.rating<7 }"><img src="${imagePath }/s_star3.png"></c:if>
+					<c:if test="${6<comm.rating&&comm.rating<9 }"><img src="${imagePath }/s_star4.png"></c:if>
+					<c:if test="${8<comm.rating&&comm.rating<11 }"><img src="${imagePath }/s_star5.png"></c:if>
+				</span>
+				<p><span class="content">
+				${comm.comments }
 				</span></p>
-				<div class="bottom">
-				<a href="javascript:thumb();">
-				<img src="./image/thumb.png" style="vertical-align: middle;" /> 추천 
-				<font style="font-weight: bold;">5</font></a></div>		
-				</div>
-			</div>	
-			
-		</div>
+				<p class="bottom">
+					<a href="javascript:thumb();">
+					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
+					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
+				</p>
+				</td>
+			<c:set var="i" value="${i+1 }" />
+			</c:forEach>
+		</table>
+		<input type="hidden" name="stillCount" value="${stillCount }"/>
+		<%-- <div>
+		<p align="center">
+			<c:if test="${dataCount!=0 }">
+				${pageIndexList }
+			</c:if>
+			<c:if test="${dataCount==0 }">
+				등록된 코멘트가 없습니다.
+			</c:if>
+				
+		</p>
+		</div> --%>
 	</div>
-	
-	
-		
+	</div>
 </div>
+</form>
+
+	
+	
 
 
 

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import oracle.jdbc.driver.DBConversion;
+
 public class MemberDAO {
 	
 	private Connection conn;
@@ -63,4 +65,60 @@ public class MemberDAO {
 		
 	}
 	
+	
+	public void insertData(MemberDTO dto){
+		
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			
+			sql = "insert into member(user_id, user_pwd, user_name, birth, tel, email, addr) "
+					+ "values(?,?,?,to_date(?,'YYYYMMDDHH24MISS'),?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getUser_id());
+			pstmt.setString(2, dto.getUser_pwd());
+			pstmt.setString(3, dto.getUser_name());
+			pstmt.setString(4,dto.getBirth());
+			pstmt.setString(5,dto.getTel());
+			pstmt.setString(6,dto.getEmail());
+			pstmt.setString(7,dto.getAddr());
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import util.DBCPConn;
 import util.MyUtil;
@@ -54,7 +55,7 @@ public class MovieServlet extends HttpServlet{
 		if(!f.exists())
 			f.mkdirs();
 		
-		if(uri.indexOf("list.do")!=-1){
+		if(uri.indexOf("list.do")!=-1){// øµ»≠ ∏ÆΩ∫∆Æ
 			
 			String pageNum = req.getParameter("pageNum");
 			
@@ -63,7 +64,7 @@ public class MovieServlet extends HttpServlet{
 			if(pageNum!=null)
 				currentPage = Integer.parseInt(pageNum);
 			
-			//¿¸√º µ•¿Ã≈Õ ∞πºˆ
+			//ÔøΩÔøΩ√º ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
 			int numPerPage = 21;
 			int dataCount = dao.getDataCount();
 			
@@ -72,7 +73,7 @@ public class MovieServlet extends HttpServlet{
 			if(currentPage>totalPage)
 				currentPage=totalPage;
 			
-			//µ•¿Ã≈Õ Ω√¿€∞˙ ≥°
+			//ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩ€∞ÔøΩ ÔøΩÔøΩ
 			int start = (currentPage-1)*numPerPage+1;
 			int end = currentPage*numPerPage;
 			
@@ -94,30 +95,93 @@ public class MovieServlet extends HttpServlet{
 			url = "/movie/list.jsp";
 			forward(req, resp, url);
 			
-		}else if(uri.indexOf("movie.do")!=-1){
+		}else if(uri.indexOf("movie.do")!=-1){//øµ»≠ ªÛºº∆‰¿Ã¡ˆ
 			
 			
-			String pageNum = req.getParameter("pageNum");
+			/*String pageNum;
+			
+			if(req.getParameter("pageNum")==null||req.getParameter("pageNum").equals("")){
+				pageNum="1";
+			}else{
+				pageNum = req.getParameter("pageNum");
+			}*/
 			
 			MovieDTO dto = new MovieDTO();
-			
 			String movie_id = req.getParameter("movie_id");
 			
+			System.out.println(movie_id);
+			
 			dto = dao.getOneData(movie_id);
+			
+			/*int currentPage = 1;
+			
+			if(pageNum!=null)
+				currentPage = Integer.parseInt(pageNum);
+			
+			//¿¸√º µ•¿Ã≈Õ ∞πºˆ
+			int numPerPage = 10;
+			int dataCount = dto.getCommCount();
+			
+			int totalPage = myUtil.getPageCount(numPerPage, dataCount);
+			
+			if(currentPage>totalPage)
+				currentPage=totalPage;
+			
+			//µ•¿Ã≈Õ Ω√¿€∞˙ ≥°
+			int start = (currentPage-1)*numPerPage+1;
+			int end = currentPage*numPerPage;*/
+			
 			List<MovieDTO> still = dao.getStillcut(movie_id);
+			List<MovieDTO> comm = dao.getAllComment(movie_id);
+			int stillCount = dao.getStillCount(movie_id);
 					
 			dto.setSummary(dto.getSummary().replaceAll("/", "<br>"));
+			/*
+			String listUrl = cp + "/Movie/movie.do?movie_id" + movie_id;
+			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);*/
 			
 			String imagePath = cp + "/mv/imageFile";
 			
+			/*req.setAttribute("totalPage", totalPage);
+			req.setAttribute("dataCount", dataCount);
+			req.setAttribute("pageIndexList", pageIndexList);
+			req.setAttribute("pageNum", currentPage);*/
 			req.setAttribute("imagePath", imagePath);
 			req.setAttribute("dto", dto);
 			req.setAttribute("still", still);
+			req.setAttribute("comm", comm);
+			req.setAttribute("stillCount", stillCount);
 	
-			url = "/movie/movie.jsp?movie_id=" + movie_id;
+			url = "/movie/movie.jsp?movie_id= + movie_id";
 			forward(req, resp, url);
 			
-		}else if(uri.indexOf("movieTime_ok.do")!=-1){
+			
+		
+		}else if(uri.indexOf("comments.do")!=-1){//ƒ⁄∏‡∆Æ ≥ªøÎ ¿˙¿Â
+			
+			HttpSession session = req.getSession();
+			
+			MovieDTO user = (MovieDTO)session.getAttribute("loginInfo");
+			String user_id = user.getUser_id();
+			
+			String movie_id = req.getParameter("movie_id");
+			
+			MovieDTO dto = new MovieDTO();
+			
+			dto.setMovie_id(movie_id);
+			dto.setUser_id(user_id);
+			dto.setComments(req.getParameter("comments"));
+			dto.setRating(Integer.parseInt(req.getParameter("rate2"))*2);
+			
+			dao.insertComment(dto);
+			
+			url = "/Movie/movie.do?movie_id=" + movie_id;			
+			forward(req, resp, url);
+
+			
+			
+			
+		}else if(uri.indexOf("movieTime_ok.do")!=-1){ // ªÛøµΩ√∞£«•∑Œ ø¨∞·
 			
 			String movie_id = req.getParameter("movie_id");
 			

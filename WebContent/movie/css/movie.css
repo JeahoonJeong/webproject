@@ -101,9 +101,8 @@
 	float: right;
 }
 #comment{
-	height: 992px;
+	/* height: 992px; */
 	width: 888px;
-	margin-bottom: 60px;
 }
 #comment_head{
 	color: #333333;
@@ -136,27 +135,28 @@
 .btn2:hover{background-color: #666666; color: white;}
 .btn3:hover{border: 1px solid #00858C;}
 
-#comment_view{margin-top: 60px; 888px; height: 785px; border-top: 1px solid #f0f0f0;}
-#comment_view .head{font-size: 12px; color: }
+#comment_view{width:888px; /* height: 785px; */ }
+#comment_view .head{border-bottom: 1px solid #f0f0f0; width: 888px; height: 60px; }
 #comment_view .div{float: left;
     padding-left: 10px;
     margin-left: 10px;
     border-left: 1px solid #ddd;
-    line-height: 12px;}
-#comment_view .cell{    
+    line-height: 12px;} 
+#comment_view .cell{   
 	position: relative;
     vertical-align: top;
-    width: 404px;
+    width: 400px;
     height: 158px;
     border-bottom: 1px solid #f0f0f0;
     padding: 20px 20px;}
 #comment_view .cell:first-child{border-right: 1px solid #f0f0f0;}
-#comment_view .text{width: 314px; height: 118px; float: left;}
-#comment_view .id{color: #503396; font-size: 18px; font-weight: bold; margin-bottom: 1px;}
+#comment_view .text{width: 310px; height: 118px; float: left; }
+#comment_view .id{float:left; padding-top:10px; clear:right; width: 300px; height:30px; margin-top: 0px; color: #503396; font-size: 18px; font-weight: bold;}
 #comment_view .date{font-size: 12px; color: #666666; margin-right: 6px; float: left;}
 #comment_view .content{color: #333333; font-size: 14px; line-height: 20px; margin: 4px 0 35px;}
-#comment_view .bottom{position:absolute; bottom:20px; left: 100px; width: 314px; float: inherit;
+#comment_view .bottom{position: absolute; bottom:20px; left: 100px; width: 314px;
 font-size: 12px; float: left;}
 
 #comment_view a:link{text-decoration: none; color: #333333;}
+
 
