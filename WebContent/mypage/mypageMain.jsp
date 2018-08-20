@@ -18,8 +18,14 @@
 <jsp:include page="../header.jsp" flush="false"/>
 
 <div id="mypage">
-<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px;"><a href="<%=cp%>/Mypage/mypageMain.do"><span class="font"><br/>나의 메가박스<br/>&nbsp;<br/></span></a></div>
+<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px; padding-right: 40px;">
+<a href="<%=cp%>/Mypage/mypageMain.do"><span class="font"><br/>나의 메가박스
+<span class="right"><input type="button" class="btn1" value="로그아웃" onclick="javascript:location.href='<%=cp%>/Login/log_out.do';"></span>
+<br/>&nbsp;<br/></span></a>
+</div>
+
 <br/>
+
 <div><span class="font" style="padding-left: 20px;">${member.getUser_name() }</span> 님, 오늘도 영화처럼 멋진 하루 되세요!<br/><br/>
 <br/><br/>
 </div>

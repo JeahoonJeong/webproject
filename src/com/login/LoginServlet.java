@@ -124,7 +124,7 @@ public class LoginServlet extends HttpServlet{
 			
 			session.removeAttribute("member"); 
 			session.invalidate();	
-			
+
 			resp.sendRedirect(cp);
 			
 		}
