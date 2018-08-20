@@ -30,11 +30,12 @@
 		
 	} --%>
 	
-	function goToP() {
+	function thumb() {
 		
-		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
+		var f = document.mvForm;
 		
-		window.close();
+		f.
+
 	}
 	
 	function sendIt() {
@@ -68,8 +69,6 @@
 		f.rating.value=f.rate2.options[svalue].value;
 	}
 
-	/* self.resizeTo(document.body.scrollWidth , document.body.scrollHeight + 10); */
-
 
 </script>
 <title>Movie Info</title>
@@ -79,6 +78,16 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 
 
 </style>
+<script type="text/javascript">
+
+	function goToP() {
+		
+		window.opener.location.href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}";
+		
+		window.close();
+	}
+
+</script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
 <form action="" method="post" name="mvForm">
@@ -158,10 +167,16 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 			<img src="${imagePath }/left_btnn.png"/></a></div> --%>
 			
 			<c:forEach var="still" items="${still }">
-			<span style="float: left;">
-			<a href="${imagePath }/${still.file_name}" target="iFrame"><img src="${imagePath }/${still.file_name}" height="110px"/></a></span>
-			</c:forEach>
+			<ul style="float: left;">
+			<li>
+			<a href="#image_top"><img src="${imagePath }/${still.file_name}" height="110px"/></a>
+
+			<img class="full" src="${imagePath }/${still.file_name}" height="500px" />
 			
+			</li>
+			</ul>
+			</c:forEach>
+
 		
 			<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/right_btnn.png"/></a></div>	 --%>	
@@ -169,20 +184,12 @@ select#rate option[value="0"] { background-image:url(${imagePath}/midrate0.png);
 		<div id="image_content">
 			<%-- <div class="lbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/left_btnbig.png"/></a></div> --%>
+		
 			
-			<div style="height: 100%; width:100%; float: center;">
-			<iframe style="overflow: hidden; height: 100%; width: 100%;" src="${imagePath }/${dto.file_name}"
-			id="iFrame" name="iFrame" frameborder="0" scrolling="no"></iframe>
-			</div>
-			
-			<%-- <div class="rbtn"><a href="javascript:void(0);">
+	<%-- 	<div class="rbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/right_btnbig.png"/></a></div> --%>
 		</div>
-		<div>
-			<iframe>
-			</iframe>
-		</div>
-		
+
 		
 	</div>
 	<!-- </form> -->

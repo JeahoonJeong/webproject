@@ -57,8 +57,8 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "select rnum,movie_id,movie_name,age_limit,rating,file_name from movie_list where rnum>=? and rnum<=?";
-			
+			sql = "select rnum, movie_id,movie_name,age_limit,rating,file_name from (select rownum rnum, data.* from (movie_list) data) where rnum>=? and rnum<=?";
+
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, start);
@@ -311,6 +311,9 @@ public class MovieDAO {
 		}
 		return result;
 	}
+	
+	
+	
 	
 	
 	
