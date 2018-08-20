@@ -3,7 +3,9 @@
 #topMenu {
 height: 30px; /* 메인 메뉴의 높이 */ 
 width: 1300px; /* 메인 메뉴의 넓이 */ 
+position: relative;
 
+background-color: #000000;
 }
  
 #topMenu ul { /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */ 
@@ -18,7 +20,7 @@ float: left; /* 왼쪽으로 나열되도록 설정 */
 line-height: 30px; /* 텍스트 한 줄의 높이를 30px로 설정 */ 
 vertical-align: middle; /* 세로 정렬을 가운데로 설정 */ 
 text-align: center; /* 텍스트를 가운데로 정렬 */ 
-position: relative; /* 해당 li 태그 내부의 top/left 포지션 초기화 */ 
+/* position: relative;  */ /* 해당 li 태그 내부의 top/left 포지션 초기화 */ 
 } 
 .menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */ 
 text-decoration:none; /* a 태그의 꾸밈 효과 제거 */ 
@@ -29,13 +31,10 @@ font-weight: bold; /* 폰트를 굵게 설정 */
 font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대로 설정 */ 
 } 
 
-.submenuLink{
-width: 110px;
-}
-
 .menuLink { /* 상위 메뉴의 글씨색을 흰색으로 설정 */ 
 color: white; 
 } 
+
 .topMenuLi:hover .menuLink { 
 /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */ 
 color: #368AFF; /* 글씨 색 */ 
@@ -44,6 +43,10 @@ background-color: #4d4d4d; /* 배경색 설정 */
 
 .longLink { /* 좀 더 긴 메뉴 스타일 설정 */ 
 width: 190px; /* 넓이는 190px로 설정 */ 
+} 
+
+.submenuLink{
+width: 115px;
 } 
 
 .submenuLink { /* 하위 메뉴의 a 태그 스타일 설정 */ 
@@ -65,6 +68,8 @@ transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되�
 -o-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 오페라) */ 
 width: 1300px;
 left: 0;
+
+background-color: #000000;
 } 
 
 .submenu li { 

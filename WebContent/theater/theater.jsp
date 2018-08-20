@@ -93,13 +93,7 @@ color: #368AFF; /* 글씨색을 빨간색으로 설정 */
 background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */ 
 }
 
-.tmain_container>.no1 {
-    position: relative;
-    height: 480px;
-    padding: 0;
-    background: url(http://image2.megabox.co.kr/mop/home/theater/bg.jpg) 50% 0 no-repeat;
-    background-size: cover;
-}
+
 
 .youtubeV {
 padding-top: 16px;
@@ -114,26 +108,17 @@ position: relative;
     background-size: cover;
 }
 
-body {
-background-color: #EAEAEA;
-}
-
 </style>
 
-<script type="text/javascript">
-  $(window).resize(function(){resizeYoutube();});
-  $(function(){resizeYoutube();});
-  function resizeYoutube(){ $("iframe").each(function(){ if( /^https?:\/\/www.youtube.com\/embed\//g.test($(this).attr("src")) ){ $(this).css("width","100%"); $(this).css("height",Math.ceil( parseInt($(this).css("width")) * 480 / 854 ) + "px");} }); }
-</script>
 
 </head>
 
 <body>
 
 
-<div class="tmain_container" align="center">
-	<jsp:include page="../header.jsp" flush="false"/>
 
+<jsp:include page="../header2.jsp" flush="false" />
+<div class="tmain_container" align="center">
 	<div class="section no1">
 	</div>	
 	

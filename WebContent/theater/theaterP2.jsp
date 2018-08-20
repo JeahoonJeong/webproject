@@ -130,7 +130,7 @@
 
 </head>
 <body>
-<jsp:include page="../header.jsp" flush="false" />
+<jsp:include page="../header2.jsp" flush="false" />
 	
 <%-- 	<div class="sub_navi ">
 		<div class="sub_navi_wrap">
@@ -326,7 +326,7 @@
 <table border="0" align="center" cellspacing="0" cellpadding="0">
 	<tr>
 		<td colspan="5" align="center"
-				style="padding-bottom: 10px; height: 62px">
+				style="padding-bottom: 10px; padding-top: 60px; height: 62px;">
 				
 	<a href="http://ad.imp.joins.com/NetInsight/event/
 	clk/v4tpfnqPm-iPGc4CsBFOh9jkGcGJ_ErzI1vVY3YeuIeIA
@@ -436,14 +436,33 @@
 		<c:if test="${!dto.screen_num.equals(screen_num) }">
 
 			
-		<tr class="lineheight_80">
+		<tr class="lineheight_80" style="width: 1300px;">
 			<th class="title">
 				<div>
-					<span class="age_m age_12">
-					<c:if test="${dto.age_limit eq 'all'}">전체관람가</c:if>
-					<c:if test="${dto.age_limit ne 'all'}">${dto.age_limit}세관람가</c:if>
-					&nbsp;${dto.movie_name}
+					<c:if test="${dto.age_limit eq 'all'}">
+					<span class="age_m age_all">
+					전체관람가
 					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '12'}">
+					<span class="age_m age_12">
+					${dto.age_limit}세관람가
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '15'}">
+					<span class="age_m age_15">
+					15세관람가
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '18'}">
+					<span class="age_m age_18">
+					18세관람가
+					</span>
+					</c:if>
+
+					
+
+					
 <!-- 영화 상세 보기 링크  -->
 					<strong>
 						<a href="" title="영화상세 보기">${dto.movie_name }</a>
@@ -476,9 +495,8 @@
 						</p>
 					</div>
 				</td>
-				
 				<c:set var="screen_num" value="${dto.screen_num}" />	
-			
+	
 		</c:forEach>
 	</tbody>
 </table>
