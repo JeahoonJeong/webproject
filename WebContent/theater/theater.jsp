@@ -115,7 +115,7 @@ position: relative;
 
 <body>
 
-<jsp:include page="../header3.jsp" flush="false"/>
+<jsp:include page="../header2.jsp" flush="false"/>
 <div class="tmain_container" align="center">
 	<div class="section no1">
 	</div>	
