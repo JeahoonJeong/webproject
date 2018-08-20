@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.login.MemberDTO;
+import com.mypage.MypageDAO;
 
 import util.DBCPConn;
 import util.MyUtil;
@@ -49,7 +51,9 @@ public class MovieServlet extends HttpServlet{
 
 		Connection conn = DBCPConn.getConnection();
 		MovieDAO dao = new MovieDAO(conn);
+		MypageDAO daoMP = new MypageDAO(conn);
 		MyUtil myUtil = new MyUtil();
+		
 
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
@@ -301,9 +305,20 @@ public class MovieServlet extends HttpServlet{
 			
 		}else if(uri.indexOf("wish.do")!=-1){
 			
+			List<MovieDTO> lst = new ArrayList<MovieDTO>();
+			
+			String user_id = req.getParameter("user_id");
+			
+			lst = daoMP.getWishList(user_id);
+			
+			
+			
+			String imagePath = cp + "/mv/imageFile";
+			
+			req.setAttribute("lst", lst);
+			req.setAttribute("imagePath", imagePath);
 			
 			url = "/movie/wish.jsp";
-			
 			forward(req, resp, url);
 			
 		
