@@ -336,11 +336,13 @@ function showCalendar() {
 </table>
 </form>
 
-
-
+<c:if test="${theater_id==null }">
+<p align="center"><img src="../theater/image/영화관선택.png" width="1000" height="400" border="2" align="middle"></p>
+</c:if>
 
 <table border="0" class="scheduleP2">
-
+	<c:forEach var="dto" items="${lists }">
+		<c:if test="${!dto.screen_num.equals(screen_num) }">
 <!-- 영화 한칸 시작 -->
 	<tr>
 		<th style="width: 100px; padding-left: 15px; padding-right: 10px; border-right: 1px solid #e5e5e5;">
@@ -353,6 +355,7 @@ function showCalendar() {
 		</th>
 		
 		<td>
+		</c:if>
 <!-- 영화 시작시간  -->
 			<div class="movie_time">
 				<a>
@@ -369,6 +372,8 @@ function showCalendar() {
 				</p>
 			</div>
 <!-- 영화 끝 -->
+	</c:forEach>
+	
 <!-- 영화 시작시간  -->
 			<div class="movie_time">
 				<a>

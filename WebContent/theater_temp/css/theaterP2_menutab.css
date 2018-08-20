@@ -1,15 +1,5 @@
 @CHARSET "UTF-8";
 
-.bgimg {
-    border: 0;
-    padding: 0; 
-    max-height: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    max-width: 100%;
-}
-
 #topMenu {
 height: 30px; /* 메인 메뉴의 높이 */ 
 width: 1300px; /* 메인 메뉴의 넓이 */ 
