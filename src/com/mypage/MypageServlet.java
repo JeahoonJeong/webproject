@@ -74,9 +74,8 @@ public class MypageServlet extends HttpServlet{
 			MemberDTO member = (MemberDTO)session.getAttribute("member");
 			
 			if(member==null){
-				
-				url = cp;
-				forward(req, resp, url);
+	
+				forward(req, resp, cp);
 				
 			}
 			else{

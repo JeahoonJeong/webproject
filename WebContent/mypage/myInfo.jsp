@@ -146,7 +146,13 @@
 <body>
 <jsp:include page="../header.jsp" flush="false"/>
 <div id="mypage">
-<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px;"><a href="<%=cp%>/Mypage/mypageMain.do"><span class="font"><br/>나의 메가박스<br/>&nbsp;<br/></span></a></div>
+
+<div style="clear: both;background-color: #f8f8f8; line-height: 20px; border-bottom: #352669 2px solid;padding-left: 20px; padding-right: 40px;">
+<span class="font"><a href="<%=cp%>/Mypage/mypageMain.do"><br/>나의 메가박스</a>
+<span class="right"><input type="button" class="btn1" value="로그아웃" onclick="javascript:location.href='<%=cp%>/Login/log_out.do';"></span>
+<br/>&nbsp;<br/></span>
+</div>
+
 <br/>
 <div>
 	<ul class="nav_gnb">     	
