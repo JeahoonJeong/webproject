@@ -440,7 +440,7 @@
 				
 				<td rowspan="2" width="460" height="460" >
 				<c:if test="${empty lists2 }">
-						<img alt="" src="<%=cp %>/booking/image/noMovie.PNG" width="440" height="460">
+						<img alt="" src="<%=cp %>/booking/image/noMovie.PNG" width="472" height="505">
 				</c:if>	
 				<c:if test="${! empty lists2}">
 					<div style="height: 460; overflow: auto;background-color: #ffffff; " >
@@ -467,7 +467,7 @@
 									
 									<input type="hidden" name ="type" value ="${dto2.type }">
 									
-									&nbsp;&nbsp;<a onclick="goNextPage(${dto2.screen_id});"> 
+									&nbsp;&nbsp;<a style="cursor:pointer;"  onclick="goNextPage(${dto2.screen_id});"> 
 									<c:if test="${dto2.age_limit=='all' }"><img width="20" height="20" src="${imagePath2 }/ageallbig.png"></c:if>
 									<c:if test="${dto2.age_limit=='12' }"><img width="20" height="20" src="${imagePath2 }/age12big.png"></c:if>
 									<c:if test="${dto2.age_limit=='15' }"><img width="20" height="20" src="${imagePath2 }/age15big.png"></c:if>

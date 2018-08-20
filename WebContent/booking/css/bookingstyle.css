@@ -4,6 +4,11 @@
 	background-color: #F9F9F9;
 }
 
+.selecting{
+	.cursor:pointer;
+}
+
+
 td.sample1{
 	border: 1px solid #CFCFCF;
 	

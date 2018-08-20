@@ -401,7 +401,7 @@
 			str = str + "'left=100, ";
 			str = str + "top=20, ";
 			str = str + "width=1000, ";
-			str = str + "height=600, ";
+			str = str + "height=650, ";
 			str = str + "toolbar=no, ";
 			str = str + "menubar=no, ";
 			str = str + "status=no, ";
