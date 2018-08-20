@@ -122,6 +122,11 @@
 
 </script>
 
+<style type="text/css">
+
+
+
+</style>
 
 </head>
 <body>
@@ -426,9 +431,11 @@
 <table border="0" class="m_time_tb v2">
 	<tbody>	
 	
+	
 	<c:forEach var="dto" items="${lists }">
 		<c:if test="${!dto.screen_num.equals(screen_num) }">
-	
+
+			
 		<tr class="lineheight_80">
 			<th class="title">
 				<div>
@@ -447,7 +454,9 @@
 				<div>${dto.screen_num }관</div>
 				<small>${dto.type }</small>
 			</th>
+			</c:if>
 				<td headers="th_theaterschedule_title th_theaterschedule_room">
+					
 					<div class="movie_time">
 						<a href="" onclick="">
 							<span class="hover_time" style="display: none;">
@@ -457,7 +466,7 @@
 						
 						<p class="time_info">
 							<span class="type"></span>
-							<span class="time">${dto.start_time }</span>
+							<span class="time">${dto.start_time }~${dto.end_time }</span>
 							<span class="seat">${dto.seatedseat }/${dto.seatnumber }</span>
 						
 						
@@ -468,8 +477,8 @@
 					</div>
 				</td>
 				
-			</c:if>
-			<c:set var="screen_num" value="${dto.screen_num}" />
+				<c:set var="screen_num" value="${dto.screen_num}" />	
+			
 		</c:forEach>
 	</tbody>
 </table>
