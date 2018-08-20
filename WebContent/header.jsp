@@ -133,7 +133,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 </head>
 <body>
 	
-	<!-- HEADER 시작 -->
+		<!-- HEADER 시작 -->
 	<div id="header-wrap">
 		<div id="header">
 			<ul>
@@ -153,6 +153,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 						<a class="menuLink" href="<%=cp%>/Mypage/mypageMain.do"><font color="#351f66">마이페이지</font></a>
 					</c:if>
 				</li>
+				
 			</ul>
 		</div>
 	</div>
@@ -174,8 +175,8 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 			str = "window.open('" + strUrl + "', 'Think', ";
 			str = str + "'left=100, ";
 			str = str + "top=20, ";
-			str = str + "width=1000, ";
-			str = str + "height=600, ";
+			str = str + "width=1100, ";
+			str = str + "height=650, ";
 			str = str + "toolbar=no, ";
 			str = str + "menubar=no, ";
 			str = str + "status=no, ";
@@ -188,9 +189,9 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 				<li class="menu-right" style="width: 170px">고객센터 | 멤버십 | VIP</li>
 				<li class="menu-right"><a
 					href="<%=cp%>/Timetable/movieTime.do"><img alt=""
-						src="<%=cp %>/login/image/timetable.jpg"></a></li>
-				<li class="menu-right">
-				<img alt="" src="<%=cp %>/login/image/booking.jpg" onclick="<%=str%>"></li>
+						src="<%=cp%>/login/image/timetable.jpg"></a></li>
+				<li class="menu-right" style="margin-left: 5px">
+				<img alt="" src="<%=cp%>/login/image/booking.jpg" onclick="<%=str%>"></li>
 			</ul>
 		</div>
 	</div>
