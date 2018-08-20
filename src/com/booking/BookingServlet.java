@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -155,6 +156,21 @@ public class BookingServlet extends HttpServlet {
 			String type = req.getParameter("type");
 			String district = req.getParameter("district");
 			
+//			Cookie c_age_limit =new Cookie("c_age_limit", age_limit);
+//			Cookie c_movie_name = new Cookie("c_movie_name", movie_name);
+//			Cookie c_screen_num = new Cookie("c_screen_num", screen_num);
+//			Cookie c_start_time = new Cookie("c_start_time", start_time);
+//			Cookie c_type = new Cookie("c_type",type);
+//			Cookie c_district = new Cookie("c_district", district);
+//			
+//			resp.addCookie(c_age_limit);
+//			resp.addCookie(c_movie_name);
+//			resp.addCookie(c_screen_num);
+//			resp.addCookie(c_start_time);
+//			resp.addCookie(c_type);
+//			resp.addCookie(c_district);
+			
+		
 			List<BookingDTO> lists_seat = dao.getSeatInfo(screen_id); // 예약된 좌석 정보 가져오기
 			
 			Iterator<BookingDTO> it = lists_seat.iterator();
@@ -271,7 +287,7 @@ public class BookingServlet extends HttpServlet {
 
 			
 			
-			
+		
 			Calendar cal = Calendar.getInstance();
 			
 			// 오늘날짜
@@ -330,6 +346,8 @@ public class BookingServlet extends HttpServlet {
 
 			String imagePath = cp + "/timetable/image"; // timetable 이미지 경로
 			List<TimetableDTO> lists1 = dao2.getMovie();
+		
+			
 			req.setAttribute("lists1", lists1);
 			req.setAttribute("imagePath", imagePath);
 

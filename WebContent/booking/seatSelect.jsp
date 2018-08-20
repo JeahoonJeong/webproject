@@ -5,6 +5,7 @@
 	
 	String cp = request.getContextPath();
 	
+
 	
 	
 %>
@@ -37,7 +38,12 @@
 		
 		value4 = f.type4.options[cvalue4].value;
 		
-		f.action = "<%=cp%>/Booking/seatSelect.do?value1="+value1+"&value2="+value2+"&value3="+value3+"&value4="+value4;
+		
+		
+		f.action = "<%=cp%>/Booking/seatSelect.do?value1="+value1+"&value2="+value2+"&value3="+value3+"&value4="+value4
+				+"&movie_name="+${movie_name}+"&age_limit="+${age_limit}+"&screen_num="+${screen_num}
+				+"&start_time="+${start_time}+"&type="+${type}+"&district="+${district};				
+
 		f.submit();
 	}
 	
@@ -51,6 +57,7 @@
 		var value3 = ${value3};
 		var value4 = ${value4};
 	
+		var arrSeatNum = new Array; // 선택된 좌석 번호 저장할 배열
 		
 		maxCheck = value1 + value2 + value3 + value4; // 총인원수 
 		alert("최대 선택 가능한 좌석 수 :" + maxCheck);
@@ -61,9 +68,15 @@
 		for(var i = 0 ; i < arr_Check.length ; i++){
 			if(arr_Check[i].checked == true){
 				cntCheck++; // 체크 되어있다면 1증가
+				arrSeatNum.push(arr_Check[i].value); // 체크박스의 값을 배열에 추가
 			}
 		}
-		alert("선택한 조ㅏ석수 : "  + cntCheck);
+		alert("선택한 좌석수 : "  + cntCheck);
+		
+		for(var j = 0 ; j < arrSeatNum.length ; j++){
+			alert(arrSeatNum[j]);
+		}
+		
 		
 		if(cntCheck > maxCheck){
 			alert("선택하신 좌석 개수 확인해주세요 ! ");
@@ -198,12 +211,12 @@
 									<c:if test="${dto.age_limit=='18' }"><img src="${imagePath2 }/age18big.png"></c:if>
 									</td>
 									<td style="background-color: #555555 ">
-										<span style="color: white; " > ${movie_name } </span>
+										<span style="color: white; background-color: #555555" > ${movie_name }  </span>
 									</td>
 								</tr>
 								<tr>
 									<td style="background-color: #555555 ">
-										<span style="font-size: 8pt; background-color: #555555 "> ${type }</span>
+										<span style="font-size: 8pt; color: white; background-color: #555555 "> ${type }</span>
 									</td>
 								</tr>
 							</table>
@@ -212,17 +225,20 @@
 					
 					<tr >
 					<td style="background-color: #555555 ">
-						<ul style="background-color: #555555 ">
-							<li style="background-color: #555555 ">
+						<ul style="background-color: #555555; color: #5CD1E5; ">
+							<li style="background-color: #555555 ; list-style-type: square; ">
+							<span style="color: white; background-color: #555555" >
 								${district }<br/>
 								${screen_num }관
+								</span>
 							</li>
-							<li style="background-color: #555555 ">
+							<li style="background-color: #555555 ; list-style-type: square;">
+							<span style="color: white; background-color: #555555" >
 								${start_time }
+								</span>
 							</li>
-							<c:if test="${!empty Message }">
-							<li style="background-color: #555555 ">${Message }</li>
-							</c:if>
+
+						
 						</ul>
 					</td> <!-- 영화 상세정보 -->
 					</tr>
@@ -368,7 +384,7 @@
 													<span style="font-weight: bold;">D&nbsp;</span>
 												</c:if>
 												
-												<input type="checkbox" value = "i" name = "seatCheckBox"/>
+												<input type="checkbox" value = ${i } name = "seatCheckBox"/>
 												
 												<c:if test="${j>=1 && i <10}">
 												${j }
