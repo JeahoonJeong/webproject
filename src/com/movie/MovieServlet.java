@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.login.MemberDTO;
+
 import util.DBCPConn;
 import util.MyUtil;
 
@@ -140,6 +142,25 @@ public class MovieServlet extends HttpServlet{
 			String listUrl = cp + "/Movie/movie.do?movie_id" + movie_id;
 			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);*/
 			
+			
+			/////////-------------------------------------
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			
+			if(member!=null){
+				
+				String user_id = member.getUser_id();
+				
+				String wish = dao.searchWishlist(user_id, movie_id);
+				req.setAttribute("wish", wish);
+				System.out.println("wish" + wish);
+				
+			}
+
+			////////--------------------------------------
+			
+			
 			String imagePath = cp + "/mv/imageFile";
 			
 			/*req.setAttribute("totalPage", totalPage);
@@ -188,10 +209,56 @@ public class MovieServlet extends HttpServlet{
 			
 			url = "/timetable/movieTime_ok.jsp?movie_id=" + movie_id;
 			forward(req, resp, url);
-			
-		}
-			
 		
+			
+		////////--------------------------------------
+			
+		}else if(uri.indexOf("wish_add.do")!=-1){
+			
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			String movie_id = (String) req.getParameter("movie_id");
+			String message = null;
+			
+			if(member!=null){
+				
+				String user_id = member.getUser_id();
+
+				dao.insertWishlist(user_id, movie_id);
+			}
+			else{
+				message = "로그인 해야 이용할 수 있습니다!";
+			}
+			
+			req.setAttribute("message", message);
+			/*
+			url = cp + "/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
+			*/
+			
+			url = "/Movie/movie.do?movie_id=" + movie_id;
+			forward(req, resp, url);
+			
+		}else if(uri.indexOf("wish_remove.do")!=-1){
+				
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			String user_id = member.getUser_id();
+			
+			String movie_id = (String) req.getParameter("movie_id");	
+			System.out.println(user_id + "user");
+			System.out.println(movie_id + "movie");
+			
+			dao.deleteWishlist(user_id, movie_id);
+			
+			url = cp +"/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
+		}
+		
+			
+		////////--------------------------------------
 			
 		
 		
