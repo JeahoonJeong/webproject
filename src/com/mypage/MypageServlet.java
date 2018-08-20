@@ -70,20 +70,20 @@ public class MypageServlet extends HttpServlet{
 		if(uri.indexOf("mypageMain.do")!=-1){
 
 			HttpSession session = req.getSession();
-
+			
 			MemberDTO member = (MemberDTO)session.getAttribute("member");
-
+			
 			String user_id = member.getUser_id();
 
 
 			List<MyBookingDTO> recentBookedList = new ArrayList<MyBookingDTO>();
-
+			
 			recentBookedList = dao.getRecentBookedList(user_id);
 
 			req.setAttribute("recentBookedList", recentBookedList);
 
 
-
+			
 			int wishMovieCount = dao.getWishMovieCount(member.getUser_id());
 			int seenMovieCount = dao.getSeenMovieCount(member.getUser_id());
 			int commentCount = dao.getCommentCount(member.getUser_id());
@@ -405,8 +405,8 @@ public class MypageServlet extends HttpServlet{
 			
 			dao.updateUserPwd(user_pwd, user_id);
 			
-			session.removeAttribute("member"); 
-			session.invalidate();	
+			session.removeAttribute("member"); //�꽭�뀡 data�궘�젣
+			session.invalidate();	//�꽭�뀡 蹂��닔 �궘�젣
 			
 			resp.sendRedirect(cp);
 			
@@ -424,8 +424,7 @@ public class MypageServlet extends HttpServlet{
 			
 			dao.deleteMember(user_id);
 			
-			session.removeAttribute("member"); 
-			session.invalidate();	
+			//�깉�눜 荑쇰━ 蹂대쪟 
 			
 			resp.sendRedirect(cp);
 

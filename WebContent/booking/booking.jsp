@@ -420,41 +420,6 @@
 				<table border="1" class ="table" align="center" style="border-color: #CFCFCF; border-width: 1px; margin-top: 20px" cellpadding="0" cellspacing="0" >
 						
 					
-<!-- 					<tr height="60px"> -->
-<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
-						
-<!-- 					<a onclick="showTheaterList();" id ="theater2" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> --> 
-							
-						
-<!-- 						</td> -->
-						
-<!-- 						<td width="10px" style="border: 0"></td> -->
-						
-<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
-						
-<!-- 						<a onclick="showTheaterList();" id ="theater2" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> -->
-						
-<!-- 						</td> -->
-							
-<!-- 					</tr> -->
-					
-<!-- 					<tr height="10px"></tr> -->
-					
-<!-- 					<tr height="60px"> -->
-<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
-						
-<!-- 						<a onclick="showTheaterList();" id ="theater3" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> -->
-						
-<!-- 						</td> -->
-						
-<!-- 						<td width="10px;" style="border: 0"></td> -->
-						
-<!-- 						<td class="sample1" width="160px" style="text-align: center;"> -->
-						
-<!-- 						<a onclick="showTheaterList();" id ="theater4" style="font-size: 30pt; color: #198691 ; text-decoration:none;">+</a> -->
-						
-<!-- 						</td> -->
-<!-- 					</tr> -->
 						<c:forEach var="dto" items="${lists }">
 							<tr height="40px">
 								<td class="sample1" width="320px" style="text-align: center;">
@@ -473,17 +438,17 @@
 				
 				</td>
 				
-				<td rowspan="2" width="450" height="460" style="background-color: #ffffff; " >
+				<td rowspan="2" width="460" height="460" >
 				<c:if test="${empty lists2 }">
 						<img alt="" src="<%=cp %>/booking/image/noMovie.PNG" width="440" height="460">
 				</c:if>	
 				<c:if test="${! empty lists2}">
-					<div style="height: 460; overflow: auto" >
+					<div style="height: 460; overflow: auto;background-color: #ffffff; " >
 					<table style="display: block;" height="460" border="0" class ="scrooltbody" align="center" cellpadding="0" cellspacing="0">
-					<tbody>
+					<tbody style="height: 460">
 						<c:forEach var ="dto2" items="${lists2 }" >
 						
-							<tr style="border-bottom: 1">		
+							<tr style="border-bottom: 1; height: 460 ">		
 								
 								
 								<td width="130" style="text-align: center;">

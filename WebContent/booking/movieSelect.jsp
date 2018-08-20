@@ -41,7 +41,7 @@
 		// 영화가 선택되었으면 checking에 1을 함께 보냄
 		f.action= "<%=cp %>/Booking/booking.do/?selectedMoviedId=" + movieId 
 				+ "&nowHour=" + changedTime + "&nowDay=" +changedDate
-				+ "&seletedDate="+date+"&seletedHour="+ hour + "&theaterId="+theaterId+"&checking=1";
+				+ "&selectedDate="+date+"&selectedHour="+ hour + "&theaterId="+theaterId+"&checking=1";
 		f.submit();
 		
 	}
@@ -51,38 +51,50 @@
 
 </head>
 <body>
-
+	<div align="center">
 	<form name="myForm" method="post" action="">
-	<table  border="1"   cellpadding="0" cellspacing="10" align="center" >
-		
-		<tr>
+	<c:set var = "i" value = "1"></c:set>
+	<table  border="0"   cellpadding="0" cellspacing="10" align="center" >
+		<c:if test="${i % 4 == 1 }">
+			<tr>		
+		</c:if>
 		
 			<c:forEach var="dto" items="${lists1 }">	
 			
-			<td>
-			<img src="${imagePath}/${dto.movie_name}.PNG" width="180" height="180" border="2">
+			<td width="250">
+			<center>
+			<img src="${imagePath}/${dto.movie_name}.PNG" width="200" height="180" border="2">
+			</center>
 			<br/><br/>
-			<input type="radio" value ="${dto.movie_id }" name ="movie"/>${dto.age_limit } | ${dto.movie_name}
+		
+			<input type="radio" value ="${dto.movie_id }" name ="movie"/>
+			<c:if test="${dto.age_limit=='all' }"><img src="${imagePath2 }/ageallbig.png" style="background-color:#555555; width: 18px; height: 18px;" ></c:if>
+			<c:if test="${dto.age_limit=='12' }"><img src="${imagePath2 }/age12big.png" style="background-color:#555555; width: 18px; height: 18px; "></c:if>
+			<c:if test="${dto.age_limit=='15' }"><img src="${imagePath2 }/age15big.png" style="background-color:#555555; width: 18px; height: 18px; "></c:if>
+			<c:if test="${dto.age_limit=='18' }"><img src="${imagePath2 }/age18big.png" style="background-color:#555555; width: 18px; height: 18px;"></c:if>
+			${dto.movie_name}
 			</td>	
 			
+		<c:if test="${i %4 == 0 }">
+			</tr>		
+		</c:if>
+		<c:set var = "i" value="${i+1 }"></c:set>
 			</c:forEach>	
-		
+		<tr height="30">
+			<td></td>
 		</tr>
-	
-		<tr>
-			<td>
-				<input type="button" value = "취소" onclick="javascript:location.href='<%=cp %>/Booking/booking.do'" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #F9F9F9 ; color : #747474 ;border: 0"/>
-				
-				<input type="button" value = "다음" onclick="sendIt();" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #513396; color: #ffffff; border: 0"/>
-			</td>
-		</tr>
-	
 	</table>
 	
+	<center>
+	<hr width="1000" >
+		<input type="button" value = "취소" onclick="javascript:location.href='<%=cp %>/Booking/booking.do'" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #F9F9F9 ; color : #747474 ;border: 0"/>
+				
+		<input type="button" value = "다음" onclick="sendIt();" style=" font-size :13pt ; font-weight :bold;  width: 95px; height: 40px; background-color: #513396; color: #ffffff; border: 0"/>
+	</center>
 
 	</form>
 
-	
+	</div>
 
 
 </body>

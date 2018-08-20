@@ -93,8 +93,7 @@ public class BookingServlet extends HttpServlet {
 			String strDate = req.getParameter("selectedDate");
 			String strHour = req.getParameter("selectedHour");
 			if (strDate != null) {
-				String[] strTemp = strDate.split("일");
-				selectedDate2 = strTemp[0];
+				selectedDate2 = strDate;
 				//System.out.println(selectedDate2);
 			}
 
@@ -124,7 +123,11 @@ public class BookingServlet extends HttpServlet {
 			}
 			
 			if(checkPara.equals("1")){
-				List<MovieDTO> lists2 = dao.getMovieData();
+				System.out.println(selectedDate2);
+				System.out.println(selectedHour2);
+				System.out.println(selectedTheaterId2);
+				System.out.println(selectedMoviedId2);
+				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2,selectedMoviedId2);
 				req.setAttribute("lists2", lists2);
 			}
 			
@@ -473,6 +476,10 @@ public class BookingServlet extends HttpServlet {
 			req.setAttribute("lists1", lists1);
 			req.setAttribute("imagePath", imagePath);
 
+			String imagePath2 = cp + "/movie/image"; // timetable 이미지 경로
+			req.setAttribute("imagePath2", imagePath2);
+
+			
 			url = "/booking/movieSelect.jsp";
 			forward(req, resp, url);
 			

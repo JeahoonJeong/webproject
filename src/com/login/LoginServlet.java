@@ -61,6 +61,10 @@ public class LoginServlet extends HttpServlet{
 				
 				req.setAttribute("message", "아이디를 다시 확인하세요!");
 				
+				
+				
+				
+				
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
 				
@@ -90,20 +94,28 @@ public class LoginServlet extends HttpServlet{
 			forward(req,resp,url);
 			
 		}else if(uri.indexOf("register_ok.do")!=-1){
+			System.out.println(req.getParameter("id"));
+			System.out.println(req.getParameter("pwd"));
+			System.out.println(req.getParameter("name"));
+			System.out.println(req.getParameter("birth"));
+			System.out.println(req.getParameter("tel"));
+			System.out.println(req.getParameter("email"));
+			System.out.println(req.getParameter("addr"));
 			
 			MemberDTO dto = new MemberDTO();
 			
 			dto.setUser_id(req.getParameter("id"));
-			dto.setUser_id(req.getParameter("pwd"));
-			dto.setUser_id(req.getParameter("name"));
-			dto.setUser_id(req.getParameter("birth"));
-			dto.setUser_id(req.getParameter("tel"));
-			dto.setUser_id(req.getParameter("email"));
-			dto.setUser_id(req.getParameter("addr"));
+			dto.setUser_pwd(req.getParameter("pwd"));
+			dto.setUser_name(req.getParameter("name"));
+			dto.setBirth(req.getParameter("birth"));
+			dto.setTel(req.getParameter("tel"));
+			dto.setEmail(req.getParameter("email"));
+			dto.setAddr(req.getParameter("addr"));
 			
-			dao.insertData(dto);
+			int result = dao.insertData(dto);
 			
-			url = cp+"/Mypage/mypageMain.do";
+			System.out.print(result);
+			url = cp+"/Login/login.do";
 			resp.sendRedirect(url);
 			
 		}else if(uri.indexOf("log_out.do")!=-1){
