@@ -335,7 +335,6 @@
 															<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
 														</c:otherwise>	
 													</c:choose>
-													
 													${dto3.rnum -9}												
 												</c:if>
 												<c:if test="${dto3.rnum>=19 && dto3.rnum <28}">
@@ -348,7 +347,6 @@
 															<img alt="" src="<%=cp%>/booking/image/normalSeat.PNG">
 														</c:otherwise>	
 													</c:choose>
-													
 													${dto3.rnum -18}
 												</c:if>
 												<c:if test="${dto3.rnum>=28 && dto3.rnum <=36}">
@@ -378,12 +376,13 @@
 					<tr height="150">
 						<td>
 						
-							<c:set var = "i" value ="1"></c:set>
+						
 							<c:set var = "k" value ="1"></c:set>
 								<div align="center">
 								<table border="0" cellpadding="0" cellspacing="0">
-									<c:forEach var = "j" begin = "1" end = "36" step = "1">
-										<c:if test="${i % 9 == 1 }">
+									
+									<c:forEach var = "dto3" items="${lists_seat }" >
+										<c:if test="${dto3.rnum % 9 == 1 }">
 											<tr >
 										</c:if>
 											<td align="center" width="77" style="font-size: 13pt;">
@@ -391,37 +390,43 @@
 												<c:if test="${k==1 }">
 													<span style="font-weight: bold;">A&nbsp;</span>
 												</c:if>
-												<c:if test="${k==11 }">
+												<c:if test="${k==10 }">
 													<span style="font-weight: bold;">B&nbsp;</span>
 												</c:if>
-												<c:if test="${k==20 }">
+												<c:if test="${k==19 }">
 													<span style="font-weight: bold;">C&nbsp;</span>
 												</c:if>
-												<c:if test="${k==29}">
+												<c:if test="${k==28}">
 													<span style="font-weight: bold;">D&nbsp;</span>
 												</c:if>
+												<c:choose>
+														<c:when test="${dto3.status eq 1 }">
+															<input type="checkbox" value = ${dto3.rnum } name = "seatCheckBox" disabled="disabled"/>
+														</c:when>	
+														<c:otherwise>
+															<input type="checkbox" value = ${dto3.rnum } name = "seatCheckBox"/>
+														</c:otherwise>	
+													</c:choose>
 												
-												<input type="checkbox" value = ${i } name = "seatCheckBox"/>
-												
-												<c:if test="${j>=1 && i <10}">
-												${j }
+												<c:if test="${dto3.rnum>=1 && dto3.rnum <10}">
+												${dto3.rnum }
 												</c:if>
-												<c:if test="${j>=10 && j < 19}">
-												${j -9}												
+												<c:if test="${dto3.rnum>=10 && dto3.rnum < 19}">
+												${dto3.rnum -9}											
 												</c:if>
-												<c:if test="${j>=19 && i <28}">
-												${j -18}
+												<c:if test="${dto3.rnum>=19 && dto3.rnum <28}">
+												${dto3.rnum -18}
 												</c:if>
-												<c:if test="${j>=28 && i <=36}">
-												${j -27}
+												<c:if test="${dto3.rnum>=28 && dto3.rnum <=36}">
+												${dto3.rnum -27}
 												</c:if>
 												
 											</td>
-										<c:if test="${i % 9 == 0 }">
+										<c:if test="${dto3.rnum % 9 == 0 }">
 											</tr>
 										</c:if>
-									<c:set var = "i" value ="${i+1 }"></c:set>
-									<c:set var = "k" value ="${i+1 }"></c:set>
+									
+									<c:set var = "k" value ="${k+1 }"></c:set>
 									</c:forEach>
 								</table>
 								</div>

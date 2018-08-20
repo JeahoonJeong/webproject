@@ -69,6 +69,23 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);//월의 마지막날
 
 	int week = cal.get(Calendar.DAY_OF_WEEK);
+	
+	String screenId = request.getParameter("screen_id");
+	
+	String str;
+	String strUrl;
+
+	strUrl = cp + "/Booking/seatSelect.do?sreen_id="+screenId;
+	str = "window.open('" + strUrl + "', 'Think', ";
+	str = str + "'left=100, ";
+	str = str + "top=20, ";
+	str = str + "width=1000, ";
+	str = str + "height=600, ";
+	str = str + "toolbar=no, ";
+	str = str + "menubar=no, ";
+	str = str + "status=no, ";
+	str = str + "scrollbars=no, ";
+	str = str + "resizable=no')";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -82,6 +99,7 @@
 	function goNextPage(screen_id){
 	var f= document.myForm1;
 	
+	window.open("<%=str%>");
 	f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
 	f.submit();
 	
@@ -172,7 +190,7 @@
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
 
-					<br><a onclick="goNextPage(${dto.screen_id});">예매</a>
+					<br><br><a onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=100px, left=20px, height=600px, width=1000px')">예매</a>
 					
 
 				</p>

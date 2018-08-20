@@ -14,6 +14,16 @@ public class TheaterDTO {
 	private int seatnumber; //217
 	private String type; //µğÁöÅĞ
 	private String age_limit; //12¼¼
+	private String screen_id;
+	
+	
+	
+	public String getScreen_id() {
+		return screen_id;
+	}
+	public void setScreen_id(String screen_id) {
+		this.screen_id = screen_id;
+	}
 	public String getMovie_id() {
 		return movie_id;
 	}

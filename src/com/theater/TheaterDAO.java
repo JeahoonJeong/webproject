@@ -32,7 +32,7 @@ public class TheaterDAO {
 
 			
 			sql ="select movie_id, city, district, movie_name, screen_num, to_char(start_time,'hh24:mi') start_time, to_char(end_time,'hh24:mi') end_time, ";
-			sql+="seatedSeat, seatNumber, type, age_limit from timetable where theater_id=? and start_time like ? order by screen_num,start_time";
+			sql+="seatedSeat, seatNumber, type, age_limit, screen_id from timetable where theater_id=? and start_time like ? order by screen_num,start_time";
 
 			pstmt = conn.prepareStatement(sql);			
 			pstmt.setString(1, theater_id);	
@@ -56,6 +56,7 @@ public class TheaterDAO {
 				dto.setSeatnumber(rs.getInt("seatnumber"));
 				dto.setType(rs.getString("type"));
 				dto.setAge_limit(rs.getString("age_limit"));	
+				dto.setScreen_id(rs.getString("screen_id"));
 				
 				lists.add(dto);
 			}

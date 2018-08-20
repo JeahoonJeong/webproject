@@ -207,13 +207,26 @@ td, th {
 .age_12 {
     background-position: -60px 0;
 }
+
+.age_15 {
+    background-position: -90px 0;
+}
+
+.age_18 {
+    background-position: -30 0;
+}
+
+.age_all {
+    background-position: 0 0;
+}
+
 .age_m {
     margin: 0 5px 0 15px;
     width: 20px;
     height: 21px;
     background: url(http://image2.megabox.co.kr/mop/home/bg_age_m.png) 0 -999px no-repeat;
 }
-.age, .age_m {
+.age .age_m {
     background: url(http://image2.megabox.co.kr/mop/home/bg_age2.png) 0 -999px no-repeat;
     display: inline-block;
     width: 17px;
@@ -233,7 +246,7 @@ td, th {
 }
 
 .m_time_tb td {
-    width: 640px;
+    width: 100px;
     padding: 0;
     border-bottom: 1px solid #e5e5e5;
 }
