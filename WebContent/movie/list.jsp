@@ -49,9 +49,9 @@
 </div>
 
 <div id="content">
-	<table width="1722px">
+	<table width="990px">
 		<tr>
-		<td height="50px" colspan="7"></td>
+		<td height="50px" colspan="4"></td>
 
 		</tr>
 	<c:set var="i" value="0"/>
@@ -59,7 +59,7 @@
 	<c:if test="${i==0 }">
 		<tr>
 	</c:if>
-	<c:if test="${i!=0&&i%7==0 }">
+	<c:if test="${i!=0&&i%4==0 }">
 		</tr>
 		<tr>
 	</c:if>

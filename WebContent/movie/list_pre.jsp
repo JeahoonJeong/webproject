@@ -48,11 +48,10 @@
 		</tr>
 	</table>
 </div>
-
 <div id="content">
-	<table width="1722px">
+	<table width="990px">
 		<tr>
-		<td height="50px" colspan="7"></td>
+		<td height="50px" colspan="4"></td>
 
 		</tr>
 	<c:set var="i" value="0"/>
@@ -60,7 +59,7 @@
 	<c:if test="${i==0 }">
 		<tr>
 	</c:if>
-	<c:if test="${i!=0&&i%7==0 }">
+	<c:if test="${i!=0&&i%4==0 }">
 		</tr>
 		<tr>
 	</c:if>
@@ -72,9 +71,17 @@
 				</td>
 			</tr>
 			<tr>
-		
-				<td class="d-day">
-					${dto.release_date } <div class="d-btn">D-2</div>
+				<td width="230px" height="50px" class="bottom">
+				<span style="line-height: 25px;">
+				<font color="grey" style="font-weight: bold; font-size: 11pt;">평점 ${dto.rating }</font></span>
+				<span style="float: right;">
+				<c:if test="${dto.rating==0 }"><img src="${imagePath }/rate0.png"></c:if>
+				<c:if test="${dto.rating<3&&0<dto.rating}"><img src="${imagePath }/rate1.png"></c:if>
+				<c:if test="${2<dto.rating&&dto.rating<5}"><img src="${imagePath }/rate2.png"></c:if>
+				<c:if test="${4<dto.rating&&dto.rating<7 }"><img src="${imagePath }/rate3.png"></c:if>
+				<c:if test="${6<dto.rating&&dto.rating<9 }"><img src="${imagePath }/rate4.png"></c:if>
+				<c:if test="${8<dto.rating&&dto.rating<11 }"><img src="${imagePath }/rate5.png"></c:if>
+				</span>
 				</td>
 			</tr>
 			<tr>
