@@ -333,6 +333,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 	height: 50px;
 	border-left: 1px solid #CCCCCC;
 	border-right: 1px solid #CCCCCC;
+	background-color: white;
 }
 #content .bottom{
 	font-size: 10pt;
@@ -341,6 +342,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 	border-bottom: 1px solid #CCCCCC;
 	border-left: 1px solid #CCCCCC;
 	border-right: 1px solid #CCCCCC;
+	background-color: white;
 }
 #content .btn1{
 	font-family: 'Nanum Gothic', sans-serif;
@@ -471,7 +473,7 @@ a:link {text-decoration: none; color: #4C4C4C;}
 							<tr>
 						</c:if>
 						<td width="242px" height="517px">
-							<table width="230px" height="503px" style="margin: 0px; background-color: white;">
+							<table width="230px" height="503px" style="margin: 0px; background-color: #E6E6E6;">
 								<tr>
 									<td class="top"><img src="${imagePath }/${dto.file_name}"
 										width="230px" height="330px" />

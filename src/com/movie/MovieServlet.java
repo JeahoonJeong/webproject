@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.ha.backend.Sender;
 
 import com.login.MemberDTO;
 import com.mypage.MypageDAO;
@@ -58,9 +61,9 @@ public class MovieServlet extends HttpServlet{
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
 		String url;
-
+		
 		String root = getServletContext().getRealPath("/");
-		String path = root + File.separator + "mv" + File.separator + "imageFile";
+		String path = root + "memberImages";
 
 		File f = new File(path);
 		if(!f.exists())
@@ -107,53 +110,26 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);
 
 		}else if(uri.indexOf("movie.do")!=-1){//��ȭ ��������
-
-			/*String pageNum;
-
-			if(req.getParameter("pageNum")==null||req.getParameter("pageNum").equals("")){
-				pageNum="1";
-			}else{
-				pageNum = req.getParameter("pageNum");
-			}*/
-
-
+			
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			
+			
+			
+			
 			MovieDTO dto = new MovieDTO();
 			String movie_id = req.getParameter("movie_id");
 
 			dto = dao.getOneData(movie_id);
-
-			/*int currentPage = 1;
-
-			if(pageNum!=null)
-				currentPage = Integer.parseInt(pageNum);
-
-			//��ü ������ ����
-			int numPerPage = 10;
-			int dataCount = dto.getCommCount();
-
-			int totalPage = myUtil.getPageCount(numPerPage, dataCount);
-
-			if(currentPage>totalPage)
-				currentPage=totalPage;
-
-			//������ ���۰� ��
-			int start = (currentPage-1)*numPerPage+1;
-			int end = currentPage*numPerPage;*/
 
 			List<MovieDTO> still = dao.getStillcut(movie_id);
 			List<MovieDTO> comm = dao.getAllComment(movie_id);
 			int stillCount = dao.getStillCount(movie_id);
 
 			dto.setSummary(dto.getSummary().replaceAll("/", "<br>"));
-			/*
-			String listUrl = cp + "/Movie/movie.do?movie_id" + movie_id;
-			String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);*/
-			
 			
 			/////////-------------------------------------
-			HttpSession session = req.getSession();
-			MemberDTO member = new MemberDTO();
-			member = (MemberDTO)session.getAttribute("member");
 			
 			if(member!=null){
 				
@@ -162,22 +138,24 @@ public class MovieServlet extends HttpServlet{
 				String wish = dao.searchWishlist(user_id, movie_id);
 				req.setAttribute("wish", wish);
 				
+				int commCheck = dao.commentCheck(movie_id, user_id);
+				System.out.println(commCheck);
+				req.setAttribute("commCheck", commCheck);
+				
 			}
 
 			////////--------------------------------------
-			
-			
+				
 			String imagePath = cp + "/mv/imageFile";
+			String profileImg = cp + "/memberImages";
 
-			/*req.setAttribute("totalPage", totalPage);
-			req.setAttribute("dataCount", dataCount);
-			req.setAttribute("pageIndexList", pageIndexList);
-			req.setAttribute("pageNum", currentPage);*/
 			req.setAttribute("imagePath", imagePath);
 			req.setAttribute("dto", dto);
 			req.setAttribute("still", still);
 			req.setAttribute("comm", comm);
 			req.setAttribute("stillCount", stillCount);
+			req.setAttribute("profileImg", profileImg);
+			
 
 			url = "/movie/movie.jsp?movie_id= + movie_id";
 			forward(req, resp, url);
@@ -313,8 +291,6 @@ public class MovieServlet extends HttpServlet{
 			
 			String user_id = member.getUser_id();
 			
-			System.out.println(user_id);
-			
 			lst = daoMP.getWishList(user_id);
 			
 			
@@ -337,8 +313,8 @@ public class MovieServlet extends HttpServlet{
 			
 			req.setAttribute("result", result);
 			
-			url = "/movie/movie.jsp?movie_id=" + movie_id;
-			forward(req, resp, url);
+			url = cp + "/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
 
 			
 		

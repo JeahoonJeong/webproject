@@ -31,7 +31,7 @@
 		 
 		 function goToB(movie_id) {
 				
-				var url = "<%=cp%>/Booking/booking.do";
+			 var url = "<%=cp%>/Booking/booking.do?selectedMoviedId="+movie_id+"&checking=5";
 				
 				var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 				
@@ -139,7 +139,13 @@
 			</tr>
 	</table>
 	</td>
-	</c:forEach>	
+	</c:forEach>
+	<c:if test="${i>0&&i%4!=0 }">
+	<c:forEach var="j" begin="${i%4+1 }" end="4" step="1"><td width="230px" height="503px">
+	&nbsp;
+	</td></c:forEach>
+	</c:if>
+	<c:if test="${i!=0 }"></tr></c:if>	
 	</table>
 </form>	
 </div>

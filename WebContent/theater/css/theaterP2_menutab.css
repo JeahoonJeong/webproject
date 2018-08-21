@@ -2,7 +2,7 @@
 
 #topMenu {
 height: 30px; /* 메인 메뉴의 높이 */ 
-width: 1300px; /* 메인 메뉴의 넓이 */ 
+width: 1140px; /* 메인 메뉴의 넓이 */ 
 position: relative;
 
 background-color: #000000;
@@ -25,7 +25,7 @@ text-align: center; /* 텍스트를 가운데로 정렬 */
 .menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */ 
 text-decoration:none; /* a 태그의 꾸밈 효과 제거 */ 
 display: block; /* a 태그의 클릭 범위를 넓힘 */ 
-width: 159px; /* 기본 넓이를 150px로 설정 */ 
+width: 139px; /* 기본 넓이를 150px로 설정 */ 
 font-size: 12px; /* 폰트 사이즈를 12px로 설정 */ 
 font-weight: bold; /* 폰트를 굵게 설정 */ 
 font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대로 설정 */ 
@@ -66,7 +66,7 @@ transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되�
 -webkit-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 크롬/사파라ㅣ) */ 
 -moz-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 파폭) */ 
 -o-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 오페라) */ 
-width: 1300px;
+width: 1140px;
 left: 0;
 
 background-color: #000000;

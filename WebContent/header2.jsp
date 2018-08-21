@@ -21,9 +21,10 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 #header-wrap {
 	position: fixed;
 	top: -3px;
-	left: 40px;
+	
 	width: 100%;
 	background-color: white;
+	z-index: 1;
 }
 
 #header {

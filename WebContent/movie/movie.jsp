@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -62,6 +64,10 @@
 		
 		f.rating.value=f.rate2.options[svalue].value;
 	}
+	function cannot() {
+		alert("한줄평은 한번만 등록할 수 있습니다")
+		return;
+	}
 
 
 </script>
@@ -84,7 +90,7 @@ function goToP() {
 
 function goToB(movie_id) {
 	
-	var url = "<%=cp%>/Booking/booking.do";
+	var url = "<%=cp%>/Booking/booking.do?selectedMoviedId="+movie_id+"&checking=5";
 	
 	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 	
@@ -114,12 +120,21 @@ function sendIt() {
 	
 	f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
 	f.submit();
-		
+}
+function waitPlz() {
+	alert("상영 일정이 존재하지 않습니다")
 }
 
 </script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />
+
+<fmt:parseDate value="${dto.release_date}" var="reldate" pattern="yyyy.MM.dd"/>
+<fmt:formatDate value="${reldate}" pattern="yyyyMMdd" var="relDate"/>
+
 <form action="" method="post" name="mvForm">
 <div class="all">
 	<table border="0" width="888px" height="376px" style="margin-bottom: 40px;">
@@ -151,10 +166,16 @@ function sendIt() {
 			<span style="float: left; margin-left: 10px;">
 			<strong style="font-size: 20pt; font-weight: bold; color: #353535; vertical-align: top;">${dto.rating } 점</strong>
 			</span>
-			
+			<c:if test="${relDate>nowDate }">
+			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
+			onclick="waitPlz();"/>
+			</span>
+			</c:if>
+			<c:if test="${relDate<nowDate }">
 			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
 			onclick="goToB(${dto.movie_id});"/>
 			</span>
+			</c:if>
 			</td>		
 		</tr>
 		<tr>
@@ -183,7 +204,12 @@ function sendIt() {
 			<c:if test="${!empty wish }">
 				<input type="button" value="♡ 보기싫어" name="wishMovie" onclick="javascipt:location.href='<%=cp%>/Movie/wish_remove.do?movie_id=${dto.movie_id}'" class="btn4"/>
 			</c:if>
+			<c:if test="${relDate>nowDate }">
+			<input type="button" value="상영시간표" name="booking" onclick="waitPlz();" class="btn3"/>
+			</c:if>
+			<c:if test="${relDate<nowDate }">
 			<input type="button" value="상영시간표" name="booking" onclick="goToP();" class="btn3"/>
+			</c:if>
 			<br/><font size="2pt" color="red">${message }</font>
 			</span>
 			</td>
@@ -224,10 +250,9 @@ function sendIt() {
 	<%-- 	<div class="rbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/right_btnbig.png"/></a></div> --%>
 		</div>
-
-		
 	</div>
 	<!-- </form> -->
+	
 	<div id="comment">
 		<div id="comment_head">
 		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(${dto.commCount })</span></h3>
@@ -236,15 +261,28 @@ function sendIt() {
 			<c:choose>
 				<c:when test="${empty sessionScope.member.user_id }">
 				<span style="padding-top: 58px; float: left;">
-					<img class="radius" width="56px" height="56px" src="${imagePath }/profile.png"></span>
+					<img class="radius" width="56px" height="56px" src="${profileImg }/profile.png"></span>
 				</c:when>
 				<c:otherwise>
 				<span style="padding-top: 58px; float: left;">
-					<img width="56px" height="56px" src="${imagePath }/${sessionScope.member.file_name}"></span>
+					<img class="radius" width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
 				</c:otherwise>
 			</c:choose>
 			<table id="comment_input">
 				<tr>
+
+				<c:if test="${relDate>nowDate }">
+					<td class="star">
+					</td>
+					<td class="text">
+					<span class="textarea">개봉 후 이용 가능합니다</span>
+					</td>
+					<td width="84px" height="84px">
+					<input type="button" value="등록" class="btn" onclick="#"/>
+					</td>
+				</c:if>
+				
+				<c:if test="${relDate<nowDate }">
 					<c:choose>
 						<c:when test="${empty sessionScope.member.user_id }">
 						<td class="star">
@@ -273,10 +311,16 @@ function sendIt() {
 						class="textarea"></textarea>
 						</td>
 						<td width="84px" height="84px">
+						<c:if test="${commCheck==1 }">
+						<input type="button" value="등록" class="btn" onclick="cannot();"/>
+						</c:if>
+						<c:if test="${commCheck==0 }">
 						<input type="button" value="등록" class="btn" onclick="sendIt();"/>
+						</c:if>
 						</td>
 						</c:otherwise>
 					</c:choose>
+				</c:if>
 				</tr>
 			</table>
 		</div>
@@ -298,10 +342,10 @@ function sendIt() {
 				<span style="width: 80px; float: left;">
 				<c:choose>
 					<c:when test="${empty comm.file_name }">
-						<img class="radius" src="${imagePath }/profile.png" height="54px" width="54px"/>
+						<img class="radius" src="${profileImg }/profile.png" height="54px" width="54px"/>
 					</c:when>
 					<c:otherwise>
-						<img class="radius" src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
+						<img class="radius" src="${profileImg }/${comm.file_name}" height="54px" width="54px"/>
 					</c:otherwise>
 				</c:choose>
 				</span>
@@ -320,10 +364,17 @@ function sendIt() {
 				${comm.comments }
 				</span></p>
 				<p class="bottom">
+				
+					<c:if test="${empty sessionScope.member.user_id }">
+					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
+					<font style="font-weight: bold;">${comm.recommend_num }</font></span>
+					</c:if>
+					<c:if test="${!empty sessionScope.member.user_id }">
 					<a href="javascript:location.href=
 					'<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }&movie_id=${dto.movie_id }'">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
 					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
+					</c:if>
 				</p>
 				</td>
 			<c:set var="i" value="${i+1 }" />

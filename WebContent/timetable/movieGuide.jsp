@@ -3,6 +3,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,6 +12,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/timetable/style.css" type="text/css"/>
 <title>Insert title here</title>
+<script type="text/javascript">
+function goToB() {
+	
+	var url = "<%=cp%>/Booking/booking.do";
+	
+	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+	
+	window.open(url,"booking",setting);
+
+}
+</script>
+
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="false"/>
@@ -31,14 +45,30 @@
 		</div>
 	</div>
 	
+		<%
+			String str;
+			String strUrl;
+
+			strUrl = cp + "/Booking/booking.do";
+			str = "window.open('" + strUrl + "', 'Think', ";
+			str = str + "'left=100, ";
+			str = str + "top=20, ";
+			str = str + "width=1100, ";
+			str = str + "height=650, ";
+			str = str + "toolbar=no, ";
+			str = str + "menubar=no, ";
+			str = str + "status=no, ";
+			str = str + "scrollbars=no, ";
+			str = str + "resizable=no')";
+		%>
 	
 	
 	<table width ="800" cellpadding="0" cellspacing="10" align="center" >
 		<tr>
-			<td><a href="<%=cp %>/Booking/booking.do"><img src="${imagePath}/예몌3.PNG" width="200" height="50" border="2" align="middle"></a></td>
+			<td><a href="javascript: goToB();"><img src="${imagePath}/예몌3.PNG"  border="0" align="middle"></a></td>
 		</tr>
 		<tr>
-			<td><img src="${imagePath}/예매.png" width="800" height="600" border="2"></td>
+			<td><img src="${imagePath}/예매.png" border="0"></td>
 		</tr>
 	</table>
 	

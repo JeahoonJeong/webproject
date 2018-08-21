@@ -75,7 +75,7 @@
 	String str;
 	String strUrl;
 
-	strUrl = cp + "/Booking/seatSelect.do?sreen_id="+screenId;
+	strUrl = cp + "/Booking/seatSelect.do";
 	str = "window.open('" + strUrl + "', 'Think', ";
 	str = str + "'left=100, ";
 	str = str + "top=20, ";
@@ -95,6 +95,7 @@
 	type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/timetable/dd.css" type="text/css" />
 <title>Insert title here</title>
+
 <script type="text/javascript">
 	function goNextPage(screen_id){
 	var f= document.myForm1;
@@ -129,10 +130,10 @@
 	</div>
 
 	<form name="myForm" method="post" action="">
-		<table width="230px" height="503px" style="margin: 3px;">
-			<tr>
+		<table width="230px" height="503px" style="margin: 0px;" align="center">
+			<tr align="center">
 				<c:forEach var="dto" items="${lists1 }">
-					<td><a href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}">
+					<td><a href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}" >
 						<img src="${imagePath}/${dto.movie_name}.PNG" width="230" height="330">
 					</a></td>
 				</c:forEach>
@@ -190,7 +191,7 @@
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
 
-					<br><a onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=20x, left=100px, height=600px, width=1000px')">예매</a>
+					<br/><br><a href="<%=cp %>" onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=20x, left=100px, height=600px, width=1000px')">예매</a>
 					
 
 				</p>

@@ -60,7 +60,6 @@ public class MypageServlet extends HttpServlet{
 		String root = getServletContext().getRealPath("/");
 		String path = root + "memberImages";
 
-
 		File f = new File(path);
 
 		if(!f.exists()){
@@ -418,8 +417,6 @@ public class MypageServlet extends HttpServlet{
 			String user_id = member.getUser_id();
 			
 			dao.deleteMember(user_id);
-			
-			//�깉�눜 荑쇰━ 蹂대쪟 
 			
 			resp.sendRedirect(cp);
 

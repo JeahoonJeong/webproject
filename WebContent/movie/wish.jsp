@@ -53,8 +53,7 @@
 		<td height="50px" colspan="4"></td>
 
 		</tr>
-	<c:choose>
-		<c:when test="${lst!=null }">
+	<c:if test="${!empty lst }">
 	<c:set var="i" value="0"/>
 	<c:forEach var="dto" items="${lst }">
 	<c:if test="${i==0 }">
@@ -120,17 +119,17 @@
 		</td></c:forEach>
 		</c:if>
 		<c:if test="${i!=0 }"></tr></c:if>
-	</c:when>
-	<c:otherwise>
+	</c:if>
+	<c:if test="${empty lst }">
 		<tr>
 		<c:forEach var="i" begin="1" end="4">
 		<td>
-		<img src="${imagePath }/wishlist.jpg">
+		<img src="${imagePath }/wishlist.jpg"/>
 		</td>
 		</c:forEach>
 		</tr>
-	</c:otherwise>
-	</c:choose>	
+	</c:if>
+
 	</table>
 </form>	
 </div>

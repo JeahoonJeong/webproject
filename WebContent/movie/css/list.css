@@ -14,8 +14,10 @@
 
 #content{
 	font-family: 'Nanum Gothic', sans-serif;
-	margin-left: 440px;
-	margin-right: 440px;
+	/* margin-left: 440px;
+	margin-right: 440px; */
+	width: 1000px;
+	margin: 0 auto;
 	margin-bottom: 100px;
 	align: center;
 }
