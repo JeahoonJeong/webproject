@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.login.MemberDTO;
@@ -1055,6 +1056,88 @@ public class MypageDAO {
 		return result;
 	}
 	
+	public List<MyBookingDTO> getCancelseat(String booked_id){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		List<MyBookingDTO> seatsList = new ArrayList<MyBookingDTO>();
+		
+		try {
+			
+			sql = "select row_num, seat_num from detail_booked_list where booked_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, booked_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				MyBookingDTO dto = new MyBookingDTO();
+				
+				dto.setRow_num(rs.getString("row_num"));
+				dto.setSeat_num(rs.getInt("seat_num"));
+				
+				seatsList.add(dto);
+				
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return seatsList;
+		
+	}
+	
+	public int cancelSeats(List<MyBookingDTO> list){
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		String row_num;
+		int seat_num;
+		
+		
+		try {
+
+			Iterator<MyBookingDTO> it = list.iterator();
+			
+			while(it.hasNext()){
+				
+				MyBookingDTO dto = new MyBookingDTO();			
+				dto = it.next();
+				
+				row_num = dto.getRow_num();
+				seat_num = dto.getSeat_num();
+				
+				sql = "update seat set status=0 where row_num=? and seat_num=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, row_num);
+				pstmt.setInt(2, seat_num);
+				
+				result = pstmt.executeUpdate();
+				
+			}
+			
+			pstmt.close();
+			
+
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
 	
 
 }

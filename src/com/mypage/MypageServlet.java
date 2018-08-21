@@ -157,6 +157,14 @@ public class MypageServlet extends HttpServlet{
 
 			dao.cancelReservation(booked_id);
 			
+			/////////////////////////////////////////////수정중
+			List<MyBookingDTO> cancelSeatsList = new ArrayList<MyBookingDTO>();
+			
+			cancelSeatsList = dao.getCancelseat(booked_id);
+			
+			dao.cancelSeats(cancelSeatsList);
+			////////////////////////////////
+			
 			List<MyBookingDTO> bookingList = new ArrayList<MyBookingDTO>();
 
 			bookingList = dao.getBookingList(user_id);
