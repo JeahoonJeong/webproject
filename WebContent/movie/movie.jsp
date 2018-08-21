@@ -15,63 +15,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/movie/css/movie.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-
-<script type="text/javascript">
-
-	<%-- function imageChange(file_name) {
-		
-		var i = "${imagePath }/" + file_name;
-		
-		alert(i);
-		
-		var f = document.mvFrom;
-		
-		f.action = "<%=cp%>/Movie/movie.do"
-		f.submit();
-		
-		
-		
-	} --%>
-
-	
-	function sendIt() {
-		var f = document.mvForm;
-		
-		str = f.rate2.value;
-		if(!str){
-			alert("평점을 선택하세요");
-			return;
-		}
-		f.rate2.value = str;
-		
-		str = f.comments.value;
-		if(!str){
-			alert("내용을 입력해주세요");
-			f.comments.focus();
-			return;
-		}
-		f.comments.value = str;
-		
-		f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id };
-		f.submit();	
-	}
-
-	
-	function star() {
-		var f = document.mvForm;
-
-		var svalue = f.rate2.selectedIndex;
-		
-		f.rating.value=f.rate2.options[svalue].value;
-	}
-	function cannot() {
-		alert("한줄평은 한번만 등록할 수 있습니다")
-		return;
-	}
-
-
-</script>
-
 <title>Movie Info</title>
 <style type="text/css">
 
@@ -97,7 +40,6 @@ function goToB(movie_id) {
 	window.open(url,"booking",setting);
 	
 	window.close();
-	
 }
 
 function sendIt() {
@@ -121,10 +63,73 @@ function sendIt() {
 	f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
 	f.submit();
 }
+function updateComm() {
+	
+	var f = document.mvForm;
+	
+	str = f.rate3.value;
+	if(!str){
+		alert("평점을 선택하세요");
+		return;
+	}
+	f.rate3.value = str;
+	
+	str = f.contentArea.value;
+	if(!str){
+		alert("내용을 입력해주세요");
+		f.comments.focus();
+		return;
+	}
+	f.contentArea.value = str;
+	
+	f.action = "<%=cp%>/Movie/update.do?movie_id=" + ${dto.movie_id};
+	f.submit();
+	
+}
 function waitPlz() {
 	alert("상영 일정이 존재하지 않습니다")
 }
+function open_field(user_id) { 
+	
+	var x = document.getElementById("content"+user_id);
+	
+	var y = document.getElementById("contentArea"+user_id);
+	
+	x.style.display='none'; 
 
+	y.style.display='table';
+} 
+
+function close_field(user_id) { 
+	
+	var x = document.getElementById("content"+user_id);
+	
+	var y = document.getElementById("contentArea"+user_id);
+	
+	x.style.display='table';
+
+	y.style.display='none';
+} 
+
+function star() {
+	var f = document.mvForm;
+
+	var svalue = f.rate2.selectedIndex;
+	
+	f.rating.value=f.rate2.options[svalue].value;
+}
+function star_t() {
+	var f = document.mvForm;
+
+	var svalue = f.rate3.selectedIndex;
+	
+	f.rating_t.value=f.rate3.options[svalue].value;
+}
+
+function cannot() {
+	alert("한줄평은 한번만 등록할 수 있습니다")
+	return;
+}
 </script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
@@ -338,6 +343,95 @@ function waitPlz() {
 			</tr>
 			<tr>
 			</c:if>
+				<c:if test="${comm.user_id==sessionScope.member.user_id}">
+				<td class="cell" style="background-color: #f2f2f2;">
+				<span style="width: 80px; float: left;">
+				<c:choose>
+					<c:when test="${empty comm.file_name }">
+						<img class="radius" src="${profileImg }/profile.png" height="54px" width="54px"/>
+					</c:when>
+					<c:otherwise>
+						<img class="radius" src="${profileImg }/${comm.file_name}" height="54px" width="54px"/>
+					</c:otherwise>
+				</c:choose>
+				</span>
+				
+				<span class="id"><strong>${comm.user_id }</strong></span>
+				
+				
+				<div id="content${comm.user_id}" style="display:table;">
+				<span class="text">
+				<span class="date">${comm.comment_date }</span>
+				<span>
+					<c:if test="${comm.rating==0 }"><img src="${imagePath }/s_star0.png"></c:if>
+					<c:if test="${comm.rating<3&&0<comm.rating}"><img src="${imagePath }/s_star1.png"></c:if>
+					<c:if test="${2<comm.rating&&comm.rating<5}"><img src="${imagePath }/s_star2.png"></c:if>
+					<c:if test="${4<comm.rating&&comm.rating<7 }"><img src="${imagePath }/s_star3.png"></c:if>
+					<c:if test="${6<comm.rating&&comm.rating<9 }"><img src="${imagePath }/s_star4.png"></c:if>
+					<c:if test="${8<comm.rating&&comm.rating<11 }"><img src="${imagePath }/s_star5.png"></c:if>
+				</span>
+				</span>
+				
+					<div style="color: #333333; font-size: 14px; line-height: 20px; margin: 4px 0 35px; word-break:break-all; width:310px;">
+						${comm.comments }
+					</div>
+				
+					<p class="bottom">
+					
+					<c:if test="${comm.user_id!=sessionScope.member.user_id }">
+					<a href="javascript:location.href=
+					'<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }&movie_id=${dto.movie_id }'">
+					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
+					<font style="font-weight: bold;">${comm.recommend_num }</font></a>
+					</c:if>
+					
+					<c:if test="${comm.user_id==sessionScope.member.user_id }">
+					<img src="${imagePath }/thumb.png" style="vertical-align: middle;"/> 추천 
+						<font style="font-weight: bold;">${comm.recommend_num }</font>
+						
+					<span style="float: right">
+					<img src="${imagePath }/iconUpdate.png" onclick="open_field(${comm.user_id});" style="cursor: pointer;"/>&nbsp;&nbsp;
+					
+					<a href="<%=cp %>/Movie/delete.do?movie_id=${dto.movie_id}"> 
+					<img src="${imagePath }/iconTrash.png"/></a></span>
+					</c:if>
+					
+					</p>
+					
+				</div>
+				
+				<div id="contentArea${comm.user_id}" style="display: none;">
+					<div class="text">
+					<input type="hidden" name="rating_t" />
+						<select id="rate3" style="width: 119px; height: 25px; border-style: none; appearance: none;" onchange="star_t();">
+						<option value="0">☆☆☆☆☆</option>
+						<option value="2">★☆☆☆☆</option>
+						<option value="4">★★☆☆☆</option>
+						<option value="6">★★★☆☆</option>
+						<option value="8">★★★★☆</option>
+						<option value="10">★★★★★</option>
+						</select>
+					</div>
+				
+					<div style="color: #333333; font-size: 14px; line-height: 20px; margin: 4px 0 35px; width:310px;">
+					<textarea rows="3" cols="35" name="contentArea" maxlength="65" 
+					style="border: 1px solid #dddddd; overflow: hidden;">${comm.comments }</textarea>
+					
+					</div>
+				<p class="bottom">
+					<span style="float: right">
+				
+					<img src="${imagePath }/confirm.png" onclick="updateComm();" style="cursor: pointer;"/>&nbsp;&nbsp;
+					<img src="${imagePath }/cancle.png" onclick="close_field(${comm.user_id });" style="cursor: pointer;"/>
+					
+					</span>
+				</p>
+				</div>
+				</td>
+				</c:if>
+				
+				
+				<c:if test="${comm.user_id!=sessionScope.member.user_id}">
 				<td class="cell">
 				<span style="width: 80px; float: left;">
 				<c:choose>
@@ -349,8 +443,12 @@ function waitPlz() {
 					</c:otherwise>
 				</c:choose>
 				</span>
-				<span class="text">
+				
 				<span class="id"><strong>${comm.user_id }</strong></span>
+				
+				
+				<div id="content${comm.user_id}" style="display:table;">
+				<span class="text">
 				<span class="date">${comm.comment_date }</span>
 				<span>
 					<c:if test="${comm.rating==0 }"><img src="${imagePath }/s_star0.png"></c:if>
@@ -360,32 +458,28 @@ function waitPlz() {
 					<c:if test="${6<comm.rating&&comm.rating<9 }"><img src="${imagePath }/s_star4.png"></c:if>
 					<c:if test="${8<comm.rating&&comm.rating<11 }"><img src="${imagePath }/s_star5.png"></c:if>
 				</span>
-				<p><span class="content">
-				${comm.comments }
-
-				</span></p>
-				<p class="bottom">
+				</span>
 				
+					<div style="color: #333333; font-size: 14px; line-height: 20px; margin: 4px 0 35px; word-break:break-all; width:310px;">
+						${comm.comments }
+					</div>
+				
+					<p class="bottom">
 					<c:if test="${empty sessionScope.member.user_id }">
-					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
-					<font style="font-weight: bold;">${comm.recommend_num }</font></span>
+						<img src="${imagePath }/thumb.png" style="vertical-align: middle;"/> 추천 
+						<font style="font-weight: bold;">${comm.recommend_num }</font>
 					</c:if>
+				
 					<c:if test="${!empty sessionScope.member.user_id }">
 					<a href="javascript:location.href=
 					'<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }&movie_id=${dto.movie_id }'">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
-					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
+					<font style="font-weight: bold;">${comm.recommend_num }</font></a>
 					</c:if>
-					<c:if test="${comm.user_id==sessionScope.member.user_id }">
-					<span style="float: right">
-					<a href="<%=cp %>/Movie/update.do?movie_id=${dto.movie_id}">
-					<img src="${imagePath }/iconUpdate.png"/>&nbsp;&nbsp;</a>
-					
-					<a href="<%=cp %>/Movie/delete.do?movie_id=${dto.movie_id}"> 
-					<img src="${imagePath }/iconTrash.png"/></a></span>
-					</c:if>
-				</p>
+					</p>
+				</div>
 				</td>
+				</c:if>
 			<c:set var="i" value="${i+1 }" />
 			</c:forEach>
 			<c:if test="${i>0&&i%2!=0 }">

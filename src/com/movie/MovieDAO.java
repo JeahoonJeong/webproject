@@ -548,7 +548,7 @@ public class MovieDAO {
 		return result;
 	}
 	
-	public int commentDel(String movie_id, String user_id){//한줄평 삭제
+	public int delComment(String movie_id, String user_id){//한줄평 삭제
 		
 		int result = 0;
 		
@@ -581,6 +581,43 @@ public class MovieDAO {
 			System.out.println(e.toString());
 		}
 		return result;
+	}
+	
+	public int updateComment(MovieDTO dto){//한줄평 수정
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			sql = "update comments set comments=? where movie_id=? and user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getComments());
+			pstmt.setString(2, dto.getMovie_id());
+			pstmt.setString(3, dto.getUser_id());
+			
+			result = pstmt.executeUpdate();
+			
+			sql = "update rating set rating=? where movie_id=? and user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, dto.getRating());
+			pstmt.setString(2, dto.getMovie_id());
+			pstmt.setString(3, dto.getUser_id());
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+		
 	}
 	
 	

@@ -187,7 +187,6 @@ public class MovieServlet extends HttpServlet{
 			resp.sendRedirect(url);
 
 			
-			
 		}else if(uri.indexOf("delete.do")!=-1){//한줄평 삭제
 			
 			HttpSession session = req.getSession();
@@ -196,9 +195,32 @@ public class MovieServlet extends HttpServlet{
 			String user_id = member.getUser_id();
 			String movie_id = req.getParameter("movie_id");
 			
-			dao.commentDel(movie_id, user_id);
+			dao.delComment(movie_id, user_id);
 			
 			url = cp +"/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
+		
+			
+		}else if(uri.indexOf("update.do")!=-1){
+			
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			
+			MovieDTO dto = new MovieDTO();
+			
+			dto.setUser_id(member.getUser_id());
+			dto.setMovie_id(req.getParameter("movie_id"));
+			dto.setComments(req.getParameter("contentArea"));
+			if(req.getParameter("rating_t")==""){
+				dto.setRating(0);
+			}else{
+			dto.setRating(Integer.parseInt(req.getParameter("rating_t")));
+			}
+			
+			dao.updateComment(dto);
+			
+			url = cp + "/Movie/movie.do?movie_id=" + dto.getMovie_id();
 			resp.sendRedirect(url);
 			
 			
@@ -333,9 +355,9 @@ public class MovieServlet extends HttpServlet{
 			
 			url = cp + "/Movie/movie.do?movie_id=" + movie_id;
 			resp.sendRedirect(url);
-
 			
 		
+
 		////////--------------------------------------
 			
 		}else if(uri.indexOf("wish_add.do")!=-1){
