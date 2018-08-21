@@ -215,12 +215,12 @@ public class BookingServlet extends HttpServlet {
 				dto.getRnum();
 				dto.getStatus();
 				
-				/*System.out.print(dto.getScreen_id());
+				System.out.print(dto.getScreen_id());
 				System.out.print(dto.getRnum());
 				System.out.print(dto.getRow_num());
 				System.out.print(dto.getSeat_num());
 				System.out.print(dto.getStatus());
-				System.out.print("\n");*/
+				System.out.print("\n");
 			}
 			
 			
