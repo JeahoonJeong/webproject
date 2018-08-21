@@ -219,7 +219,7 @@
 </div>
 
 <!-- 텝메뉴 시작 -->
-<div class="sc no2">
+<div class="sc no2" align="center">
 	<div class=whole_wrap>
 		<div id="topMenu" class="P2_menu">
 			<ul>
@@ -351,19 +351,19 @@
 		<td>
 			<div id="topMenu2">
 				<ul>
-					<li class="topMenuLi2"><a class="menuLink2">상영시간표</a>
+					<li class="topMenuLi2"><a class="menuLink2" href="#mtime_link">상영시간표</a>
 						<ul class="submenu2">
 						</ul></li>
 					<li>|</li>
-					<li class="topMenuLi2"><a class="menuLink2">층별안내</a>
+					<li class="topMenuLi2"><a class="menuLink2" href="#theaterinfo_link">층별안내</a>
 						<ul class="submenu2">
 						</ul></li>
 					<li>|</li>
-					<li class="topMenuLi2"><a class="menuLink2">약도/교통/주차</a>
+					<li class="topMenuLi2"><a class="menuLink2" href="#howtogo_link">약도/교통/주차</a>
 						<ul class="submenu2">
 						</ul></li>
 					<li>|</li>
-					<li class="topMenuLi2"><a class="menuLink2">관람료</a>
+					<li class="topMenuLi2"><a class="menuLink2" href="#price_link">관람료</a>
 						<ul class="submenu2">
 						</ul></li>
 					<li>|</li>
@@ -382,7 +382,7 @@
 		width="1140px">
 		<tr>
 			<td colspan="5" style="padding-bottom: 3px">
-				<h3>상영시간표</h3>
+				<h3 id="mtime_link">상영시간표</h3>
 			</td>
 		</tr>
 		<tr>
@@ -431,16 +431,18 @@
 	</script>
 
 <form name="myForm1" method="post">
-<table border="0" class="m_time_tb v2">
+<table border="0" class="m_time_tb v2" width="1140px">
 	<tbody>	
 	
 	
 	<c:forEach var="dto" items="${lists }">
 		<c:if test="${!dto.screen_num.equals(screen_num1) }">
+		<c:set var="i" value="0"/>
 
 			
 		<tr class="lineheight_80" style="width: 1140px;">
 			<th class="title">
+			
 				<div>
 					<c:if test="${dto.age_limit eq 'all'}">
 					<span class="age_m age_all">
@@ -462,15 +464,12 @@
 					18세관람가
 					</span>
 					</c:if>
-
 					
-
-					
-<!-- 영화 상세 보기 링크  -->
 					<strong>
 						<a href="javascript:showDetail(${dto.movie_id})"  title="영화상세 보기">${dto.movie_name }</a>
 					</strong>
 				</div>
+				
 			</th>
 			<th class="room">
 				<div>${dto.screen_num }관</div>
@@ -486,6 +485,77 @@
 					<input type="hidden" name = "district" value = "${dto.district}">
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
+				
+					<div class="movie_time">
+
+						
+						<p class="time_info">
+							<span class="type"></span>
+							<span class="time">${dto.start_time }~${dto.end_time }</span>
+							<span class="seat">${dto.seatedseat }/${dto.seatnumber }</span>
+							<span class="reserve"><a href="javascript:letsReserve(${dto.screen_id})">예매하기</a></span>
+							
+						
+						
+						<strong class="ico_box">
+						
+						</strong>
+					
+						</p>
+					</div>
+				</td>
+				<c:set var="screen_num1" value="${dto.screen_num}" />	
+				<c:set var="i" value="${i+1 }"/>	
+<!-- 4개 이상 출력시 밑으로  -->
+		
+			<c:if test="${i eq '4' }">
+			
+			<tr class="lineheight_80" style="width: 1140px;">
+			<th class="title">
+			
+				<div>
+					<c:if test="${dto.age_limit eq 'all'}">
+					<span>
+					　
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '12'}">
+					<span>
+					　
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '15'}">
+					<span>
+					　
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '18'}">
+					<span>
+					　
+					</span>
+					</c:if>
+					
+					<strong>
+						　
+					</strong>
+				</div>
+				
+			</th>
+			<th class="room">
+				<div>　</div>
+				<small>　</small>
+			</th>
+			
+				<td headers="th_theaterschedule_title th_theaterschedule_room">
+				<input type="hidden" name = "screen_id" value = "${dto.screen_id}">
+					<input type="hidden" name = "age_limit" value = "${dto.age_limit}">
+					<input type="hidden" name = "movie_name" value = "${dto.movie_name}">
+					<input type="hidden" name = "screen_num" value = "${dto.screen_num}">
+					<input type="hidden" name = "start_time" value = "${dto.start_time}">
+					<input type="hidden" name = "district" value = "${dto.district}">
+					<input type="hidden" name ="type" value ="${dto.type }">
+					
+				
 					<div class="movie_time">
 						<a href="javascript:letsReserve(${dto.screen_id});">
 							<span class="hover_time" style="display: none;">
@@ -502,15 +572,20 @@
 						<strong class="ico_box">
 						
 						</strong>
+					
 						</p>
 					</div>
 				</td>
-				<c:set var="screen_num1" value="${dto.screen_num}" />	
-	
+				<c:set var="i" value="${i+1 }"/>
+			</c:if>
 		</c:forEach>
 	</tbody>
 </table>
 </form>
+	<p class="m_time_notice" align="left">
+	* 지연입장에 의한 관람불편을 최소화하고자 본 영화는 약 10분 후 시작됩니다.<br>
+	* 쾌적한 관람 환경을 위해 상영시간 이전에 입장 부탁드립니다.<br>
+	</p>
 
 </div><!-- mtime_container 끝  -->
 <!-- lists 끝  -->
@@ -523,7 +598,7 @@
 		<!-- 층 안내 시작 -->
 		<div class="floorinfo" style="padding-top: 100px; padding-left: 10px;">
 			<div style="position: relative; width: 1140px; margin: 0 auto;">
-				<h3>층별안내</h3>
+				<h3 id="theaterinfo_link">층별안내</h3>
 				<c:if test="${theater_id==1 }">
 					<div class="floorP2" style="margin-bottom: 15px;">
 						<strong>8층</strong>
@@ -600,7 +675,7 @@
 		<!-- 약도/교통/주차 시작 -->
 		<div class="floorinfo" style="padding-top: 10px; padding-left: 10px;">
 			<div style="position: relative; width: 1140px; margin: 0 auto;">
-				<h3>교통/약도/주차</h3>
+				<h3 id="howtogo_link">교통/약도/주차</h3>
 
 				<div class="mapInfo" style="margin-bottom: 15px;">
 					<p>
@@ -678,10 +753,11 @@
 		<div class="trafficInfo"
 			style="padding-top: 10px; padding-left: 10px;">
 			<div style="width: 1140px; margin: 0 auto;">
-				<h3>교통안내</h3>
+				<h3 id="price_link">교통안내</h3>
 
 
 				<c:if test="${theater_id==1 }">
+				<div class="traffic bus mb13">
 					<div class="traInfo">
 						<ul>
 							<li>140번, 144번, 145번, 146번, 360번, 402번, 407번, 408번, 420번, 440번, 441번, 462번, 470번, 471번</li>
@@ -689,17 +765,22 @@
 							<li>9404번, 9408번, 9409번, 9503번, 9711번, 9500번, 9501번, 9510번, 9800번, 9801번, 9802번, 9901번 <br/>M4403번, M7412번</li>
 						</ul>
 					</div>
+				</div>
+				<div class="traffic metro mb30">
 					<div class="traInfo">
 						<ul>
 							<li>지하철 2호선 , 신분당선 ‘강남역 -> 지하철 9번(구 5번) 출구 좌측 연결통로 이용</li>
 						</ul>
 					</div>
+				</div>
+				
 					
 					
 				</c:if>
 				
 
 				<c:if test="${theater_id==2 }">
+				<div class="traffic bus mb13">
 					<div class="traInfo">
 						<ul>
 							<li>3319번, 3321번, 3220번, 3212번, 3214번, 3411번, 3318번, 3321번</li>
@@ -708,41 +789,51 @@
 							<li>16번, 30번, 30-1번, 30-3번, 70번, 112번, 112-1번, 112-5번</li>
 						</ul>
 					</div>
+				</div>
+				<div class="traffic metro mb30">
 					<div class="traInfo">
 						<ul>
 							<li>8호선 강동구청역 2번 출구 도보 5분 (400m)</li>
 						</ul>
 					</div>
+				</div>
 				</c:if>
 
 				<c:if test="${theater_id==3 }">
+				<div class="traffic bus mb13">
 					<div class="traInfo">
 						<ul>
 							<li>3000, 9008, 8600</li>
 							<li>20, 33, 60-3, 81-1</li>
 						</ul>
 					</div>
+				</div>
 				</c:if>
+				
 
 				<c:if test="${theater_id==4 }">
+				<div class="traffic bus mb13">
 					<div class="traInfo">
 						<ul>
 							<li>13-1, 7, 82-2, 2, 2-1, 3, 51, 63, 63-1, 4-1, 11-1, 7-2, 720-1</li>
 							<li>1112, 1007-1, 3001, 3001-1, 900, 5100, 7000, 7200</li>
 						</ul>
 					</div>
+				</div>
+				<div class="traffic metro mb30">
 					<div class="traInfo">
 						<ul>
 							<li>지하철 분당선 ‘영통역’ 하차 → 지하철 8번 출구 이용</li>
 						</ul>
 					</div>
+				</div>
 				</c:if>
 
 
 				<div class="trafficInfo"
-					style="padding-top: 10px; padding-left: 10px; text-align: left;">
+					style="padding-top: 10px; padding-left: 10px; text-align: left; font-weight: bold;">
 					<ul>
-						<li><strong style="padding-left: 5px; font-size: 15px">주차요금</strong>
+						<li><strong style="padding-left: 5px; font-size: 15px; font-weight: bolder;">주차요금</strong>
 							<ul>
 								<li>영화 관람 시 3시간 2,000원, 이후 10분당 500원</li>
 								<li>요금 정산 시 카드 결제만 가능하며 현금 결제는 어렵습니다.</li>
@@ -757,14 +848,16 @@
 
 <!-- 관람료  -->
 <div class="sc no5" id="menu4"
-	style="background-color: #1F0000;" align="center">
+	style="background-color: white;" align="center">
 
 	<div id="theaterpay">
 		<div class="whole_wrap" style="width: 1140px">
-			<h3 style="color: white; padding-left: 10px; padding-top: 20px; font-size: 25px; text-align: left;
+			<h3 style="color: #000000; padding-left: 10px; padding-top: 20px; font-size: 25px; text-align: left;
 			 margin-bottom: 20px;" class="theater_pay">관람료</h3>
-
-			<h4 style="text-align: left;">1. 영화관람료</h4>
+			
+			<div align="left" style="padding-bottom: 10px;">
+			<font style="color: #000000; font-size: 20px; text-align: left;">1. 영화관람료</font>
+			</div>
 
 			<table class="table_dark" summary="영화관람료">
 				<caption class="blind2">영화관람료: 상영관, 구분, 상영시간, 성인, 청소년,
@@ -1083,9 +1176,11 @@
 					</tr>
 				</tbody>
 			</table>
-
-			<h4>2. 요금제 기준</h4>
-
+			
+			<div align="left" style="padding-bottom: 10px;">
+			<font style="color: #000000; font-size: 20px; text-align: left;">2. 요금제 기준</font>
+			</div>
+			
 			<table class="table_dark" summary="관람료, 요금제 기준">
 				<caption class="blind2">요금제 기준: 구분, 적용기준, 증빙서류의 항목으로
 					구성된 표입니다.</caption>
@@ -1120,9 +1215,11 @@
 				<dt>* 마티네 요금 : 메가박스 멤버십 회원대상, 매주 화요일 첫 회 ~ 14시 전 상영작까지
 					6,000원에 관람이 가능한 요금제 (일부 특별관의 경우 추가요금이 발생)</dt>
 			</dl>
-
-			<h4>3. 우대적용기준</h4>
-
+			
+			<div align="left" style="padding-bottom: 10px;">
+			<font style="color: #000000; font-size: 20px; text-align: left;">3. 우대적용기준</font>
+			</div>
+			
 			<table class="table_dark" summary="관람료, 우대적용기준">
 				<caption class="blind2">우대적용기준: 구분, 적용기준, 증빙서류의 항목으로
 					구성된 표입니다.</caption>
