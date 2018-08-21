@@ -60,11 +60,11 @@ function login() {
 </div>
 
 <div style="clear: both">
-<br/><br/><br/><br/>
+<br/><br/>
 </div>
 
 <span>MEGABOX</span> 로그인
-<br/>
+<br/><br/>
 
 <form action="" name="myForm">
 <table align="center">
@@ -81,7 +81,7 @@ function login() {
 	<tr>
 		<td colspan="2"><br/>
 		<a href="<%=cp %>/Login/register.do">회원가입</a>&nbsp;&nbsp;&nbsp; 
-		<a href="#">ID/PW찾기</a>
+		<a href="<%=cp %>/Login/findUser.do">ID/PW찾기</a>
 		</td>
 	</tr>
 

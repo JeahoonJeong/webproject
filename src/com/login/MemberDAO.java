@@ -97,6 +97,77 @@ public class MemberDAO {
 		
 	}
 	
+	public String searchId(String user_name, String birth, String tel){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		String findId = null;
+		
+		try {
+			
+			sql = "select user_id from member where user_name=? and birth=? and tel=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_name);
+			pstmt.setString(2, birth);
+			pstmt.setString(3, tel);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				findId = rs.getString("user_id");
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return findId;
+		
+	}
+	
+	public String searchPw(String user_id, String user_name, String tel){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		String findPw = null;
+		
+		try {
+			
+			sql = "select user_pwd from member where user_id=? and user_name=? and tel=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, user_name);
+			pstmt.setString(3, tel);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				findPw = rs.getString("user_pwd");
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return findPw;
+		
+	}
 }
 
 

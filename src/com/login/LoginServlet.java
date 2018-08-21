@@ -60,11 +60,7 @@ public class LoginServlet extends HttpServlet{
 			if(dto==null || !(dto.getUser_id().equals(user_id))){
 				
 				req.setAttribute("message", "아이디를 다시 확인하세요!");
-				
-				
-				
-				
-				
+
 				url = "/loginPage/login.jsp";
 				forward(req, resp, url);
 				
@@ -127,6 +123,56 @@ public class LoginServlet extends HttpServlet{
 
 			resp.sendRedirect(cp);
 			
+		}else if(uri.indexOf("findUser.do")!=-1){
+			
+			url = "/loginPage/findUser.jsp";
+			forward(req,resp,url);
+			
+		}else if(uri.indexOf("findUser_id.do")!=-1){
+			
+			String user_name = req.getParameter("user_name");
+			String birth = req.getParameter("birth");
+			String tel = req.getParameter("tel");
+			String findId = null;
+			String message = null;
+			
+			findId = dao.searchId(user_name, birth, tel);
+			
+			if(findId==null){
+				message = "해당하는 회원 정보가 없습니다.";
+			}
+			else{
+				message = user_name + "님의 메가박스 아이디는 " + findId + "입니다!";
+			}
+			
+			req.setAttribute("message", message);
+			
+			url = "/loginPage/findUser.jsp";
+			forward(req, resp, url);
+
+			
+		}else if(uri.indexOf("findUser_pw.do")!=-1){
+			
+			String user_id = req.getParameter("user_id");
+			String user_name = req.getParameter("user_name");
+			String tel = req.getParameter("tel");
+			String findPw = null;
+			String message = null;
+			
+			findPw = dao.searchPw(user_id, user_name, tel);
+			
+			if(findPw==null){
+				message = "해당하는 회원 정보가 없습니다.";
+			}
+			else{
+				message = user_name + "님의 메가박스 비밀번호는 [" + findPw + "]입니다!";
+			}
+			
+			req.setAttribute("message", message);
+			
+			url = "/loginPage/findUser.jsp";
+			forward(req, resp, url);
+
 		}
 		
 		

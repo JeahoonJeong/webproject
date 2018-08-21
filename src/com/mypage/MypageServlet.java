@@ -443,13 +443,7 @@ public class MypageServlet extends HttpServlet{
 			url = "/mypage/bookingDetail.jsp";
 			forward(req, resp, url);
 			
-		}
-		
-		
-		
-		
-		
-		
+		}		
 
 	}
 
