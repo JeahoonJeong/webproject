@@ -28,6 +28,24 @@
 		
 		
 		} 
+		 
+		 function goToB(movie_id) {
+				
+				var url = "<%=cp%>/Booking/booking.do";
+				
+				var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+				
+				window.open(url,"booking",setting);
+	
+		}
+
+		 
+		 function loginPlz() {
+			
+			 alert("로그인 후 이용 가능합니다")
+			 return;
+			 
+		}
 		
 </script>
 </head>
@@ -39,19 +57,28 @@
 			<td><a href=<%=cp %>/Movie/list.do><font color="#503396">박스오피스</font></a></td>
 			<td><a href=<%=cp %>/Movie/list_date.do>최신개봉작</a></td>
 			<td><a href=<%=cp %>/Movie/list_pre.do>상영예정작</a></td>
-			<td><span style="float: left;">
-			<a href="<%=cp %>/Movie/wish.do">♥ 보고싶어</a></span>
+			<c:choose>
+				<c:when test="${empty sessionScope.member.user_id }">
+					<td><span style="float: left;">
+					<a href="javascript:loginPlz();">♥ 보고싶어</a></span>
+				</c:when>
+				<c:otherwise>
+					<td><span style="float: left;">
+					<a href="<%=cp%>/Movie/wish.do">♥ 보고싶어</a></span>
+				</c:otherwise>
+			</c:choose>
+		
 			<span style="float: right;">
 			<font size="2pt">
-			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리 ></a></font></span></td>
+			<a href="<%=cp %>/Mypage/myMoivestory.do?linkpage=interestingList">나의 무비스토리 ></a></font></span></td>
 		</tr>
 	</table>
 </div>
 
 <div id="content">
-	<table width="1722px">
+	<table width="990px">
 		<tr>
-		<td height="50px" colspan="7"></td>
+		<td height="50px" colspan="4"></td>
 
 		</tr>
 	<c:set var="i" value="0"/>
@@ -59,7 +86,7 @@
 	<c:if test="${i==0 }">
 		<tr>
 	</c:if>
-	<c:if test="${i!=0&&i%7==0 }">
+	<c:if test="${i!=0&&i%4==0 }">
 		</tr>
 		<tr>
 	</c:if>
@@ -107,7 +134,7 @@
 				<input type="button" value="상세정보" class="btn1"
 				onclick="showPop(${dto.movie_id});"/>
 				&nbsp;<input type="button" value="예매하기" class="btn1"
-				onclick=""/></td>
+				onclick="goToB(${dto.movie_id});"/></td>
 				<c:set var="i" value="${i+1 }" />
 			</tr>
 	</table>

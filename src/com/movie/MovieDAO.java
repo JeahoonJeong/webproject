@@ -236,7 +236,7 @@ public class MovieDAO {
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id) data) where rnum>=? and rnum<=?;";*/
 			
 			sql = "select a.*, rating from ";
-			sql+= "(select movie_id,a.user_id,comment_date,comments,recommend_num,file_name from comments a ";
+			sql+= "(select movie_id,a.user_id,to_char(comment_date,'YYYY.MM.DD') comment_date,comments,recommend_num,file_name from comments a ";
 			sql+= "left join member_image b on a.user_id=b.user_id where movie_id=?) a , rating b where "; 
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id";
 			
@@ -495,6 +495,34 @@ public class MovieDAO {
 		return lst;
 		
 	}
+	
+	public int recommend(String user_id, String movie_id){
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "update comments set recommend_num=(recommend_numm+1) where user_id=? and movie_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, movie_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	
+	
 	
 	
 	
