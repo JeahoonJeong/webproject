@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, strong, label {
 
 .P2_container .sc.no1 {
     position: relative;
-    height: 580px;
+    height: 450px;
     background: url(http://image2.megabox.co.kr/mop/home/theater/bg_top.jpg) 50% 0 no-repeat;
     background-size: cover !important;
 }

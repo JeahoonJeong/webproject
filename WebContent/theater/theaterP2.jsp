@@ -156,7 +156,7 @@
 		<div class="P2_container" style="position: static; margin-top: 0px;">
  	
 <div class="sc no1"
-		style="background-repeat: no-repeat; height: 580px; border: 1px solid black; 
+		style="background-repeat: no-repeat; height: 450px; border: 1px solid black; 
 		background-image: 
 		<c:if test="${theater_id eq '1' }">
 		url(http://image2.megabox.co.kr/mop/cinema/2014/51/C2345A-5B27-4E50-A432-B9754B2A3F16.jpg);
@@ -436,46 +436,85 @@
 	
 	
 	<c:forEach var="dto" items="${lists }">
-		<c:if test="${!dto.screen_num.equals(screen_num1) }">
-		<c:set var="i" value="0"/>
-
-			
+	<c:if test="${!dto.screen_num.equals(screen_num1) }">	
+	<c:set var="i" value="0"/>		
 		<tr class="lineheight_80" style="width: 1140px;">
 			<th class="title">
 			
-				<div>
-					<c:if test="${dto.age_limit eq 'all'}">
-					<span class="age_m age_all">
-					전체관람가
-					</span>
-					</c:if>
-					<c:if test="${dto.age_limit eq '12'}">
-					<span class="age_m age_12">
-					${dto.age_limit}세관람가
-					</span>
-					</c:if>
-					<c:if test="${dto.age_limit eq '15'}">
-					<span class="age_m age_15">
-					15세관람가
-					</span>
-					</c:if>
-					<c:if test="${dto.age_limit eq '18'}">
-					<span class="age_m age_18">
-					18세관람가
-					</span>
-					</c:if>
-					
-					<strong>
-						<a href="javascript:showDetail(${dto.movie_id})"  title="영화상세 보기">${dto.movie_name }</a>
-					</strong>
-				</div>
+			<div>
+				<c:if test="${dto.age_limit eq 'all'}">
+				<span class="age_m age_all">
+				전체관람가
+				</span>
+				</c:if>
+				<c:if test="${dto.age_limit eq '12'}">
+				<span class="age_m age_12">
+				12세관람가
+				</span>
+				</c:if>
+				<c:if test="${dto.age_limit eq '15'}">
+				<span class="age_m age_15">
+				15세관람가
+				</span>
+				</c:if>
+				<c:if test="${dto.age_limit eq '18'}">
+				<span class="age_m age_18">
+				18세관람가
+				</span>
+				</c:if>
 				
+				<strong>
+					<a href="javascript:showDetail(${dto.movie_id})"  title="영화상세 보기">${dto.movie_name }</a>
+				</strong>
+			</div>
 			</th>
+
 			<th class="room">
 				<div>${dto.screen_num }관</div>
 				<small>${dto.type }</small>
 			</th>
 			</c:if>
+			
+<!-- 5번째 이후 밑으로 출력 시작  -->
+			<c:if test="${i/5 eq '1' }">
+			
+			<tr class="lineheight_80" style="width: 1140px;">
+			<th class="title">
+			
+				<div>
+					<c:if test="${dto.age_limit eq 'all'}">
+					<span>
+					
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '12'}">
+					<span>
+					
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '15'}">
+					<span>
+					
+					</span>
+					</c:if>
+					<c:if test="${dto.age_limit eq '18'}">
+					<span>
+					
+					</span>
+					</c:if>
+					
+					<strong>
+						
+					</strong>
+				</div>
+			</th>
+			
+			<th class="room">
+			<div></div>
+			<small></small>
+			</th>
+			</c:if>
+<!-- 5번째 이후 밑으로 출력 끝 -->
 				<td headers="th_theaterschedule_title th_theaterschedule_room">
 				<input type="hidden" name = "screen_id" value = "${dto.screen_id}">
 					<input type="hidden" name = "age_limit" value = "${dto.age_limit}">
@@ -505,79 +544,9 @@
 					</div>
 				</td>
 				<c:set var="screen_num1" value="${dto.screen_num}" />	
-				<c:set var="i" value="${i+1 }"/>	
-<!-- 4개 이상 출력시 밑으로  -->
-		
-			<c:if test="${i eq '4' }">
-			
-			<tr class="lineheight_80" style="width: 1140px;">
-			<th class="title">
-			
-				<div>
-					<c:if test="${dto.age_limit eq 'all'}">
-					<span>
-					　
-					</span>
-					</c:if>
-					<c:if test="${dto.age_limit eq '12'}">
-					<span>
-					　
-					</span>
-					</c:if>
-					<c:if test="${dto.age_limit eq '15'}">
-					<span>
-					　
-					</span>
-					</c:if>
-					<c:if test="${dto.age_limit eq '18'}">
-					<span>
-					　
-					</span>
-					</c:if>
-					
-					<strong>
-						　
-					</strong>
-				</div>
-				
-			</th>
-			<th class="room">
-				<div>　</div>
-				<small>　</small>
-			</th>
-			
-				<td headers="th_theaterschedule_title th_theaterschedule_room">
-				<input type="hidden" name = "screen_id" value = "${dto.screen_id}">
-					<input type="hidden" name = "age_limit" value = "${dto.age_limit}">
-					<input type="hidden" name = "movie_name" value = "${dto.movie_name}">
-					<input type="hidden" name = "screen_num" value = "${dto.screen_num}">
-					<input type="hidden" name = "start_time" value = "${dto.start_time}">
-					<input type="hidden" name = "district" value = "${dto.district}">
-					<input type="hidden" name ="type" value ="${dto.type }">
-					
-				
-					<div class="movie_time">
-						<a href="javascript:letsReserve(${dto.screen_id});">
-							<span class="hover_time" style="display: none;">
-								${dto.start_time }~${dto.end_time }
-							</span>
-						</a>
-						
-						<p class="time_info">
-							<span class="type"></span>
-							<span class="time">${dto.start_time }~${dto.end_time }</span>
-							<span class="seat">${dto.seatedseat }/${dto.seatnumber }</span>
-						
-						
-						<strong class="ico_box">
-						
-						</strong>
-					
-						</p>
-					</div>
-				</td>
 				<c:set var="i" value="${i+1 }"/>
-			</c:if>
+				
+			
 		</c:forEach>
 	</tbody>
 </table>
