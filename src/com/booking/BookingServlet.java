@@ -175,12 +175,22 @@ public class BookingServlet extends HttpServlet {
 			//System.out.println(screen_id);
 			req.setAttribute("screen_id", screen_id);
 			
-			String age_limit = req.getParameter("age_limit");
+			MovieDTO movieDTO = dao.getScreenInfo(screen_id);
+			
+			String age_limit = movieDTO.getAge_limit();
+			String movie_name = movieDTO.getMovie_name();
+			String screen_num = movieDTO.getScreen_num();
+			String start_time = movieDTO.getStart_time();
+			String type = movieDTO.getType();
+			String district = movieDTO.getDistrict();
+			
+			
+			/*String age_limit = req.getParameter("age_limit");
 			String movie_name = req.getParameter("movie_name");
 			String screen_num = req.getParameter("screen_num");
 			String start_time = req.getParameter("start_time");
 			String type = req.getParameter("type");
-			String district = req.getParameter("district");
+			String district = req.getParameter("district");*/
 			
 //			Cookie c_age_limit =new Cookie("c_age_limit", age_limit);
 //			Cookie c_movie_name = new Cookie("c_movie_name", movie_name);
