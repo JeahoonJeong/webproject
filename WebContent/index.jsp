@@ -46,13 +46,25 @@
 	int start = (currentPage-1)*numPerPage+1;
 	int end = currentPage*numPerPage;
 	
-	List<MovieDTO> lst = dao.getAllMV(start, end);
+	String check = request.getParameter("check");
+	
+	List<MovieDTO> lst = null;
+	if(check==null || check.equals("0")){
+		lst = dao.getAllMV(start, end);	
+	}
+	else if(check.equals("1")){
+		lst = dao.getListDate(start, end);
+	}else if(check.equals("2")){
+		lst = dao.getListPre(start, end);
+	}
+	//List<MovieDTO> lst = dao.getListDate(start, end);
+	//List<MovieDTO> lst = dao.getListPre(start, end);
 	
 	String listUrl = cp + "/Movie/list.do";
 	String pageIndexList = myUtil.pageIndexList(currentPage, totalPage, listUrl);
 	
 	String imagePath = cp + "/mv/imageFile";
-	
+	request.setAttribute("check", check);
 	request.setAttribute("lst", lst);
 	request.setAttribute("pageIndexList", pageIndexList);
 	request.setAttribute("dataCount", dataCount);
@@ -445,16 +457,20 @@ a:link {text-decoration: none; color: #4C4C4C;}
 
 	<div id="middle-box">
 		<div id="middle-box-wrap" style="width: 1000px; margin: 0 auto;">
-		
+			<form action="" method="post" name="hidden">
+				 <input type="hidden" name="check" value=""> 
+			
 			<div id="middle-list" style=" width: 1000px; margin: 0 auto;">
 				<ul style="overflow: hidden; margin: 170px; margin-top: 60px; margin-bottom: 0px;">
-					<li><a href="">박스오피스</a></li>
-					<li><a href="">최신개봉작</a></li>
-					<li><a href="">상영예정작</a></li>
+					<li><a href="<%=cp %>/index.jsp?check=0#middle-box">박스오피스</a></li>
+					<li><a href="<%=cp %>/index.jsp?check=1#middle-box">최신개봉작</a></li>
+					<li><a href="<%=cp %>/index.jsp?check=2#middle-box">상영예정작</a></li>
 					<li><a href="">큐레이션</a></li>
 				</ul>
 			</div>
-
+			
+			</form>
+			
 			<!-- 메인 영화정보 -->
 
 			<div id="content" style="margin: 0 auto; margin-bottom: 70px;">
@@ -526,7 +542,7 @@ a:link {text-decoration: none; color: #4C4C4C;}
 										name="movie_id1" value="${dto.movie_id }" /> <input
 										type="button" value="상세정보" class="btn1" onclick="showPop(${dto.movie_id});" />
 										&nbsp;<input type="button" value="예매하기" class="btn1"
-										onclick="" /></td>
+										onclick="goToB(${dto.movie_id});" /></td>
 									<c:set var="i" value="${i+1 }" />
 								</tr>
 							</table>
@@ -946,6 +962,29 @@ a:link {text-decoration: none; color: #4C4C4C;}
 	
 	
 	} 
+		 
+		 function goToB(movie_id) {
+				
+			 var url = "<%=cp%>/Booking/booking.do?selectedMoviedId="+movie_id+"&checking=5";
+				
+				var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+				
+				window.open(url,"booking",setting);
+	
+		}
+		 
+	function goPost(check){
+		
+		/* var f = document.hidden.check
+		f.value = check;  */
+		document.hidden.action = "<%=cp%>/index.jsp?check="+check;
+		document.hidden.submit();
+		
+	}
+	
+	
+	
+	
 	
 </script>
 </html>
