@@ -139,9 +139,8 @@ public class MovieServlet extends HttpServlet{
 				req.setAttribute("wish", wish);
 				
 				int commCheck = dao.commentCheck(movie_id, user_id);
-				System.out.println(commCheck);
 				req.setAttribute("commCheck", commCheck);
-				
+
 			}
 
 			////////--------------------------------------
@@ -160,8 +159,7 @@ public class MovieServlet extends HttpServlet{
 			url = "/movie/movie.jsp?movie_id= + movie_id";
 			forward(req, resp, url);
 
-
-
+			
 		}else if(uri.indexOf("comments.do")!=-1){//ÇØ´ç ¿µÈ­ ÄÚ¸àÆ® °¡Á®¿À±â
 
 			HttpSession session = req.getSession();
@@ -177,14 +175,34 @@ public class MovieServlet extends HttpServlet{
 			dto.setMovie_id(movie_id);
 			dto.setUser_id(user_id);
 			dto.setComments(req.getParameter("comments"));
+			if(req.getParameter("rating")==""){
+				dto.setRating(0);
+			}else{
 			dto.setRating(Integer.parseInt(req.getParameter("rating")));
+			}
 
 			dao.insertComment(dto);
 
 			url = "/Movie/movie.do?movie_id=" + movie_id;			
 			forward(req, resp, url);
 
+			
+			
+		}else if(uri.indexOf("delete.do")!=-1){//ÄÚ¸àÆ® Áö¿ì±â
+			
+			HttpSession session = req.getSession();
+			MemberDTO member = (MemberDTO)session.getAttribute("member");
 
+			String user_id = member.getUser_id();
+			String movie_id = req.getParameter("movie_id");
+			
+			dao.commentDel(movie_id, user_id);
+			
+			url = cp +"/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
+			
+			
+			
 
 		}else if(uri.indexOf("list_date.do")!=-1){//ÃÖ±Ù°³ºÀ¿µÈ­ ÆäÀÌÁö
 
@@ -335,7 +353,7 @@ public class MovieServlet extends HttpServlet{
 				dao.insertWishlist(user_id, movie_id);
 			}
 			else{
-				message = "ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½!";
+				message = "·Î±×ÀÎ ÈÄ ÀÌ¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù!";
 			}
 			
 			req.setAttribute("message", message);

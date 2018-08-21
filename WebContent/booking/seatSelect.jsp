@@ -278,13 +278,8 @@
 
 		
 		
-		f.action = "<%=cp%>
-	/Booking/seatSelect_ok.do?arrSeatNum=" + arrSeatNum
-				+ "&screen_id=" + $
-		{
-			screen_id
-		}
-		+"&value1=" + value1 + "&value2=" + value2 + "&value3=" + value3
+		f.action = "<%=cp%>/Booking/seatSelect_ok.do?arrSeatNum=" + arrSeatNum
+				+ "&screen_id=" + ${screen_id}+"&value1=" + value1 + "&value2=" + value2 + "&value3=" + value3
 				+ "&value4=" + value4;
 		f.submit();
 
@@ -526,7 +521,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap3"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" disabled="disabled"/><i class="check-icon"></i>
+																			name="seatCheckBox" /><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>

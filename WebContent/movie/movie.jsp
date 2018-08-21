@@ -375,6 +375,11 @@ function waitPlz() {
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
 					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
 					</c:if>
+					<c:if test="${comm.user_id==sessionScope.member.user_id }">
+					<span style="float: right">
+					<a href="<%=cp %>/Movie/delete.do?movie_id=${dto.movie_id}"> 
+					<img src="${imagePath }/iconTrash.png"/></a></span>
+					</c:if>
 				</p>
 				</td>
 			<c:set var="i" value="${i+1 }" />
