@@ -160,7 +160,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);
 
 			
-		}else if(uri.indexOf("comments.do")!=-1){//해당 영화 코멘트 가져오기
+		}else if(uri.indexOf("comments.do")!=-1){// 한줄평 작성
 
 			HttpSession session = req.getSession();
 
@@ -183,12 +183,12 @@ public class MovieServlet extends HttpServlet{
 
 			dao.insertComment(dto);
 
-			url = "/Movie/movie.do?movie_id=" + movie_id;			
-			forward(req, resp, url);
+			url = cp + "/Movie/movie.do?movie_id=" + movie_id;			
+			resp.sendRedirect(url);
 
 			
 			
-		}else if(uri.indexOf("delete.do")!=-1){//코멘트 지우기
+		}else if(uri.indexOf("delete.do")!=-1){//한줄평 삭제
 			
 			HttpSession session = req.getSession();
 			MemberDTO member = (MemberDTO)session.getAttribute("member");

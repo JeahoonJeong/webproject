@@ -235,9 +235,9 @@ public class MovieDAO {
 			sql+= "member_image b where a.user_id=b.user_id and movie_id=?) a , rating b where ";
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id) data) where rnum>=? and rnum<=?;";*/
 			
-			sql = "select a.*, rating from ";
-			sql+= "(select movie_id,a.user_id,to_char(comment_date,'YYYY.MM.DD') comment_date,comments,recommend_num,file_name from comments a ";
-			sql+= "left join member_image b on a.user_id=b.user_id where movie_id=?) a , rating b where "; 
+			sql = "select a.*, rating from (select movie_id,a.user_id,to_char(comment_date,'YYYY.MM.DD') ";
+			sql+= "comment_date,comments,recommend_num,file_name from (select * from comments order by comment_date) a ";
+			sql+= "left join member_image b on a.user_id=b.user_id where movie_id=?) a , rating b where ";
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id";
 			
 			
@@ -274,7 +274,7 @@ public class MovieDAO {
 		
 	}
 	
-	public int insertComment(MovieDTO dto){
+	public int insertComment(MovieDTO dto){ //한줄평 작성
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -496,7 +496,7 @@ public class MovieDAO {
 		
 	}
 	
-	public int recommend(String user_id, String movie_id){
+	public int recommend(String user_id, String movie_id){//추천수 증가
 		
 		int result = 0;
 		
@@ -522,7 +522,7 @@ public class MovieDAO {
 		return result;
 	}
 	
-	public int commentCheck(String movie_id, String user_id){
+	public int commentCheck(String movie_id, String user_id){//한줄평 여부 확인
 		
 		int result = 0;
 		
@@ -548,7 +548,7 @@ public class MovieDAO {
 		return result;
 	}
 	
-	public int commentDel(String movie_id, String user_id){
+	public int commentDel(String movie_id, String user_id){//한줄평 삭제
 		
 		int result = 0;
 		
