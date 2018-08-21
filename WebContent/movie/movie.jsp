@@ -252,11 +252,11 @@ function waitPlz() {
 			<c:choose>
 				<c:when test="${empty sessionScope.member.user_id }">
 				<span style="padding-top: 58px; float: left;">
-					<img class="radius" width="56px" height="56px" src="${imagePath }/profile.png"></span>
+					<img class="radius" width="56px" height="56px" src="${profileImg }/profile.png"></span>
 				</c:when>
 				<c:otherwise>
 				<span style="padding-top: 58px; float: left;">
-					<img width="56px" height="56px" src="${imagePath }/${sessionScope.member.file_name}"></span>
+					<img width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
 				</c:otherwise>
 			</c:choose>
 			<table id="comment_input">
