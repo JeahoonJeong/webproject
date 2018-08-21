@@ -278,13 +278,8 @@
 
 		
 		
-		f.action = "<%=cp%>
-	/Booking/seatSelect_ok.do?arrSeatNum=" + arrSeatNum
-				+ "&screen_id=" + $
-		{
-			screen_id
-		}
-		+"&value1=" + value1 + "&value2=" + value2 + "&value3=" + value3
+		f.action = "<%=cp%>/Booking/seatSelect_ok.do?arrSeatNum=" + arrSeatNum
+				+ "&screen_id=" + ${screen_id}+"&value1=" + value1 + "&value2=" + value2 + "&value3=" + value3
 				+ "&value4=" + value4;
 		f.submit();
 
