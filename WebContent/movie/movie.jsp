@@ -223,14 +223,14 @@ function waitPlz() {
 	</div>
 	<div id="image">
 		<h3>스틸컷 <font style="font-size: 14px;">${stillCount }</font></h3>
-		<div id="image_top">						
+		<div style="height: 110px;">						
 			<%-- <div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/left_btnn.png"/></a></div> --%>
 			
 			<c:forEach var="still" items="${still }">
 			<ul style="float: left;">
 			<li>
-			<a href="#image_top"><img src="${imagePath }/${still.file_name}" height="110px"/></a>
+			<a href="#image"><img src="${imagePath }/${still.file_name}" height="110px"/></a>
 
 			<img class="full" src="${imagePath }/${still.file_name}" height="500px" />
 			
@@ -241,7 +241,7 @@ function waitPlz() {
 		
 			<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/right_btnn.png"/></a></div>	 --%>	
-	</div>
+		</div>
 		<div id="image_content">
 			<%-- <div class="lbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/left_btnbig.png"/></a></div> --%>
@@ -378,6 +378,9 @@ function waitPlz() {
 					</c:if>
 					<c:if test="${comm.user_id==sessionScope.member.user_id }">
 					<span style="float: right">
+					<a href="<%=cp %>/Movie/update.do?movie_id=${dto.movie_id}">
+					<img src="${imagePath }/iconUpdate.png"/>&nbsp;&nbsp;</a>
+					
 					<a href="<%=cp %>/Movie/delete.do?movie_id=${dto.movie_id}"> 
 					<img src="${imagePath }/iconTrash.png"/></a></span>
 					</c:if>
