@@ -275,13 +275,16 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 }
 
 #topbanner-wrap {
-	display: table;
-	margin-left: auto;
-	margin-right: auto;
+	width: 1990px; 
+	height: 600px; 
+	overflow: hidden;
+	
 }
 
 #topbanner-wrap img {
-	width: 1400px;
+	width: 2000px;
+	margin-top: -5%;
+	
 }
 
 #middle-box {
@@ -548,6 +551,12 @@ a:link {text-decoration: none; color: #4C4C4C;}
 							</table>
 						</td>
 					</c:forEach>
+					<c:if test="${i>0&&i%4!=0 }">
+					<c:forEach var="j" begin="${i%4+1 }" end="4" step="1"><td width="230px" height="503px">
+						&nbsp;
+					</td></c:forEach>
+					</c:if>
+					<c:if test="${i!=0 }"></tr></c:if>
 				</table>
 			</div>
 			<!-- 메인 영화정보 끝 -->

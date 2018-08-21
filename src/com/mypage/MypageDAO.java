@@ -771,6 +771,35 @@ public class MypageDAO {
 		return result;
 	}
 	
+	//comment 삭제시 rating도 삭제
+	public int deleteRating(String user_id, String movie_id){
+		
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "delete rating where user_id=? and movie_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, movie_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+		
+	}
+	
 	//comment 업데이트
 	public int updateComment(String comments, String user_id, String movie_id) {
 		
