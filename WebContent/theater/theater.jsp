@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=cp%>/theater/css/megabox.css" type="text/css"/>
+<link rel="stylesheet" href="<%=cp%>/theater/css/box.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css" type="text/css"/>
 
@@ -113,9 +113,9 @@ position: relative;
 
 </head>
 
-<body>
-
 <jsp:include page="../header2.jsp" flush="false"/>
+
+<body>
 <div class="tmain_container" align="center">
 	<div class="section no1">
 	</div>	

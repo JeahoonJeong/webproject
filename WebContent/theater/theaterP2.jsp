@@ -93,7 +93,6 @@
 	type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/theaterP2_menutab.css"
 	type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/timetable/dd.css" type="text/css" />
 
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=Tlct_X7cWLceZF11mFRe&submodules=geocoder"></script>
@@ -177,8 +176,8 @@
 		<div class="P2_container" style="position: static; margin-top: 0px;">
  	
 <div class="sc no1"
-		style="background-repeat: no-repeat; height: 580px; border: 1px solid black; 
-		background-image: 
+		style="background-repeat: no-repeat; height: 580px; border: 1px solid black;
+		background-image:
 		<c:if test="${theater_id eq '1' }">
 		url(http://image2.megabox.co.kr/mop/cinema/2014/51/C2345A-5B27-4E50-A432-B9754B2A3F16.jpg);
 		</c:if>
