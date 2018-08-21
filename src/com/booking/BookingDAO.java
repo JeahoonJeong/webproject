@@ -467,6 +467,44 @@ public class BookingDAO {
 		}
 	 
 	 //---���엯�쓣 諛쏆븘�삩�떎.
+	 
+	 public MovieDTO getScreenInfo(String screen_id){
+		 
+		 PreparedStatement pstmt = null;
+		 String sql = "";
+		 ResultSet rs = null;
+		 MovieDTO dto = null;
+		 
+		 try {
+			
+			 sql = "select movie_id, theater_id, screen_id, city ,district, movie_name, screen_num, to_char(start_time,'HH24:MI') as start_time, to_char(start_time,'HH24:MI') as end_time, seatedseat, seatnumber, type, age_limit "
+			 		+ "from timetable where screen_id = ?";
+			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(1, screen_id);
+			 rs = pstmt.executeQuery();
+			 
+			 while(rs.next()){
+			 
+				 dto = new MovieDTO();
+			 
+				 dto.setAge_limit(rs.getString("age_limit"));
+				 dto.setDistrict(rs.getString("district"));
+				 dto.setMovie_name(rs.getString("movie_name"));
+				 dto.setScreen_id(rs.getString("screen_id"));
+				 dto.setScreen_num(rs.getString("screen_num"));
+				 dto.setStart_time(rs.getString("start_time"));
+				 dto.setType(rs.getString("type"));
+			 }
+			 pstmt.close();
+			 rs.close();
+			 
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+		 
+		return dto;
+	 }
 	
 
 	

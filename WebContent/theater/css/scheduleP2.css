@@ -38,7 +38,7 @@ element.style {
 
 .P2_container .sc .whole_wrap {
     position: relative;
-    width: 1300px;
+    width: 1140px;
     margin: 0 auto;
 }
 
@@ -271,7 +271,7 @@ td, th {
     height: 80px;
 }
 
-a {
+a:hover {
     color: #198591;
     text-decoration: none;
 }

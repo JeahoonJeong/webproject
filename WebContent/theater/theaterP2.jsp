@@ -121,36 +121,39 @@
 	});
 	
 	/* 영화 클릭시 상세보기  */
-	 function showPop(movie_id) {
+	 function showDetail(movie_id) {
 	
 		var url = "<%=cp %>/Movie/movie.do?movie_id=" + movie_id;
 	
 		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
 		
 		window.open(url,"movieInfo",setting);
+	} 
 	
+		/* 영화 클릭시 상세보기  */
+	 function showPop(movie_id) {
+	
+		var url = "<%=cp %>/Movie/movie.do?movie_id="+movie_id;
+	
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+		
+		window.open(url,"movieInfo",setting);
+	} 
+		
+		/* 영화 예매하기 링크  */
+	 function letsReserve(screen_id) {
+	
+		var url = "<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id;
+	
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1028, height=650, left='+(screen.width-968)/2+'';
+		
+		window.open(url,"movieInfo",setting);
 	} 
 </script>
-<script type="text/javascript">
-	function goNextPage(screen_id){
-	var f= document.myForm1;
-	
-	f.action ="<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id ;
-	f.submit();
-	
-}
-
-</script>
-
-<style type="text/css">
-
-
-
-</style>
 
 </head>
 <body>
-<jsp:include page="../header2.jsp" flush="false" />
+<jsp:include page="../header3.jsp" flush="false" />
 	
 <%-- 	<div class="sub_navi ">
 		<div class="sub_navi_wrap">
@@ -397,7 +400,7 @@
 
 <form action="" name="calendarForm">
 	<table border="0" align="center" cellspacing="0" cellpadding="0"
-		width="1300px">
+		width="1140px">
 		<tr>
 			<td colspan="5" style="padding-bottom: 3px">
 				<h3>상영시간표</h3>
@@ -457,7 +460,7 @@
 		<c:if test="${!dto.screen_num.equals(screen_num1) }">
 
 			
-		<tr class="lineheight_80" style="width: 1300px;">
+		<tr class="lineheight_80" style="width: 1140px;">
 			<th class="title">
 				<div>
 					<c:if test="${dto.age_limit eq 'all'}">
@@ -486,7 +489,7 @@
 					
 <!-- 영화 상세 보기 링크  -->
 					<strong>
-						<a href="javascript:showPop(${dto.movie_id})"  title="영화상세 보기">${dto.movie_name }</a>
+						<a href="javascript:showDetail(${dto.movie_id})"  title="영화상세 보기">${dto.movie_name }</a>
 					</strong>
 				</div>
 			</th>
@@ -505,7 +508,7 @@
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
 					<div class="movie_time">
-						<a onclick="goNextPage(${dto.screen_id});">
+						<a href="javascript:letsReserve(${dto.screen_id});">
 							<span class="hover_time" style="display: none;">
 								${dto.start_time }~${dto.end_time }
 							</span>
@@ -540,7 +543,7 @@
 
 		<!-- 층 안내 시작 -->
 		<div class="floorinfo" style="padding-top: 100px; padding-left: 10px;">
-			<div style="position: relative; width: 1300px; margin: 0 auto;">
+			<div style="position: relative; width: 1140px; margin: 0 auto;">
 				<h3>층별안내</h3>
 				<c:if test="${theater_id==1 }">
 					<div class="floorP2" style="margin-bottom: 15px;">
@@ -617,7 +620,7 @@
 		<!-- 층 안내 끝 -->
 		<!-- 약도/교통/주차 시작 -->
 		<div class="floorinfo" style="padding-top: 10px; padding-left: 10px;">
-			<div style="position: relative; width: 1300px; margin: 0 auto;">
+			<div style="position: relative; width: 1140px; margin: 0 auto;">
 				<h3>교통/약도/주차</h3>
 
 				<div class="mapInfo" style="margin-bottom: 15px;">
@@ -695,7 +698,7 @@
 		<!-- 약도/교통/주차 시작 -->
 		<div class="trafficInfo"
 			style="padding-top: 10px; padding-left: 10px;">
-			<div style="width: 1300px; margin: 0 auto;">
+			<div style="width: 1140px; margin: 0 auto;">
 				<h3>교통안내</h3>
 
 
@@ -778,7 +781,7 @@
 	style="background-color: #1F0000;" align="center">
 
 	<div id="theaterpay">
-		<div class="whole_wrap" style="width: 1300px">
+		<div class="whole_wrap" style="width: 1140px">
 			<h3 style="color: white; padding-left: 10px; padding-top: 20px; font-size: 25px; text-align: left;
 			 margin-bottom: 20px;" class="theater_pay">관람료</h3>
 

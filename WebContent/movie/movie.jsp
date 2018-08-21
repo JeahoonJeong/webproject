@@ -82,6 +82,18 @@ function goToP() {
 	window.close();
 }
 
+function goToB(movie_id) {
+	
+	var url = "<%=cp%>/Booking/booking.do";
+	
+	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+	
+	window.open(url,"booking",setting);
+	
+	window.close();
+	
+}
+
 function sendIt() {
 	var f = document.mvForm;
 	
@@ -141,7 +153,7 @@ function sendIt() {
 			</span>
 			
 			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
-			onclick="<%=cp%>/booking/booking.jsp"/>
+			onclick="goToB(${dto.movie_id});"/>
 			</span>
 			</td>		
 		</tr>
@@ -158,8 +170,7 @@ function sendIt() {
 			<td height="50px" rowspan="2" style="padding: 0px;">
 			<!-- <span style="float: left;">
 			<font size="2pt;" color="#4C4C4C">내 평점</font> 
->>>>>>> master
-			
+
 			<select id="rate1" style="width: 119px; height: 20px;">
 			<option value="0"></option>
 			</select>
@@ -225,7 +236,7 @@ function sendIt() {
 			<c:choose>
 				<c:when test="${empty sessionScope.member.user_id }">
 				<span style="padding-top: 58px; float: left;">
-					<img width="56px" height="56px" src="${imagePath }/profile.png"></span>
+					<img class="radius" width="56px" height="56px" src="${imagePath }/profile.png"></span>
 				</c:when>
 				<c:otherwise>
 				<span style="padding-top: 58px; float: left;">
@@ -287,10 +298,10 @@ function sendIt() {
 				<span style="width: 80px; float: left;">
 				<c:choose>
 					<c:when test="${empty comm.file_name }">
-						<img src="${imagePath }/profile.png" height="54px" width="54px"/>
+						<img class="radius" src="${imagePath }/profile.png" height="54px" width="54px"/>
 					</c:when>
 					<c:otherwise>
-						<img src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
+						<img class="radius" src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
 					</c:otherwise>
 				</c:choose>
 				</span>
@@ -309,7 +320,8 @@ function sendIt() {
 				${comm.comments }
 				</span></p>
 				<p class="bottom">
-					<a href="javascript:location.href='<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }'">
+					<a href="javascript:location.href=
+					'<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }&movie_id=${dto.movie_id }'">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
 					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
 				</p>

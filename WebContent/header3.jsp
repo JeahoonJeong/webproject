@@ -69,7 +69,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 	margin-top: 75px;
 	padding-left: 40px;
 	height: 80px;
-	width: 1100px;
+	width: 1140px;
 	padding-bottom: -30px;
 	border-bottom-style: solid;
 	border-bottom-width: 5px;

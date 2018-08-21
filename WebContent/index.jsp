@@ -455,14 +455,14 @@ a:link {text-decoration: none; color: #4C4C4C;}
 
 			<!-- 메인 영화정보 -->
 
-			<div id="content" style="margin: 0 auto;">
+			<div id="content" style="margin: 0 auto; margin-bottom: 70px;">
 				<table width="1000px" >
 					<tr>
 						<td height="50px" colspan="7"></td>
 
 					</tr>
 					<c:set var="i" value="0" />
-					<c:forEach var="dto" items="${lst }">
+					<c:forEach var="dto" items="${lst }" begin="0" end="3">
 						<c:if test="${i==0 }">
 							<tr>
 						</c:if>

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.login.MemberDTO;
+import com.mypage.MypageDAO;
 
 import util.DBCPConn;
 import util.MyUtil;
@@ -49,7 +51,9 @@ public class MovieServlet extends HttpServlet{
 
 		Connection conn = DBCPConn.getConnection();
 		MovieDAO dao = new MovieDAO(conn);
+		MypageDAO daoMP = new MypageDAO(conn);
 		MyUtil myUtil = new MyUtil();
+		
 
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
@@ -140,8 +144,6 @@ public class MovieServlet extends HttpServlet{
 			List<MovieDTO> comm = dao.getAllComment(movie_id);
 			int stillCount = dao.getStillCount(movie_id);
 
-			System.out.println(stillCount);
-
 			dto.setSummary(dto.getSummary().replaceAll("/", "<br>"));
 			/*
 			String listUrl = cp + "/Movie/movie.do?movie_id" + movie_id;
@@ -159,7 +161,6 @@ public class MovieServlet extends HttpServlet{
 				
 				String wish = dao.searchWishlist(user_id, movie_id);
 				req.setAttribute("wish", wish);
-				System.out.println("wish" + wish);
 				
 			}
 
@@ -183,7 +184,7 @@ public class MovieServlet extends HttpServlet{
 
 
 
-		}else if(uri.indexOf("comments.do")!=-1){//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		}else if(uri.indexOf("comments.do")!=-1){//ÇØ´ç ¿µÈ­ ÄÚ¸àÆ® °¡Á®¿À±â
 
 			HttpSession session = req.getSession();
 
@@ -198,7 +199,6 @@ public class MovieServlet extends HttpServlet{
 			dto.setMovie_id(movie_id);
 			dto.setUser_id(user_id);
 			dto.setComments(req.getParameter("comments"));
-			System.out.println(req.getParameter("rating"));
 			dto.setRating(Integer.parseInt(req.getParameter("rating")));
 
 			dao.insertComment(dto);
@@ -208,7 +208,7 @@ public class MovieServlet extends HttpServlet{
 
 
 
-		}else if(uri.indexOf("list_date.do")!=-1){
+		}else if(uri.indexOf("list_date.do")!=-1){//ÃÖ±Ù°³ºÀ¿µÈ­ ÆäÀÌÁö
 
 
 			String pageNum = req.getParameter("pageNum");
@@ -250,7 +250,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);
 
 		
-		}else if(uri.indexOf("list_pre.do")!=-1){
+		}else if(uri.indexOf("list_pre.do")!=-1){ //°³ºÀ¿¹Á¤¿µÈ­ ÆäÀÌÁö
 
 
 			String pageNum = req.getParameter("pageNum");
@@ -293,7 +293,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);	
 			
 
-		}else if(uri.indexOf("movieTime_ok.do")!=-1){ // ï¿½ó¿µ½Ã°ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		}else if(uri.indexOf("movieTime_ok.do")!=-1){ //»ó¿µ½Ã°£Ç¥
 
 			String movie_id = req.getParameter("movie_id");
 
@@ -303,12 +303,43 @@ public class MovieServlet extends HttpServlet{
 			
 			
 			
-		}else if(uri.indexOf("wish.do")!=-1){
+		}else if(uri.indexOf("wish.do")!=-1){//º¸°í½Í¾î ÆäÀÌÁö
+			
+			List<MovieDTO> lst = new ArrayList<MovieDTO>();
+			
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			
+			String user_id = member.getUser_id();
+			
+			System.out.println(user_id);
+			
+			lst = daoMP.getWishList(user_id);
 			
 			
-			url = "/mypage/list/interestingList.jsp";
 			
+			String imagePath = cp + "/mv/imageFile";
+			
+			req.setAttribute("lst", lst);
+			req.setAttribute("imagePath", imagePath);
+			
+			url = "/movie/wish.jsp";
 			forward(req, resp, url);
+			
+
+		}else if(uri.indexOf("recommend.do")!=-1){
+			
+			String user_id = req.getParameter("user_id");
+			String movie_id = req.getParameter("movie_id");
+			
+			int result = dao.recommend(user_id, movie_id);
+			
+			req.setAttribute("result", result);
+			
+			url = "/movie/movie.jsp?movie_id=" + movie_id;
+			forward(req, resp, url);
+
 			
 		
 		////////--------------------------------------
@@ -348,8 +379,6 @@ public class MovieServlet extends HttpServlet{
 			String user_id = member.getUser_id();
 			
 			String movie_id = (String) req.getParameter("movie_id");	
-			System.out.println(user_id + "user");
-			System.out.println(movie_id + "movie");
 			
 			dao.deleteWishlist(user_id, movie_id);
 			
