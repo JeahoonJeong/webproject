@@ -75,7 +75,7 @@
 	String str;
 	String strUrl;
 
-	strUrl = cp + "/Booking/seatSelect.do?sreen_id="+screenId;
+	strUrl = cp + "/Booking/seatSelect.do";
 	str = "window.open('" + strUrl + "', 'Think', ";
 	str = str + "'left=100, ";
 	str = str + "top=20, ";
