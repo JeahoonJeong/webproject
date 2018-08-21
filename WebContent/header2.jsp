@@ -21,7 +21,6 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 #header-wrap {
 	position: fixed;
 	top: -3px;
-	
 	width: 100%;
 	background-color: white;
 	z-index: 1;
@@ -31,6 +30,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 	background-color: white;
 	width: 1140px;
 	margin: 0 auto;
+	padding-left: 35px;
 	height: 50px;
 }
 
@@ -70,7 +70,7 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 	margin-top: 75px;
 	padding-left: 40px;
 	height: 80px;
-	width: 1100px;
+	width: 1140px;;
 	padding-bottom: -30px;
 	border-bottom-style: solid;
 	border-bottom-width: 5px;
