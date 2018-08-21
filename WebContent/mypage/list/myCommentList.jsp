@@ -122,13 +122,16 @@ function close_field(movie_id) {
             <dl class="g_book-box">
                 <dd>
 					<img alt="포스터" src="<%=path %>/${dto.getFile_name()}"  style="float: left;" height="120px" width="80px">
-					<div style="float: left; text-align: center; height: 120px; width: 280px;"><br/>
+					<div style="float: left; text-align: left; height: 120px; width: 250px; margin-left: 20px"><br/>
 					<img src="<%=path %>/age${dto.age_limit }.png" height="20px" width="20px" alt="나이"> 
 					<font size="3" style="font-weight: bold; line-height: 25px;">${dto.getMovie_name() }</font>
-					<br/><br/>
+					<br/><br/>&nbsp;&nbsp;&nbsp;
 					 <c:if test="${empty dto.getRating()}">등록된 평점이 없습니다.</c:if>
                        <c:if test="${!empty dto.getRating() }">
                        		<c:choose>
+                       			<c:when test="${dto.getRating()==0 }">
+                       				<img alt="" src="<%=cp%>/movie/image/rate0.png">
+                       			</c:when>
                        			<c:when test="${dto.getRating()<3 && 0<dto.getRating() }">
                        				<img alt="" src="<%=cp%>/movie/image/rate1.png">
                        			</c:when>
@@ -149,7 +152,7 @@ function close_field(movie_id) {
 					</div>
 				
 					<div id="comments${dto.getMovie_id()}" style="display:none; padding: 5px;">	
-						<div style="float: left; text-align: left; vertical-align:middle; width: 420px; height: 110px;" >   
+						<div style="float: left; text-align: left; vertical-align:middle; width: 400px; height: 110px;" >   
 							<textarea rows="5" cols="40" name="comments${dto.getMovie_id()}" style="background-color: #f8f8f8; overflow: hidden;" onkeyup="checkLength(${dto.getMovie_id()});">${dto.getComments() }</textarea>
 						</div>
 						<div style="float: left; text-align: center; height: 100px; width: 50px;">
@@ -160,7 +163,7 @@ function close_field(movie_id) {
 					
 				<div id="commentArea${dto.getMovie_id()}" style="display:table; padding: 5px; width: 500px">
 					<div style="height: 100px; width: 600px; vertical-align:middle;">
-                	  	<div style="float: left; text-align: left; width: 420px; height: 110px" >      
+                	  	<div style="float: left; text-align: left; width: 400px; height: 110px" >      
 						${dto.getComments() }
                 <br/><br/>
                      <img src="<%=cp%>/mypage/image/mypage_reco.png"> 추천 ${dto.getRecommend_num() }&nbsp;&nbsp;|&nbsp;&nbsp;${dto.getComment_date() }
