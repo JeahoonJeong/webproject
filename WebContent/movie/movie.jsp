@@ -245,6 +245,17 @@ function sendIt() {
 			</c:choose>
 			<table id="comment_input">
 				<tr>
+					<%-- <c:if test="${dto.release_date>sysdate }">
+						<td class="star">
+						</td>
+						<td class="text">
+						<span class="textarea">개봉 후 이용 가능합니다</span>
+						</td>
+						<td width="84px" height="84px">
+						<input type="button" value="등록" class="btn" onclick="#"/>
+						</td>
+					</c:if> --%>
+					<%-- <c:if test="${dto.release_date<sysdate }"> --%>
 					<c:choose>
 						<c:when test="${empty sessionScope.member.user_id }">
 						<td class="star">
@@ -277,6 +288,7 @@ function sendIt() {
 						</td>
 						</c:otherwise>
 					</c:choose>
+					<%-- </c:if> --%>
 				</tr>
 			</table>
 		</div>
@@ -298,10 +310,10 @@ function sendIt() {
 				<span style="width: 80px; float: left;">
 				<c:choose>
 					<c:when test="${empty comm.file_name }">
-						<img class="radius" src="${imagePath }/profile.png" height="54px" width="54px"/>
+						<img class="radius" src="${profileImg }/profile.png" height="54px" width="54px"/>
 					</c:when>
 					<c:otherwise>
-						<img class="radius" src="${imagePath }/${comm.file_name}" height="54px" width="54px"/>
+						<img class="radius" src="${profileImg }/${comm.file_name}" height="54px" width="54px"/>
 					</c:otherwise>
 				</c:choose>
 				</span>
@@ -320,10 +332,17 @@ function sendIt() {
 				${comm.comments }
 				</span></p>
 				<p class="bottom">
+				
+					<c:if test="${empty sessionScope.member.user_id }">
+					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
+					<font style="font-weight: bold;">${comm.recommend_num }</font></span>
+					</c:if>
+					<c:if test="${!empty sessionScope.member.user_id }">
 					<a href="javascript:location.href=
 					'<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }&movie_id=${dto.movie_id }'">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
 					<font style="font-weight: bold;">${comm.recommend_num }</font></a></span>
+					</c:if>
 				</p>
 				</td>
 			<c:set var="i" value="${i+1 }" />

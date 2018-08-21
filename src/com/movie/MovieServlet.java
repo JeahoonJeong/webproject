@@ -60,9 +60,9 @@ public class MovieServlet extends HttpServlet{
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
 		String url;
-
+		
 		String root = getServletContext().getRealPath("/");
-		String path = root + File.separator + "mv" + File.separator + "imageFile";
+		String path = root + "memberImages";
 
 		File f = new File(path);
 		if(!f.exists())
@@ -123,6 +123,8 @@ public class MovieServlet extends HttpServlet{
 			String movie_id = req.getParameter("movie_id");
 
 			dto = dao.getOneData(movie_id);
+			
+			
 
 			/*int currentPage = 1;
 
@@ -170,7 +172,8 @@ public class MovieServlet extends HttpServlet{
 			
 			
 			String imagePath = cp + "/mv/imageFile";
-
+			String profileImg = cp + "/memberImages";
+			
 			/*req.setAttribute("totalPage", totalPage);
 			req.setAttribute("dataCount", dataCount);
 			req.setAttribute("pageIndexList", pageIndexList);
@@ -180,6 +183,7 @@ public class MovieServlet extends HttpServlet{
 			req.setAttribute("still", still);
 			req.setAttribute("comm", comm);
 			req.setAttribute("stillCount", stillCount);
+			req.setAttribute("profileImg", profileImg);
 
 			url = "/movie/movie.jsp?movie_id= + movie_id";
 			forward(req, resp, url);
