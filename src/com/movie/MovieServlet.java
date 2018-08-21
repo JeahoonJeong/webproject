@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.ha.backend.Sender;
+
 import com.login.MemberDTO;
 import com.mypage.MypageDAO;
 
@@ -313,8 +315,6 @@ public class MovieServlet extends HttpServlet{
 			
 			String user_id = member.getUser_id();
 			
-			System.out.println(user_id);
-			
 			lst = daoMP.getWishList(user_id);
 			
 			
@@ -337,8 +337,8 @@ public class MovieServlet extends HttpServlet{
 			
 			req.setAttribute("result", result);
 			
-			url = "/movie/movie.jsp?movie_id=" + movie_id;
-			forward(req, resp, url);
+			url = cp + "/Movie/movie.do?movie_id=" + movie_id;
+			resp.sendRedirect(url);
 
 			
 		

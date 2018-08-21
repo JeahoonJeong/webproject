@@ -505,7 +505,7 @@ public class MovieDAO {
 		
 		try {
 			
-			sql = "update comments set recommend_num=(recommend_numm+1) where user_id=? and movie_id=?";
+			sql = "update comments set recommend_num=(recommend_num+1) where user_id=? and movie_id=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
