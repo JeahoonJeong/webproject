@@ -330,6 +330,8 @@ public class MypageServlet extends HttpServlet{
 			String user_id = member.getUser_id();
 
 			dao.deleteComment(user_id, movie_id);
+			
+			dao.deleteRating(user_id, movie_id);
 
 			List<CommentDTO> commentsList = new ArrayList<CommentDTO>();
 
