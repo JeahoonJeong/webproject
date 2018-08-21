@@ -307,7 +307,13 @@ public class MovieServlet extends HttpServlet{
 			
 			List<MovieDTO> lst = new ArrayList<MovieDTO>();
 			
-			String user_id = req.getParameter("user_id");
+			HttpSession session = req.getSession();
+			MemberDTO member = new MemberDTO();
+			member = (MemberDTO)session.getAttribute("member");
+			
+			String user_id = member.getUser_id();
+			
+			System.out.println(user_id);
 			
 			lst = daoMP.getWishList(user_id);
 			

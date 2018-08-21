@@ -14,12 +14,15 @@
 
 #content{
 	font-family: 'Nanum Gothic', sans-serif;
-	margin-left: 250px;
-	margin-right: 250px;
+	margin-left: 440px;
+	margin-right: 440px;
 	margin-bottom: 100px;
 	align: center;
 }
-
+#content.inner{
+	margin: 0 auto;
+	width: 990px;
+}
 .top{
 	border-top: 1px solid #CCCCCC;
 	border-bottom: 1px solid #CCCCCC;
@@ -91,6 +94,7 @@
 	font-size: 18px;
 	font-weight: bold;
 	border-style: none;
+	border-radius: 10%;
 }
 
 .topMenu a:hover {text-decoration: none; color: #503396;}

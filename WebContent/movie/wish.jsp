@@ -116,7 +116,7 @@
 	</c:forEach>
 	<c:if test="${i>0&&i%4!=0 }">
 		<c:forEach var="j" begin="${i%4+1 }" end="4" step="1"><td width="230px" height="503px">
-		<img src="${imagePath }/wishlist.jpg">
+		&nbsp;
 		</td></c:forEach>
 		</c:if>
 		<c:if test="${i!=0 }"></tr></c:if>

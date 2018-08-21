@@ -70,7 +70,7 @@
 		
 			<span style="float: right;">
 			<font size="2pt">
-			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리 ></a></font></span></td>
+			<a href="<%=cp %>/Mypage/myMoivestory.do?linkpage=interestingList">나의 무비스토리 ></a></font></span></td>
 		</tr>
 	</table>
 </div>

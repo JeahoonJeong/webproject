@@ -39,6 +39,12 @@
 				window.open(url,"booking",setting);
 	
 		}
+		 function loginPlz() {
+				
+			 alert("로그인 후 이용 가능합니다")
+			 return;
+			 
+		}
 
 		
 </script>
@@ -51,11 +57,20 @@
 			<td><a href=<%=cp %>/Movie/list.do>박스오피스</a></td>
 			<td><a href=<%=cp %>/Movie/list_date.do>최신개봉작</a></td>
 			<td><a href=<%=cp %>/Movie/list_pre.do><font color="#503396">상영예정작</font></a></td>
-			<td><span style="float: left;">
-			<a href="<%=cp %>/movie/wishMov.jsp">♥ 보고싶어</a></span>
+			<c:choose>
+				<c:when test="${empty sessionScope.member.user_id }">
+					<td><span style="float: left;">
+					<a href="javascript:loginPlz();">♥ 보고싶어</a></span>
+				</c:when>
+				<c:otherwise>
+					<td><span style="float: left;">
+					<a href="<%=cp%>/Movie/wish.do">♥ 보고싶어</a></span>
+				</c:otherwise>
+			</c:choose>
+		
 			<span style="float: right;">
 			<font size="2pt">
-			<a href="<%=cp %>/movie/myMov.jsp">나의 무비스토리 ></a></font></span></td>
+			<a href="<%=cp %>/Mypage/myMoivestory.do?linkpage=interestingList">나의 무비스토리 ></a></font></span></td>
 		</tr>
 	</table>
 </div>
@@ -117,8 +132,8 @@
 	</td>
 	</c:forEach>	
 	</table>
-</form>	
 </div>
+</form>
 
 
 
