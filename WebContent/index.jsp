@@ -275,16 +275,14 @@ body{font-family: 'Nanum Gothic', sans-serif;}
 }
 
 #topbanner-wrap {
-	width: 1990px; 
-	height: 600px; 
+	width: 1140px;  
+	margin: 0 auto;
 	overflow: hidden;
 	
 }
 
 #topbanner-wrap img {
-	width: 2000px;
-	margin-top: -5%;
-	
+	width: 1140px;
 }
 
 #middle-box {

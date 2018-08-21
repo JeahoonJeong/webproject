@@ -128,22 +128,28 @@
 			</ul>
 		</div>
 	</div>
-
+	
 	<form name="myForm" method="post" action="">
 		<table width="230px" height="503px" style="margin: 0px;" align="center">
 			<tr align="center">
-				<c:forEach var="dto" items="${lists1 }">
-					<td><a href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}" >
+				<c:forEach var="dto" items="${lists1 }" begin="0" end="3">
+					<td><a href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}#middle-img" >
 						<img src="${imagePath}/${dto.movie_name}.PNG" width="230" height="330">
+					</a></td>
+				</c:forEach>
+			</tr>
+			<tr align="center">
+				<c:forEach var="dto" items="${lists1 }" begin="4" end="7">
+					<td><a href="<%=cp%>/Timetable/movieTime_ok.do?movie_id=${dto.movie_id}#middle-img" >
+						<img src="${imagePath}/${dto.movie_name}.PNG" width="230" height="330" id="middle-img">
 					</a></td>
 				</c:forEach>
 			</tr>
 		</table>
 	</form>
-
 	<br /><br />
 
-	<table align="center" width="250" cellpadding="2" cellspacing="1" style="margin-top: -80px; margin-bottom: 20px;">
+	<table align="center" width="250" cellpadding="2" cellspacing="1" style="margin-top: -20px; margin-bottom: 20px;">
 
 		<tr>
 			<td align="center" style="font-size: 20pt; color: #503396">			
@@ -160,7 +166,7 @@
 	</c:if>
 	
 	<form name="myForm1" method="post">
-	<table border="0" class="scheduleP2">
+	<table border="0" class="scheduleP2" style="width: 1140px;">
 		<c:forEach var="dto" items="${lists }">
 			<c:if test="${!dto.district.equals(district1)||!dto.screen_num.equals(screen_num1) }">
 				<tr>
