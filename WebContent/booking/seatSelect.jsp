@@ -206,6 +206,53 @@
 
 <script type="text/javascript">
 
+	function checkNum(){
+		var maxCheck = 0; // 최대 인원수 
+		var cntCheck = 0; // 사용자가 체크한 체크박스 개수
+		var f = document.seatSelectForm;
+
+		var value1 = ${value1};
+		var value2 = ${value2};
+		var value3 = ${value3};
+		var value4 = ${value4};
+		
+		maxCheck = value1 + value2 + value3 + value4; // 총인원수 
+		
+		var arr_Check = document.getElementsByName("seatCheckBox");
+
+		for (var i = 0; i < arr_Check.length; i++) {
+			if (arr_Check[i].checked == true) {
+				cntCheck++; // 체크 되어있다면 1증가
+// 				alert(cntCheck);
+			}
+		}
+
+		if (cntCheck >= maxCheck) {
+			alert("좌석 선택이 완료되었습니다 !");
+			for (var i = 0; i < arr_Check.length; i++) {
+				
+				f['seatCheckBox'][i].disabled = true;
+				
+			}
+			for (var i = 0; i < arr_Check.length; i++) {
+				
+				if (arr_Check[i].checked == true) {
+					f['seatCheckBox'][i].disabled = false;
+				}
+				
+			}
+			
+			return;
+			
+		}else{
+			for (var i = 0; i < arr_Check.length; i++) {
+				
+				f['seatCheckBox'][i].disabled = false;
+				
+			}
+		}
+	}
+	
 	
 	function selectNum(){
 		var f = document.seatSelectForm;
@@ -253,7 +300,7 @@
 		var arrSeatNum = new Array; // 선택된 좌석 번호 저장할 배열
 
 		maxCheck = value1 + value2 + value3 + value4; // 총인원수 
-		alert("최대 선택 가능한 좌석 수 :" + maxCheck);
+// 		alert("최대 선택 가능한 좌석 수 :" + maxCheck);
 
 		var arr_Check = document.getElementsByName("seatCheckBox");
 
@@ -263,7 +310,7 @@
 				arrSeatNum.push(arr_Check[i].value); // 체크박스의 값을 배열에 추가
 			}
 		}
-		alert("선택한 좌석수 : " + cntCheck);
+// 		alert("선택한 좌석수 : " + cntCheck);
 	
 
 		if (cntCheck > maxCheck) {
@@ -475,7 +522,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap1"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -493,7 +540,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap2"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -512,7 +559,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap3"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -530,7 +577,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap4"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -549,7 +596,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap5"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -568,7 +615,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap6"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -586,7 +633,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap7"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -606,7 +653,7 @@
 
 																		<label class="checkbox-wrap8"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -624,7 +671,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap9"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -646,7 +693,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap1"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();" /><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -664,7 +711,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap2"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -683,7 +730,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap3"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -701,7 +748,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap4"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -720,7 +767,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap5"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -739,7 +786,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap6"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -757,7 +804,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap7"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -777,7 +824,7 @@
 
 																		<label class="checkbox-wrap8"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -795,7 +842,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap9"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -817,7 +864,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap1"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -835,7 +882,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap2"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -854,7 +901,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap3"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -872,7 +919,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap4"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -891,7 +938,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap5"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -910,7 +957,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap6"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -928,7 +975,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap7"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -948,7 +995,7 @@
 
 																		<label class="checkbox-wrap8"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -966,7 +1013,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap9"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -988,7 +1035,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap1"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();" /><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1006,7 +1053,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap2"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1025,7 +1072,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap3"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1043,7 +1090,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap4"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1062,7 +1109,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap5"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();" /><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1081,7 +1128,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap6"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1099,7 +1146,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap7"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1119,7 +1166,7 @@
 
 																		<label class="checkbox-wrap8"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>
@@ -1137,7 +1184,7 @@
 																	<c:when test="${dto3.status ne 1 }">
 																		<label class="checkbox-wrap9"> <input
 																			type="checkbox" value=${dto3.rnum }
-																			name="seatCheckBox" /><i class="check-icon"></i>
+																			name="seatCheckBox" onclick="checkNum();"/><i class="check-icon"></i>
 																		</label>
 																	</c:when>
 																</c:choose>

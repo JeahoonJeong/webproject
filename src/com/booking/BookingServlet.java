@@ -137,8 +137,15 @@ public class BookingServlet extends HttpServlet {
 			}
 			
 			if(checkPara.equals("2")){ // 날짜만 선택되었을때
-				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2);
-				req.setAttribute("lists2", lists2);
+				if(selectedDate2 == nowDay2){
+					List<MovieDTO> lists2 = dao.getMovieData(selectedDate2);
+					req.setAttribute("lists2", lists2);
+					
+				}else {
+					List<MovieDTO> lists2 = dao.getMovieData3(selectedDate2);
+					req.setAttribute("lists2", lists2);
+				}
+				
 			}
 			
 			if(checkPara.equals("3")){ // 날짜 시간 선택되었을때

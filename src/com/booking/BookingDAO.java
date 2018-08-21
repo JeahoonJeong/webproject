@@ -157,10 +157,63 @@ public class BookingDAO {
 			String sql ;
 			
 			try {
+				
 				sql = "SELECT screen_id ,to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
 						+ "age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber "
 						+ "FROM TIMETABLE "
-						+ "where to_char(start_time,'DD') >= ? and to_char(start_time,'HH24') >= to_char(sysdate,'HH24')"; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
+						+ "where to_char(start_time,'DD') >= ? and to_char(start_time,'HH24') >= to_char(sysdate,'HH24') "
+						+ "order by start_time"; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
+						
+				//SELECT screen_id, to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time,
+//				age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber FROM timetable
+//				where movie_id =7 and theater_id = 4 and to_char(start_time,'HH24') >= 15 and to_char(start_time,'DD') = 21;
+				
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, date);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					MovieDTO dto = new MovieDTO();
+					
+					dto.setStart_time(rs.getString("start_time"));
+					dto.setEnd_time(rs.getString("end_time"));
+					dto.setAge_limit(rs.getString("age_limit"));
+					dto.setMovie_name(rs.getString("movie_name"));
+					dto.setType(rs.getString("type"));
+					dto.setDistrict(rs.getString("district"));
+					dto.setScreen_num(rs.getString("screen_num"));
+					dto.setSeatedSeat(rs.getString("seatedseat"));
+					dto.setSeatNumber(rs.getString("seatnumber"));
+					dto.setScreen_id(rs.getString("screen_id"));
+					
+					lists2.add(dto);
+				}
+				
+				rs.close();
+				pstmt.close();
+				
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+
+			return lists2;
+
+		}
+	 
+	 public List<MovieDTO> getMovieData3(String date){
+			List<MovieDTO> lists2 = new ArrayList<MovieDTO>();
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql ;
+			
+			try {
+				
+				sql = "SELECT screen_id ,to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time, "
+						+ "age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber "
+						+ "FROM TIMETABLE "
+						+ "where to_char(start_time,'DD') >= ? order by start_time"; // 占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 sql占쏙옙
 						
 				//SELECT screen_id, to_char(start_time,'HH24:MI') as start_time, to_char(end_time,'HH24:MI') as end_time,
 //				age_limit, movie_name, type, district, screen_num, seatedseat, seatnumber FROM timetable
