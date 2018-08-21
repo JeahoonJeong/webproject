@@ -81,18 +81,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=cp%>/theater/css/box.css"
-	type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/theater/css/theme.css"
-	type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css"
-	type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/theater/css/menubarP2.css"
-	type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/theater/css/scheduleP2.css"
-	type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/theater/css/theaterP2_menutab.css"
-	type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/theater/css/box.css" type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/theater/css/theme.css" type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css" type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/theater/css/menubarP2.css" type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/theater/css/scheduleP2.css" type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/theater/css/theaterP2_menutab.css" type="text/css" />
+
+<script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
 
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=Tlct_X7cWLceZF11mFRe&submodules=geocoder"></script>
@@ -134,7 +130,7 @@
 	
 		var url = "<%=cp %>/Movie/movie.do?movie_id="+movie_id;
 	
-		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1028, height=650, left='+(screen.width-968)/2+'';
 		
 		window.open(url,"movieInfo",setting);
 	} 
@@ -151,33 +147,17 @@
 </script>
 
 </head>
-<body>
 <jsp:include page="../header2.jsp" flush="false" />
-	
-<%-- 	<div class="sub_navi ">
-		<div class="sub_navi_wrap">
-			<ul class="clearfix">
-				<li><a class="timetable i0 "
-					href="<%=cp%>/Timetable/movieGuide.do" title="예매안내 바로가기">예매안내</a></li>
-				<li><a class="timetable i1 "
-					href="<%=cp%>/Timetable/movieTime.do" title="영화별 상영시간표 바로가기">영화별
-						상영시간표</a></li>
-				<li><a class="timetable i2 "
-					href="<%=cp%>/Theater/theaterP2.do" title="영화관별 상영시간표 바로가기">영화관별
-						상영시간표</a></li>
+<body>
 
-			</ul>
-		</div>
-	</div> --%>
-	
 <!-- 첫이미지부터 탭메뉴전까지 -->
 <div class="whole_wrap">
 	<div class="main_wrap">
 		<div class="P2_container" style="position: static; margin-top: 0px;">
  	
 <div class="sc no1"
-		style="background-repeat: no-repeat; height: 580px; border: 1px solid black;
-		background-image:
+		style="background-repeat: no-repeat; height: 580px; border: 1px solid black; 
+		background-image: 
 		<c:if test="${theater_id eq '1' }">
 		url(http://image2.megabox.co.kr/mop/cinema/2014/51/C2345A-5B27-4E50-A432-B9754B2A3F16.jpg);
 		</c:if>

@@ -85,7 +85,7 @@
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/menubarP2.css" type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/theater/css/schedule.css" type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/theater/css/scheduleP2.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/theaterP2_menutab.css" type="text/css" />
 
 <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
@@ -107,12 +107,12 @@ position: relative;
 <!-- 첫이미지부터 탭메뉴전까지 -->
 <div class="whole_wrap">
 	<div class="main_wrap">
-		<div class="P2_container" style="position: relative; margin-top: 0px;">
+		<div class="P2_container" style="position: static; margin-top: 0px;">
  	
 <div class="sc no1"
 		style="background-repeat: no-repeat; height: 580px; border: 1px solid black; 
-		background-image: url(http://image2.megabox.co.kr/mop/cinema/2014/A5/DF9DFB-4533-4B70-8A8E-22C8672D6C1A.jpg)">
-		<%-- 		<c:if test="${theater_id eq '1' }">
+		background-image: 
+		<c:if test="${theater_id eq '1' }">
 		url(http://image2.megabox.co.kr/mop/cinema/2014/51/C2345A-5B27-4E50-A432-B9754B2A3F16.jpg);
 		</c:if>
 		<c:if test="${theater_id eq '2' }">
@@ -123,28 +123,51 @@ position: relative;
 		</c:if>
 		<c:if test="${theater_id eq '4' }">
 		url(http://image2.megabox.co.kr/mop/cinema/2014/A5/DF9DFB-4533-4B70-8A8E-22C8672D6C1A.jpg);
-		</c:if> --%>
+		</c:if>
+		">
 
 <div class="whole_wrap narrow">
 	<p class="P2_ti_box">
+		<img src="http://image2.megabox.co.kr/mop/home/theater/slogan.png" alt="라이프시어터" class="slogan">
 		<font style="color: #fff; font-size: 37px; font-weight: bolder;">
-			MEGABOX
-		</font>
-		<br/>
-		<font style="color: #fff; font-size: 17px; font-weight: bolder;">
-			LIFE THEATER
+		<c:if test="${theater_id eq '1' }">
+		메가박스 강남	
+		</c:if>
+		<c:if test="${theater_id eq '2' }">
+		메가박스 강동	
+		</c:if>
+		<c:if test="${theater_id eq '3' }">
+		메가박스 김포	
+		</c:if>
+		<c:if test="${theater_id eq '4' }">
+		메가박스 영통	
+		</c:if>
 		</font>
 	</p>
-	
-<!-- 	<p class="P2_btn_box">
+	<p class="P2_btn_box">
 		<button class="top_btn2" type="button" onclick="">선호영화관</button>
-	</p> -->
-	
+	</p>
 	<p class="P2_tx_box">
-		
-		창의적인 콘텐트로 다양한 라이프 스타일을 <br/> 
-		만족시키는 당신의 인생 극장
-		
+		<c:if test="${theater_id eq '1' }">
+		강남의 중심! 강남 소비문화의 중심지인 지하철 2호선 , 신분당선  - 강남역과 연결 <br>
+		로맨틱 멀티플렉스! 젊은 도시 강남이 한 눈에 보이는 최상의 View를 제공 <br>
+		&lt;프라다&gt;가 선택한 수려한 디자인의 상영관 의자를 체험해보세요!
+		</c:if>
+		<c:if test="${theater_id eq '2' }">
+		강동구청역 도보 5분 거리에 위치! <br>
+		10개관 총 1500석 규모! 249석의 대형 상영관에서 생생한 관람을! <br>
+		안락하고 쾌적한 관람을 위한 가죽시트 도입! 
+		</c:if>
+		<c:if test="${theater_id eq '3' }">
+		김포의 랜드마크! 메가박스 김포점 <br>
+		최신 바코 디지털 영사기와 음향 시스템으로 더욱 선명한 화질과 실감나는 음향! <br>
+		쾌적하고 편안한 시트, 테이블이 마련되어 있는 4관!!	
+		</c:if>
+		<c:if test="${theater_id eq '4' }">
+		11개관, 1873석의 전관 디지털 상영시스템, 전관 가죽 시트 <br>
+		가장 진화된 상영관 MX관, Meyer Sound와 Dolby ATMOS 시스템, 와이드 시트 <br>
+		어린이들을 위한 복합 문화 공간 메가키즈박스
+		</c:if>
 	</p>
 </div>
 </div>

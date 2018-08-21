@@ -27,11 +27,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, strong, label {
     background-size: cover !important;
 }
 
-element.style {
-    background-image: url(http://image2.megabox.co.kr/mop/cinema/2017/8A/966E47-A7E3-4261-A5CF-9A1D28E112B7.jpg);
-
-}
-
 .P2_container .sc.no1 .whole_wrap {
     position: relative;
 }
@@ -43,7 +38,7 @@ element.style {
 }
 
 .P2_container .sc.no1 .whole_wrap p.P2_ti_box {
-    top: 106px;
+    top: 260px;
 }
 
 .P2_container .sc.no1 .whole_wrap p.P2_ti_box, .P2_container .sc.no1 .whole_wrap p.P2_tx_box {
@@ -94,7 +89,7 @@ element.style {
 .P2_container .sc.no1 .whole_wrap p.P2_tx_box {
     max-height: 90px;
     overflow: hidden;
-    top: 293px;
+    top: 363px;
     font-size: 14px;
     line-height: 26px;
     color: #fff;
