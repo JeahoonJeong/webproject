@@ -216,7 +216,7 @@
 	function selectTime1(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton1.value-1 ; // 선택된 시간
+		var hour = f.timeButton1.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -229,7 +229,7 @@
 	function selectTime2(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton2.value-1 ; // 선택된 시간
+		var hour = f.timeButton2.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -243,7 +243,7 @@
 	function selectTime3(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton3.value-1 ; // 선택된 시간
+		var hour = f.timeButton3.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -257,7 +257,7 @@
 	function selectTime4(){
 		var f = document.bookingForm;
 		
-		var hour  = f.timeButton4.value-1 ; // 선택된 시간
+		var hour  = f.timeButton4.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -271,7 +271,7 @@
 	function selectTime5(){
 		var f = document.bookingForm;
 		
-		var hour  = f.timeButton5.value-1 ; // 선택된 시간
+		var hour  = f.timeButton5.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -285,7 +285,7 @@
 	function selectTime6(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton6.value-1 ; // 선택된 시간
+		var hour = f.timeButton6.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -299,7 +299,7 @@
 	function selectTime7(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton7.value-1 ; // 선택된 시간
+		var hour = f.timeButton7.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -313,7 +313,7 @@
 	function selectTime8(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton8.value-1 ; // 선택된 시간
+		var hour = f.timeButton8.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -327,7 +327,7 @@
 	function selectTime9(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton9.value-1 ; // 선택된 시간
+		var hour = f.timeButton9.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -341,7 +341,7 @@
 	function selectTime10(){
 		var f = document.bookingForm;
 		
-		var hour = f.timeButton10.value-1 ; // 선택된 시간
+		var hour = f.timeButton10.value ; // 선택된 시간
 		
 		changedDate = ${day };
 		changedTime = ${hour };
@@ -388,16 +388,16 @@
 				<br/><br/>
 				<div align="center" style="padding-top: 16px;">
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px;" type="button" value="◀" class = "btn2" onclick="changeTime1();" /> <!-- 현재 시간 --> 
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+1 }" class ="btn3" onclick="selectTime1()" name = "timeButton1"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+2 }" class ="btn3" onclick="selectTime2();" name = "timeButton2"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+3 }" class ="btn3" onclick="selectTime3();" name = "timeButton3"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+4 }" class ="btn3" onclick="selectTime4();" name = "timeButton4"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+5 }" class ="btn3" onclick="selectTime5();" name = "timeButton5"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+6 }" class ="btn3" onclick="selectTime6();" name = "timeButton6" />
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+7 }" class ="btn3" onclick="selectTime7();" name = "timeButton7"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+8 }" class ="btn3" onclick="selectTime8();" name = "timeButton8"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+9 }" class ="btn3" onclick="selectTime9();" name = "timeButton9"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+10 }" class ="btn3" onclick="selectTime10();" name = "timeButton10" />
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour }" class ="btn3" onclick="selectTime1()" name = "timeButton1"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+1 }" class ="btn3" onclick="selectTime2();" name = "timeButton2"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+2 }" class ="btn3" onclick="selectTime3();" name = "timeButton3"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+3 }" class ="btn3" onclick="selectTime4();" name = "timeButton4"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+4 }" class ="btn3" onclick="selectTime5();" name = "timeButton5"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+5 }" class ="btn3" onclick="selectTime6();" name = "timeButton6" />
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+6 }" class ="btn3" onclick="selectTime7();" name = "timeButton7"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+7 }" class ="btn3" onclick="selectTime8();" name = "timeButton8"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+8 }" class ="btn3" onclick="selectTime9();" name = "timeButton9"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+9 }" class ="btn3" onclick="selectTime10();" name = "timeButton10" />
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px; " type="button" value="▶" class = "btn2" onclick="changeTime2();"/> <!-- 현재 날짜 -->
 				</div>
 				

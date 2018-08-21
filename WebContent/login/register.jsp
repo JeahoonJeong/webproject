@@ -80,10 +80,6 @@
 						<td width="150px">주소</td>
 						<td><input type="text" name="addr"></td>
 					</tr>
-					<tr>
-						<td>선호영화관</td>
-						<td></td>
-					</tr>
 				</table>
 			</div>
 			<div align="center" style="margin-top: 50px">

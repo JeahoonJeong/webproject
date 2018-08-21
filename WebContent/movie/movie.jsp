@@ -307,7 +307,7 @@ function waitPlz() {
 						</select>
 						</td>
 						<td class="text">
-						<textarea title="댓글쓰기" name="comments" maxlength="100"
+						<textarea title="댓글쓰기" name="comments" maxlength="65"
 						class="textarea"></textarea>
 						</td>
 						<td width="84px" height="84px">
@@ -362,6 +362,7 @@ function waitPlz() {
 				</span>
 				<p><span class="content">
 				${comm.comments }
+
 				</span></p>
 				<p class="bottom">
 				

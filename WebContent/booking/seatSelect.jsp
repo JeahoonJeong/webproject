@@ -264,12 +264,7 @@
 			}
 		}
 		alert("선택한 좌석수 : " + cntCheck);
-
-		for (var j = 0; j < arrSeatNum.length; j++) {
-			alert(arrSeatNum[j]);
-			
-		
-		}
+	
 
 		if (cntCheck > maxCheck) {
 			alert("선택하신 좌석 개수 확인해주세요 ! ");
@@ -279,7 +274,7 @@
 		
 		
 		f.action = "<%=cp%>/Booking/seatSelect_ok.do?arrSeatNum=" + arrSeatNum
-				+ "&screen_id=" + ${screen_id}+"&value1=" + value1 + "&value2=" + value2 + "&value3=" + value3
+				+ "&screen_id=" + ${screen_id }+"&value1=" + value1 + "&value2=" + value2 + "&value3=" + value3
 				+ "&value4=" + value4;
 		f.submit();
 
@@ -345,11 +340,7 @@
 							<option value=7>7</option>
 							<option value=8>8</option>
 							<option value=${value4 } selected="selected">${value4 }</option>
-					</select> <%-- 조조 			<c:when test=""></c:when>	 --%> <!-- 				조조 --> <!-- 				우대 -->
-
-
-						<%-- 심야			<c:when test=""></c:when>	 --%> <!-- 				심야  --> <!-- 				우대 -->
-
+					</select> 
 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1179,7 +1170,7 @@
 									height="35"
 									onclick="javascript:location.href='<%=cp%>/Booking/booking.do'" />
 								</td>
-								<td width="200"><span> 좌석 선택 인원 </span></td>
+								<td width="200"><span style="font-weight: bold;"> 좌석 선택 인원  ${value1 + value2+ value3+ value4 }</span></td>
 							</tr>
 
 						</table>

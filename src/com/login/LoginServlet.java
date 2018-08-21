@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		req.setCharacterEncoding("UTF-8");
 		String cp = req.getContextPath();
 		
 		Connection conn = DBCPConn.getConnection();
