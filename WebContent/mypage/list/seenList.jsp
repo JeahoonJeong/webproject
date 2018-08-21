@@ -58,8 +58,8 @@ scrollbar-arrow-color: #FFFFFF
 <div class="guest_book">	
             <dl class="g_book-box">
                 <dd>
-					<img alt="포스터" src="<%=path %>/${dto.getFile_name()}" style="float: left;" height="160px" width="100px">
-                	<img alt="나이" src="<%=path %>/age${dto.age_limit }big.png" height="30px" width="30px" style="float: left;">
+					<img alt="포스터" src="<%=path %>/${dto.getFile_name()}" style="float: left; margin-right: 10px" height="160px" width="100px">
+                	<img alt="나이" src="<%=path %>/age${dto.age_limit }big.png" height="30px" width="30px" style="float: left; margin-right: 10px">
                 		
                       <font size="4" style="font-weight: bold;">${dto.getMovie_name() }</font>
                       <!-- 한줄평 삭제 -->

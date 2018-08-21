@@ -95,6 +95,7 @@
 	type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/timetable/dd.css" type="text/css" />
 <title>Insert title here</title>
+
 <script type="text/javascript">
 	function goNextPage(screen_id){
 	var f= document.myForm1;
@@ -190,7 +191,7 @@
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
 
-					<br><a href="<%=cp %>" onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=20x, left=100px, height=600px, width=1000px')">예매</a>
+					<br/><br><a href="<%=cp %>" onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=20x, left=100px, height=600px, width=1000px')">예매</a>
 					
 
 				</p>

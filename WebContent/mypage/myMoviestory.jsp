@@ -98,7 +98,7 @@ function autoResize(id){
 	<br/><br/>
 
 <div style="clear: both;">
-<iframe onload="autoResize('iframe1')" src="<%=cp %>/mypage/list/<%=linkpage %>.jsp" id="iframe1" name="iframe1" frameborder="0" style="overflow-x:hidden; width:100%; min-height:700px; height:100%;">
+<iframe onload="autoResize('iframe1')" src="<%=cp %>/mypage/list/<%=linkpage %>.jsp" id="iframe1" name="iframe1" frameborder="0" style="overflow-y:hidden; width:100%; min-height:700px; height:100%;">
 </iframe>
 </div>
 

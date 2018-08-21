@@ -95,6 +95,8 @@ public class BookingServlet extends HttpServlet {
 			if (strDate != null) {
 				selectedDate2 = strDate;
 				//System.out.println(selectedDate2);
+			}else if(strDate == null){
+				selectedDate2 = Integer.toString(nowDay);
 			}
 
 			if (strHour != null) {
@@ -123,10 +125,10 @@ public class BookingServlet extends HttpServlet {
 			}
 			
 			if(checkPara.equals("1")){ // 모두 선택되었을때
-				System.out.println(selectedDate2);
-				System.out.println(selectedHour2);
-				System.out.println(selectedTheaterId2);
-				System.out.println(selectedMoviedId2);
+				//System.out.println(selectedDate2);
+				//System.out.println(selectedHour2);
+				//System.out.println(selectedTheaterId2);
+				//System.out.println(selectedMoviedId2);
 				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2,selectedMoviedId2);
 				req.setAttribute("lists2", lists2);
 			}
@@ -142,6 +144,9 @@ public class BookingServlet extends HttpServlet {
 			}
 			if(checkPara.equals("4")){ // 날짜 시간 영화관 선택되었을때
 				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2);
+				req.setAttribute("lists2", lists2);
+			}if(checkPara.equals("5")){ // 날짜  영화 선택되었을때
+				List<MovieDTO> lists2 = dao.getMovieData1(selectedDate2,selectedMoviedId2);
 				req.setAttribute("lists2", lists2);
 			}
 			
