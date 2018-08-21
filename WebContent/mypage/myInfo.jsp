@@ -20,8 +20,7 @@
 	function itemChange() {
 		
 		var seoul = ["강남","강동"];
-		var incheon = ["계양"];
-		var kyung = ["김포"];
+		var kyung = ["김포","영통"];
 		
 		var selectItem = $('#city').val();
 		
@@ -29,10 +28,6 @@
 		
 		if(selectItem == "서울"){
 			changeItem = seoul;
-		}
-		
-		else if(selectItem == "인천"){
-			changeItem = incheon;
 		}
 		
 		else if(selectItem == "경기"){
@@ -283,7 +278,6 @@
 				<option value="">선택</option>
 				<option value="서울">서울</option>
 				<option value="경기">경기</option>	
-				<option value="인천">인천</option>		
 			</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<select id="district" name="district">
 			</select>

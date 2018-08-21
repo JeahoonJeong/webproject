@@ -54,6 +54,7 @@ function load(id, cnt, btn) {
 </head>
 <body>
 <div id="list">
+<br/><br/>
 * 보고싶은 영화 해제는 영화 상세정보 페이지에서 가능합니다.
 <div>
 

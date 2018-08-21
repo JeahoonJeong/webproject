@@ -55,7 +55,7 @@
 	<br/><br/>
 
 <div style="clear: both;">
-<iframe  src="<%=cp %>/mypage/list/bookingList.jsp"  name="iframe1" width="1000px" height="700px" frameborder="0"></iframe>
+<iframe  src="<%=cp %>/mypage/list/bookingList.jsp"  name="iframe1" width="1000px" height="700px" frameborder="0" style="overflow-y:hidden; width:100%; min-height:700px; height:100%;"></iframe>
 </div>
 
 
