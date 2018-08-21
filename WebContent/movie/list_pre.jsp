@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<jsp:include page="../header.jsp" flush="false"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -13,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>상영 예정작</title>
 <link rel="stylesheet" href="<%=cp%>/movie/css/list.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script type="text/javascript">
@@ -45,12 +43,19 @@
 			 return;
 			 
 		}
+		 function waitPlz() {
+				alert("상영 일정이 존재하지 않습니다")
+		}
 
 		
 </script>
 </head>
+<jsp:include page="../header.jsp" flush="false"/>
 <body>
 <form action="" method="post" id="mvForm">
+
+
+
 <div id="title">
 	<table width="1000px" height="50px" align="center" style="vertical-align: middle;" class="topMenu">
 		<tr>
@@ -97,9 +102,15 @@
 				</td>
 			</tr>
 			<tr>
+			<jsp:useBean id="now" class="java.util.Date" />
+			<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />
+			
+			<fmt:parseDate value="${dto.release_date}" var="reldate" pattern="yyyy.MM.dd"/>
+			<fmt:formatDate value="${reldate}" pattern="yyyyMMdd" var="relDate"/>
+			
 				<td class="d-day">
 					<font style="line-height: 30px;">${dto.release_date }</font> 
-					<input type="button" class="d-btn" value="D-2" disabled="disabled"/>
+					<input type="button" class="d-btn" value="D-${relDate-nowDate }" disabled="disabled"/>
 				</td>
 			</tr>
 			<tr>
@@ -125,7 +136,7 @@
 				<input type="button" value="상세정보" class="btn1"
 				onclick="showPop(${dto.movie_id});"/>
 				&nbsp;<input type="button" value="예매하기" class="btn1"
-				onclick="goToB(${dto.movie_id});"/></td>
+				onclick="waitPlz();"/></td>
 				<c:set var="i" value="${i+1 }" />
 			</tr>
 	</table>

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -114,12 +116,21 @@ function sendIt() {
 	
 	f.action = "<%=cp%>/Movie/comments.do?movie_id=" + ${dto.movie_id};
 	f.submit();
-		
+}
+function waitPlz() {
+	alert("상영 일정이 존재하지 않습니다")
 }
 
 </script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />
+
+<fmt:parseDate value="${dto.release_date}" var="reldate" pattern="yyyy.MM.dd"/>
+<fmt:formatDate value="${reldate}" pattern="yyyyMMdd" var="relDate"/>
+
 <form action="" method="post" name="mvForm">
 <div class="all">
 	<table border="0" width="888px" height="376px" style="margin-bottom: 40px;">
@@ -151,10 +162,16 @@ function sendIt() {
 			<span style="float: left; margin-left: 10px;">
 			<strong style="font-size: 20pt; font-weight: bold; color: #353535; vertical-align: top;">${dto.rating } 점</strong>
 			</span>
-			
+			<c:if test="${relDate>nowDate }">
+			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
+			onclick="waitPlz();"/>
+			</span>
+			</c:if>
+			<c:if test="${relDate<nowDate }">
 			<span style="float: right;"><input type="button" name="booking" value="예매하기" class="btn1"
 			onclick="goToB(${dto.movie_id});"/>
 			</span>
+			</c:if>
 			</td>		
 		</tr>
 		<tr>
@@ -224,10 +241,9 @@ function sendIt() {
 	<%-- 	<div class="rbtn"><a href="javascript:void(0);">
 			<img src="${imagePath }/right_btnbig.png"/></a></div> --%>
 		</div>
-
-		
 	</div>
 	<!-- </form> -->
+	
 	<div id="comment">
 		<div id="comment_head">
 		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(${dto.commCount })</span></h3>
@@ -245,17 +261,19 @@ function sendIt() {
 			</c:choose>
 			<table id="comment_input">
 				<tr>
-					<%-- <c:if test="${dto.release_date>sysdate }">
-						<td class="star">
-						</td>
-						<td class="text">
-						<span class="textarea">개봉 후 이용 가능합니다</span>
-						</td>
-						<td width="84px" height="84px">
-						<input type="button" value="등록" class="btn" onclick="#"/>
-						</td>
-					</c:if> --%>
-					<%-- <c:if test="${dto.release_date<sysdate }"> --%>
+
+				<c:if test="${relDate>nowDate }">
+					<td class="star">
+					</td>
+					<td class="text">
+					<span class="textarea">개봉 후 이용 가능합니다</span>
+					</td>
+					<td width="84px" height="84px">
+					<input type="button" value="등록" class="btn" onclick="#"/>
+					</td>
+				</c:if>
+				
+				<c:if test="${relDate<nowDate }">
 					<c:choose>
 						<c:when test="${empty sessionScope.member.user_id }">
 						<td class="star">
@@ -288,7 +306,7 @@ function sendIt() {
 						</td>
 						</c:otherwise>
 					</c:choose>
-					<%-- </c:if> --%>
+				</c:if>
 				</tr>
 			</table>
 		</div>

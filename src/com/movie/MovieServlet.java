@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -117,12 +118,13 @@ public class MovieServlet extends HttpServlet{
 			}else{
 				pageNum = req.getParameter("pageNum");
 			}*/
-
-
 			MovieDTO dto = new MovieDTO();
 			String movie_id = req.getParameter("movie_id");
 
 			dto = dao.getOneData(movie_id);
+			
+			
+			
 			
 			
 
