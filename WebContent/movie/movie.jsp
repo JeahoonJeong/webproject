@@ -200,7 +200,12 @@ function waitPlz() {
 			<c:if test="${!empty wish }">
 				<input type="button" value="♡ 보기싫어" name="wishMovie" onclick="javascipt:location.href='<%=cp%>/Movie/wish_remove.do?movie_id=${dto.movie_id}'" class="btn4"/>
 			</c:if>
+			<c:if test="${relDate>nowDate }">
+			<input type="button" value="상영시간표" name="booking" onclick="waitPlz();" class="btn3"/>
+			</c:if>
+			<c:if test="${relDate<nowDate }">
 			<input type="button" value="상영시간표" name="booking" onclick="goToP();" class="btn3"/>
+			</c:if>
 			<br/><font size="2pt" color="red">${message }</font>
 			</span>
 			</td>
