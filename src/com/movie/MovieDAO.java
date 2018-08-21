@@ -522,6 +522,33 @@ public class MovieDAO {
 		return result;
 	}
 	
+	public int commentCheck(String movie_id, String user_id){
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "select * from comments where movie_id=? and user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, movie_id);
+			pstmt.setString(2, user_id);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();	
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+		
+	}
+	
 	
 	
 	

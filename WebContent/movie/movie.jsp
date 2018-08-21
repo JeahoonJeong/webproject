@@ -64,6 +64,10 @@
 		
 		f.rating.value=f.rate2.options[svalue].value;
 	}
+	function cannot() {
+		alert("한줄평은 한번만 등록할 수 있습니다")
+		return;
+	}
 
 
 </script>
@@ -261,7 +265,7 @@ function waitPlz() {
 				</c:when>
 				<c:otherwise>
 				<span style="padding-top: 58px; float: left;">
-					<img width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
+					<img class="radius" width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
 				</c:otherwise>
 			</c:choose>
 			<table id="comment_input">
@@ -307,7 +311,12 @@ function waitPlz() {
 						class="textarea"></textarea>
 						</td>
 						<td width="84px" height="84px">
+						<c:if test="${commCheck==1 }">
+						<input type="button" value="등록" class="btn" onclick="cannot();"/>
+						</c:if>
+						<c:if test="${commCheck==0 }">
 						<input type="button" value="등록" class="btn" onclick="sendIt();"/>
+						</c:if>
 						</td>
 						</c:otherwise>
 					</c:choose>
