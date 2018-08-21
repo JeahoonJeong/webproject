@@ -122,7 +122,7 @@
 					href="<%=cp%>/Timetable/movieTime.do" title="영화별 상영시간표 바로가기">영화별
 						상영시간표</a></li>
 				<li><a class="timetable i2 "
-					href="<%=cp%>/Theater/theaterP2.do" title="영화관별 상영시간표 바로가기">영화관별
+					href="<%=cp%>/Theater/theater.do" title="영화관별 상영시간표 바로가기">영화관별
 						상영시간표</a></li>
 
 			</ul>
@@ -143,10 +143,10 @@
 
 	<br /><br />
 
-	<table align="center" width="250" cellpadding="2" cellspacing="1">
+	<table align="center" width="250" cellpadding="2" cellspacing="1" style="margin-top: -80px; margin-bottom: 20px;">
 
 		<tr>
-			<td align="center" style="font-size: 20pt;">			
+			<td align="center" style="font-size: 20pt; color: #503396">			
 				<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id}&year=<%=preYear%>&month=<%=preMonth%>&day=<%=preDay%>">
 				<img src="${imagePath}/화살표1.png" width="30" height="30" border="0" align="middle"></a><b>&nbsp; <%=month%>월&nbsp;&nbsp; <%=day%>일</b> 
 				<a href="<%=cp %>/Timetable/movieTime_ok.do?movie_id=${movie_id }&year=<%=nextYear %>&month=<%=nextMonth%>&day=<%=nextDay %>">
@@ -156,7 +156,7 @@
 	</table>
 
 	<c:if test="${movie_id==null }">
-		<p align="center"><img src="${imagePath}/nullmovie.PNG" width="1000" height="400" border="0" align="middle"></p>
+		<p align="center"><img src="${imagePath}/nullmovie.PNG" width="160" height="120" border="0" align="middle" ></p>
 	</c:if>
 	
 	<form name="myForm1" method="post">
