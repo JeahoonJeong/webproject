@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.booking.bookedSeatDTO;
 import com.login.MemberDTO;
 import com.movie.MovieDTO;
 
@@ -1056,17 +1057,17 @@ public class MypageDAO {
 		return result;
 	}
 	
-	public List<MyBookingDTO> getCancelseat(String booked_id){
+	public List<bookedSeatDTO> getCancelseat(String booked_id){
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql;
 		
-		List<MyBookingDTO> seatsList = new ArrayList<MyBookingDTO>();
+		List<bookedSeatDTO> seatsList = new ArrayList<bookedSeatDTO>();
 		
 		try {
 			
-			sql = "select row_num, seat_num from detail_booked_list where booked_id=?";
+			sql = "select row_num, seat_num, screen_id from detail_booked_list where booked_id=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -1076,8 +1077,9 @@ public class MypageDAO {
 			
 			while(rs.next()){
 				
-				MyBookingDTO dto = new MyBookingDTO();
+				bookedSeatDTO dto = new bookedSeatDTO();
 				
+				dto.setScreen_id(rs.getString("screen_id"));
 				dto.setRow_num(rs.getString("row_num"));
 				dto.setSeat_num(rs.getInt("seat_num"));
 				
@@ -1096,41 +1098,46 @@ public class MypageDAO {
 		
 	}
 	
-	public int cancelSeats(List<MyBookingDTO> list){
+	public int cancelSeats(List<bookedSeatDTO> list){
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql;
 		String row_num;
+		String screen_id;
 		int seat_num;
 		
 		
 		try {
 
-			Iterator<MyBookingDTO> it = list.iterator();
+			Iterator<bookedSeatDTO> it = list.iterator();
 			
 			while(it.hasNext()){
 				
-				MyBookingDTO dto = new MyBookingDTO();			
+				pstmt = null;
+				result = 0;
+				
+				bookedSeatDTO dto = new bookedSeatDTO();			
 				dto = it.next();
 				
 				row_num = dto.getRow_num();
 				seat_num = dto.getSeat_num();
+				screen_id = dto.getScreen_id();
 				
-				sql = "update seat set status=0 where row_num=? and seat_num=?";
+				
+				sql = "update seat set status=0 where row_num=? and seat_num=? and screen_id=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, row_num);
 				pstmt.setInt(2, seat_num);
+				pstmt.setString(3, screen_id);
 				
 				result = pstmt.executeUpdate();
 				
 			}
 			
 			pstmt.close();
-			
-
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
