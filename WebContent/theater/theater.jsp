@@ -103,6 +103,8 @@ position: relative;
 </head>
 <jsp:include page="../header2.jsp" flush="false" />
 <body>
+<head>
+
 
 <!-- 첫이미지부터 탭메뉴전까지 -->
 <div class="whole_wrap">
@@ -237,7 +239,7 @@ position: relative;
 						<li><a class="submenuLink">목포하당(포르모)</a></li>
 					</ul></li>
 				<li>|</li>
-				<li class="topMenuLi"><a class="menuLink">경기</a>
+				<li class="topMenuLi"><a class="menuLink">강원</a>
 					<ul class="submenu">
 						<li><a class="submenuLink">남춘천</a></li>
 						<li><a class="submenuLink">속초</a></li>
@@ -369,22 +371,26 @@ position: relative;
 	</div> <!-- p2_container  -->
 </div> <!-- main_wrap  -->
 
-	<div>
-		<a href="http://ad.imp.joins.com/NetInsight/event/
-		clk/v4tpfnqPm-iPGc4CsBFOh9jkGcGJ_ErzI1vVY3YeuIeIA
-		bZueUdSaUpDQ1NVZWVUby1kVkp1N2tBAstB1t2qjVLUNQO2Tnh
-		YbS1DWmNTR21LcGN5MW45YU45dwbZI21lZ2Fib3hfcC9tYWluL
-		21haW5AbWFpbl90b3BfOTcweDgwB83uSAjNAWoJhaN0aWS2T1pv
-		RjVOSmZUcHEtcnZGM2tIQWtwZ6RfbW5toKRfdWlk2W9GZXFfcG1
-		aa1R2NjJWN3liUnpCZ2FoRHFpUWQ4MUw2ODFsSTVuSDh5Y1FpRUFN
-		NW1qU2JDQWJaa01XdHBUbXBaUjFSR2VXMVlSVFU1U1ZWRVNrcDNBc
-		3RCMXRmOFhpZ0VfQVBMUWRiWF9GNG9CUHekX2NpZLZwdWl6VDBsM1J
-		2MndHbldkeHJFQjJ3o19ydMtB1t2qjVLUNQqBoXLD" target="_blank" style="display:block; position:absolute; text-align:center;width:100%;background-color:#f4ddbd">
-		<img src="http://mlink-cdn.netinsight.co.kr/2018/08/14/3e69187c067a0d003472d491c898d73f.jpg" width="1140" height="80" border="0"></a>
+
+
+<div id="mainBannerParallax">
+
+
+<script type="text/javascript" src="/js/common/common.js"></script>
+
+
+<!-- if(display.equals("HTM")) 인경우 추가. -->
+
+<!-- if(!display.equals("HTM")) 인경우 추가. -->
+ 
+
+<div class="parallax_txt">
+	<img src="http://image2.megabox.co.kr//mop/frontbanner/2018/46/471CF5-03F1-4349-9D97-F1629F8325F2.png" 
+	alt="대구이시아 군자 김포한강신도시" style="margin-top: -400px; margin-left: -432.5px;">
 	</div>
-
-
-
+	<div class="content_middle_banner parallax_img" data-stellar-background-ratio="0.3" style="background: url(&quot;http://image2.megabox.co.kr/mop/home/ad/1600x1000/160926_bg_1600x1000.jpg&quot;) 0px -280.7px / cover no-repeat; overflow: visible;">
+	<a href="javascript:void(0);" onclick="megaboxLog.init('event','MAIN','New_theater');" title="" style="display:block; margin:1px 0 0 1px; background:none; height:499px;"><span class="blind">BalconyM</span></a>
+</div>
 
 
 

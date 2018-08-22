@@ -306,7 +306,7 @@
 						<li><a class="submenuLink">목포하당(포르모)</a></li>
 					</ul></li>
 				<li>|</li>
-				<li class="topMenuLi"><a class="menuLink">경기</a>
+				<li class="topMenuLi"><a class="menuLink">강원</a>
 					<ul class="submenu">
 						<li><a class="submenuLink">남춘천</a></li>
 						<li><a class="submenuLink">속초</a></li>
@@ -329,18 +329,20 @@
 	<tr>
 		<td colspan="5" align="center"
 				style="padding-bottom: 10px; padding-top: 60px; height: 62px;">
-				
-	<a href="http://ad.imp.joins.com/NetInsight/event/
-	clk/v4tpfnqPm-iPGc4CsBFOh9jkGcGJ_ErzI1vVY3YeuIeIA
-	bZueUdSaUpDQ1NVZWVUby1kVkp1N2tBAstB1t2qjVLUNQO2Tnh
-	YbS1DWmNTR21LcGN5MW45YU45dwbZI21lZ2Fib3hfcC9tYWluL
-	21haW5AbWFpbl90b3BfOTcweDgwB83uSAjNAWoJhaN0aWS2T1pv
-	RjVOSmZUcHEtcnZGM2tIQWtwZ6RfbW5toKRfdWlk2W9GZXFfcG1
-	aa1R2NjJWN3liUnpCZ2FoRHFpUWQ4MUw2ODFsSTVuSDh5Y1FpRUFN
-	NW1qU2JDQWJaa01XdHBUbXBaUjFSR2VXMVlSVFU1U1ZWRVNrcDNBc
-	3RCMXRmOFhpZ0VfQVBMUWRiWF9GNG9CUHekX2NpZLZwdWl6VDBsM1J
-	2MndHbldkeHJFQjJ3o19ydMtB1t2qjVLUNQqBoXLD" target="_blank" style="display:block;text-align:center;width:100%;background-color:#f4ddbd">
-	<img src="http://mlink-cdn.netinsight.co.kr/2018/08/14/3e69187c067a0d003472d491c898d73f.jpg" width="970" height="80" border="0"></a>
+	
+	<a href="http://ad.imp.joins.com/NetInsight/event/clk
+	/fIOKES4jxIeSbz457g7R9CJhHcY8OPKou7gwYFVsuxCIAbZaZ0VW
+	SENyc1RwNlVoUms5R2xsTS1RAstB1t83tup9fAO2RUFaVHdHNTRSZ
+	3F5RXNINm1Ja1RSdwbZMG1lZ2Fib3hfcC9zdWIvc3ViQHN1Yl9jaW
+	5lbWFfYm90dG9tX3JpZ2h0Xzk3MHg4MAfN7kgIzQFfCYWjdGlktld
+	XeVEtVHFLUzZlS1ZyeUl2ZWJCVlGjX3J0y0HW3ze26n18pF9tbm2gp
+	F91aWTZb0ZlcV9wbVprVHY2MlY3eWJSekJnYWhEcWlRZDgxTDY4MWxJ
+	NW5IOHljUWlFQU01bWpTYkNBYlprTVd0cFRtcFpSMVJHZVcxWVJUVTV
+	TVlZFU2twM0FzdEIxdGY4WGlnRV9BUExRZGJYX0Y0b0JQd6RfY2lktlB
+	zbEpzYzJiU1FPNTJZaFJSeVNmV1EKgaFyww" 
+	target="_blank" style="display:block;text-align:center;width:100%;background-color:white;">
+	<img src="http://mlink-cdn.netinsight.co.kr/2018/08/20/9ac4fd474764e1e6a515cf614d8fba3b.jpg" width="1140" height="80" border="0"></a>
+		
 		</td>
 	</tr>
 	
