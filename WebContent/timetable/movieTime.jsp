@@ -79,8 +79,8 @@
 	str = "window.open('" + strUrl + "', 'Think', ";
 	str = str + "'left=100, ";
 	str = str + "top=20, ";
-	str = str + "width=1000, ";
-	str = str + "height=600, ";
+	str = str + "width=1100, ";
+	str = str + "height=650, ";
 	str = str + "toolbar=no, ";
 	str = str + "menubar=no, ";
 	str = str + "status=no, ";
@@ -197,7 +197,7 @@
 					<input type="hidden" name ="type" value ="${dto.type }">
 					
 
-					<br/><br><a href="<%=cp %>" onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=20x, left=100px, height=600px, width=1000px')">예매</a>
+					<br/><br><a href="<%=cp %>" onclick="window.open('<%=cp%>/Booking/seatSelect.do?screen_id=${dto.screen_id}', 'search', 'top=20x, left=100px, height=650px, width=1100px')">예매</a>
 					
 
 				</p>
