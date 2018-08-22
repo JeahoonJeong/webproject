@@ -94,7 +94,7 @@
 <link rel="stylesheet" href="<%=cp%>/timetable/style.css"
 	type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/timetable/dd.css" type="text/css" />
-<title>Insert title here</title>
+<title>영화별 상영시간표</title>
 
 <script type="text/javascript">
 	function goNextPage(screen_id){

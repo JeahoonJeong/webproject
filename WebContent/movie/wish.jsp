@@ -22,7 +22,7 @@
 
 			var url = "movie.do?movie_id=" + movie_id;
 
-			var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+			var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1100, height=650, left='+(screen.width-968)/2+'';
 			
 			window.open(url,"movieInfo",setting);
 		

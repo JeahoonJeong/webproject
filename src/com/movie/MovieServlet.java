@@ -161,7 +161,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);
 
 			
-		}else if(uri.indexOf("comments.do")!=-1){// ÇÑÁÙÆò ÀÛ¼º
+		}else if(uri.indexOf("comments.do")!=-1){// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
 
 			HttpSession session = req.getSession();
 
@@ -188,7 +188,7 @@ public class MovieServlet extends HttpServlet{
 			resp.sendRedirect(url);
 
 			
-		}else if(uri.indexOf("delete.do")!=-1){//ÇÑÁÙÆò »èÁ¦
+		}else if(uri.indexOf("delete.do")!=-1){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			HttpSession session = req.getSession();
 			MemberDTO member = (MemberDTO)session.getAttribute("member");
@@ -227,7 +227,7 @@ public class MovieServlet extends HttpServlet{
 			
 			
 
-		}else if(uri.indexOf("list_date.do")!=-1){//ÃÖ±Ù°³ºÀ¿µÈ­ ÆäÀÌÁö
+		}else if(uri.indexOf("list_date.do")!=-1){//ï¿½Ö±Ù°ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 			String pageNum = req.getParameter("pageNum");
@@ -269,7 +269,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);
 
 		
-		}else if(uri.indexOf("list_pre.do")!=-1){ //°³ºÀ¿¹Á¤¿µÈ­ ÆäÀÌÁö
+		}else if(uri.indexOf("list_pre.do")!=-1){ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 			String pageNum = req.getParameter("pageNum");
@@ -312,7 +312,7 @@ public class MovieServlet extends HttpServlet{
 			forward(req, resp, url);	
 			
 
-		}else if(uri.indexOf("movieTime_ok.do")!=-1){ //»ó¿µ½Ã°£Ç¥
+		}else if(uri.indexOf("movieTime_ok.do")!=-1){ //ï¿½ó¿µ½Ã°ï¿½Ç¥
 
 			String movie_id = req.getParameter("movie_id");
 
@@ -322,7 +322,7 @@ public class MovieServlet extends HttpServlet{
 			
 			
 			
-		}else if(uri.indexOf("wish.do")!=-1){//º¸°í½Í¾î ÆäÀÌÁö
+		}else if(uri.indexOf("wish.do")!=-1){//ï¿½ï¿½ï¿½ï¿½Í¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			
 			List<MovieDTO> lst = new ArrayList<MovieDTO>();
 			
@@ -376,7 +376,7 @@ public class MovieServlet extends HttpServlet{
 				dao.insertWishlist(user_id, movie_id);
 			}
 			else{
-				message = "·Î±×ÀÎ ÈÄ ÀÌ¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù!";
+				message =  "ë¡œê·¸ì¸ í›„ ì´ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤!";
 			}
 			
 			req.setAttribute("message", message);
