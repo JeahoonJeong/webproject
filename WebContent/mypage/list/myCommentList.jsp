@@ -153,7 +153,7 @@ function close_field(movie_id) {
 				
 					<div id="comments${dto.getMovie_id()}" style="display:none; padding: 5px;">	
 						<div style="float: left; text-align: left; vertical-align:middle; width: 400px; height: 110px;" >   
-							<textarea rows="5" cols="40" name="comments${dto.getMovie_id()}" style="background-color: #f8f8f8; overflow: hidden;" onkeyup="checkLength(${dto.getMovie_id()});">${dto.getComments() }</textarea>
+							<textarea rows="5" cols="40" name="comments${dto.getMovie_id()}" style="background-color: #f8f8f8; overflow: hidden; border: 1px solid #ddd" onkeyup="checkLength(${dto.getMovie_id()});">${dto.getComments() }</textarea>
 						</div>
 						<div style="float: left; text-align: center; height: 100px; width: 50px;">
 							<span class="right"><img src="<%=cp%>/mypage/image/comm_cancel.png" onclick="close_field(${dto.getMovie_id()});" ></span>

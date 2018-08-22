@@ -414,9 +414,8 @@
 						<c:forEach var="dto" items="${lists }">
 							<tr height="40px">
 								<td class="sample1" width="320px" style="text-align: center;">
-									${dto.city } | ${dto.district } 영화관 <input type="radio" id = "ff" value="${dto.theater_id } " name = "theater"  
-									onclick = "selectTheater();"
-									/>
+									${dto.city } | ${dto.district } 영화관 
+									<input type="radio" id = "ff" value="${dto.theater_id } " name = "theater"  onclick = "selectTheater();"/>
 									<br/>
 								</td>
 							</tr>

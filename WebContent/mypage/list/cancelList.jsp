@@ -13,6 +13,19 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=cp%>/mypage/css/list.css" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<style type="text/css">
+
+body {
+scrollbar-face-color:#FFFFFF;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-3dlight-color: #FFFFFF;
+scrollbar-shadow-color: #FFFFFF;
+scrollbar-darkshadow-color: #FFFFFF;
+scrollbar-track-color: #FFFFFF;
+scrollbar-arrow-color: #FFFFFF
+}
+</style>
+
 </head>
 <body>
 <div id="list">

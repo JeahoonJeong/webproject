@@ -76,6 +76,9 @@ scrollbar-arrow-color: #FFFFFF
                        <c:if test="${empty dto.getRating()}">등록된 평점이 없습니다.</c:if>
                        <c:if test="${!empty dto.getRating() }">
                        		<c:choose>
+                       			<c:when test="${dto.getRating()==0}">
+                       				<img alt="" src="<%=cp%>/movie/image/rate0.png">
+                       			</c:when>
                        			<c:when test="${dto.getRating()<3 && 0<dto.getRating() }">
                        				<img alt="" src="<%=cp%>/movie/image/rate1.png">
                        			</c:when>

@@ -49,6 +49,16 @@ function load(id, cnt, btn) {
     $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
 }
 
+function goToB(movie_id) {
+	
+	 var url = "<%=cp%>/Booking/booking.do?selectedMoviedId="+movie_id+"&checking=5";
+		
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+		
+		window.open(url,"booking",setting);
+
+}
+
 </script>
 
 </head>
@@ -119,7 +129,7 @@ function load(id, cnt, btn) {
 				<input type="button" value="상세정보" class="btn1"
 				onclick="showPop(${dto.movie_id});"/>
 				&nbsp;<input type="button" value="예매하기" class="btn1"
-				onclick=""/></td>
+				onclick="goToB(${dto.movie_id});"/></td>
 			</tr>
 	</table>
 	</li>

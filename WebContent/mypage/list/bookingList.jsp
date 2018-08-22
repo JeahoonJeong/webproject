@@ -43,6 +43,17 @@
 
 </script>
 
+<style type="text/css">
+body {
+scrollbar-face-color:#FFFFFF;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-3dlight-color: #FFFFFF;
+scrollbar-shadow-color: #FFFFFF;
+scrollbar-darkshadow-color: #FFFFFF;
+scrollbar-track-color: #FFFFFF;
+scrollbar-arrow-color: #FFFFFF
+}
+</style>
 
 </head>
 <body>
