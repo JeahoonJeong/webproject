@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<jsp:include page="../header.jsp" flush="false"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -12,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>최신 개봉작</title>
 <link rel="stylesheet" href="<%=cp%>/movie/css/list.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script type="text/javascript">
@@ -44,6 +42,7 @@
 		
 </script>
 </head>
+<jsp:include page="../header.jsp" flush="false"/>
 <body>
 <form action="" method="post" id="mvForm">
 <div id="title">
