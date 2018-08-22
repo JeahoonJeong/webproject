@@ -80,7 +80,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화관선택</title>
 <link rel="stylesheet" href="<%=cp%>/theater/css/box.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css" type="text/css" />

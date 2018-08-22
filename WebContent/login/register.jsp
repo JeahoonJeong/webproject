@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="../header.jsp" flush="false" />
+
 <%
 	//POST 방식에서 한글깨짐을 방지
 	request.setCharacterEncoding("UTF-8");
@@ -15,6 +15,7 @@
 	type="text/css" />
 <title>회원 가입</title>
 </head>
+<jsp:include page="../header.jsp" flush="false" />
 <body>
 	<div id="title">회원가입</div>
 

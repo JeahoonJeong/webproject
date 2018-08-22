@@ -80,7 +80,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화관정보</title>
 <link rel="stylesheet" href="<%=cp%>/theater/css/box.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/theater/css/theme2.css" type="text/css" />
@@ -120,7 +120,7 @@
 	
 		var url = "<%=cp %>/Movie/movie.do?movie_id=" + movie_id;
 	
-		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1100, height=650, left='+(screen.width-968)/2+'';
 		
 		window.open(url,"movieInfo",setting);
 	} 
@@ -130,7 +130,7 @@
 	
 		var url = "<%=cp %>/Movie/movie.do?movie_id="+movie_id;
 	
-		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1028, height=650, left='+(screen.width-968)/2+'';
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1100, height=650, left='+(screen.width-968)/2+'';
 		
 		window.open(url,"movieInfo",setting);
 	} 
@@ -140,7 +140,7 @@
 	
 		var url = "<%=cp%>/Booking/seatSelect.do?screen_id="+screen_id;
 	
-		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1028, height=650, left='+(screen.width-968)/2+'';
+		var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1100, height=650, left='+(screen.width-968)/2+'';
 		
 		window.open(url,"movieInfo",setting);
 	} 

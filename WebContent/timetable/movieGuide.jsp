@@ -11,13 +11,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=cp%>/timetable/style.css" type="text/css"/>
-<title>Insert title here</title>
+<title>영화 안내</title>
 <script type="text/javascript">
 function goToB() {
 	
 	var url = "<%=cp%>/Booking/booking.do";
 	
-	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=968, height=650, left='+(screen.width-968)/2+'';
+	var setting = 'toolbar=no,menubar=no,status=no,resizable=no,location=no,top=90, width=1100, height=650, left='+(screen.width-968)/2+'';
 	
 	window.open(url,"booking",setting);
 

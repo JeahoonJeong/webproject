@@ -26,7 +26,7 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>예약완료</title>
 </head>
 <body onresize="parent.resizeTo(500,400)" onload="parent.moveTo(750,300);">
 
