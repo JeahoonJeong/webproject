@@ -330,23 +330,22 @@ function deleteComm() {
 		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(${dto.commCount })</span></h3>
 		</div>
 		<div style="width: 888px; height: 128px;">
-				<c:if test="${empty sessionScope.member.user_id }">
+			<c:choose>
+				<c:when test="${empty sessionScope.member.user_id }">
 				<span style="padding-top: 58px; float: left;">
 					<img class="radius" width="56px" height="56px" src="${profileImg }/profile.png"></span>
-				</c:if>
-				<c:if test="${!empty sessionScope.member.user_id }">
-				<c:choose>
-					<c:when test="${empty sessionScope.member.user_id }">
-						<span style="padding-top: 58px; float: left;">
-						<img class="radius" width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
-					</c:when>
-					<c:otherwise>
-						<span style="padding-top: 58px; float: left;">
-						<img class="radius" width="56px" height="56px" src="${profileImg }/profile.png"></span>
-					</c:otherwise>
-				</c:choose>	
-				</c:if>
-		
+				</c:when>
+				
+				<c:when test="${empty sessionScope.member.file_name}">
+				<span style="padding-top: 58px; float: left;">
+					<img class="radius" width="56px" height="56px" src="${profileImg }/profile.png"></span>
+				</c:when>
+			
+				<c:otherwise>
+				<span style="padding-top: 58px; float: left;">
+					<img class="radius" width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
+				</c:otherwise>
+			</c:choose>
 			<table id="comment_input">
 				<tr>
 
