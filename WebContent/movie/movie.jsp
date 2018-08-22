@@ -279,7 +279,7 @@ function deleteComm() {
 			</div>
 			<div class="arrow_box">
 			<font style="font-weight: bold; font-size: 10pt; font-family: 'Nanum Gothic', sans-serif; 
-			color: #666666;">♥${wishCount }</font></div>
+			color: #503396;">♥${wishCount }</font></div>
 			
 			</div>
 			
