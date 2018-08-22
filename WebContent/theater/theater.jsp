@@ -256,11 +256,119 @@ position: relative;
 	<div>
 		<img alt="" src="http://image2.megabox.co.kr/mop/home/map/world2.jpg" style="width: 1140px; height: 500px">
 	</div>
+
+	</div><!-- whole_wrap 끝  -->
+</div><!-- sc n02 끝  -->
+
+
+
+
+
+<!-- 유투브 및 광고 삽입 -->
+
+<div class="sc no3" style="margin: 0 auto; width: 970px; margin-bottom: 10px;">
+		<div class="whole_wrap">
+			
+			<h3 class="h3" style="margin-bottom: 10px; margin-left: 10px;">새로운 이벤트</h3>
+			<div id="mainEventNew">
+
+
+<div class="eve_box1">
+
+	<div class="eve_autoOff">
+
+    </div>
+
+	<dl>
+		<dd class="eve1_dd">
+			<iframe width="630px" height="315px" src="https://www.youtube.com/embed/O-I0k8FLJVU?rel=0&autoplay=1" frameborder="0" class="video" allowfullscreen></iframe>
+		</dd>
+
+	</dl>
+</div>
+<div class="eve_box2">
+	<div class="eve2_left">
+
 	
-	<div class=youtubeV align="center" style="padding-top: 100px">
-		<iframe width="984" height="562" src="https://www.youtube.com/embed/O-I0k8FLJVU?rel=0&autoplay=1" frameborder="0" class="video" allowfullscreen></iframe>
-	</div><p><br /></p>
+	<!-- eve2_left 랜덤 반복-->
+	<div style="display:none;">
+
 	
+				<a href="javascript:EventDetail.showPage('5883', 0);" title="">
+	
+				<img src="http://image2.megabox.co.kr/mop/home/main/315X315/180503_private_315_315.jpg" alt="더 부티크 프라이빗">
+	
+			</a>
+	
+	</div>
+	<!-- eve2_left 랜덤 반복-->
+	
+	<!-- eve2_left 랜덤 반복-->
+	<div style="display:none;">
+
+	
+				<a href="javascript:EventDetail.showPage('6317', 0);" title="">
+	
+				<img src="http://image2.megabox.co.kr//mop/frontbanner/2018/33/066F5B-0806-477F-AACB-6616734A4A59.jpg" alt="<카메라를 멈추면 안 돼!> 굿즈 패키지 상영회">
+	
+			</a>
+	
+	</div>
+	<!-- eve2_left 랜덤 반복-->
+	
+	<!-- eve2_left 랜덤 반복-->
+	<div style="">
+
+	
+				<a href="javascript:EventDetail.showPage('6312', 0);" title="">
+	
+				<img src="http://image2.megabox.co.kr//mop/frontbanner/2018/4B/E6BDEE-BF12-40F9-8B09-65FEC12FF174.jpg" alt="<톰 오브 핀란드> 굿즈 패키지 상영회 ">
+	
+			</a>
+	
+	</div>
+	<!-- eve2_left 랜덤 반복-->
+	
+	</div>
+	<div class="eve2_right">
+
+	
+	<!-- eve2_right 랜덤 반복-->
+	<div style="">
+
+	
+				<a href="javascript:adHasClick('http://www.megabox.co.kr/?menuId=store', 0);" title="">
+	
+				<img src="http://image2.megabox.co.kr/mop/home/main/315X315/160321_store_315x315.jpg" alt="메가박스 스토어 더 즐거운 영화관람을 위해 다양한 스토어 상품과 함께하세요">
+	
+			</a>
+	
+	</div>
+	<!-- eve2_right 랜덤 반복 -->
+	
+	</div>
+</div>
+
+
+<div class="eve_box3" style="background:url(http://image2.megabox.co.kr//mop/frontbanner/2018/33/145474-82C9-4616-82AC-6530B7CEDE6F.jpg) no-repeat; width:500px; margin-top: 0px;">
+       
+			<a href="javascript:adHasClick('http://www.megabox.co.kr/?menuId=event&amp;p=detail&amp;p2=6251', 0, 'pop');" title="VIP 급행 열차에 탑승하라! 나도 이제 VIP ">
+				<img src="http://image2.megabox.co.kr//mop/frontbanner/2018/33/145474-82C9-4616-82AC-6530B7CEDE6F.jpg" alt="VIP 급행 열차에 탑승하라! 나도 이제 VIP ">
+			</a>
+		
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+<!-- 광고삽입 끝  -->
+
+	</div> <!-- p2_container  -->
+</div> <!-- main_wrap  -->
+
 	<div>
 		<a href="http://ad.imp.joins.com/NetInsight/event/
 		clk/v4tpfnqPm-iPGc4CsBFOh9jkGcGJ_ErzI1vVY3YeuIeIA
@@ -271,22 +379,14 @@ position: relative;
 		aa1R2NjJWN3liUnpCZ2FoRHFpUWQ4MUw2ODFsSTVuSDh5Y1FpRUFN
 		NW1qU2JDQWJaa01XdHBUbXBaUjFSR2VXMVlSVFU1U1ZWRVNrcDNBc
 		3RCMXRmOFhpZ0VfQVBMUWRiWF9GNG9CUHekX2NpZLZwdWl6VDBsM1J
-		2MndHbldkeHJFQjJ3o19ydMtB1t2qjVLUNQqBoXLD" target="_blank" style="display:block;text-align:center;width:100%;background-color:#f4ddbd">
+		2MndHbldkeHJFQjJ3o19ydMtB1t2qjVLUNQqBoXLD" target="_blank" style="display:block; position:absolute; text-align:center;width:100%;background-color:#f4ddbd">
 		<img src="http://mlink-cdn.netinsight.co.kr/2018/08/14/3e69187c067a0d003472d491c898d73f.jpg" width="1140" height="80" border="0"></a>
 	</div>
-	
-
-	</div><!-- whole_wrap 끝  -->
-</div><!-- sc n02 끝  -->
 
 
 
 
 
-
-
-	</div>
-</div>
 
 <jsp:include page="../footer.jsp" flush="false" />
 </div>
