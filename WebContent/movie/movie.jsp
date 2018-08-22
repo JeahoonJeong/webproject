@@ -82,9 +82,16 @@ function updateComm() {
 	}
 	f.contentArea.value = str;
 	
-	f.action = "<%=cp%>/Movie/update.do?movie_id=" + ${dto.movie_id};
-	f.submit();
 	
+	if(confirm("수정 하시겠습니까?") == true){
+		
+		f.action = "<%=cp%>/Movie/update.do?movie_id=" + ${dto.movie_id};
+			
+		f.submit();
+
+	}else{
+		return;
+	}
 }
 function waitPlz() {
 	alert("상영 일정이 존재하지 않습니다")
@@ -117,6 +124,23 @@ function star() {
 	var svalue = f.rate2.selectedIndex;
 	
 	f.rating.value=f.rate2.options[svalue].value;
+	
+	f.rateMent2.value = f.rate2.options[svalue].value;
+	
+	if(f.rateMent2.value==0){
+		f.rateMent2.value="엉망이네요";
+	}else if(f.rateMent2.value==2){
+		f.rateMent2.value="괜히봤어요";
+	}else if(f.rateMent2.value==4){
+		f.rateMent2.value="기대하진말아요";
+	}else if(f.rateMent2.value==6){
+		f.rateMent2.value="무난했어요";
+	}else if(f.rateMent2.value==8){
+		f.rateMent2.value="기대해도 좋아요!";
+	}else if(f.rateMent2.value==10){
+		f.rateMent2.value="너무 멋진 영화였어요!";
+	}
+	
 }
 function star_t() {
 	var f = document.mvForm;
@@ -124,12 +148,45 @@ function star_t() {
 	var svalue = f.rate3.selectedIndex;
 	
 	f.rating_t.value=f.rate3.options[svalue].value;
+	
+	f.rateMent.value = f.rate3.options[svalue].value;
+	
+	if(f.rateMent.value==0){
+		f.rateMent.value="엉망이네요";
+	}else if(f.rateMent.value==2){
+		f.rateMent.value="괜히봤어요";
+	}else if(f.rateMent.value==4){
+		f.rateMent.value="기대하진말아요";
+	}else if(f.rateMent.value==6){
+		f.rateMent.value="무난했어요";
+	}else if(f.rateMent.value==8){
+		f.rateMent.value="기대해도 좋아요!";
+	}else if(f.rateMent.value==10){
+		f.rateMent.value="너무 멋진 영화였어요!";
+	}
 }
 
 function cannot() {
 	alert("한줄평은 한번만 등록할 수 있습니다")
 	return;
 }
+function deleteComm() {
+	
+	var f = document.mvForm;
+
+	if(confirm("삭제 하시겠습니까?") == true){
+		
+		f.action = "<%=cp %>/Movie/delete.do?movie_id=" + ${dto.movie_id};
+			
+		f.submit();
+
+	}else{
+		return;
+	}
+}
+
+
+
 </script>
 </head>
 <body marginheight="0" marginwidth="0" scroll=auto style="overflow-x:hidden;">
@@ -302,7 +359,7 @@ function cannot() {
 						<c:otherwise>
 						<td class="star">
 						<input type="hidden" name="rating" />
-						<select id="rate2" style="width: 119px; height: 30px; border-style: none; appearance: none;" onchange="star();">
+						<select id="rate2" style="width: 130px; height: 30px; border-style: none; appearance: none;" onchange="star();">
 						<option value="0">☆☆☆☆☆</option>
 						<option value="2">★☆☆☆☆</option>
 						<option value="4">★★☆☆☆</option>
@@ -310,6 +367,7 @@ function cannot() {
 						<option value="8">★★★★☆</option>
 						<option value="10">★★★★★</option>
 						</select>
+						<input type="text" name="rateMent2" disabled="disabled" class="readonly">
 						</td>
 						<td class="text">
 						<textarea title="댓글쓰기" name="comments" maxlength="65"
@@ -342,6 +400,7 @@ function cannot() {
 			<c:if test="${i!=0&&i%2==0 }">
 			</tr>
 			<tr>
+			
 			</c:if>
 				<c:if test="${comm.user_id==sessionScope.member.user_id}">
 				<td class="cell" style="background-color: #f2f2f2;">
@@ -378,32 +437,22 @@ function cannot() {
 				
 					<p class="bottom">
 					
-					<c:if test="${comm.user_id!=sessionScope.member.user_id }">
-					<a href="javascript:location.href=
-					'<%=cp%>/Movie/recommend.do?user_id=${comm.user_id }&movie_id=${dto.movie_id }'">
-					<img src="${imagePath }/thumb.png" style="vertical-align: middle;" /> 추천 
-					<font style="font-weight: bold;">${comm.recommend_num }</font></a>
-					</c:if>
 					
-					<c:if test="${comm.user_id==sessionScope.member.user_id }">
 					<img src="${imagePath }/thumb.png" style="vertical-align: middle;"/> 추천 
 						<font style="font-weight: bold;">${comm.recommend_num }</font>
 						
 					<span style="float: right">
 					<img src="${imagePath }/iconUpdate.png" onclick="open_field(${comm.user_id});" style="cursor: pointer;"/>&nbsp;&nbsp;
-					
-					<a href="<%=cp %>/Movie/delete.do?movie_id=${dto.movie_id}"> 
-					<img src="${imagePath }/iconTrash.png"/></a></span>
-					</c:if>
+					<img src="${imagePath }/iconTrash.png" onclick="deleteComm();"/></span>
 					
 					</p>
 					
 				</div>
 				
 				<div id="contentArea${comm.user_id}" style="display: none;">
-					<div class="text">
+					<div class="text" style="background-color: white; width: 280px;">
 					<input type="hidden" name="rating_t" />
-						<select id="rate3" style="width: 119px; height: 25px; border-style: none; appearance: none;" onchange="star_t();">
+						<select id="rate3" style="width:119px; height:20px; border-style: none; appearance: none;" onchange="star_t();">
 						<option value="0">☆☆☆☆☆</option>
 						<option value="2">★☆☆☆☆</option>
 						<option value="4">★★☆☆☆</option>
@@ -411,11 +460,13 @@ function cannot() {
 						<option value="8">★★★★☆</option>
 						<option value="10">★★★★★</option>
 						</select>
+					<input type="text" name="rateMent" disabled="disabled" class="readonly">
 					</div>
 				
-					<div style="color: #333333; font-size: 14px; line-height: 20px; margin: 4px 0 35px; width:310px;">
+					<div style="color: #333333; font-size: 14px; line-height: 20px; margin: 4px 0 35px; 
+					width:280px; background-color: white;">
 					<textarea rows="3" cols="35" name="contentArea" maxlength="65" 
-					style="border: 1px solid #dddddd; overflow: hidden;">${comm.comments }</textarea>
+					style="border: none; overflow: hidden; padding-right: 0px; padding-left: 0px">${comm.comments }</textarea>
 					
 					</div>
 				<p class="bottom">
