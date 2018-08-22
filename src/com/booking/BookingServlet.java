@@ -102,10 +102,7 @@ public class BookingServlet extends HttpServlet {
 
 			if (strHour != null) {
 				selectedHour2 = strHour;
-			}else if(strHour == null){
-				selectedHour2 = Integer.toString(nowHour);
 			}
-
 			String selectedMoviedId2 = "0";
 
 			String strMovieId = req.getParameter("selectedMoviedId");
@@ -128,10 +125,10 @@ public class BookingServlet extends HttpServlet {
 			}
 			
 			if(checkPara.equals("1")){ // 모두 선택되었을때
-				//System.out.println(selectedDate2);
-				//System.out.println(selectedHour2);
-				//System.out.println(selectedTheaterId2);
-				//System.out.println(selectedMoviedId2);
+				System.out.println(selectedDate2);
+				System.out.println(selectedHour2);
+				System.out.println(selectedTheaterId2);
+				System.out.println(selectedMoviedId2);
 				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2,selectedMoviedId2);
 				req.setAttribute("lists2", lists2);
 			}
@@ -152,10 +149,20 @@ public class BookingServlet extends HttpServlet {
 				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2);
 				req.setAttribute("lists2", lists2);
 			}
+			
 			if(checkPara.equals("4")){ // 날짜 시간 영화관 선택되었을때
-				List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2);
-				req.setAttribute("lists2", lists2);
-			}if(checkPara.equals("5")){ // 날짜 영화 선택되었을때
+				if(selectedDate2 == nowDay2){
+					List<MovieDTO> lists2 = dao.getMovieData(selectedDate2,selectedHour2,selectedTheaterId2);
+					req.setAttribute("lists2", lists2);
+					
+				}else{
+					List<MovieDTO> lists2 = dao.getMovieData4(selectedDate2,selectedHour2,selectedTheaterId2);
+					req.setAttribute("lists2", lists2);
+					
+				}
+			}
+			
+			if(checkPara.equals("5")){ // 날짜 영화 선택되었을때
 				List<MovieDTO> lists2 = dao.getMovieData1(selectedMoviedId2);
 				req.setAttribute("lists2", lists2);
 			}
@@ -198,28 +205,6 @@ public class BookingServlet extends HttpServlet {
 			String start_time = movieDTO.getStart_time();
 			String type = movieDTO.getType();
 			String district = movieDTO.getDistrict();
-			
-			
-			/*String age_limit = req.getParameter("age_limit");
-			String movie_name = req.getParameter("movie_name");
-			String screen_num = req.getParameter("screen_num");
-			String start_time = req.getParameter("start_time");
-			String type = req.getParameter("type");
-			String district = req.getParameter("district");*/
-			
-//			Cookie c_age_limit =new Cookie("c_age_limit", age_limit);
-//			Cookie c_movie_name = new Cookie("c_movie_name", movie_name);
-//			Cookie c_screen_num = new Cookie("c_screen_num", screen_num);
-//			Cookie c_start_time = new Cookie("c_start_time", start_time);
-//			Cookie c_type = new Cookie("c_type",type);
-//			Cookie c_district = new Cookie("c_district", district);
-//			
-//			resp.addCookie(c_age_limit);
-//			resp.addCookie(c_movie_name);
-//			resp.addCookie(c_screen_num);
-//			resp.addCookie(c_start_time);
-//			resp.addCookie(c_type);
-//			resp.addCookie(c_district);
 			
 		
 			List<BookingDTO> lists_seat = dao.getSeatInfo(screen_id); // 예약된 좌석 정보 가져오기

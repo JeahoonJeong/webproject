@@ -463,9 +463,9 @@ a:link {text-decoration: none; color: #4C4C4C;}
 			
 			<div id="middle-list" style=" width: 1000px; margin: 0 auto;">
 				<ul style="overflow: hidden; margin: 170px; margin-top: 60px; margin-bottom: 0px;">
-					<li><a href="<%=cp %>/index.jsp?check=0#middle-box">박스오피스</a></li>
-					<li><a href="<%=cp %>/index.jsp?check=1#middle-box">최신개봉작</a></li>
-					<li><a href="<%=cp %>/index.jsp?check=2#middle-box">상영예정작</a></li>
+					<li><a href="<%=cp %>/index.jsp?check=0">박스오피스</a></li>
+					<li><a href="<%=cp %>/index.jsp?check=1">최신개봉작</a></li>
+					<li><a href="<%=cp %>/index.jsp?check=2">상영예정작</a></li>
 					<li><a href="">큐레이션</a></li>
 				</ul>
 			</div>

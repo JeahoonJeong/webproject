@@ -25,6 +25,100 @@
 	type="text/css" />
 <script type="text/javascript" src="<%=cp%>/booking/js/util.js"></script>
 <script type="text/javascript">
+
+	function onLoad(){
+		var f = document.bookingForm;
+		
+		var arr_Date1 = document.getElementById("dateB1");
+		var arr_Date2 = document.getElementById("dateB2");
+		var arr_Date3 = document.getElementById("dateB3");
+		var arr_Date4 = document.getElementById("dateB4");
+		var arr_Date5 = document.getElementById("dateB5");
+		
+		var arr_Hour1 = document.getElementById("hourB1");
+		var arr_Hour2 = document.getElementById("hourB2");
+		var arr_Hour3 = document.getElementById("hourB3");
+		var arr_Hour4 = document.getElementById("hourB4");
+		var arr_Hour5 = document.getElementById("hourB5");
+		var arr_Hour6 = document.getElementById("hourB6");
+		var arr_Hour7 = document.getElementById("hourB7");
+		var arr_Hour8 = document.getElementById("hourB8");
+		var arr_Hour9 = document.getElementById("hourB9");
+		var arr_Hour10 = document.getElementById("hourB10");
+		
+		
+		var arr_Theater = document.getElementById("ff");
+		
+		date = ${selectedDate };
+		hour = ${selectedHour };
+		//
+		movieId = ${selectedMovieId };
+		
+		if(arr_Date1.value == date){
+			
+			arr_Date1.style.background = "#53A4AD";	
+		}
+		
+		if(arr_Date2.value ==date){
+			
+			arr_Date2.style.background = "#53A4AD";	
+		}
+		if(arr_Date3.value == date){
+			
+			arr_Date3.style.background = "#53A4AD";	
+		}
+		if(arr_Date4.value == date){
+			
+			arr_Date4.style.background = "#53A4AD";	
+		}
+		if(arr_Date5.value == date){
+			
+			arr_Date5.style.background = "#53A4AD";	
+		}
+		
+		
+		if(arr_Hour1.value == hour){	
+			arr_Hour1.style.background = "#53A4AD";					
+		}
+		if(arr_Hour2.value == hour){	
+			arr_Hour2.style.background = "#53A4AD";					
+		}
+		if(arr_Hour3.value == hour){	
+			arr_Hour3.style.background = "#53A4AD";					
+		}
+		if(arr_Hour4.value == hour){	
+			arr_Hour4.style.background = "#53A4AD";					
+		}
+		if(arr_Hour5.value == hour){	
+			arr_Hour5.style.background = "#53A4AD";					
+		}
+		if(arr_Hour6.value == hour){	
+			arr_Hour6.style.background = "#53A4AD";					
+		}
+		if(arr_Hour7.value == hour){	
+			arr_Hour7.style.background = "#53A4AD";					
+		}
+		if(arr_Hour8.value == hour){	
+			arr_Hour8.style.background = "#53A4AD";					
+		}
+		if(arr_Hour9.value == hour){	
+			arr_Hour9.style.background = "#53A4AD";					
+		}
+		if(arr_Hour10.value == hour){	
+			arr_Hour10.style.background = "#53A4AD";					
+		}
+	
+		
+		for(var i = 0 ; i < arr_Date.length; i++){
+			if(arr_Theater.value == movieId){
+				arr_Theater.selected = "selected";
+			}
+		}
+		
+	}
+
+
+
 	var windowObj; // 자식창 window 객체를 저장할 변수
 
 	// 영화 선택해서 다음 좌석선택으로 넘어가기
@@ -358,9 +452,9 @@
 
 
 </head>
-<body>
+<body onload="onLoad();">
 
-	<div align="center">
+	<div align="center" style="border-color: #CFCFCF ">
 		<form name ="bookingForm" method="post">
 		<table class="tb1" border="1" cellpadding="0" cellspacing="0" 
 			style="border-color: #CFCFCF; border-width: 1px; " >
@@ -375,11 +469,11 @@
 					<br/>
 					<div align="center" style="padding-top: 20px; ">
 					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px;" type="button" value="◀" class = "btn2" onclick="changeDay1();"/> <!-- 현재 날짜 --> 
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day}" class = "btn1" onclick="selectDate1();" name = "dateButton1"/> <!-- 현재 날짜 --> 
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+1 }" class = "btn1" onclick="selectDate2();" name = "dateButton2"/> <!-- 현재 날짜 +1 -->
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+2 }" class = "btn1" onclick="selectDate3();" name = "dateButton3"/>
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+3 }" class = "btn1" onclick="selectDate4();" name = "dateButton4"/>
-					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+4 }" class = "btn1" onclick="selectDate5();" name = "dateButton5"/>
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day}" class = "btn1" onclick="selectDate1();" name = "dateButton1" id = "dateB1"/> <!-- 현재 날짜 --> 
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+1 }" class = "btn1" onclick="selectDate2();" name = "dateButton2" id = "dateB2"/> <!-- 현재 날짜 +1 -->
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+2 }" class = "btn1" onclick="selectDate3();" name = "dateButton3" id = "dateB3"/>
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+3 }" class = "btn1" onclick="selectDate4();" name = "dateButton4" id = "dateB4"/>
+					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; "type="button" value="${day+4 }" class = "btn1" onclick="selectDate5();" name = "dateButton5" id = "dateB5"/>
 					<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px; "type="button" value="▶" class = "btn2" onclick="changeDay2();"/> <!-- 현재 날짜 --> 
 					</div>
 				</td>
@@ -388,16 +482,16 @@
 				<br/><br/>
 				<div align="center" style="padding-top: 16px;">
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px;" type="button" value="◀" class = "btn2" onclick="changeTime1();" /> <!-- 현재 시간 --> 
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour }" class ="btn3" onclick="selectTime1()" name = "timeButton1"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+1 }" class ="btn3" onclick="selectTime2();" name = "timeButton2"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+2 }" class ="btn3" onclick="selectTime3();" name = "timeButton3"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+3 }" class ="btn3" onclick="selectTime4();" name = "timeButton4"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+4 }" class ="btn3" onclick="selectTime5();" name = "timeButton5"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+5 }" class ="btn3" onclick="selectTime6();" name = "timeButton6" />
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+6 }" class ="btn3" onclick="selectTime7();" name = "timeButton7"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+7 }" class ="btn3" onclick="selectTime8();" name = "timeButton8"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+8 }" class ="btn3" onclick="selectTime9();" name = "timeButton9"/>
-				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+9 }" class ="btn3" onclick="selectTime10();" name = "timeButton10" />
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour }" class ="btn3" onclick="selectTime1()" name = "timeButton1" id = "hourB1"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+1 }" class ="btn3" onclick="selectTime2();" name = "timeButton2" id = "hourB2"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+2 }" class ="btn3" onclick="selectTime3();" name = "timeButton3" id = "hourB3"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+3 }" class ="btn3" onclick="selectTime4();" name = "timeButton4" id = "hourB4"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+4 }" class ="btn3" onclick="selectTime5();" name = "timeButton5" id = "hourB5"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+5 }" class ="btn3" onclick="selectTime6();" name = "timeButton6" id = "hourB6"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+6 }" class ="btn3" onclick="selectTime7();" name = "timeButton7" id = "hourB7"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+7 }" class ="btn3" onclick="selectTime8();" name = "timeButton8" id = "hourB8"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+8 }" class ="btn3" onclick="selectTime9();" name = "timeButton9" id = "hourB9"/>
+				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; " type="button" value ="${hour+9 }" class ="btn3" onclick="selectTime10();" name = "timeButton10" id ="hourB10" />
 				<input style="border-color: #CFCFCF; border-width: 0.5px; border-style: solid; height: 23px; " type="button" value="▶" class = "btn2" onclick="changeTime2();"/> <!-- 현재 날짜 -->
 				</div>
 				
@@ -414,9 +508,8 @@
 						<c:forEach var="dto" items="${lists }">
 							<tr height="40px">
 								<td class="sample1" width="320px" style="text-align: center;">
-									${dto.city } | ${dto.district } 영화관 <input type="radio" id = "ff" value="${dto.theater_id } " name = "theater"  
-									onclick = "selectTheater();"
-									/>
+									${dto.city } | ${dto.district } 영화관 
+									<input type="radio" id = "ff" value="${dto.theater_id } " name = "theater"  onclick = "selectTheater();"/>
 									<br/>
 								</td>
 							</tr>
@@ -445,7 +538,7 @@
 								<td width="130" style="text-align: center;">
 									<span style="font-size: 15pt; font-weight: bold;"> ${dto2.start_time }</span> ~ ${dto2.end_time }
 									
-									<span style="font-size : 25pt;">|</span>
+									<span style="font-size : 25pt; color: #CFCFCF">|</span>
 											</td>										
 								<td width="290" style="text-align: left;">
 								
@@ -468,7 +561,7 @@
 									&nbsp;&nbsp;<span style="font-size: 9pt;">${dto2.type }</span>
 								</td>										
 								<td>
-								<span style="font-size : 25pt;">|</span>
+								<span style="font-size : 25pt; color: #CFCFCF"" >|</span>
 								</td>
 								<td width="50" style="text-align: center;">
 								
@@ -476,14 +569,14 @@
 								<br/>
 									${dto2.screen_num }관
 								<br/>
-									${dto2.seatNumber - dto2.seatedSeat} / ${dto2.seatNumber }
+									${dto2.seatedSeat} / ${dto2.seatNumber }
 								</td>										
 							
 							</tr>
 							<tr>
 						
 								<td colspan="4">
-									<hr>
+									<hr color="#CFCFCF"">
 								</td>
 							</tr>
 						</c:forEach>
@@ -494,14 +587,14 @@
 				</td>
 			</tr>
 			<tr height="230" >
-				<td><span class="text"  style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px;">영화</span>
+				<td><span class="text" style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px;">영화</span>
 				<br/><br/>
-					<table style="padding-top :20px; border-color: #CFCFCF; border-width: 1px;  "align="center" border="2" width="350px;" cellpadding="0" cellspacing="0">
+					<table border="1" style="padding-top :20px; border-color: #CFCFCF; border-width: 1px;" align="center" width="350px;" cellpadding="0" cellspacing="0">
 					<tr height="80px;">
-						<td align="center" style="font-size: 25px; color: black; font-weight: bold; margin-bottom: 10px;">모든영화</td>
+						<td class="sample1" align="center" style="font-size: 25px; color: black; font-weight: bold; margin-bottom: 10px;">모든영화</td>
 					</tr>
 					<tr>
-						<td height="60px;" align="center">
+						<td height="60px;" align="center" class="sample1" >
 						<a style = "text-decoration:none; color: #53A4AD ; font-weight: bold; font-family: sans-serif;" onclick = "selectMovie();">영화선택 ▷</a>
 						</td>
 					</tr>

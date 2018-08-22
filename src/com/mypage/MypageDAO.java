@@ -208,7 +208,7 @@ public class MypageDAO {
 
 			sql = "select booked_id, user_id, reservation_date, to_char(cancel_date,'YYYY-MM-DD HH24:MI') cancel_date,movie_id, file_name, movie_name, age_limit,"
 					+ "district, screen_num, to_char(start_time,'YYYY-MM-DD HH24:MI') start_time ,to_char(end_time,'HH24:MI') end_time "
-					+ " from booked_list where user_id=? and cancel_date is not null order by start_time desc";
+					+ " from booked_list where user_id=? and cancel_date is not null order by cancel_date desc";
 
 
 			pstmt = conn.prepareStatement(sql);
