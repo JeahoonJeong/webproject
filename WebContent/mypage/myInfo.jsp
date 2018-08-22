@@ -292,7 +292,7 @@
 <div align="center">
 <br/><br/><br/>
 <input type="button" value="취소" class="btn3" onclick="javascipt:location.href='<%=cp%>/Mypage/mypageMain.do'">
-<input type="button" value="수정" class="btn4" onclick="sendIt(${member.getUser_pwd()});">
+<input type="button" value="수정" class="btn4" onclick="sendIt('${member.getUser_pwd()}');">
 </div>
 
 </div>

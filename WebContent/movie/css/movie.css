@@ -89,6 +89,7 @@
 #image img{display:block;border:0;zoom:1;}
 #image ul:after{content: ""; display:block;clear:both;}
 #image li{
+	
 	padding: 0px;
 }
 #image .full{

@@ -330,16 +330,23 @@ function deleteComm() {
 		<h3>한줄평 <span style="color: #666666; font-size: 14px;">(${dto.commCount })</span></h3>
 		</div>
 		<div style="width: 888px; height: 128px;">
-			<c:choose>
-				<c:when test="${empty sessionScope.member.user_id }">
+				<c:if test="${empty sessionScope.member.user_id }">
 				<span style="padding-top: 58px; float: left;">
 					<img class="radius" width="56px" height="56px" src="${profileImg }/profile.png"></span>
-				</c:when>
-				<c:otherwise>
-				<span style="padding-top: 58px; float: left;">
-					<img class="radius" width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
-				</c:otherwise>
-			</c:choose>
+				</c:if>
+				<c:if test="${!empty sessionScope.member.user_id }">
+				<c:choose>
+					<c:when test="${empty sessionScope.member.user_id }">
+						<span style="padding-top: 58px; float: left;">
+						<img class="radius" width="56px" height="56px" src="${profileImg }/${sessionScope.member.file_name}"></span>
+					</c:when>
+					<c:otherwise>
+						<span style="padding-top: 58px; float: left;">
+						<img class="radius" width="56px" height="56px" src="${profileImg }/profile.png"></span>
+					</c:otherwise>
+				</c:choose>	
+				</c:if>
+		
 			<table id="comment_input">
 				<tr>
 
@@ -452,7 +459,7 @@ function deleteComm() {
 						<font style="font-weight: bold;">${comm.recommend_num }</font>
 						
 					<span style="float: right">
-					<img src="${imagePath }/iconUpdate.png" onclick="open_field(${comm.user_id});" style="cursor: pointer;"/>&nbsp;&nbsp;
+					<img src="${imagePath }/iconUpdate.png" onclick="open_field('${comm.user_id}');" style="cursor: pointer;"/>&nbsp;&nbsp;
 					<img src="${imagePath }/iconTrash.png" onclick="deleteComm();"/></span>
 					
 					</p>
@@ -483,7 +490,7 @@ function deleteComm() {
 					<span style="float: right">
 				
 					<img src="${imagePath }/confirm.png" onclick="updateComm();" style="cursor: pointer;"/>&nbsp;&nbsp;
-					<img src="${imagePath }/cancle.png" onclick="close_field(${comm.user_id });" style="cursor: pointer;"/>
+					<img src="${imagePath }/cancle.png" onclick="close_field('${comm.user_id }');" style="cursor: pointer;"/>
 					
 					</span>
 				</p>
