@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.booking.bookedSeatDTO;
 import com.login.MemberDAO;
 import com.login.MemberDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -154,16 +155,13 @@ public class MypageServlet extends HttpServlet{
 			String user_id = member.getUser_id();
 
 			String booked_id = req.getParameter("booked_id");
-
-			dao.cancelReservation(booked_id);
 			
-			/////////////////////////////////////////////수정중
-			List<MyBookingDTO> cancelSeatsList = new ArrayList<MyBookingDTO>();
+			List<bookedSeatDTO> cancelSeatsList = new ArrayList<bookedSeatDTO>();
 			
 			cancelSeatsList = dao.getCancelseat(booked_id);
-			
+
+			dao.cancelReservation(booked_id);		
 			dao.cancelSeats(cancelSeatsList);
-			////////////////////////////////
 			
 			List<MyBookingDTO> bookingList = new ArrayList<MyBookingDTO>();
 
