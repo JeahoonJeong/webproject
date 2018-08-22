@@ -126,6 +126,7 @@ public class MovieServlet extends HttpServlet{
 			List<MovieDTO> still = dao.getStillcut(movie_id);
 			List<MovieDTO> comm = dao.getAllComment(movie_id);
 			int stillCount = dao.getStillCount(movie_id);
+			int wishCount = dao.wishCount(movie_id);
 
 			dto.setSummary(dto.getSummary().replaceAll("/", "<br>"));
 			
@@ -140,7 +141,7 @@ public class MovieServlet extends HttpServlet{
 				
 				int commCheck = dao.commentCheck(movie_id, user_id);
 				req.setAttribute("commCheck", commCheck);
-
+				
 			}
 
 			////////--------------------------------------
@@ -154,7 +155,7 @@ public class MovieServlet extends HttpServlet{
 			req.setAttribute("comm", comm);
 			req.setAttribute("stillCount", stillCount);
 			req.setAttribute("profileImg", profileImg);
-			
+			req.setAttribute("wishCount", wishCount);
 
 			url = "/movie/movie.jsp?movie_id= + movie_id";
 			forward(req, resp, url);

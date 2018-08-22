@@ -226,7 +226,39 @@ font-size: 12px; float: left;}
 	width: 130px;
 	border: none;
 	background-color: white;
-	
 }
 
+
+.arrow_box {
+	position: relative;
+	background: #fff;
+	width: 50px;
+	height: 20px;
+	border: 1px solid #999;
+	text-align: center;
+	float: right;
+}
+.arrow_box:after, .arrow_box:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #fff;
+	border-width: 4px;
+	margin-top: 0px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #999;
+	border-width: 5px;
+	margin-top: -1px;
+}
 

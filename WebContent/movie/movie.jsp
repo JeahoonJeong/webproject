@@ -259,7 +259,10 @@ function deleteComm() {
 			</select>
 			
 			<font size="1pt;" color="#4C4C4C">너무 멋진 영화였어요!</font></span> -->
-			<span style="float: right;">
+			
+			<div style="float: right;">
+			
+			<div style="float: right; margin-left: 10px;">
 			<c:if test="${empty wish }">
 				<input type="button" value="♥ 보고싶어" name="wishMovie" class="btn2" onclick="javascipt:location.href='<%=cp%>/Movie/wish_add.do?movie_id=${dto.movie_id}'">
 			</c:if>
@@ -273,7 +276,13 @@ function deleteComm() {
 			<input type="button" value="상영시간표" name="booking" onclick="goToP();" class="btn3"/>
 			</c:if>
 			<br/><font size="2pt" color="red">${message }</font>
-			</span>
+			</div>
+			<div class="arrow_box">
+			<font style="font-weight: bold; font-size: 10pt; font-family: 'Nanum Gothic', sans-serif; 
+			color: #666666;">♥${wishCount }</font></div>
+			
+			</div>
+			
 			</td>
 		</tr>
 	</table>

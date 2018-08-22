@@ -236,7 +236,7 @@ public class MovieDAO {
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id) data) where rnum>=? and rnum<=?;";*/
 			
 			sql = "select a.*, rating from (select movie_id,a.user_id,to_char(comment_date,'YYYY.MM.DD') ";
-			sql+= "comment_date,comments,recommend_num,file_name from (select * from comments order by comment_date) a ";
+			sql+= "comment_date,comments,recommend_num,file_name from (select * from comments order by comment_date desc) a ";
 			sql+= "left join member_image b on a.user_id=b.user_id where movie_id=?) a , rating b where ";
 			sql+= "a.movie_id=b.movie_id and a.user_id=b.user_id";
 			
@@ -344,6 +344,36 @@ public class MovieDAO {
 		}
 		
 		return wish;
+	}
+	
+	public int wishCount(String movie_id){
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			
+			sql = "select count(movie_id) wishCount from wish_list where movie_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, movie_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+				result = Integer.parseInt(rs.getString("wishCount"));
+			
+			rs.close();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+
 	}
 	
 	public int insertWishlist(String user_id, String movie_id){
@@ -619,8 +649,7 @@ public class MovieDAO {
 		return result;
 		
 	}
-	
-	
+
 	
 	
 	
