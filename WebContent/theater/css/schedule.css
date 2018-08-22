@@ -20,6 +20,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, strong, label {
     margin-bottom: 85px;
 }
 
+.P2_container>.sc {
+	position: relative;
+	padding: 15px 0 15px;
+}
+
 .P2_container .sc.no1 {
     position: relative;
     height: 580px;
@@ -36,6 +41,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, strong, label {
     width: 1140px;
     margin: 0 auto;
 }
+
 
 .P2_container .sc.no1 .whole_wrap p.P2_ti_box {
     top: 260px;
@@ -96,7 +102,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, strong, label {
 }
 
 .P2_container .sc.no2 {
-    margin-bottom: 70px;
+    margin-bottom: 20px;
 }
 
 .P2_container .sc.no5 {
@@ -312,6 +318,11 @@ ul, ol, dl, li, p {
     position: absolute;
     top: 35px;
     left: 92px;
+}
+
+.whole_wrap>.sc {
+    position: relative;
+    padding: 70px 0 80px;
 }
 
 .time_info:hover .hover_time {
