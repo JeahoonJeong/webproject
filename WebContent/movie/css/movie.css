@@ -105,7 +105,7 @@ cursor:default;
 -webkit-transition:1s;
 -moz-transition:1s;
 -o-transition:1s;}
-#image_top li:first-child .full, 
+#image li:first-child .full, 
 #image a:hover + .full,
 #image a:active + .full,
 #image a:focus + .full{opacity:1;filter:alpha(opacity=100)}

@@ -297,17 +297,18 @@ function deleteComm() {
 		<div style="height: 110px;">						
 			<%-- <div class="lbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
 			<img src="${imagePath }/left_btnn.png"/></a></div> --%>
-			
-			<c:forEach var="still" items="${still }">
 			<ul style="float: left;">
-			<li>
+			<c:forEach var="still" items="${still }">
+			
+			<li style="float: left;">
 			<a href="#image"><img src="${imagePath }/${still.file_name}" height="110px"/></a>
 
 			<img class="full" src="${imagePath }/${still.file_name}" height="500px" />
 			
 			</li>
-			</ul>
+			
 			</c:forEach>
+			</ul>
 
 		
 			<%-- <div class="rbtn"><a href="javascript:void(0);" title="이전 스틸컷 보기">
